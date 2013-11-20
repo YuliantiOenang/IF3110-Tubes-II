@@ -1,8 +1,10 @@
-<?php
+<%
 	
-	include 'Database.php';
-	GetDBBarang_BestBuy();
-?>
+	if (session.getAttribute("bestbuy")==null){
+	
+	}
+	
+%>
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
@@ -51,7 +53,11 @@
 				<p id="bbuy-b">Products</p>
 			</div>
 			<div class="kolom-8">
+			
 				<div class="frame">
+					<div>
+					BERAS
+					</div>
 					<div class="kolom-4 product">
 						<a href="">
 							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][0]?>.jpg" alt=""/>
@@ -73,13 +79,106 @@
 							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][2]?></p>
 						</a>							
 					</div>
+					
+					<div>
+					DAGING
+					</div>
 					<div class="kolom-4 product">
 						<a href="">
 							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
 							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
 							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
 						</a>						
-					</div>			
+					</div>		
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div>
+					SAYURAN
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div>
+					FROZEN FOOD
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div>
+					SNACK
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
+					
+					<div class="kolom-4 product">
+						<a href="">
+							<img class="gambar" src="res/img/product/<?php echo $_SESSION['BestBuy'][3]?>.jpg" alt=""/>
+							<p class="nama-produk"><?php echo $_SESSION['BestBuy'][3]?></p>
+							<p class="asal-produk"><?php echo $_SESSION['BestBuy'][3]?></p>		
+						</a>						
+					</div>
 				</div>
 			</div>
 		</div>
@@ -87,23 +186,7 @@
 	
 	<!-- Javascript -->
 	<script src="res/js/common.js" type="text/javascript"></script>
-	<script src="popup.js"></script> 
-	<script src="Ajaxlogin.js"></script> 
-	<script>
-	function forLogin(){
-		var username = AJAXPost();
-		
-		if (username.length!=3){
-			
-			document.getElementById('sbmtlogin').value="Login\nLogin Sukses";
-			var newhtml =		'<h3>Welcome, <span class="user-name"><a href="edit-profile.php" id="member">'+username+'</a></span>!</h3><p id="user-control"><span class="edit-logout">	<a href="logout.jsp" id="logout2">Logout</a></span></p>';
-			document.getElementById("logreg").innerHTML=newhtml;
 	
-		}else{
-			document.getElementById('sbmtlogin').value="Login\nusername/password salah";
-		}
-	}
-	</script>	
 	
 </body>
 </html>
