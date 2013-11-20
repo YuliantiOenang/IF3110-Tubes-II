@@ -11,6 +11,42 @@ My First Servlet
    <servlet-class>npackage.LoginServlet</servlet-class> 
 </servlet> 
 <servlet> 
+   <servlet-name>UpdateServlet</servlet-name> 
+   <servlet-class>npackage.UpdateServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>getdatamember</servlet-name> 
+   <servlet-class>npackage.getdatamember</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>insertdata</servlet-name> 
+   <servlet-class>npackage.insertdata</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>insertcreditcard</servlet-name> 
+   <servlet-class>npackage.insertcreditcard</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>UsernameValidationServlet</servlet-name> 
+   <servlet-class>npackage.UsernameValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>CardNumberValidationServlet</servlet-name> 
+   <servlet-class>npackage.CardNumberValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>EmailValidationServlet</servlet-name> 
+   <servlet-class>npackage.EmailValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>NameCardValidationServlet</servlet-name> 
+   <servlet-class>npackage.NameCardValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>ExpireDateValidationServlet</servlet-name> 
+   <servlet-class>npackage.ExpireDateValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
    <servlet-name>CookieExample</servlet-name> 
    <servlet-class>CookieExample</servlet-class> 
 </servlet> 
@@ -20,8 +56,45 @@ My First Servlet
 </servlet> 
 <!-- servlet mapping --> 
 <servlet-mapping> 
+   <servlet-name>UsernameValidationServlet</servlet-name> 
+   <url-pattern>/UsernameValidationServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getdatamember</servlet-name> 
+   <url-pattern>/getdatamember</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>CardNumberValidationServlet</servlet-name> 
+   <url-pattern>/CardNumberValidationServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>NameCardValidationServlet</servlet-name> 
+   <url-pattern>/NameCardValidationServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>ExpireDateValidationServlet</servlet-name> 
+   <url-pattern>/ExpireDateValidationServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>insertdata</servlet-name> 
+   <url-pattern>/insertdata</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>insertcreditcard</servlet-name> 
+   <url-pattern>/insertcreditcard</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>EmailValidationServlet</servlet-name> 
+   <url-pattern>/EmailValidationServlet</url-pattern> 
+</servlet-mapping> 
+
+<servlet-mapping> 
    <servlet-name>LoginServlet</servlet-name> 
    <url-pattern>/LoginServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>UpdateServlet</servlet-name> 
+   <url-pattern>/UpdateServlet</url-pattern> 
 </servlet-mapping> 
 
 <servlet-mapping> 
