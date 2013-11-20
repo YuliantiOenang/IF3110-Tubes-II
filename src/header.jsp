@@ -33,7 +33,7 @@
 							%>
 							
 							
-							<h3>Welcome, <span class="user-name"><a href="edit-profile.jsp id="member"><% out.println(valuelagi); %></a></span>!</h3>
+							<h3>Welcome, <span class="user-name"><a href="edit-profile.jsp" id="member"><% out.println(valuelagi); %></a></span>!</h3>
 							<p id="user-control">
 								<span class="edit-logout">	<a href='logout.jsp' id='logout2'>Logout</a></span>
 							</p>
@@ -65,7 +65,7 @@
 			</div>			
 		</div>
 		
-			<form name="login" id="login" action="LoginServlet" method="post">
+			<form name="login" id="login" method="post">
 		<div id="popupbox"> 
 				<a href="javascript:login('hide')" id ="close">[X] close</a> <br/><br/>
 				Username:
@@ -89,3 +89,21 @@
 			</ul>
 		</div>
 		<!-- End of Navbar -->
+		
+	<script src="popup.js"></script> 
+	<script src="Ajaxlogin.js"></script> 
+	<script>
+	function forLogin(){
+		var username = AJAXPost();
+		
+		if (username.length!=3){
+			
+			document.getElementById('sbmtlogin').value="Login\nLogin Sukses";
+			var newhtml =		'<h3>Welcome, <span class="user-name"><a href="edit-profile.jsp" id="member">'+username+'</a></span>!</h3><p id="user-control"><span class="edit-logout">	<a href="logout.jsp" id="logout2">Logout</a></span></p>';
+			document.getElementById("logreg").innerHTML=newhtml;
+	
+		}else{
+			document.getElementById('sbmtlogin').value="Login\nusername/password salah";
+		}
+	}
+	</script>	
