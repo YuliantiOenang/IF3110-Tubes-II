@@ -19,6 +19,10 @@ My First Servlet
    <servlet-class>npackage.getdatamember</servlet-class> 
 </servlet> 
 <servlet> 
+   <servlet-name>getbestbuy</servlet-name> 
+   <servlet-class>npackage.getbestbuy</servlet-class> 
+</servlet> 
+<servlet> 
    <servlet-name>insertdata</servlet-name> 
    <servlet-class>npackage.insertdata</servlet-class> 
 </servlet> 
@@ -62,6 +66,10 @@ My First Servlet
 <servlet-mapping> 
    <servlet-name>getdatamember</servlet-name> 
    <url-pattern>/getdatamember</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getbestbuy</servlet-name> 
+   <url-pattern>/getbestbuy</url-pattern> 
 </servlet-mapping> 
 <servlet-mapping> 
    <servlet-name>CardNumberValidationServlet</servlet-name> 

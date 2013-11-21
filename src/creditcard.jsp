@@ -68,7 +68,7 @@
 				</div>				
 				<br/>
 				<input type='submit' id="submitbutton" name='submitbutton' value='Register' class="btn"/>
-				<input type='button' id="skipbutton" name='skipbutton' value='Skip' onclick="location.href='index.php'" class="btn"/>
+				<input type='button' id="skipbutton" name='skipbutton' value='Skip' onclick="location.href='index.jsp'" class="btn"/>
 			</form>
 		</div>
 		
