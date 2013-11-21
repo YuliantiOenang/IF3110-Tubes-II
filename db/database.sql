@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 29 Okt 2013 pada 13.45
+-- Waktu pembuatan: 21 Nov 2013 pada 13.29
 -- Versi Server: 5.5.27
 -- Versi PHP: 5.4.7
 
@@ -39,12 +39,12 @@ CREATE TABLE IF NOT EXISTS `barang` (
 --
 
 INSERT INTO `barang` (`IdBarang`, `NamaBarang`, `Harga`, `Kategori`, `Jumlah`) VALUES
-(1, 'DagingSapi', 80000, 'Daging', 15),
-(2, 'IceCream', 10000, 'Snack', 15),
+(1, 'DagingSapi', 80000, 'Daging', 10),
+(2, 'IceCream', 10000, 'Snack', 14),
 (3, 'ChickenNugget', 30000, 'Frozen Food', 13),
-(4, 'BayamItali', 5000, 'Sayuran', 15),
-(5, 'BerasCarrefour', 12000, 'Beras', 11),
-(6, 'DagingYak', 85000, 'Daging', 12),
+(4, 'BayamItali', 5000, 'Sayuran', 7),
+(5, 'BerasCarrefour', 12000, 'Beras', 10),
+(6, 'DagingYak', 85000, 'Daging', 11),
 (7, 'BerasTajMahal', 25000, 'Beras', 9),
 (8, 'BerasHCSR04', 22000, 'Beras', 7),
 (9, 'BerasRaskin', 20000, 'Beras', 12),
@@ -56,7 +56,14 @@ INSERT INTO `barang` (`IdBarang`, `NamaBarang`, `Harga`, `Kategori`, `Jumlah`) V
 (15, 'SOZZZZZZIS', 32000, 'Frozen Food', 25),
 (16, 'FIESTANIGGA', 22000, 'Frozen Food', 15),
 (17, 'BAKSOSOGOOD', 28000, 'Frozen Food', 42),
-(18, 'Beras A-KING', 200, 'Beras', 22);
+(18, 'Beras A-KING', 200, 'Beras', 19),
+(19, 'DagingBebek', 15000, 'Daging', 10),
+(20, 'SiomayMantap', 20500, 'Frozen Food', 10),
+(21, 'Kangkung', 5300, 'Sayuran', 10),
+(22, 'ToKaeNoi', 5400, 'Snack', 10),
+(23, 'LeoKripikKentang', 3100, 'Snack', 10),
+(24, 'MiGemez', 1200, 'Snack', 24),
+(25, 'Bengbeng', 2050, 'Snack', 10);
 
 -- --------------------------------------------------------
 
@@ -118,7 +125,29 @@ INSERT INTO `transactionlog` (`IdBarang`, `NamaBarang`, `Harga`, `Jumlah`, `User
 (5, 'BerasCarrefour', 12000, 1, 'Boci', 'Beras'),
 (2, 'IceCream', 10000, 2, 'budie', 'Snack'),
 (5, 'BerasCarrefour', 12000, 2, 'budie', 'Beras'),
-(3, 'ChickenNugget', 30000, 2, 'budie', 'Frozen Food');
+(3, 'ChickenNugget', 30000, 2, 'budie', 'Frozen Food'),
+(4, 'BayamItali', 5000, 2, 'yuhustore', 'Sayuran'),
+(1, 'DagingSapi', 80000, 1, 'budie', 'Daging'),
+(4, 'BayamItali', 5000, 1, 'budie', 'Sayuran'),
+(5, 'BerasCarrefour', 12000, 1, 'budie', 'Beras'),
+(18, 'Beras A-KING', 200, 3, 'budie', 'Beras'),
+(4, 'BayamItali', 5000, 4, 'budie', 'Sayuran'),
+(2, 'IceCream', 10000, 1, 'budie', 'Snack'),
+(1, 'DagingSapi', 80000, 1, 'budie', 'Daging'),
+(1, 'DagingSapi', 80000, 20, 'budie', 'Daging'),
+(6, 'DagingYak', 85000, 1, 'aditya2', 'Daging'),
+(1, 'DagingSapi', 80000, 1, 'aditya2', 'Daging'),
+(4, 'BayamItali', 5000, 1, 'budie', 'Sayuran'),
+(8, 'BerasHCSR04', 22000, 1, 'Budie', 'Beras'),
+(9, 'BerasRaskin', 20000, 1, 'Budie', 'Beras'),
+(21, 'Kangkung', 5300, 1, 'Budie', 'Sayuran'),
+(21, 'Kangkung', 5300, 1, 'Budie', 'Sayuran'),
+(14, 'TimunAustralia', 14500, 1, 'Budie', 'Sayuran'),
+(23, 'LeoKripikKentang', 3100, 1, 'Budie', 'Snack'),
+(2, 'IceCream', 10000, 1, 'Budie', 'Snack'),
+(25, 'Bengbeng', 2050, 2, 'Budie', 'Snack'),
+(20, 'SiomayMantap', 20500, 1, 'Budie', 'Frozen Food'),
+(17, 'BAKSOSOGOOD', 28000, 1, 'Budie', 'Frozen Food');
 
 -- --------------------------------------------------------
 
@@ -145,18 +174,28 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `email`, `namalengkap`, `nohp`, `provinsi`, `kotakabupaten`, `alamat`, `kodepos`, `nocredit`) VALUES
-('aditya', '12341234', 'adt@adit.com', 'adit ya', '1234123048', 'aksjdfkansd', 'kansdknf', 'kjjdinfoa', '2134123', '12341234'),
-('budie', '12345678', 'budie@gmail.com', 'budi budi', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
-('budih', '12341234', 'budie@budi.com', 'budi handoko', '12345', 'lalala', 'lalala', 'lalala', '4444', '12341234'),
-('cobabro', '12341234', 'coba@bro.com', 'coba bro', '081508150815', 'Jambi', 'Jambi', 'Jambi', '3000', NULL),
-('cobadulu', '12345678', 'coba@dulu.com', 'coba dulu', '01234', 'SULAWESI', 'sulawesi', 'sulawesi', '7000', '12341234'),
-('cobalagi', '12341234', 'cobalagi@lagi.com', 'coba dong', '085708570857', 'Jambi', 'Jambi', 'Jambi', '31365', NULL),
-('lalayeye', '12345678', 'lala@yeye.com', 'lala yeye', '981379134', 'asdfgs', 'asdgs', 'adfhgs', '345', NULL),
-('riandy', '12341234', 'riandy@riandy.com', 'riandy r', '234353', 'sdfgsdfv', 'asdf', 'asdfasd', '143', '123123123'),
-('testtest', '12341234', 'test@test.com', 'test test', '0102030405', 'jawa', 'jawa', 'jawa', '1234', NULL),
-('username1', '12345678', 'username@username.com', 'username satu', '12344312', 'Jawa Barat', 'Jawa', 'Jawa', '1000', NULL),
-('yanti', '1234512345', 'yanti@yanti.com', 'yanti yanti', '08080909', 'Kalimantan Barat', 'Jakarta', 'Jalan layang no 44', '5000', '12341234'),
-('yoibro', '12345678', 'yoi@bro.com', 'yoi bro', '0101010101', 'lalala', 'yeyeye', 'layelaye', '000', NULL);
+('aditya', '12345678', 'adt@adit.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('aditya2', '12345678', 'aditya@yahoo.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('aditya3', '12345678', 'aditya3@yahoo.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('bebek', '12345678', 'bebek@bebek.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('budie', '12341234', 'budie@gmail.com', 'budi ebudi', '087899', 'Jawa Timur', 'Surabaya', 'Surabaya', '5000', '12341234'),
+('budih', '12345678', 'budie@budi.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('cobabro', '12345678', 'coba@bro.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('cobadulu', '12345678', 'coba@dulu.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('cobalagi', '12345678', 'cobalagi@lagi.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('heybro', '12345678', 'hey@bro.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('kucing', '12345678', 'kucing@kucing.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('lalaye', '12345678', 'lalaye@lalaye.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('lalayeye', '12345678', 'lala@yeye.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('popop', '12345678', 'pop@pop.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('riandy', '12345678', 'riandy@riandy.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '123123123'),
+('testtest', '12345678', 'test@test.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('username1', '12345678', 'username@username.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('username2', '12345678', 'usernam2@com.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('username4', '12345678', 'username4@com.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('yanti', '12345678', 'yanti@yanti.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('yoibro', '12345678', 'yoi@bro.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('yuhustore', '12345678', 'yuhu@store.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
