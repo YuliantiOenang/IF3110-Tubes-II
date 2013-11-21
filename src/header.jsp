@@ -38,7 +38,7 @@
 								<span class="edit-logout">	<a href='logout.jsp' id='logout2'>Logout</a></span>
 							</p>
 							<% }else {
-								session.invalidate();
+								
 								
 							%>
 							<div id = "logreg">
@@ -56,7 +56,7 @@
 					</div>
 					
 					<div id="search-bar" class="frame">
-						<form name="search-form" action="search.jsp" onsubmit="return validateForm('search-form', 'src', 'Ketikkan barang yang dicari...')">
+						<form name="search-form" action="getsearch" onsubmit="return validateForm('search-form', 'src', 'Ketikkan barang yang dicari...')">
 							<input id="search-box" class="kolom-9" type="text" name="src" value="Ketikkan barang yang dicari..." onfocus="checkclear(this)" onblur="checkempty(this, 'Ketikkan barang yang dicari...')">
 							<input id="search-button" class="kolom-1" type="submit" value="">
 						</form>					
@@ -66,15 +66,17 @@
 		</div>
 		
 			<form name="login" id="login" method="post">
-		<div id="popupbox"> 
+			<div id="popupbox"> 
 				<a href="javascript:login('hide')" id ="close">[X] close</a> <br/><br/>
 				Username:
 				<input name="username" size="14" /><br/>
 				Password:
 				<input name="password" type="password" size="14" /><br/><br/>
 				<input type="button" name="button" id= "sbmtlogin" onclick="forLogin()" value="login" />
+				</div> 
+			
 			</form>
-		</div> 
+		
 		
 		<!-- End of Header -->
 		
