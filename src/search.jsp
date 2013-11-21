@@ -21,7 +21,9 @@
 		<jsp:include page="header.jsp"/>
 		
 		<!-- Navbar Section -->
-		<p id="src-title">Search Result(s) for <span class="src-param"><% out.print((String)session.getAttribute("squery")); %></span></p>
+		<p id="src-title"><% out.print(session.getAttribute("jumlahsearch"));%> Result(s) for <span class="src-param"><% out.print("''"+(String)session.getAttribute("squery")+"''"); %></span></p>
+		
+		
 		<!-- End of Navbar -->
 		
 		<div id="dagangan">
