@@ -1,3 +1,9 @@
+Keterangan tambahan kelompok kami:
+
+karena tugas ini dibuat menggunakan Netbeans, jadi harus ada folder WEB-INF (walaupun isinya kosong) untuk membuat /project/ ini bisa dikompilasi di Netbeans.
+
+
+
 IF3110-Tubes-II
 ===============
 Repositori ini adalah repositori dasar yang akan dijadikan basis oleh setiap kelompok peserta kuliah IF3110.
