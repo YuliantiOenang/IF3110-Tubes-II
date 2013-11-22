@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Simple Ajax Example</title>
+        <script language="Javascript">
+
+            // getter to autocomplete.jsp
+            function xmlhttpPost(linkToSearchFunction) {
+                var xmlHttpReq = false;
+                var self = this;
+                if (window.XMLHttpRequest) { // Check browser support for XMLHttpRequest. True for Chrome, Firefox, Safari.
+                    self.xmlHttpReq = new XMLHttpRequest();
+                }
+                self.xmlHttpReq.open('POST', linkToSearchFunction, true);
+                self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                self.xmlHttpReq.onreadystatechange = function() {
+                    if (self.xmlHttpReq.readyState == 4) {
+                        updatepage(self.xmlHttpReq.responseText);
+                    }
+                }
+                self.xmlHttpReq.send(getquerystring());
+            }
+
+            // getquery
+            function getquerystring() {
+                var form = document.forms['searchForm'];
+                var word = form.word.value;
+                qstr = 'p=2&w=' + escape(word); // NOTE: no '?' before querystring
+                return qstr;
+            }
+
+            // update text below form
+            function updatepage(str) {
+                    document.getElementById("result").innerHTML = qstr;
+                }
+
+                function pagination() {}
+
+        </script>
+    </head>
+    <body>
+        <form name="searchForm">
+            <p>Your name: <input name="word" type="text">
+                <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("search.jsp")'></p>
+        </form>
+        <div id="result"></div>
+    </body>
+</html>
