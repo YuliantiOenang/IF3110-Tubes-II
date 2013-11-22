@@ -1,5 +1,6 @@
-Keterangan tambahan kelompok kami:
+Repo ini awalnya banget dikembangin di Alextomo/commercenew, jadi semua pesan /commit/ ada di situ.
 
+Keterangan tambahan kelompok kami:
 karena tugas ini dibuat menggunakan Netbeans, jadi harus ada folder WEB-INF (walaupun isinya kosong) untuk membuat /project/ ini bisa dikompilasi di Netbeans.
 
 
