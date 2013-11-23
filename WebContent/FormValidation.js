@@ -3,6 +3,7 @@
 
 	// Fungsi validasi format input di form
 	function validate(type){
+		alert(type)
 		if (type == "username"){ // Username
 			var pattern = /.....+/; // Regex
 			var x = document.forms["registration"]["username"].value; // Ambil Value
@@ -25,8 +26,7 @@
 					y.innerHTML="";
 					usernameflag = true;
 				}
-			}
-			
+			}			
 		}else if(type == "password"){ // Password
 			var pattern = /........+/; // Regex
 			var x = document.forms["registration"]["password"].value; // Ambil Value
@@ -42,7 +42,7 @@
 				y.innerHTML="";
 				passwordflag = true;
 			
-				// Cek kesamaan dengan password
+				// Cek kesamaan dengan username
 				if(z == x){
 					y.innerHTML=" *password tidak boleh sama dengan username";
 					passwordflag = false;
