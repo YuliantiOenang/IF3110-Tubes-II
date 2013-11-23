@@ -11,9 +11,9 @@
         <h1>Register Page</h1>
         <div class="registerform">
 
-            <form id="registerformid" action="registerlogic.jsp">
+            <form id="registerformid" action="registeruserlogic.jsp">
                 <fieldset>
-                    Username : <input type="text" placeholder="Nama lu." name="regusername" onchange="gas()"> <br><br>
+                    Username : <input type="text" placeholder="Nama lu." name="regusername"> <br><br>
                     Password : <input type="password" name="regpassword"> <br>
                     Confirm password : <input type="password" name="regconfirmpassword"> <br><br>
                     Full Name : <input type="text" name="regfullname"> <br><br>
@@ -23,8 +23,6 @@
                     <button id="registerButton" type="submit" onclick="" value="halo"></button>
                 </fieldset>
             </form>
-
-
         </div>
     </body>
 </html>
