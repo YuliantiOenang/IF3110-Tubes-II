@@ -1,55 +1,37 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 function gas() {
     alert('test');
 }
 function showForm(x) {
 
-    if (x == 1)
+    if (x === 1)
         document.getElementById("loginformid").style.display = "none"; /*To Hide*/
 
-    else if (x == 2)
+    else if (x === 2)
         document.getElementById("loginformid").style.display = "block"; /*To Show*/
     document.getElementById("showFormButton").hidden = "true";
 
 }
 
-
-
-function checkLogin()
-{
+function checkLogin() {
     var u = document.getElementById("usernamelogin").value;
     var p = document.getElementById("passwordlogin").value;
 
-    if (window.XMLHttpRequest)
-    {
+    if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
-    }
-    else
-    {
+    } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    xmlhttp.onreadystatechange = function()
-    {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-        {
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var ut = xmlhttp.responseText.trim();
             alert(u);
-           // alert(u);
-            if (xmlhttp.responseText.trim() == u) // jika sama
-            {
-                
+            // alert(u);
+            if (xmlhttp.responseText.trim() == u) { // jika sama
                 var object = {username: u, timestamp: new Date().getTime()};
                 localStorage.setItem("key", JSON.stringify(object));
                 window.location = "dashboard/index.jsp";
-            }
-            else
-            {
+            } else {
                 alert('Username/password error!');
             }
         }
@@ -64,31 +46,26 @@ function checkLogin()
 //buat check register segala rupa
 
 function checkUsername() {
-    if (document.getElementByName(regusername).value == document.getElementByName(regpassword))
-    {
-        document.getElementById(registerButton).setAtrribute('disable', 'true');
-    }
-    else
-    {
-        document.getElementById(registerButton).removeAttribute('disable');
+    if (document.getElementByName("regusername").value === document.getElementByName("regpassword")) {
+        document.getElementById("registerButton").setAtrribute('disable', 'true');
+    } else {
+        document.getElementById("registerButton").removeAttribute('disable');
     }
 }
 
 function checkPassword() {
-    if (document.getElementByName('password').value == document.getElementByName('username').value ||
-            document.getElementByName('password').value == document.getElementByName('email').value) {
+    if (document.getElementByName('password').value === document.getElementByName('username').value ||
+            document.getElementByName('password').value === document.getElementByName('email').value) {
         document.getElementById('register').setAttribute('disabled', 'true');
-    }
-    else {
+    } else {
         document.getElementById('register').removeAttribute('disabled');
     }
 }
 
 function checkConfirmPassword() {
-    if (document.getElementById('password').value != document.getElementById('confirmpassword').value) {
+    if (document.getElementById('password').value !== document.getElementById('confirmpassword').value) {
         document.getElementById('register').setAttribute('disabled', 'true');
-    }
-    else {
+    } else {
         document.getElementById('register').removeAttribute('disabled');
     }
 }
