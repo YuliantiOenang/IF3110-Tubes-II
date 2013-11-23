@@ -54,18 +54,18 @@ function checkUsername() {
 }
 
 function checkPassword() {
-    if (document.getElementByName('password').value === document.getElementByName('username').value ||
-            document.getElementByName('password').value === document.getElementByName('email').value) {
-        document.getElementById('register').setAttribute('disabled', 'true');
+    if (document.getElementByName("password").value === document.getElementByName('username').value ||
+            document.getElementByName("password").value === document.getElementByName('email').value) {
+        document.getElementByName('register').setAttribute('disabled', 'true');
     } else {
-        document.getElementById('register').removeAttribute('disabled');
+        document.getElementByName('register').removeAttribute('disabled');
     }
 }
 
 function checkConfirmPassword() {
-    if (document.getElementById('password').value !== document.getElementById('confirmpassword').value) {
-        document.getElementById('register').setAttribute('disabled', 'true');
+    if (document.getElementByName("password").value !== document.getElementById("confirmpassword").value) {
+        document.getElementByName("register").setAttribute('disabled', 'true');
     } else {
-        document.getElementById('register').removeAttribute('disabled');
+        document.getElementByName("register").removeAttribute('disabled');
     }
 }
