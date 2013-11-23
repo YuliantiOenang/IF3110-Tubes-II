@@ -5,4 +5,3 @@ build/
 CVS/
 #ignore the eclipse configuration files
 .classpath
-.project
