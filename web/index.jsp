@@ -20,7 +20,7 @@
             <p>
                 <label>Username <abbr title="Required">*</abbr></label>
                 <input value="" id="usernamelogin"
-
+                       
                        title="Your username"
                        type="text" spellcheck="false" size="20" />
             </p>
@@ -33,7 +33,7 @@
             </p>
         </fieldset>
         <fieldset>
-            <button id="login" onclick="checkLogin();
+            <button id="loginbutton" onclick="checkLogin();
                     return false;">Login</button>
         </fieldset>
     </form>
