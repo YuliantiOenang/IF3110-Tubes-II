@@ -18,16 +18,7 @@ function showForm(x) {
 
 }
 
-function checkUsername() {
-    if (document.getElementById(regusername).value == document.getElementById(regpassword))
-    {
-        document.getElementById(registerButton).setAtrribute('disable', 'true');
-    }
-    else
-    {
-        document.getElementById(registerButton).removeAttribute('disable');
-    }
-}
+
 
 function checkLogin()
 {
@@ -66,4 +57,38 @@ function checkLogin()
 
     xmlhttp.open("GET", "login/?u=" + u + "&p=" + p, true);
     xmlhttp.send();
+}
+
+
+
+//buat check register segala rupa
+
+function checkUsername() {
+    if (document.getElementByName(regusername).value == document.getElementByName(regpassword))
+    {
+        document.getElementById(registerButton).setAtrribute('disable', 'true');
+    }
+    else
+    {
+        document.getElementById(registerButton).removeAttribute('disable');
+    }
+}
+
+function checkPassword() {
+    if (document.getElementByName('password').value == document.getElementByName('username').value ||
+            document.getElementByName('password').value == document.getElementByName('email').value) {
+        document.getElementById('register').setAttribute('disabled', 'true');
+    }
+    else {
+        document.getElementById('register').removeAttribute('disabled');
+    }
+}
+
+function checkConfirmPassword() {
+    if (document.getElementById('password').value != document.getElementById('confirmpassword').value) {
+        document.getElementById('register').setAttribute('disabled', 'true');
+    }
+    else {
+        document.getElementById('register').removeAttribute('disabled');
+    }
 }

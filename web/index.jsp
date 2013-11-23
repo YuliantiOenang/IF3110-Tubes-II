@@ -15,28 +15,28 @@
 </head>
 <body>
     <p>For test</p>
-     <form>
-                <fieldset>
-                    <p>
-                        <label>Username <abbr title="Required">*</abbr></label>
-                        <input value="" id="usernamelogin"
-                              
-                               title="Your username"
-                               type="text" spellcheck="false" size="20" />
-                    </p>
-                    <p>
-                        <label>Password <abbr title="Required">*</abbr></label>
-                        <input value=""  id="passwordlogin"
-                               
-                               title="Your password"
-                               type="password" spellcheck="false" size="20" />
-                    </p>
-                </fieldset>
-                <fieldset>
-                    <button id="login" onclick="checkLogin();
-                                return false;">Login</button>
-                </fieldset>
-            </form>
+    <form>
+        <fieldset>
+            <p>
+                <label>Username <abbr title="Required">*</abbr></label>
+                <input value="" id="usernamelogin"
+                       
+                       title="Your username"
+                       type="text" spellcheck="false" size="20" />
+            </p>
+            <p>
+                <label>Password <abbr title="Required">*</abbr></label>
+                <input value=""  id="passwordlogin"
+
+                       title="Your password"
+                       type="password" spellcheck="false" size="20" />
+            </p>
+        </fieldset>
+        <fieldset>
+            <button id="loginbutton" onclick="checkLogin();
+                    return false;">Login</button>
+        </fieldset>
+    </form>
     <% String namauser = request.getParameter("usr");
         session.setAttribute("pelanggan", namauser);
     %>

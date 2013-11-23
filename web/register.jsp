@@ -13,11 +13,11 @@
 
             <form id="registerformid" action="registerlogic.jsp">
                 <fieldset>
-                    Username : <input type="text" placeholder="Nama lu." name="regusername" onchange="gas()"> <br><br>
-                    Password : <input type="password" name="regpassword"> <br>
-                    Confirm password : <input type="password" name="regconfirmpassword"> <br><br>
-                    Full Name : <input type="text" name="regfullname"> <br><br>
-                    E-mail : <input type="email" name="regemail"> 
+                    Username : <input type="text" required="required" placeholder="Write your username" name="regusername" onchange="checkUsername()"> <br><br>
+                    Password : <input type="password" required="required" name="regpassword" onchange="checkPassword()"> <br><br>
+                    Confirm password : <input type="password" required="required" name="regconfirmpassword" onchange="checkConfirmPassword()"> <br><br>
+                    Full Name : <input type="text" required="required" name="regfullname"> <br><br>
+                    E-mail : <input type="email" required="required" name="regemail"> 
                 </fieldset>
                 <fieldset>
                     <button id="registerButton" type="submit" onclick="" value="halo"></button>
