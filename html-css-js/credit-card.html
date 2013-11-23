@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Masukkan Judul Dokumen</title>
+	<link rel="stylesheet" type="text/css" href="res/css/style.css" media="all"/>
+</head>
+<body>
+	
+	<div id="container">
+		
+		<!-- Header Section -->
+		<div id="header" class="frame">
+			<div class="kolom-7">
+				<img src="res/img/logo.png" alt="" id="logo"/>
+			</div>
+			<div class="kolom-4">
+				<div id="user-panel">
+					
+					<div id="user" class="frame">
+						<img id="user-pict" class="kolom-5" src="res/img/userpict_h.png" alt=""/>
+						<div id="user-text" class="kolom-7">
+							<h3>Welcome, <span class="user-name">Riandy</span>!</h3>
+							<p id="user-control">
+								<span class="edit-logout"><a href="">Edit Profile</a></span>
+								&nbsp;or&nbsp;
+								<span class="edit-logout"><a href="">Logout</a></span>
+							</p>
+							
+							<a href="#" class="btn">Check Your Cart</a>
+						</div>
+					</div>
+					
+					<div id="search-bar" class="frame">
+						<form action="search.php">
+							<input id="search-box" class="kolom-9" type="text" name="src" value="Ketikkan barang yang dicari..." onfocus="checkclear(this)" onblur="checkempty(this, 'Ketikkan barang yang dicari...')">
+							<input id="search-button" class="kolom-1" type="submit" value="">
+						</form>					
+					</div>
+				</div>
+			</div>			
+		</div>
+		<!-- End of Header -->
+
+		<div id="form-registrasi" class="frame">
+			<p id="registration-title">Credit Card Registration</p>
+			
+			<!-- card number, name on card, expired date dan tombol sumbit -->
+			<form name="registration-form" action="daftar-credit-card.php" method="GET">
+			
+				<div id="card-number" class="form-field">
+					<p class="label">Card Number :</p>
+					<p><input type="text" name="card-number" class="field-box kolom-12"/></p>
+				</div>
+				
+				<div id="name-on-card" class="form-field">
+					<p class="label">Name On Card :</p>
+					<p><input type="text" name="name-on-card" class="field-box kolom-12"/></p>
+				</div>
+				
+				<div id="expired-date" class="form-field">
+					<p class="label">Expired Date :</p>
+					<p><input type="date" name="expired-date" class="field-box kolom-12"/></p>
+				</div>				
+				<br/>
+				<input type="submit" id="btn-register" class="btn" value="Register"/>
+			</form>
+		</div>
+		
+	</div>
+	
+
+	
+	<!-- Javascript -->
+	<script src="res/js/common.js" type="text/javascript"></script>	
+
+</body>
+</html>
