@@ -13,7 +13,7 @@
         // fungsi: buat SELECT
         public static ResultSet mysql_query(String sqlQuery) {
             ResultSet resultSet = null;
-            System.out.println("Masuk DB");
+        //    System.out.println("Masuk DB");
 
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();

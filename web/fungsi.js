@@ -37,26 +37,25 @@ function checkLogin()
     if (window.XMLHttpRequest)
     {
         xmlhttp = new XMLHttpRequest();
-
     }
     else
     {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-
     }
-alert(u);
+
     xmlhttp.onreadystatechange = function()
     {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-
         {
+            var ut = xmlhttp.responseText.trim();
             alert(u);
-            if (xmlhttp.responseText !== u) // if same
+           // alert(u);
+            if (xmlhttp.responseText.trim() == u) // jika sama
             {
-
+                
                 var object = {username: u, timestamp: new Date().getTime()};
                 localStorage.setItem("key", JSON.stringify(object));
-                window.location = "dashboard/";
+                window.location = "dashboard/index.jsp";
             }
             else
             {
@@ -64,7 +63,7 @@ alert(u);
             }
         }
     };
-    
+
     xmlhttp.open("GET", "login/?u=" + u + "&p=" + p, true);
     xmlhttp.send();
 }
