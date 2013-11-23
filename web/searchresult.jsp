@@ -3,7 +3,7 @@ Hello <b><%= "Ini adalah hasil pencarian untuk kueri '" + request.getParameter("
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
 <%
-    String userQueryInput = request.getParameter("q");
+    String userQueryInput = request.getParameter("q").replaceAll(" ", "|");
     int pageNumberInput = Integer.parseInt(request.getParameter("p"));
     String msg = "";
 
@@ -46,7 +46,6 @@ Hello <b><%= "Ini adalah hasil pencarian untuk kueri '" + request.getParameter("
 
     con.close();
 %>
-
 
 <!--Returned value-->
 <%=msg%>
