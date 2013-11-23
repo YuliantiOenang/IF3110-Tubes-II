@@ -13,9 +13,9 @@
 
             <form id="registerformid" action="registerlogic.jsp">
                 <fieldset>
-                    Username : <input type="text" required="required" placeholder="Write your username" name="regusername" onchange="checkUsername()"> <br><br>
-                    Password : <input type="password" required="required" name="regpassword" onchange="checkPassword()"> <br><br>
-                    Confirm password : <input type="password" required="required" name="regconfirmpassword" onchange="checkConfirmPassword()"> <br><br>
+                    Username : <input type="text" required="required" placeholder="Write your username" name="regusername" onchange="checkUsername();"> <br><br>
+                    Password : <input type="password" required="required" name="regpassword" onchange="checkPassword();"> <br><br>
+                    Confirm password : <input type="password" required="required" name="regconfirmpassword" onchange="checkConfirmPassword();"> <br><br>
                     Full Name : <input type="text" required="required" name="regfullname"> <br><br>
                     E-mail : <input type="email" required="required" name="regemail"> 
                 </fieldset>
