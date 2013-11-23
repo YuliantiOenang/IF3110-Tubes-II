@@ -8,13 +8,13 @@ Hello <b><%= "Ini adalah hasil pencarian untuk kueri '" + request.getParameter("
     String msg = "";
 
     String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost/progin";
+    String url = "jdbc:mysql://localhost/newcommerce";
     String user = "root";
     String password = "";
 
     int countSearchResult = 0;
-    String countQuery = "SELECT * FROM abjad WHERE a REGEXP '" + userQueryInput + "'";
-    String myQuery = "SELECT * FROM abjad WHERE a REGEXP '" + userQueryInput + "' LIMIT 10 OFFSET " + String.valueOf((pageNumberInput - 1) * 10);
+    String countQuery = "SELECT * FROM item WHERE nama REGEXP '" + userQueryInput + "'";
+    String myQuery = "SELECT * FROM item WHERE nama REGEXP '" + userQueryInput + "' LIMIT 10 OFFSET " + String.valueOf((pageNumberInput - 1) * 10);
 
     Class.forName(driver);
     Connection con = DriverManager.getConnection(url, user, password);
