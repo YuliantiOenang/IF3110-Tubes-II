@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/footer.css" type="text/css"/>
+
 <footer id="contentinfo" class="body">
 	<address id="about" class="vcard body">
 		<img src="images/logo.png" alt="Logo" class="photo" width="65" height="65"/>
