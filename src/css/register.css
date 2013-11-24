@@ -1,0 +1,44 @@
+#contentfull label {
+    font-family: 'Lucida Sans Unicode';
+    display: block;
+	padding: 5px;
+    float: left;
+    margin-right: 10px;
+	margin-bottom: 5px;
+    text-align: right;
+	color: #2b4169;
+    width: 200px;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+#contentfull .input {
+    font-family: 'Lucida Sans Unicode';
+    font-size: 15px;
+    padding: 5px;
+	margin-bottom: 8px;
+    border: 1px solid #b9bdc1;
+    width: 300px;
+    color: #797979;
+	
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#contentfull .hint {
+	display: none;
+}
+
+#contentfull .field:hover .hint {
+    position: absolute;
+    display: block;
+    margin: -43px 0 0 535px;
+    color: #FFFFFF;
+    padding: 7px 10px;
+    background: rgba(0, 0, 0, 0.6);
+ 
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}

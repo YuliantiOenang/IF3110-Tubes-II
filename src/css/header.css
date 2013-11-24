@@ -138,6 +138,10 @@ ul#menubar .sub-menu li a:hover {
 	float: right;
 }
 
+#cari {
+	font-family: 'Lucida Sans Unicode';
+}
+
 /* Search Suggestion*/
 /* Search Down Menu */
 /* Initialize */
@@ -193,6 +197,7 @@ ul#menubar .suggestion li a:hover {
 	background: #8f1919;
 	/*transition:background 1s ease;*/
 }
+
 #suggestkategori {
 	background : #000;
 	color : #fff;
