@@ -1,3 +1,12 @@
+<%@ page import="com.ruserba.model.Database" %>
+<%@ page import="com.ruserba.model.Category" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+	Database db = (Database)application.getAttribute("db");
+	ArrayList<Category> cat_list = db.getCategory();
+%>
+
 <div id="header">
 	<div id="headerlogin">
 		<div id="headernotloggedin">
@@ -20,16 +29,10 @@
 				<input type="radio" id="headertab-1" name="headertab-group-1" checked="checked" />
 				<label for="headertab-1">Kategori</label>
 				<div class="headertabcontent">
-					<!--
-						<?php
-						databaseConnect();
-						$catarr = getCategory();
-						foreach($catarr as $cat)	{
-							echo '<a href="category.php?category_id=' . $cat['id_kategori'] . '">';
-							echo $cat['nama_kategori'] . '</a>';
-						}
-					?>
-					-->
+					<%
+						for (Category cat : cat_list)
+							out.write("<a href=\"category?category_id=" + cat.getIdKategori() + "\">" + cat.getNamaKategori() + "</a>");
+					%>
 				</div> 
 			</div>
 
@@ -42,6 +45,11 @@
 						<label for="headersearchcategory">Kategori</label>
 						<select id="headersearchcategory" name="category_id">
 							<option value="0">== Pilih kategori ==</option>
+							<%
+								for (Category cat : cat_list)	{
+									out.write("<option value=\"" + cat.getIdKategori() + "\">" + cat.getNamaKategori() + "</option>");
+								}
+							%>
 							<!--
 							<?php
 								foreach($catarr as $cat)	{

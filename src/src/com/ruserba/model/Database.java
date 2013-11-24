@@ -125,15 +125,18 @@ public class Database {
 		return cat;
 	}
 
-	public ArrayList<String> getCategoryList() throws SQLException
+	public ArrayList<Category> getCategory() throws SQLException
 	{
-		PreparedStatement stat = getConnection().prepareStatement("select nama_kategori from kategori");
+		PreparedStatement stat = getConnection().prepareStatement("select * from kategori");
 		ResultSet res = stat.executeQuery();
 
-		ArrayList<String> lst = new ArrayList<String>();
+		ArrayList<Category> lst = new ArrayList<Category>();
 		while (res.next())
 		{
-			lst.add(res.getString("nama_kategori"));
+			Category cat = new Category();
+			cat.setIdKategori(res.getInt("id_kategori"));
+			cat.setNamaKategori(res.getString("nama_kategori"));
+			lst.add(cat);
 		}
 		return lst;
 	}
