@@ -54,7 +54,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Masukkan Judul Dokumen</title>
+	<title>Profile</title>
 	<link rel="stylesheet" type="text/css" href="res/css/style.css" media="all"/>
 </head>
 <body>

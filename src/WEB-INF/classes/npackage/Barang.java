@@ -8,6 +8,15 @@ public class Barang{
 	private String kategori;
 	private int jumlah;
 	
+	
+	public Barang(){
+		id=-1;
+		nama="";
+		harga=-1;
+		kategori="";
+		jumlah=-1;
+	}
+	
 	public Barang(int id_,String nama_, int harga_,String kategori_,int jumlah_){
 		id=id_;
 		nama=nama_;

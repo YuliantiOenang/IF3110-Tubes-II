@@ -11,7 +11,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Masukkan Judul Dokumen</title>
+	<title>Search</title>
 	<link rel="stylesheet" type="text/css" href="res/css/style.css" media="all"/>
 </head>
 <body>
@@ -43,7 +43,7 @@
 							<img class="gambar" src="res/img/product/<%str =(String)session.getAttribute("snama"+i);out.print(str);%>.jpg" alt=""/>
 						</div>
 						<div class="kolom-6">
-							<p class="nama-produk-b"><a href="detail-barang.php?id=<?php echo $Barang->GetIdBarang()?>&Kategori=<?php echo $Barang->GetKategori()?>"><%str =(String)session.getAttribute("snama"+i);out.print(str);%></a></p>
+							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("snama"+i)%>"><%str =(String)session.getAttribute("snama"+i);out.print(str);%></a><%str =(String)session.getAttribute("snama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("sharga"+i);out.print(intr);%> /kg</p>
 						</div>
 					</div>

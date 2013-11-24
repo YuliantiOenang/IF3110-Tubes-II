@@ -83,11 +83,11 @@
 			<!-- Navbar Section -->
 		<div id="navbar" class="frame">
 			<ul>
-				<li><a href="Beras.jsp">Beras</a></li>
-				<li><a href="Daging.jsp">Daging</a></li>
-				<li><a href="Sayuran.jsp">Sayuran</a></li>
-				<li><a href="FrozenFood.jsp">Frozen Food</a></li>
-				<li><a href="Snack.jsp">Snack</a></li>
+				<li><a href="getberas">Beras</a></li>
+				<li><a href="getdaging">Daging</a></li>
+				<li><a href="getsayuran">Sayuran</a></li>
+				<li><a href="getfrozen">Frozen Food</a></li>
+				<li><a href="getsnack">Snack</a></li>
 			</ul>
 		</div>
 		<!-- End of Navbar -->

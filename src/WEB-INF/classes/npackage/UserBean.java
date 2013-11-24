@@ -29,8 +29,60 @@ import java.util.ArrayList;
 	private String bestbuy8;
 	private String bestbuy9;
 	ArrayList<Barang> search = new ArrayList<Barang>();
+	ArrayList<Barang> beras = new ArrayList<Barang>();
+	ArrayList<Barang> daging = new ArrayList<Barang>();
+	ArrayList<Barang> sayuran = new ArrayList<Barang>();
+	ArrayList<Barang> frozen = new ArrayList<Barang>();
+	ArrayList<Barang> snack = new ArrayList<Barang>();
+	Barang barang = new Barang();
     
     public boolean valid;
+	
+
+	public ArrayList<Barang> getberas(){
+		return beras;
+	}
+	
+	public void setberas(Barang newberas){	
+		beras.add(newberas);
+	}
+	public ArrayList<Barang> getdaging(){
+		return daging;
+	}
+	
+	public void setdaging(Barang newdaging){	
+		daging.add(newdaging);
+	}
+	public ArrayList<Barang> getsayuran(){
+		return sayuran;
+	}
+	
+	public void setsayuran(Barang newsayuran){	
+		sayuran.add(newsayuran);
+	}
+	public ArrayList<Barang> getfrozen(){
+		return frozen;
+	}
+	
+	public void setfrozen(Barang newfrozen){	
+		frozen.add(newfrozen);
+	}
+	public ArrayList<Barang> getsnack(){
+		return snack;
+	}
+	
+	public void setsnack(Barang newsnack){	
+		snack.add(newsnack);
+	}
+	public Barang getbarang(){
+		return barang;
+	}
+	
+	public void setbarang(Barang newbarang){	
+		barang = newbarang;
+	}
+	
+	
 	
 	
 	public ArrayList<Barang> getsearch(){

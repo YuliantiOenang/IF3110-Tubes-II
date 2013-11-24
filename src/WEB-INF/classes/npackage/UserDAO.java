@@ -82,6 +82,62 @@ package npackage;
 			
 				
 			}
+			if (bean.getType()=="getberas"){
+				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setberas(barang);
+				while (rs.next()){
+				//ambil hasil result search	
+				barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setberas(barang);
+				
+				}
+			}
+			if (bean.getType()=="getdaging"){
+				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setdaging(barang);
+				while (rs.next()){
+				//ambil hasil result search	
+				barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setdaging(barang);
+				
+				}
+			}
+			if (bean.getType()=="getsayuran"){
+				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setsayuran(barang);
+				while (rs.next()){
+				//ambil hasil result search	
+				barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setsayuran(barang);
+				
+				}
+			}
+			if (bean.getType()=="getfrozen"){
+				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setfrozen(barang);
+				while (rs.next()){
+				//ambil hasil result search	
+				barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setfrozen(barang);
+				
+				}
+			}
+			if (bean.getType()=="getsnack"){
+				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setsnack(barang);
+				while (rs.next()){
+				//ambil hasil result search	
+				barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setsnack(barang);
+				
+				}
+			}
+			if (bean.getType()=="getbarang"){
+				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				bean.setbarang(barang);
+			}
+			
+			
             bean.setValid(true);
          }else{
 			 bean.setValid(false);

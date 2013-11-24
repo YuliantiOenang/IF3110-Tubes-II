@@ -27,6 +27,30 @@ My First Servlet
    <servlet-class>npackage.getsearch</servlet-class> 
 </servlet> 
 <servlet> 
+   <servlet-name>getberas</servlet-name> 
+   <servlet-class>npackage.getberas</servlet-class> 
+</servlet>
+<servlet> 
+   <servlet-name>getdaging</servlet-name> 
+   <servlet-class>npackage.getdaging</servlet-class> 
+</servlet>
+<servlet> 
+   <servlet-name>getsayuran</servlet-name> 
+   <servlet-class>npackage.getsayuran</servlet-class> 
+</servlet>
+<servlet> 
+   <servlet-name>getfrozen</servlet-name> 
+   <servlet-class>npackage.getfrozen</servlet-class> 
+</servlet>
+<servlet> 
+   <servlet-name>getsnack</servlet-name> 
+   <servlet-class>npackage.getsnack</servlet-class> 
+</servlet>
+<servlet> 
+   <servlet-name>getbarang</servlet-name> 
+   <servlet-class>npackage.getbarang</servlet-class> 
+</servlet>
+<servlet> 
    <servlet-name>insertdata</servlet-name> 
    <servlet-class>npackage.insertdata</servlet-class> 
 </servlet> 
@@ -78,6 +102,30 @@ My First Servlet
 <servlet-mapping> 
    <servlet-name>getsearch</servlet-name> 
    <url-pattern>/getsearch</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getberas</servlet-name> 
+   <url-pattern>/getberas</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getdaging</servlet-name> 
+   <url-pattern>/getdaging</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getsayuran</servlet-name> 
+   <url-pattern>/getsayuran</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getfrozen</servlet-name> 
+   <url-pattern>/getfrozen</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getsnack</servlet-name> 
+   <url-pattern>/getsnack</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getbarang</servlet-name> 
+   <url-pattern>/getbarang</url-pattern> 
 </servlet-mapping> 
 <servlet-mapping> 
    <servlet-name>CardNumberValidationServlet</servlet-name> 
