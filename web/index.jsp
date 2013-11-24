@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="koneksi.koneksi"%>
 <!DOCTYPE html> 
 <html>
 <head>
@@ -19,102 +22,160 @@
 		<p class = "title"> TOP THREE JACKETS</p></br>
 		</div>
 		<div class = "topthreecat">
-			<%--<?php
-				$count=0;
-				$hasil = mysql_query("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Jaket' group by peralatan.nama order by terbayar.jumlah desc");
-				while(($baris=mysql_fetch_row($hasil)) && $count<3)
-				{
-				echo "<div class = 'toppreview'>
-					<div class = 'previmage'>
-						<a href='detailbarang.php?id=".$baris[0]."'><img src='".$baris[4]."' class='resizeimage'></a>
-					</div>
-					<p class = 'copyrightext'> ".$baris[1]." </br>
-					  Rp".$baris[2]." </label> </br> </p>
-				</div>";
-						$count++;
-				}
-			?>--%>
+			
+                <%
+                    int count=0;
+                    koneksi db=new koneksi();
+                    try
+                    {
+                           db.dbopen();
+                           ResultSet rs2=db.stat.executeQuery("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Jaket' group by peralatan.nama order by terbayar.jumlah desc");
+                           while(rs2.next() && count<3)
+                           {
+                              out.print("<div class='toppreview'>"
+                              + "<div class = 'previmage'>"
+                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
+                              + "RP "+rs2.getString(3)+"</br></p>"
+                              + "</div>");
+                              count++; 
+                           }
+                   }
+              catch(Exception e )
+              {
+                 out.println("error"+e);
+              }
+               db.con.close();
+                %>
 		</div>
 		<div class = "topfivetitle">
 		<p class = "title"> TOP THREE SWEATER</p></br>
 		</div>
 		<div class = "topthreecat">
-			<?php
-				$count=0;
-				$hasil = mysql_query("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Sweater' group by peralatan.nama order by terbayar.jumlah desc");
-				while(($baris=mysql_fetch_row($hasil)) && $count<3)
-				{
-				echo "<div class = 'toppreview'>
-					<div class = 'previmage'>
-						<a href='detailbarang.php?id=".$baris[0]."'><img src='".$baris[4]."' class='resizeimage'></a>
-					</div>
-					<p class = 'copyrightext'> ".$baris[1]." </br>
-					  Rp".$baris[2]." </label> </br> </p>
-				</div>";
-						$count++;
-				}
-			?>
+		<%
+                    count=0;
+                    
+                    try
+                    {
+                           db.dbopen();
+                           ResultSet rs2=db.stat.executeQuery("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Sweater' group by peralatan.nama order by terbayar.jumlah desc");
+                           while(rs2.next() && count<3)
+                           {
+                              out.print("<div class='toppreview'>"
+                              + "<div class = 'previmage'>"
+                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
+                              + "RP "+rs2.getString(3)+"</br></p>"
+                              + "</div>");
+                              count++; 
+                           }
+                   }
+              catch(Exception e )
+              {
+                 out.println("error"+e);
+              }
+                db.con.close();
+                %>
 		</div>
 		<div class = "topfivetitle">
 		<p class = "title"> TOP THREE T-SHIRTS</p></br>
 		</div>
 		<div class = "topthreecat">
-			<?php
-				$count=0;
-				$hasil = mysql_query("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='TShirt' group by peralatan.nama order by terbayar.jumlah desc");
-				while(($baris=mysql_fetch_row($hasil)) && $count<3)
-				{
-				echo "<div class = 'toppreview'>
-					<div class = 'previmage'>
-						<a href='detailbarang.php?id=".$baris[0]."'><img src='".$baris[4]."' class='resizeimage'></a>
-					</div>
-					<p class = 'copyrightext'> ".$baris[1]." </br>
-					  Rp".$baris[2]." </label> </br> </p>
-				</div>";
-						$count++;
-				}
-			?>
+                <%
+                    count=0;
+                    
+                    try
+                    {
+                           db.dbopen();
+                           ResultSet rs2=db.stat.executeQuery("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='TShirt' group by peralatan.nama order by terbayar.jumlah desc");
+                           while(rs2.next() && count<3)
+                           {
+                              out.print("<div class='toppreview'>"
+                              + "<div class = 'previmage'>"
+                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
+                              + "RP "+rs2.getString(3)+"</br></p>"
+                              + "</div>");
+                              count++; 
+                           }
+                   }
+              catch(Exception e )
+              {
+                 out.println("error"+e);
+              }
+                db.con.close();
+                %>
 		</div>
 		<div class = "topfivetitle">
 		<p class = "title"> TOP THREE MISC.</p></br>
 		</div>
 		<div class = "topthreecat">
-			<?php
-				$count=0;
-				$hasil = mysql_query("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Misc' group by peralatan.nama order by terbayar.jumlah desc");
-				while(($baris=mysql_fetch_row($hasil)) && $count<3)
-				{
-				echo "<div class = 'toppreview'>
-					<div class = 'previmage'>
-						<a href='detailbarang.php?id=".$baris[0]."'><img src='".$baris[4]."' class='resizeimage'></a>
-					</div>
-					<p class = 'copyrightext'> ".$baris[1]." </br>
-					  Rp".$baris[2]." </label> </br> </p>
-				</div>";
-						$count++;
-				}
-			?>
+                <%
+                    count=0;
+                    
+                    try
+                    {
+                           db.dbopen();
+                           ResultSet rs2=db.stat.executeQuery("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Misc' group by peralatan.nama order by terbayar.jumlah desc");
+                           while(rs2.next() && count<3)
+                           {
+                              out.print("<div class='toppreview'>"
+                              + "<div class = 'previmage'>"
+                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
+                              + "RP "+rs2.getString(3)+"</br></p>"
+                              + "</div>");
+                              count++; 
+                           }
+                   }
+              catch(Exception e )
+              {
+                 out.println("error"+e);
+              }
+                db.con.close();
+                %>
 		</div>
 		<div class = "topfivetitle">
 		<p class = "title"> TOP THREE POKEMON</p></br>
 		</div>
 		<div class = "topthreecat">
-			<?php
-				$count=0;
-				$hasil = mysql_query("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Pokemon' group by peralatan.nama order by terbayar.jumlah desc");
-				while(($baris=mysql_fetch_row($hasil)) && $count<3)
-				{
-				echo "<div class = 'toppreview'>
-					<div class = 'previmage'>
-						<a href='detailbarang.php?id=".$baris[0]."'><img src='".$baris[4]."' class='resizeimage'></a>
-					</div>
-					<p class = 'copyrightext'> ".$baris[1]." </br>
-					  Rp".$baris[2]." </label> </br> </p>
-				</div>";
-						$count++;
-				}
-			?>
+                		<%
+                    count=0;
+                    
+                    try
+                    {
+                           db.dbopen();
+                           ResultSet rs2=db.stat.executeQuery("SELECT peralatan.no_alat,peralatan.nama,peralatan.harga,terbayar.jumlah,peralatan.foto FROM `terbayar`,`peralatan` where peralatan.no_alat=terbayar.id_barang and peralatan.kategori='Pokemon' group by peralatan.nama order by terbayar.jumlah desc");
+                           while(rs2.next() && count<3)
+                           {
+                              out.print("<div class='toppreview'>"
+                              + "<div class = 'previmage'>"
+                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
+                              + "RP "+rs2.getString(3)+"</br></p>"
+                              + "</div>");
+                              count++; 
+                           }
+                   }
+              catch(Exception e )
+              {
+                 out.println("error"+e);
+              }
+                db.con.close();
+                %>
 		</div>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                               </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
 		<div class = "mekanisme">
 		<p class = "copyrightext"> Mekanisme Pembayaran </br></br>
 		1. Pembeli melakukan login atau sign up
