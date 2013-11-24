@@ -114,19 +114,19 @@
 		</div >
 		<div class = "menu">
 				<div>
-					<a href="kategori.php?key=Jaket"><img src = "images/jacket.png" class = "jacket"></img></a>
+					<a href="kategori.jsp?key=Jaket"><img src = "images/jacket.png" class = "jacket"></img></a>
 				</div>
 				<div>
-					<a href="kategori.php?key=Sweater"><img src = "images/sweaters.png" class = "tshirt"></img>
+					<a href="kategori.jsp?key=Sweater"><img src = "images/sweaters.png" class = "tshirt"></img>
 				</div>
 				<div >
-					<a href="kategori.php?key=TShirt"><img src = "images/tshirt.png" class = "wristband"></img></a>
+					<a href="kategori.jsp?key=TShirt"><img src = "images/tshirt.png" class = "wristband"></img></a>
 				</div>
 				<div>
-					<a href="kategori.php?key=Misc"><img src = "images/misc.png"  class = "emblem"></img></a>
+					<a href="kategori.jsp?key=Misc"><img src = "images/misc.png"  class = "emblem"></img></a>
 				</div>
 				<div>
-					<a href="kategori.php?key=Pokemon"><img src = "images/pokemon.png"  class = "pokemon"></img></a>
+					<a href="kategori.jsp?key=Pokemon"><img src = "images/pokemon.png"  class = "pokemon"></img></a>
 				</div>
 		</div>
 		<div class = "main">
