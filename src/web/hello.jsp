@@ -14,21 +14,10 @@
 	<p><%= msg %></p>
 	<%
 		Database db = (Database)pageContext.getServletContext().getAttribute("db");
-		String sql = "select * from barang";
-		ResultSet rs;
-		try {
-			rs = db.runSql(sql);
- 
-			out.println("<ul>");
-			while(rs.next()){
-				out.println("<li>" + rs.getString("nama_barang") + "</li>");
-			}
-			out.println("</ul>");
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(db);
+		request.setAttribute("product", db.getProductData(3));
 	%>
+	<jsp:useBean id="product" class="com.ruserba.model.Product" scope="request" />
+	<p><jsp:getProperty name="product" property="namaBarang" /></p>
 </body>
 </html>
