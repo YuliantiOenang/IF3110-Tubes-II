@@ -2,9 +2,7 @@
 <header id="banner" class="body">
 	<span>
 		<center>
-			<a title="HOME" href="index.jsp">
-				<img src="images/logo.png" alt="Logo - link to home" width="250" height="250"/>
-			</a>
+			<a href="index.jsp"><img src="images/logo.png" alt="Logo" width="250" height="250"/></a>
 		</center>
 	</span>
 	<nav>
@@ -15,22 +13,20 @@
 					<li><a href="#">Kategori Dummy 1</a></li>
 					<li><a href="#">Kategori Dummy 2</a></li>
 					<li><a href="#">Kategori Dummy 3</a></li>
-					<li><a href="#">Kategori Dummy 4</a></li>
-					<li><a href="#">Kategori Dummy 5</a></li>
 				</ul>
 			</li>
+			<!--div id="log"></div-->
 			<li><a href="#login_form">Log In</a></li>
-			<%@include file="loginform.jsp" %>
-			<li><a href="#">Daftar</a></li>
+			<li><a href="registerform.jsp">Daftar</a></li>
 			<li><a href="#">Shopping Bag</a></li>
 			<div id="searchbar">
-				<li>
-					<input type="text" name="search" id="cari" placeholder="Cari Barang" onkeyup="searchsuggest(cari.value)" onblur="resetsuggest()">
-						<ul class="suggestion" id="cariyu"></ul>
-					</input>
+				<li><input type="text" name="search" id="cari" placeholder="Cari Barang">
+					<ul class="suggestion" id="cariyu">	
+					</ul>
 				</li>
-				<li><button type="button" onclick="resetsearch();search(cari.value,1);">Search</button></li>
+				<li><button type="button" class="button">Search</button></li>
 			</div>
 		</ul>
 	</nav>
+	<%@include file="loginform.jsp" %>
 </header>

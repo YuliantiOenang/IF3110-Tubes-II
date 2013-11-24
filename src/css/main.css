@@ -79,6 +79,7 @@ pre {
 	margin-right: auto;
 }
 
+/* Content with Sidebar */
 #content {
 	background: #fff;
 	margin-bottom: 2em;
@@ -114,6 +115,36 @@ pre {
 #content h3 a:link, #featured h3 a:visited {color: #000305; text-decoration: none;}
 #content h3 a:hover, #featured h3 a:active {color: #fff;}
 
+/* Content Without Sidebar */
+#contentfull {
+	background: #fff;
+	margin-bottom: 2em;
+	overflow: hidden;
+	padding: 20px;
+	width: 1060px;
+ 	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+ 
+#contentfull img {
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+}
+
+#contentfull .view img {
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+}
+
+#contentfull h2 {color: #8f1919; font-size: 1.714em; margin-bottom: 0.333em;}
+#contentfull h3 {font-size: 1.429em; margin-bottom: .5em;}
+ 
+#contentfull h3 a:link, #featured h3 a:visited {color: #000305; text-decoration: none;}
+#contentfull h3 a:hover, #featured h3 a:active {color: #fff;}
+
 /***** Sidebar *****/
 #sidebar {
 	background: #fff;
@@ -129,21 +160,31 @@ pre {
 	-webkit-border-radius: 5px;
 }
 
-/***** Lain-lain *****/
-#userlogin {
-	display : none;
-}
-#foto {
-	float:left;
-}
-#foto img {
-	width:160px;
-	height:160px;
-}
-#indikator {
-}
-#indikator img {
-	border-radius: 0px;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
+/***** Button *****/
+.button {
+    float: right;
+    font-weight: bold;
+    line-height: 1;
+	margin-top: 2px;
+    padding: 5px 7px;
+    color: #fff;
+ 
+    text-align: center;
+    text-shadow: 0 -1px 1px #64799e;
+ 
+    /* Background gradient */
+    background: #a5b8da;
+    background: -moz-linear-gradient(top, #a5b8da 0%, #7089b3 100%);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a5b8da), to(#7089b3));
+ 
+    /* Border style */
+    border: 1px solid #5c6f91;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+ 
+    /* Box shadow */
+    -moz-box-shadow: inset 0 1px 0 0 #aec3e5;
+    -webkit-box-shadow: inset 0 1px 0 0 #aec3e5;
+    box-shadow: inset 0 1px 0 0 #aec3e5;
 }
