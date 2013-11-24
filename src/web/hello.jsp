@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-		String msg = request.getParameter("msg");
+		String msg = (String)request.getAttribute("msg");
 		if (msg == null) msg = "No message.";
 	%>
 	<p><%= msg %></p>

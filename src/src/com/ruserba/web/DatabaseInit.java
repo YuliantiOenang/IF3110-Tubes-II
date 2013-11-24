@@ -11,11 +11,11 @@ public class DatabaseInit implements ServletContextListener {
     public void contextInitialized(ServletContextEvent event) {
     	ServletContext sc = event.getServletContext();
  
-    	String url = sc.getInitParameter("url");
-    	String username = sc.getInitParameter("username");
-    	String password = sc.getInitParameter("password");
-    	String database = sc.getInitParameter("database");
-    	Database db = new Database(url + database, username, password);
+    	String db_url = sc.getInitParameter("db_url");
+    	String db_username = sc.getInitParameter("db_username");
+    	String db_password = sc.getInitParameter("db_password");
+    	String db_name = sc.getInitParameter("db_name");
+    	Database db = new Database(db_url + db_name, db_username, db_password);
     	sc.setAttribute("db", db);
      }
  
