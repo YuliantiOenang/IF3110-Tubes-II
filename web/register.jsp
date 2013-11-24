@@ -1,4 +1,4 @@
-<script type="text/javascript" src="js/fungsi.js"></script>
+<script type="text/javascript" src="fungsi.js"></script>
 <%@include file="header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,11 +20,11 @@
                     E-mail : <input type="email" required="required" name="regemail"> 
                 </fieldset>
                 <fieldset>
-                    <button id="registerButton" type="submit" onclick="" value="halo"></button>
+                    <button id="registerButton" type="submit" onclick="alert('a');" disabled >register</button>
+                    <button id="remove" onclick="remover();">remove</button>
+                    <button id="tambah" onclick=";">tambah</button>
                 </fieldset>
             </form>
-
-
         </div>
     </body>
 </html>

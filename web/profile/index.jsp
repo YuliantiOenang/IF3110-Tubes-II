@@ -1,18 +1,15 @@
-<%-- 
-    Document   : index
-    Created on : Nov 23, 2013, 4:38:51 PM
-    Author     : elfinositompul
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file=".../ConnectDB.jsp"  %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Halaman Profil</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page import="java.sql.ResultSet"%>
+<%@include file="../ConnectDB.jsp" %>
+<%
+    String username = request.getParameter("u");
+    String password = request.getParameter("p");
+    String sqlQuery = "select username from users where username = '" + username + "' and password = '" + password +  "'";
+    ResultSet resultSet = ConnectDB.mysql_query(sqlQuery);
+    
+    if (resultSet.next()) 
+    {
+//        out.print(resultSet.getString("username").trim());
+    }
+    
+    ConnectDB.closeDB();
+%>

@@ -13,7 +13,7 @@ Hello <b><%= "Ini adalah hasil pencarian untuk kueri '" + request.getParameter("
     String password = "";
 
     int countSearchResult = 0;
-    String countQuery = "SELECT * FROM item WHERE nama REGEXP '" + userQueryInput + "'";
+    String countQuery = "SELECT * FROM items WHERE nama REGEXP '" + userQueryInput + "'";
     String myQuery = "SELECT * FROM item WHERE nama REGEXP '" + userQueryInput + "' LIMIT 10 OFFSET " + String.valueOf((pageNumberInput - 1) * 10);
 
     Class.forName(driver);

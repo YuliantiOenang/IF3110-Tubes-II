@@ -1,5 +1,5 @@
-<form action="searchresult.jsp" method="get">
+<form action="../searchresult.jsp" method="get">
   Search Query: <input type="text" name="q"><br>
   <input type="submit" value="Submit">
   <input type="hidden" name="p" value="1">
-</form> 
+</form>     
