@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+
+import java.util.ArrayList;
  
 public class Database {
  
@@ -25,6 +27,7 @@ public class Database {
 		}
 	}
  
+	// Untuk custom query.
 	public Connection getConnection()
 	{
 		return this.conn;
@@ -64,12 +67,7 @@ public class Database {
 		return prod;
 	}
 
-	public User getUserData(int user_id) throws SQLException
-	{
-		PreparedStatement stat = getConnection().prepareStatement("select * from user where id_user=?");
-		stat.setInt(1, user_id);
-		ResultSet res = stat.executeQuery();
-
+	private User getUserDataFromResultSet(ResultSet res) throws SQLException	{
 		// Id produk tidak ditemukan.
 		if (!res.next()) return null;
 
@@ -91,4 +89,53 @@ public class Database {
 
 		return user;
 	}
+
+	public User getUserData(int user_id) throws SQLException
+	{
+		PreparedStatement stat = getConnection().prepareStatement("select * from user where id_user=?");
+		stat.setInt(1, user_id);
+		ResultSet res = stat.executeQuery();
+
+		return getUserDataFromResultSet(res);
+	}
+
+	public User getUserDataFromUsername(String username) throws SQLException
+	{
+		PreparedStatement stat = getConnection().prepareStatement("select * from user where username=?");
+		stat.setString(1, username);
+		ResultSet res = stat.executeQuery();
+
+		return getUserDataFromResultSet(res);
+	}
+
+	public Category getCategoryData(int category_id) throws SQLException
+	{
+		PreparedStatement stat = getConnection().prepareStatement("select * from kategori where id_kategori=?");
+		stat.setInt(1, category_id);
+		ResultSet res = stat.executeQuery();
+
+		// Id produk tidak ditemukan.
+		if (!res.next()) return null;
+
+		// Dikuli... Lagi...
+		Category cat = new Category();
+		cat.setIdKategori(res.getInt("id_kategori"));
+		cat.setNamaKategori(res.getString("nama_kategori"));
+
+		return cat;
+	}
+
+	public ArrayList<String> getCategoryList() throws SQLException
+	{
+		PreparedStatement stat = getConnection().prepareStatement("select nama_kategori from kategori");
+		ResultSet res = stat.executeQuery();
+
+		ArrayList<String> lst = new ArrayList<String>();
+		while (res.next())
+		{
+			lst.add(res.getString("nama_kategori"));
+		}
+		return lst;
+	}
+
 }
