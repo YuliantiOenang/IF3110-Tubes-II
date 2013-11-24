@@ -1,0 +1,5 @@
+/build
+/WebContent
+/.settings
+.project
+.classpath
