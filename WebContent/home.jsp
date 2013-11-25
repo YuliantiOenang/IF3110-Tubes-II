@@ -19,7 +19,7 @@
 	<%
 	} else {
 	%>
-	Halo <a href="#"><%= request.getSession(true).getAttribute("username") %></a>!
+	Halo <a href="user?id=<%= request.getSession(true).getAttribute("user_id") %>"><%= request.getSession(true).getAttribute("username") %></a>!
 	<a href="logout">Logout</a>
 	<%
 	}
