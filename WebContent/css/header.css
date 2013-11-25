@@ -134,12 +134,21 @@ ul#menubar .sub-menu li a:hover {
 
 /* Search Bar */
 #searchbar {
-	margin-top: 4px;
+	margin-top: 4.5px;
 	float: right;
 }
 
 #cari {
 	font-family: 'Lucida Sans Unicode';
+	border: 1px solid #5c6f91;
+	padding: 2.45px;
+	padding-left: 7px;
+
+	-webkit-padding-before: 5px;
+	
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 /* Search Suggestion*/

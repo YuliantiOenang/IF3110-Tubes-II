@@ -17,10 +17,10 @@
 	<nav>
 		<ul id="menubar">
 			<li><a href="index.jsp">Home</a></li>
-			<li><a href="#">Kategori Barang</a>
-				<ul class="sub-menu">
+			<li><a href="halamanbarang.jsp">Kategori Barang</a>
+				<ul class="sub-menu">	
 					<% while (categories.next()) { %>
-					<li><a href="#"><%= categories.getObject("kategori") %></a></li>
+					<li><a href="halamanbarang.jsp"><%= categories.getObject("kategori") %></a></li>
 					<% } %>
 				</ul>
 			</li>
@@ -33,7 +33,7 @@
 					<ul class="suggestion" id="cariyu">	
 					</ul>
 				</li>
-				<li><button type="button" class="button">Search</button></li>
+				<li><button type="button" class="button" id="searchbutton">Search</button></li>
 			</div>
 		</ul>
 	</nav>

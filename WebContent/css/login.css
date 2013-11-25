@@ -29,7 +29,7 @@ a#login_pop:hover, a#join_pop:hover {
     right: 0;
     top: 0;
     visibility: hidden;
-    z-index: 0;
+    z-index: 1;
 
     -webkit-transition: opacity .5s;
     -moz-transition: opacity .5s;
