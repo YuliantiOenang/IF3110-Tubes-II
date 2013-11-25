@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/desktop.css">
-        
+        <script src='js/registerkartu.js'></script>
         <title>Registrasi Kartu Kredit</title>
     </head>
     <body>
