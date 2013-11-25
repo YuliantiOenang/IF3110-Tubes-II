@@ -1,7 +1,7 @@
 <div class = "sidebar">
 		
 			<p class = "searchtitle"> Search it! </p>
-		<form action="hasilsearch.php" method="get">
+		<form action="hasilsearch.jsp" method="get">
 		<div class = "kategori">
 			<select name="kategori">
 				<option value="all">All</option>

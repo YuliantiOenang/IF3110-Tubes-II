@@ -20,6 +20,18 @@ if(!isset($_COOKIE['user1']))
 </head>
 
  <%@include file="header.jsp" %>
+ <%
+if(!found)
+{
+	%>
+			<script type="text/javascript">
+						window.alert("Maaf Anda harus LOGIN terlebih dahulu");
+						window.location="index.jsp";
+						</script>
+		<%
+}
+
+%>
 <div class = "bodymain">
 	<%@include file="sidebar.jsp" %>	
 <div class = "bodymain">

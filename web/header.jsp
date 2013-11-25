@@ -88,7 +88,7 @@
 				?>--%>
 				</div>
 				<div >
-					<img src = "images/cart.png" class = "cart" onclick="window.location='shoppingbag.php'"></img>
+					<img src = "images/cart.png" class = "cart" onclick="window.location='shoppingbag.jsp'"></img>
 				</div>
 			</div>
 			<div class = "signupplace">
