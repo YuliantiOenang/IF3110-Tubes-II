@@ -30,6 +30,8 @@
 			<h1>Edit Profile</h1>
 			<form name="editform" action="profile.jsp" onsubmit="return validatepass()" method="post">
 				<%
+					session.setAttribute("login_user", "karakuri");
+					out.println(session.getAttribute("login_user"));
 					Connection con = null;
 					
 					try {
@@ -39,11 +41,16 @@
 
 					con = DriverManager.getConnection("jdbc:mysql://localhost/ruserba","root","");
 					
-					Statement st;
+					PreparedStatement st;
 					ResultSet rs;
-					String query = "SELECT * FROM customer WHERE IdName='karakuri'";
-					st = con.createStatement();
-					rs = st.executeQuery(query);
+					
+					String loggedin = (String)session.getAttribute("login_user");
+					
+					st = con.prepareStatement("SELECT * FROM customer WHERE IdName=?");
+					st.setString(1,loggedin);
+					
+					rs = st.executeQuery();
+					st.clearParameters();
 					
 					while(rs.next()){
 					

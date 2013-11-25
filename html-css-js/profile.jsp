@@ -10,6 +10,8 @@
 			<h1>Profil Diri</h1>
 			<form name="profileform" action="edit_profile.jsp" method="post">
 				<%
+					session.setAttribute("login_user", "karakuri");
+					out.println(session.getAttribute("login_user"));
 					String submitted = request.getParameter("sub");
 					if(submitted !=null){
 						Connection con = null;
@@ -30,7 +32,9 @@
 						String provinsi = request.getParameter("provinsi");
 						String kodepos = request.getParameter("kodepos");
 						
-						pst = con.prepareStatement("UPDATE customer SET NamaLengkap=? ,Password=? ,NomorHP=? ,Alamat=? ,Kota=? ,Provinsi=? ,KodePos=? WHERE IdName='karakuri'");
+						String loggedin = (String)session.getAttribute("login_user");
+						
+						pst = con.prepareStatement("UPDATE customer SET NamaLengkap=? ,Password=? ,NomorHP=? ,Alamat=? ,Kota=? ,Provinsi=? ,KodePos=? WHERE IdName=?");
 						pst.setString(1,namalengkap);
 						pst.setString(2,password);
 						pst.setString(3,nomorhp);
@@ -38,6 +42,7 @@
 						pst.setString(5,kota);
 						pst.setString(6,provinsi);
 						pst.setString(7,kodepos);
+						pst.setString(8,"loggedin");
 
 						pst.executeUpdate();
 						pst.clearParameters();
@@ -56,11 +61,16 @@
 
 					con = DriverManager.getConnection("jdbc:mysql://localhost/ruserba","root","");
 					
-					Statement st;
+					PreparedStatement st;
 					ResultSet rs;
-					String query = "SELECT * FROM customer WHERE IdName='karakuri'";
-					st = con.createStatement();
-					rs = st.executeQuery(query);
+					
+					String loggedin = (String)session.getAttribute("login_user");
+					
+					st = con.prepareStatement("SELECT * FROM customer WHERE IdName=?");
+					st.setString(1,loggedin);
+					
+					rs = st.executeQuery();
+					st.clearParameters();
 					
 					while(rs.next()){
 					
