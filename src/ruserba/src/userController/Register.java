@@ -1,28 +1,23 @@
-package indexController;
+package userController;
 
 import java.io.IOException;
-import javaModel.Kategori;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import databaseLib.DatabaseAdapter;
-
 /**
- * Servlet implementation class Homes
+ * Servlet implementation class Register
  */
-@WebServlet("/homes")
-public class Homes extends HttpServlet {
+@WebServlet("/register")
+public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DatabaseAdapter DBA = new DatabaseAdapter();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Homes() {
+    public Register() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +26,8 @@ public class Homes extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String Query = "select * from kategori";
-		Kategori K = new Kategori(DBA);
-		K.executeQuery(Query);
-		System.out.println(Query);
-		
-		request.setAttribute("kategoris", K);
-		request.setAttribute("effect", false);
-		
-		request.setAttribute("includeJspContent", "index.jsp");
+		// TODO Auto-generated method stub
+		request.setAttribute("includeJspContent", "register.jsp");
 		request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 	}
 

@@ -1,3 +1,8 @@
+<%@ page import="javaModel.Kategori" %>
+<%@ page import="javaModel.Barang" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="java.util.HashMap" %>
+<%@page import="java.util.Map" %>
 
 <script>
 		function RefreshCartandShow(){
@@ -109,6 +114,29 @@
 				}, 2000);
 		}
 	</script>
+	
+	<% 	Kategori K = ((Kategori) request.getAttribute("kategoris")); 
+		Map<Integer, Barang> topbarangs = ((Map<Integer, Barang>) request.getAttribute("topbarangs"));
+		for(int i = 0; i < K.id.size(); i++) { %>
+		
+		<div onmouseover='setRun(false,<%= i+1 %>)' onmouseout='setRun(true,<%= i+1 %>)' class='home_categori <%= (i != 0)?"hidden":"" %>' id='cont<%= i+1 %>'>
+			<h1 class='header'><%= K.nama_kategori.get(i) %></h1>
+			<div class="triplebest">
+				<% Barang B = topbarangs.get(Integer.parseInt(K.id.get(i))); %>
+				<% System.out.println("Hello world "+B.id.size()); %>
+				<% for (int j = 0; j < B.id.size(); j++) { %>
+					<a href="barang/view/<%= B.id.get(j) %>">
+						<div class="best">
+							<img alt="" title="<%= B.nama.get(j) %>  (<%= B.harga.get(j) %>)" onload="fitBest(this)" src="img/barang/<%= B.gambar.get(j) %>" height="150" width="150" style="margin-left: 35px;" />
+						</div>
+					</a>	
+				<% } %>
+			</div>
+		</div>
+		
+	<% } %>
+	
+	
 	<div class='howto'>
 		<h4>
 			how to get our product?

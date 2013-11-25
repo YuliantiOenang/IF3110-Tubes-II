@@ -1,5 +1,5 @@
 /Config
+/adminController
 /indexController
-/userController
 /javaModel
-/apiController
+/userController
