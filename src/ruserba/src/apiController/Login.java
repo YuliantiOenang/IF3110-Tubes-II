@@ -22,55 +22,52 @@ import databaseLib.DatabaseAdapter;
 @WebServlet("/api/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DatabaseAdapter DBA = new DatabaseAdapter();   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private DatabaseAdapter DBA = new DatabaseAdapter();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		JSONObject json = new JSONObject();
-		try {
-			json.put("status",true);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("testing1");
-		out.write(json.toString());
+	public Login() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
+		// response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		try {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			if (!username.isEmpty() && !password.isEmpty()) {
-				String query = "select * from account where username = '" + username + "' and password = '" + password + "'";
+				String query = "select * from account where username = '"
+						+ username + "' and password = '" + password + "'";
 				DBA.executeQuery(query);
 				System.out.println(query);
 				ResultSet RS = DBA.getQueryResult();
 				try {
-					if (!RS.isBeforeFirst() ) {    
+					if (!RS.isBeforeFirst()) {
 						JSONObject json = new JSONObject();
 						System.out.println("testing2");
-						json.put("status",false);
+						json.put("success", false);
 						out.write(json.toString());
 					} else {
 						JSONObject json = new JSONObject();
-						json.put("status",true);
+						json.put("success", true);
 						System.out.println("testing1");
 						out.write(json.toString());
 					}
@@ -85,24 +82,25 @@ public class Login extends HttpServlet {
 				JSONObject json = new JSONObject();
 				System.out.println("testing3");
 				try {
-					json.put("status",false);
+					json.put("success", false);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//				out.write(json.toString());
+				out.write(json.toString());
 			}
-		}catch (Exception e){
+		} catch (Exception e) {
 			JSONObject json = new JSONObject();
 			System.out.println("testing4");
 			try {
-				json.put("status",false);
+				json.put("success", false);
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-//			out.write(json.toString());
+			out.write(json.toString());
 		}
+		out.close();
 	}
 
 }

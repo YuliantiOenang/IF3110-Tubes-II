@@ -12,14 +12,14 @@ function login() {
 			if (data.success) {
 				// alert('Anda berhasil login');
 				document.getElementById('loading').innerHTML = "Anda berhasil login";
-				window.location = server+"/home";
+				window.location = "home";
 			} else {
 				document.getElementById('loading').innerHTML = "Username atau password salah";
 				// alert('Username atau password salah');
 			}
 			document.getElementById('loading').classList.remove('loading');
 		}
-	}
+	};
 	document.getElementById('loading').innerHTML = "";
 	document.getElementById('loading').classList.add('loading');
 	xmlhttp.open("POST","api/login",true);

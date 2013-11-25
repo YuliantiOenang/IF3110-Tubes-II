@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="javaModel.Helper"%>
+<%@page import="databaseLib.DatabaseAdapter"%>
 <%@page import="org.eclipse.jdt.internal.compiler.ast.ForeachStatement"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page import="javaModel.Kategori" %>
@@ -86,7 +88,7 @@
 </script>
 </head>
 <body>
-	<% if ((Boolean) request.getAttribute("effect")) { %>
+	<% if (request.getAttribute("effect")!=null && (Boolean)request.getAttribute("effect")) { %>
 		<img alt='' class='loader' id='starter' src='img/site/logo_b.png' />
 		<div class='prolog' id='starter2'>
 			<p>
@@ -106,7 +108,7 @@
 	<% } %>
 		<div class='conctr'>
 			<div class='head'>
-				<a href='homes'><div class='logo'></div></a>
+				<a href='home'><div class='logo'></div></a>
 				<div class='status'>
 					<p>
 						You are not login. (<a href='#' onclick='showLogin()'>Login</a> or
@@ -114,8 +116,10 @@
 					</p>
 				</div>
 				<div class="menu">
-					<% Kategori K = ((Kategori) request.getAttribute("kategoris")); %>
-					<% for (int i = 0; i < K.nama_kategori.size(); i++) { %>
+					<%
+						Kategori K = Helper.findAllKategori();
+					%>
+					<% for (int i = 0; i < K.id.size(); i++) { %>
 					<a href="/cumigondrong/kategori/view/<%= K.id.get(i) %>">
 						<div class="permenu per5">
 							<div class="menuborder"></div>
@@ -146,7 +150,7 @@
 				<h1>LOGIN</h1>
 				<a class='exit' onclick='hideLogin()'>x</a>
 				<div id="loading"></div>
-				<form>
+				<form method="post">
 					<label>Username</label><input type='text' id="login_username"
 						name="Login[username]"><br /> <label>Password</label><input
 						type='password' id="login_password" name="Login[password]"><br />
@@ -159,7 +163,7 @@
 				var server = "";
 			</script>
 		</div>
-	<% if ((Boolean) request.getAttribute("effect")) { %>
+	<% if (request.getAttribute("effect")!=null && (Boolean)request.getAttribute("effect")) { %>
 		</div> 
 	<% } %>
 

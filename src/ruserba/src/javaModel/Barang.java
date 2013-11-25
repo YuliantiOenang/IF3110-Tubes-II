@@ -11,6 +11,8 @@ public class Barang {
 	public ArrayList<String> harga = new ArrayList<String>();
 	public ArrayList<String> gambar = new ArrayList<String>();
 	public ArrayList<String> stok = new ArrayList<String>();
+	public ArrayList<String> counter = new ArrayList<String>();
+	public ArrayList<String> keterangan = new ArrayList<String>();
 	public ArrayList<String> id = new ArrayList<String>();
 	
 	public Barang(DatabaseAdapter _DBA)
@@ -26,11 +28,13 @@ public class Barang {
 		{
 			while (RS.next())
 			{
-				harga.add(RS.getObject(3).toString());
-				nama.add(RS.getObject(2).toString());
 				id.add(RS.getObject(1).toString());
-				gambar.add(RS.getObject(4).toString());
-				stok.add(RS.getObject(5).toString());
+				nama.add(RS.getObject(3).toString());
+				harga.add(RS.getObject(4).toString());
+				gambar.add(RS.getObject(5).toString());
+				stok.add(RS.getObject(6).toString());
+				counter.add(RS.getObject(7).toString());
+				keterangan.add(RS.getObject(8).toString());
 			}
 		}catch (Exception e){}
 	}
