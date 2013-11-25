@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2013 at 09:24 AM
+-- Generation Time: Nov 25, 2013 at 09:31 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -28,6 +28,7 @@ USE `frexesc`;
 -- Table structure for table `barang`
 --
 
+DROP TABLE IF EXISTS `barang`;
 CREATE TABLE IF NOT EXISTS `barang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_kategori` int(11) NOT NULL,
@@ -123,6 +124,7 @@ INSERT INTO `barang` (`id`, `id_kategori`, `nama_barang`, `gambar`, `harga_baran
 -- Table structure for table `barang_user`
 --
 
+DROP TABLE IF EXISTS `barang_user`;
 CREATE TABLE IF NOT EXISTS `barang_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_barang` int(11) NOT NULL,
@@ -137,24 +139,10 @@ CREATE TABLE IF NOT EXISTS `barang_user` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `card`
---
-
-CREATE TABLE IF NOT EXISTS `card` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `nomor_kartu` varchar(100) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `expired` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `kategori`
 --
 
+DROP TABLE IF EXISTS `kategori`;
 CREATE TABLE IF NOT EXISTS `kategori` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) NOT NULL,
@@ -178,6 +166,7 @@ INSERT INTO `kategori` (`id`, `nama`) VALUES
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
