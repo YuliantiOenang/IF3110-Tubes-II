@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <div id="lightbox">	
 		<div class="loginpoptop"><!--pop up-->
 		<h4 id="loginHeader">LOGIN</h4>
@@ -38,9 +39,11 @@
                                     Cookie[] cookies = null;
                                     boolean found=false;
                                     String nama=null;
+                                    
                                     // Get an array of Cookies associated with this domain
                                     cookies = request.getCookies();
                                     
+                                    ArrayList<Cookie> ArrayCookie=new ArrayList<Cookie>();
                                     if( cookies != null ){
                                        //out.println("<h2> Found Cookies Name and Value</h2>");
                                        
@@ -52,8 +55,9 @@
                                           {
                                             found=true;
                                             nama=cookie.getValue();
-                                            
+                                            ArrayCookie.add(cookie);
                                           }
+                                          
                                        }
                                    }
                                    
@@ -108,7 +112,7 @@
 					
 				</div> 
 				
-                            <a href="see_profile.php"><p class="welctext" id="welcome"><%if(found){out.print("WELCOME,"+nama);
+                            <a href="see_profile.jsp"><p class="welctext" id="welcome"><%if(found){out.print("WELCOME,"+nama);
                         }%><%--<?php if(isset($_COOKIE['user1'])) echo "WELCOME,".$_COOKIE['user1'].""; ?>--%></p></a>
 			</div>
 		</div >

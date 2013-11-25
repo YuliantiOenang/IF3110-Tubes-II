@@ -156,7 +156,7 @@ function cekJumlah()
 }
 
 function toEditProfile(){
-	window.location = "edit_profile.php";
+	window.location = "edit_profile.jsp";
 }
 
 function getCookie(c_name)
@@ -323,5 +323,111 @@ function daftar_kartu_pembayaran(){
 		);
 		
 	http.send();
+	
+}
+function checkSubmit2(){
+	var can_submit = true;
+	var ada_berubah = false;
+
+	
+	document.getElementById("pesan").innerHTML = "";
+	
+	//CHECK PASSWORD
+	if(document.getElementById("password").value == ""){
+		alert("Password Tidak Boleh Kosong");
+		document.getElementById("pesan").innerHTML += "Password tidak boleh kosong.\n"
+		can_submit = false;
+	}else{
+		if(document.getElementById("password").value != document.getElementById("conf_password").value){
+			alert("Password yang anda masukkan tidak sama dengan konfirmasi password");
+			can_submit = false;
+		}else{
+			if(document.getElementById("password").value.length < 8){
+				alert("Panjang password minimal 8 karakter");
+				can_submit = false;
+			}else{
+				if(document.getElementById("password").value == getCookie("username")){
+					alert("password tidak boleh sama dengan username");
+					can_submit = false;
+				}else{
+					//document.getElementById("pesan").innerHTML = getCookie("email");
+					if(document.getElementById("password").value == getCookie("email")){
+						alert("Password tidak boleh sama dengan email");
+						can_submit = false;
+					}
+				}
+			}
+		}
+	}
+	
+	if(document.getElementById("nama_lengkap").value != document.getElementById("nama_lengkap").defaultValue){
+		
+		var cekNama = document.getElementById("nama_lengkap").value;
+		cekNama.trim();
+		var arrNama = cekNama.split(" ");
+		
+		
+		if(arrNama.length > 1 && arrNama[1] != ""){
+			ada_berubah = true;
+		}else{
+			alert("Nama tidak valid, kurang dari 2 kata");
+			can_submit = false;
+		}
+	}
+	
+	if(document.getElementById("password").value != getCookie("password")){
+		ada_berubah = true;
+	}
+	
+	
+	if(document.getElementById("alamat").value != document.getElementById("alamat").defaultValue){
+		ada_berubah = true;
+	}
+	
+	if(document.getElementById("provinsi").value != document.getElementById("provinsi").defaultValue){
+		ada_berubah = true;
+	}
+	
+	if(document.getElementById("kobupaten").value != document.getElementById("kobupaten").defaultValue){
+		ada_berubah = true;
+	}
+	
+	if(document.getElementById("kodepos").value != document.getElementById("kodepos").defaultValue){
+		ada_berubah = true;
+	}
+	
+	if(document.getElementById("handphone").value != document.getElementById("handphone").defaultValue){
+		ada_berubah = true;
+	}
+	//document.write("");
+	
+	if(!ada_berubah){
+		alert("Tidak ada data yang berubah");
+		can_submit = false;
+	}
+	
+	if(can_submit){
+		//kirim data
+		var data_kirim;
+		data_kirim = "nama_lengkap=" + document.getElementById("nama_lengkap").value;
+		data_kirim += "&password=" + document.getElementById("password").value;
+		data_kirim += "&alamat=" + document.getElementById("alamat").value;
+		data_kirim += "&provinsi=" + document.getElementById("provinsi").value;
+		data_kirim += "&kobupaten=" + document.getElementById("kobupaten").value;
+		data_kirim += "&kodepos=" + document.getElementById("kodepos").value;
+		data_kirim += "&handphone=" + document.getElementById("handphone").value
+		
+		window.location="proses_edit.jsp?"+data_kirim;
+		
+		/*http.open("POST","proses_edit.php",true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send("nama_lengkap="+document.getElementById("nama_lengkap").value+
+			"&password="+document.getElementById("password").value+
+			"&alamat="+document.getElementById("alamat").value+
+			"&kobupaten="+document.getElementById("kobupaten").value+
+			"&kodepos="+document.getElementById("kodepos").value+
+			"&handphone="+document.getElementById("handphone").value
+			);*/
+	}
 	
 }

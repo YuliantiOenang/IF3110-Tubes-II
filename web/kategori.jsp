@@ -9,6 +9,7 @@
 
 </head>
 <script src="js/AjaxCreateObject.js" language="javascript"></script>
+<script src="js/function.js" language="javascript"></script>
 
 <body>
  <%@include file="header.jsp" %>
@@ -93,7 +94,7 @@
                        }
                     }
                 }
-                out.print(session.getAttribute("nama1"));
+                
                 if(Page==null)
                 {
                     int i;
