@@ -88,14 +88,20 @@ public class User extends HttpServlet {
 			}
 			response.sendRedirect("home.jsp");
 		} else if (action.equals("edit")) {
-			String updateQuery = "UPDATE user SET (nama, password, email, handphone, alamat, kota, provinsi, kodepos) VALUES ('" + name + "','" + password + "','" + email + "','" + telephone + "','" + address + "','" + city + "','" + province + "','" + postal + "')";
+			// String updateQuery =
+			// "UPDATE user SET (nama, password, email, handphone, alamat, kota, provinsi, kodepos) VALUES ('"
+			// + name + "','" + password + "','" + email + "','" + telephone +
+			// "','" + address + "','" + city + "','" + province + "','" +
+			// postal + "')";
+			String updateQuery = "UPDATE user SET nama='" + name + "', password='" + password + "', email='" + email + "', handphone='" + telephone + "', alamat='" + address + "', kota='" + city + "', provinsi='" + province + "', kodepos='" + postal + "' WHERE id='" + request.getSession(true).getAttribute("user_id") + "'";
+			System.out.println(updateQuery);
 			try {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate(updateQuery);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("user?id="+request.getSession(true).getAttribute("user_id"));
+			response.sendRedirect("user?id=" + request.getSession(true).getAttribute("user_id"));
 		}
 
 	}

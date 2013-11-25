@@ -14,7 +14,7 @@
 	<br /> ${user.getTelephone()}
 	<br /> ${user.getPostal()}
 	<br />
-	<button formaction="editprofile.jsp">Edit Profile</button>
+	<button type="button" onclick="location.href='editprofile.jsp'">Edit Profile</button>
 	<button>CC</button>
 </body>
 </html>
