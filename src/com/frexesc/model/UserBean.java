@@ -24,7 +24,7 @@ public class UserBean {
 	}
 
 	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal) {
-		//super();
+		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
