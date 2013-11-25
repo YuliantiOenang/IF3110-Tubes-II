@@ -1,1 +1,0 @@
-<?php	echo "	<script>		localStorage.removeItem('username');		window.location = 'index.php';	</script>";?>
