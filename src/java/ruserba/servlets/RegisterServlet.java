@@ -6,7 +6,13 @@ package ruserba.servlets;
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,8 +46,16 @@ public class RegisterServlet extends HttpServlet {
         String alamatEmail = request.getParameter("email");
         
         DatabaseHelper.Connect();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 5);
+        Date expDate = cal.getTime();
         
-        if(DatabaseHelper.execute("insert into user values ('"+username+"','"+password+"','"+00+"','"+ "2013-11-25" +"')")) {
+        String key = username + formatter.format(new Date());
+        key = encodeText(key, "SHA-1");
+        
+        System.out.println(key);
+        if(DatabaseHelper.execute("insert into user values ('"+username+"','"+password+"','"+key+"','"+ formatter.format(expDate) +"')")) {
             if(DatabaseHelper.execute("insert into user_profile (username,nama,email) values ('"+ username +"','"+ name +"','"+ alamatEmail +"')")) {
                 // Registrasi Berhasil
                 RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
@@ -57,6 +71,31 @@ public class RegisterServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();
+    }
+    
+    public static String encodeText(String text, String algorithm) {
+        byte[] unencodedPassword = text.getBytes();
+        MessageDigest md = null;
+        try {
+        // first create an instance, given the provider
+            md = MessageDigest.getInstance(algorithm);
+        } catch (Exception e) {
+            return text;
+        }
+        md.reset();
+        // call the update method one or more times
+        // (useful when you don't know the size of your data, e.g. stream)
+        md.update(unencodedPassword);
+        // now calculate the hash
+        byte[] encodedPassword = md.digest();
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < encodedPassword.length; i++) {
+            if (((int) encodedPassword[i] & 0xff) < 0x10) {
+                buf.append("0");
+            }
+            buf.append(Long.toString((int) encodedPassword[i] & 0xff, 16));
+        }
+        return buf.toString();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

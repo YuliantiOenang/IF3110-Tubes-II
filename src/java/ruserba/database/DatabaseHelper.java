@@ -49,9 +49,12 @@ public class DatabaseHelper {
     public static boolean execute(String sql) {
         Statement smt;
         try {
+            System.out.println("HASIL");
             smt = conn.createStatement();
-            return smt.execute(sql);
+            smt.execute(sql);
+            return true;
         } catch (SQLException ex) {
+            System.out.println("GAGAL");
             Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }     
