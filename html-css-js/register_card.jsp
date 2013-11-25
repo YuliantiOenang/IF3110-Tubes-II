@@ -30,7 +30,7 @@
 					String kodepos = request.getParameter("kodepos");
 					String email = request.getParameter("email");
 					
-					st = con.prepareStatement("INSERT INTO Customer(IdName, Password, NamaLengkap, NomorHP, Alamat, Kota, Provinsi, KodePos, Transaksi, Email) VALUES (?,?,?,?,?,?,?,?,?,?)");
+					st = con.prepareStatement("INSERT INTO Customer(IdName, Password, NamaLengkap, NomorHP, Alamat, Kota, Provinsi, KodePos, Transaksi, Email, Role) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 					st.setString(1,username);
 					st.setString(2,password);
 					st.setString(3,namalengkap);
@@ -41,6 +41,7 @@
 					st.setString(8,kodepos);
 					st.setInt(9,0);
 					st.setString(10,email);
+					st.setInt(11,0);
 					
 					st.executeUpdate();
 					st.clearParameters();
