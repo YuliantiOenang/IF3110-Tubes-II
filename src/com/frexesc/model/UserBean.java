@@ -1,6 +1,6 @@
 package com.frexesc.model;
 
-public class User {
+public class UserBean {
 	private String username;
 	private String password;
 	private String email;
@@ -11,7 +11,7 @@ public class User {
 	private String city;
 	private String postal;
 
-	public User(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal) {
+	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal) {
 		super();
 		this.username = username;
 		this.password = password;

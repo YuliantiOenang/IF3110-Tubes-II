@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Register</h1>
+	<h1>Edit profile</h1>
 	<hr />
 	<form method="post" action="user" onsubmit="return validateAll()" name="regform">
-		<input id="action" name="action" type="hidden" value="register"/>
-		<input id="username" name="username" placeholder="username" type="text" onkeyup="if(this.value != '') validateUsername('username', this.value, 'valusername');" required /><div id="valusername"></div><br />
+		<input id="action" name="action" type="hidden" value="edit"/>
 		<input id="password1" name="password1" placeholder="password" type="password" onkeyup="if(this.value != '') validatePassword(this.value, password2.value, username.value, email.value, 'valpasswords');" required /><div id="valpassword"></div><br />
 		<input id="password2" name="password2" placeholder="password lagi" type="password" onkeyup="if(this.value != '') validatePassword(password1.value, this.value, username.value, email.value, 'valpasswords');" required /><div id="valpasswords"></div><br />
 		<input id="name" name="name" placeholder="nama lengkap" type="text" onkeyup="if(this.value != '') validateName(this.value, 'fullname');" required /><div id="fullname"></div><br />
