@@ -27,7 +27,7 @@ window.addEventListener('load', function() {
 
 	username.onkeyup = function() {
 		if (username.value.length >= 5) {
-			var xhr = new XMLHttpRequest();
+			/*var xhr = new XMLHttpRequest();
 			xhr.open('POST', '/ruserba/scripts/php/check_user.php', true);
 			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			xhr.send('username=' + username.value);
@@ -49,7 +49,12 @@ window.addEventListener('load', function() {
 						erroruser.style.display = 'none';
 					}
 				}
-			}
+			}*/
+                            formOk[0] = true;
+                            username.className = 'formok';
+                            submitButton(formOk, submit);
+                            erroruser5.style.display = 'none';
+                            erroruser.style.display = 'none';
 		}
 		else {
 			username.className = 'formerror';
@@ -135,7 +140,7 @@ window.addEventListener('load', function() {
 		if (splitusername.length == 2 && splitusername[0] != '' && splitusername[1] != '') {
 			var splitdomain = splitusername[1].split('.');
 			if (splitdomain.length > 1 && splitdomain[0] != '' && splitdomain[splitdomain.length - 1] != '') {
-				var xhr = new XMLHttpRequest();
+				/*var xhr = new XMLHttpRequest();
 				xhr.open('POST', '/ruserba/scripts/php/check_user.php', true);
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 				xhr.send('email=' + email.value);
@@ -157,7 +162,12 @@ window.addEventListener('load', function() {
 							erroremail.style.display = 'none';
 						}
 					}
-				}
+				}*/
+                                formOk[4] = true;
+                                email.className = 'formok';
+                                submitButton(formOk, submit);
+                                erroremailformat.style.display = 'none';
+                                erroremail.style.display = 'none';
 			}
 			else {
 				email.className = 'formerror';

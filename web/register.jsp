@@ -17,7 +17,7 @@
         <div class='formcontainer'>
             <h2>Pendaftaran RuSerbA</h2>
             <br />
-            <form id='registerform' method='post' action="egisterServlet">
+            <form id='registerform' method='post' action="RegisterServlet">
                 <span class='formlabel'>Username</span><input type='text' name='username'><br />
                 <span id='erroruser5' class='formerrortext'>Username paling sedikit 5 karakter</span>
                 <span id='erroruser' class='formerrortext'>Username sudah digunakan</span><br />
