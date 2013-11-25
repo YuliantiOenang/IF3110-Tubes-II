@@ -13,21 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.frexesc.model.BarangBean;
+import com.frexesc.model.KategoriBean;
 
 /**
  * 
- * Servlet implementation class Gallery
+ * Servlet implementation class Detail (Barang)
  * 
  */
-@WebServlet("/barang/index")
-public class Gallery extends HttpServlet {
+@WebServlet("/barang/detail")
+public class Detail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Gallery() {
-		super();
+	public Detail() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,54 +41,15 @@ public class Gallery extends HttpServlet {
 		DbConnection dbConnection = new DbConnection();
 		Connection connection = dbConnection.mySqlConnection();
 
-		int sort = 0;
-		int jenisSort = 0;
-		int page = 0;
+		int id = 0;
 
-		if (request.getParameter("sort") != null) {
-			sort = Integer.valueOf(request.getParameter("sort"));
-		}
-
-		if (request.getParameter("jenisSort") != null) {
-			jenisSort = Integer.valueOf(request.getParameter("jenisSort"));
-		}
-
-		if (request.getParameter("page") != null) {
-			page = Integer.valueOf(request.getParameter("page"));
+		if (request.getParameter("id") != null) {
+			id = Integer.valueOf(request.getParameter("id"));
 		}
 
 		try {
-			String partial1 = "";
-			String partial2 = "";
-
-			if (sort != 0) {
-				if (sort == 1)
-					partial1 = " ORDER BY barang.nama_barang ";
-				else if (sort == 2)
-					partial1 = " ORDER BY kategori.nama ";
-				else if (sort == 3)
-					partial1 = " ORDER BY barang.harga_barang ";
-			}
-
-			if (jenisSort != 0) {
-				if (jenisSort == 1) {
-					partial2 = " ASC ";
-				} else if (jenisSort == 2) {
-					partial2 = " DESC ";
-				}
-			}
-
-			if (page != 0) {
-				page = page * 10;
-			}
-
-			String query = "SELECT kategori.nama, barang.gambar, barang.id, barang.id_kategori, barang.nama_barang, barang.harga_barang, barang.jumlah_barang, barang.keterangan FROM barang JOIN kategori ON barang.id_kategori=kategori.id "
-					+ partial1 + partial2 + "LIMIT " + page + ",10"; // Select
-																		// all
-																		// items
-																		// based
-																		// on
-																		// selection
+			String query = "SELECT * FROM barang JOIN kategori ON barang.id_kategori=kategori.id AND barang.id="
+					+ id; // Select item based on id
 			ResultSet rs = connection.createStatement().executeQuery(query);
 
 			ArrayList<BarangBean> allResults = new ArrayList<BarangBean>();
@@ -104,11 +65,23 @@ public class Gallery extends HttpServlet {
 				allResults.add(barang);
 			}
 
-			request.setAttribute("items", allResults);
+			String query2 = "SELECT * FROM kategori";
+			ResultSet rs2 = connection.createStatement().executeQuery(query2);
 
+			ArrayList<KategoriBean> allResults2 = new ArrayList<KategoriBean>();
+
+			while (rs2.next()) {
+				KategoriBean kategori = new KategoriBean(Integer.valueOf(rs2
+						.getString("id")), rs2.getString("nama"));
+				allResults2.add(kategori);
+			}
+
+			request.setAttribute("items", allResults);
+			request.setAttribute("categories", allResults2);
 			RequestDispatcher dispatcher = getServletContext()
-					.getRequestDispatcher("/barang/index.jsp");
+					.getRequestDispatcher("/barang/detail.jsp");
 			dispatcher.forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
