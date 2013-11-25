@@ -13,7 +13,7 @@ public class registrasi extends HttpServlet{
 	 
       // Actual logic goes here.
       PrintWriter out = response.getWriter();
-      out.println("<h1>" + "Test" + "</h1>");
+      out.println("<h1>" + "Bismillahirrahmanirrahim" + "</h1>");
 	}
 	
 }
