@@ -18,7 +18,7 @@
         <form method="POST" action="SelectCoffee.do">
           Select coffee 
           Type:
-          <select name="type" size=1">
+          <select name="type" size="1">
             <option value="milky">Milky</option>
             <option value="froffy">Froffy</option>
             <option value="icey">Icey</option>

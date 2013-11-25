@@ -49,7 +49,7 @@ public class Home extends HttpServlet {
         // The results will be passed back (as an attribute) to the JSP view
         // The attribute will be a name/value pair, the value in this case will be a List object 
         request.setAttribute("styles", result);
-        RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("include/result.jsp");
         view.forward(request, response); 
     }
 }
