@@ -1,5 +1,14 @@
 <link rel="stylesheet" href="css/header.css" type="text/css"/>
 <header id="banner" class="body">
+	<%@ page import="java.sql.*" %>
+	<%
+	String db_url = "jdbc:mysql://localhost/ruserba";
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	Connection connection = DriverManager.getConnection(db_url, "root", "");
+	assert(connection != null);
+	Statement statement = connection.createStatement();
+	ResultSet categories = statement.executeQuery("SELECT DISTINCT kategori FROM barang");
+	%>
 	<span>
 		<center>
 			<a href="index.jsp"><img src="images/logo.png" alt="Logo" width="250" height="250"/></a>
@@ -9,10 +18,10 @@
 		<ul id="menubar">
 			<li><a href="index.jsp">Home</a></li>
 			<li><a href="#">Kategori Barang</a>
-				<ul class="sub-menu">	
-					<li><a href="#">Kategori Dummy 1</a></li>
-					<li><a href="#">Kategori Dummy 2</a></li>
-					<li><a href="#">Kategori Dummy 3</a></li>
+				<ul class="sub-menu">
+					<% while (categories.next()) { %>
+					<li><a href="#"><%= categories.getObject("kategori") %></a></li>
+					<% } %>
 				</ul>
 			</li>
 			<!--div id="log"></div-->
