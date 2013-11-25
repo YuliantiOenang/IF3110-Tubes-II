@@ -11,7 +11,9 @@ public class UserBean {
 	private String city;
 	private String postal;
 
-	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal) {
+	public UserBean(String username, String password, String email,
+			String name, String telephone, String address, String province,
+			String city, String postal) {
 		super();
 		this.username = username;
 		this.password = password;
