@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +47,9 @@ public class User extends HttpServlet {
 				UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"));
 				request.setAttribute("user", user);
 			}
-			response.sendRedirect("profile.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile.jsp");
+			dispatcher.forward(request, response);
+			//response.sendRedirect("profile.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,7 +89,7 @@ public class User extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("home.jsp");
+			response.sendRedirect("index.jsp");
 		} else if (action.equals("edit")) {
 			// String updateQuery =
 			// "UPDATE user SET (nama, password, email, handphone, alamat, kota, provinsi, kodepos) VALUES ('"

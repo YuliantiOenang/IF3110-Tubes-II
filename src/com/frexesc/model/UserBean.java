@@ -10,9 +10,21 @@ public class UserBean {
 	private String province;
 	private String city;
 	private String postal;
+	
+	public UserBean() {
+		this.username = null;
+		this.password = null;
+		this.email = null;
+		this.name = null;
+		this.telephone = null;
+		this.address = null;
+		this.province = null;
+		this.city = null;
+		this.postal = null;
+	}
 
 	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal) {
-		super();
+		//super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
