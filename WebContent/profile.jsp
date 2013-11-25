@@ -42,7 +42,6 @@ if(typeof(Storage)!=="undefined"){
 		}
 		xmlhttp.onreadystatechange=function(){
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				alert("test2");
 				var str = xmlhttp.responseText.split("||");
 				document.getElementById("nama").innerHTML+=str[0];
 				document.getElementById("nomorhp").innerHTML+=str[1];

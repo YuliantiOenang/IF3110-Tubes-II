@@ -6,7 +6,7 @@
 	<h1><span><a href="index.jsp">RuSerBa<br><br><strong>Ruko Serba Ada</strong></a></span></h1>
  	<nav><ul id="menubar">
 		<li><a href="index.jsp">Home</a></li>
-		<li><a href="halamanbarang" onmouseover="slidedown(true)" onmouseup="slidedown(false)">Kategori Barang</a>
+		<li><a href="halamanbarang.jsp" onmouseover="slidedown(true)" onmouseup="slidedown(false)">Kategori Barang</a>
 			<ul class="sub-menu">	
 			<%
 			//mengambil dari database barang
@@ -24,7 +24,7 @@
 	            	//Retrieve by column name
 	             	String kategori = rs.getString("kategori");
 	             	//Display values
-	             	out.println("<li><a href=\"halamanbarang?kategori="+kategori+"\">"+kategori+"</a></li>");
+	             	out.println("<li><a href=\"halamanbarang.jsp?kategori="+kategori+"\">"+kategori+"</a></li>");
 	          	}
 	          	// Clean-up environment
 	          	rs.close();
