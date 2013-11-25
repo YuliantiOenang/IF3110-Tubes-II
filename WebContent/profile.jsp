@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="com.frexesc.model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 </head>
 <body>
 	<h1>${user.getUsername()}</h1>
+	<span id="haha"></span>
 	${user.getAddress()}
 	<br /> ${user.getCity()}
 	<br /> ${user.getProvince()}
@@ -15,6 +17,6 @@
 	<br /> ${user.getPostal()}
 	<br />
 	<button type="button" onclick="location.href='editprofile.jsp'">Edit Profile</button>
-	<button>CC</button>
+	<button onclick="location.href='creditcard.jsp'">CC</button>
 </body>
 </html>

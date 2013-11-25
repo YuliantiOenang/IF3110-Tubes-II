@@ -9,6 +9,6 @@
 </head>
 <body>
 <%= request.getAttribute("response") %>
-If you are not directed in 3 seconds, please click this <a href="home.jsp">link</a>
+If you are not directed in 3 seconds, please click this <a href="index.jsp">link</a>
 </body>
 </html>
