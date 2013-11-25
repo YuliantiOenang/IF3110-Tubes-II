@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2013 at 09:31 AM
+-- Generation Time: Nov 25, 2013 at 09:47 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -154,11 +154,11 @@ CREATE TABLE IF NOT EXISTS `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`) VALUES
-(1, 'man shirt'),
-(2, 'man shoes'),
-(3, 'man watch'),
-(4, 'man glasses'),
-(5, 'man trousers');
+(1, 'Ladies Dress'),
+(2, 'Ladies Shoes'),
+(3, 'Men Shirt'),
+(4, 'Men Shoes'),
+(5, 'Men Hat');
 
 -- --------------------------------------------------------
 
