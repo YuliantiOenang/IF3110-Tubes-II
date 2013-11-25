@@ -13,8 +13,8 @@
 	}
 	body{
 		background-image : url(../img/site/bg.jpg);
-		color: #fff;
-		font-family : Lucida Sans Unicode;
+		color: black;
+		font-family : Candara;
 	}
 	
 /***********************
@@ -34,7 +34,7 @@
 		left : 50%;
 		top : 50%;
 		margin-left : -480px;
-		margin-top : -275px;
+		margin-top : -260px;
 	}
 	
 	div.head{
@@ -186,7 +186,6 @@ div.prolog{
 /***********************
        FONT-FACE
 ***********************/
-
 @font-face {
 				font-family: 'Papyrus';
 				src: url('../font/papyrus.eot');
@@ -234,7 +233,7 @@ h1{
 	font-weight: normal;
 	font-style: normal;
 	margin-top : 17px;
-	color : #FFF;
+	color : black;
 }
 
 h1.header {
