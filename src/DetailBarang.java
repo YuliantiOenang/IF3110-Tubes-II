@@ -56,6 +56,7 @@ public class DetailBarang extends HttpServlet {
 				String name = rs.getString("nama_inventori");
 				barang = new Barang(name);
 				barang.setDesc(rs.getString("description"));
+				barang.setGambar(rs.getString("gambar"));
 				barang.setHarga(rs.getInt("harga"));
 				barang.setJumlah(rs.getInt("jumlah"));
 			}
