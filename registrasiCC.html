@@ -8,16 +8,13 @@
 	<script src="ajaxLoader.js"></script>
 	<script>
 		function validateCC() {
-			postForm("validateCC.jsp", 
+			postForm("validateCC.jsp?username="+localStorage.getItem('activeUser'), 
 			function() {
 				if (xmlhttp.readyState==4) {
-					document.getElementById("validationResponse").innerHTML = xmlhttp.responseText;
-					setTimeout(
-						function(){
-							if (xmlhttp.responseText == "Berhasil")
-								window.location = 'index.jsp';
-						}
-					, 3000);
+					if (xmlhttp.responseText == 1) {
+						alert("Berhasil");
+						document.location.href = "index.jsp";
+					} else alert("Gagal");
 				}
 				else document.getElementById("validationResponse").innerHTML = "Processing..."},
 			document.forms["CCform"]);
