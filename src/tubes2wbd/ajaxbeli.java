@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +25,7 @@ public class ajaxbeli extends HttpServlet {
 	static final String PASS = "";
 	
 	private String id;
-	
+	private String jumlah;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,6 +49,8 @@ public class ajaxbeli extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("id") != null) {
 			id = request.getParameter("id");
+		}else{
+			id="0";
 		}
 		
 		Connection conn = null;
@@ -67,10 +68,11 @@ public class ajaxbeli extends HttpServlet {
 			int size = 0;
 			while (rs.next()) {
 				size++;
+				jumlah = rs.getString("jumlah");
 			}
 			
 			if (size == 1) {
-				out.print(rs.getInt("jumlah"));
+				out.print(jumlah);
 			}
 			
 		} catch (ClassNotFoundException e) {	
