@@ -22,7 +22,7 @@ function login() {
 	};
 	document.getElementById('loading').innerHTML = "";
 	document.getElementById('loading').classList.add('loading');
-	xmlhttp.open("POST","api/login",true);
+	xmlhttp.open("POST","/ruserba/api/login",true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	// xmlhttp.setRequestHeader("Content-length", parameters.length);
 	// xmlhttp.setRequestHeader("Connection", "close");

@@ -5,12 +5,14 @@ if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 }
 function credit() {	
-	var parameters = "Credit[credit_number]=" + encodeURI( document.getElementById("card_number").value ) + "&Credit[name_of_card]=" + encodeURI( document.getElementById("name_of_card").value );
-	xmlhttp.open("POST",server+"/api/checkCreditCard",true);
+	var parameters = "credit_number=" + encodeURI(document.getElementById("card_number").value) + "&name_of_card=" + encodeURI(document.getElementById("name_of_card").value);
+	xmlhttp.open("POST","/ruserba/api/checkCreditCard",true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send(parameters);
+	console.log(parameters);
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			console.log(xmlhttp.responseText);
 			var data = JSON.parse(xmlhttp.responseText);
 			if (data.success) {
 				document.getElementById('form_credit').submit();
@@ -23,7 +25,7 @@ function credit() {
 function loadCalendar(month, year) {
 	if(typeof(month)==='undefined') month = new Date().getDate();
 	if(typeof(year)==='undefined') year = new Date().getFullYear();
-	xmlhttp.open("GET",server+"/api/gambar_calendar?month="+month+"&year="+year,true);
+	xmlhttp.open("GET","api/gambar_calendar?month="+month+"&year="+year,true);
 	xmlhttp.send();
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {

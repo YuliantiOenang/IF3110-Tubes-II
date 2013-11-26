@@ -20,7 +20,7 @@ xmlhttp2.onreadystatechange=function()
 
 function searchSuggestions(name)
 {
-	xmlhttp2.open("GET","http://localhost:8080/ruserba/barang/suggestions?name="+(name.value),true);
+	xmlhttp2.open("GET","/ruserba/barang/suggestions?name="+(name.value),true);
 	xmlhttp2.send();
 }
 

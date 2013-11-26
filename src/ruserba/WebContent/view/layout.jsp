@@ -90,12 +90,12 @@
 <script src="/ruserba/js/suggest.js" type="text/javascript"></script>
 <script src="/ruserba/js/shop.js" type="text/javascript"></script>
 </head>
-<body onload="init('http://localhost:8080/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
+<body onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
 	<%
 		Kategori K = Helper.findAllKategori();
 	%>
 	<% if (request.getAttribute("effect")!=null && (Boolean)request.getAttribute("effect")) { %>
-		<img alt='' class='loader' id='starter' src='img/site/logo_b.png' />
+		<img alt='' class='loader' id='starter' src='/ruserba/img/site/logo_b.png' />
 		<div class='prolog' id='starter2'>
 			<p>
 				We are here to provide you with a brand new aura in our country
@@ -114,15 +114,24 @@
 	<% } %>
 		<div class='conctr'>
 			<div class='head'>
-				<a href='home'><div class='logo'></div></a>
+				<a href='/ruserba/home'><div class='logo'></div></a>
 				<div class='status'>
-					<p>
-						You are not login. (<a href='#' onclick='showLogin()'>Login</a> or
-						<a href='register'>Register now</a>)
-					</p>
+					<% 
+					String userlogged = Helper.getUserLogged(session);
+					if (!userlogged.isEmpty()) { %>
+						<p class="left"> welcome, <a href='/ruserba/profile/index'><%= userlogged %></a>! (<a href='/ruserba/logout'>Logout</a>)
+						</p>
+						<p class="right">
+							<a href="cart/index') ?>">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
+						</p>
+					<% } else { %>
+						<p>
+							You are not login. (<a href='#' onclick='showLogin()'>Login</a> or
+							<a href='/ruserba/register'>Register now</a>)
+						</p>
+					<% } %>
 				</div>
 				<div class="menu">
-					
 					<% for (int i = 0; i < K.id.size(); i++) { %>
 					<a href="/ruserba/barang?kategori=<%= K.nama_kategori.get(i) %>">
 						<div class="permenu per5">
@@ -141,7 +150,7 @@
 						adalah segalanya.
 					</h2>
 					<a href='https://twitter.com/darksta5'><img alt=''
-						title='@calvinsalvy' src='img/site/twitter.png' id='footer_img' /></a>
+						title='@calvinsalvy' src='/ruserba/img/site/twitter.png' id='footer_img' /></a>
 				</div>
 			</div>
 			<div id='content_frame' onLoad="RefreshCartandShow()">
@@ -162,7 +171,7 @@
 						class='btn right'>Login</button>
 				</form>
 			</div>
-			<script src="js/login.js"></script>
+			<script src="/ruserba/js/login.js"></script>
 			<script>
 				var server = "";
 			</script>

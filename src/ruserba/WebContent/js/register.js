@@ -79,7 +79,7 @@ var Register = {
 			this.validForm['username'] = false;
 			this.validasi();
 		} else {
-			xmlhttp.open("GET",server+"/api/usernameAvailable?username="+username,true);
+			xmlhttp.open("GET","/ruserba/api/usernameAvailable?username="+username,true);
 			xmlhttp.send();
 		}
 	},
@@ -111,7 +111,7 @@ var Register = {
 			this.validForm['email'] = false;
 			this.validasi();
 		} else {
-			xmlhttp.open("GET",server+"/api/emailAvailable?email="+email,true);
+			xmlhttp.open("GET","/ruserba/api/emailAvailable?email="+email,true);
 			xmlhttp.send();
 		}
 	},
