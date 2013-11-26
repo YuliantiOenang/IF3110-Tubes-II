@@ -30,4 +30,16 @@ version="2.4">
         <url-pattern>/HelloWorld</url-pattern>
     </servlet-mapping>
     
+    
+    
+    <!-- USED FOR ADMIN  -->
+    <servlet>
+        <servlet-name>Login Action</servlet-name>
+        <servlet-class>admin.admin_login</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>Login Action</servlet-name>
+        <url-pattern>/Login.do</url-pattern>
+    </servlet-mapping>
 </web-app>

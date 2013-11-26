@@ -16,4 +16,8 @@ public class registrasi extends HttpServlet{
       out.println("<h1>" + "testing" + "</h1>");
 	}
 	
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException{
+		doPost(req, res);
+	}
+	
 }
