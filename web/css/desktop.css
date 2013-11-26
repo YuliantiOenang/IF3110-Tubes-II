@@ -317,3 +317,23 @@ a {
 	vertical-align:top;
 	color:rgb(75, 64, 31);
 }
+
+.main{
+    width:80%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top{ height:40px;margin:5px;}
+
+.small_bottom{
+    float:left;
+    height: 300px;
+    width: 300px;
+    margin:5px;
+}
+
+.bottom{
+    margin:5px; 
+    overflow:hidden;
+}

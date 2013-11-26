@@ -23,8 +23,8 @@
         <servlet-class>ruserba.servlets.RequestServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RetrieveTableBarangServlet</servlet-name>
-        <servlet-class>ruserba.servlets.RetrieveTableBarangServlet</servlet-class>
+        <servlet-name>EditItemServlet</servlet-name>
+        <servlet-class>ruserba.servlets.EditItemServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -39,10 +39,9 @@
         <url-pattern>/index.jsp</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RetrieveTableBarangServlet</servlet-name>
-        <url-pattern>/RetrieveTableBarangServlet</url-pattern>
-    </servlet-mapping>
-    <session-config>
+        <servlet-name>EditItemServlet</servlet-name>
+        <url-pattern>/EditItemServlet</url-pattern>
+    </servlet-mapping><session-config>
         <session-timeout>
             30
         </session-timeout>

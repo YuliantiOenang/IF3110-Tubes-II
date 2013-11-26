@@ -97,7 +97,7 @@
     </rule>
 
     <rule>
-        <condition type="request-uri">^(.(?!Servlet))?$</condition>
+        <!--<condition type="request-uri">^(.(?!Servlet))?$</condition> -->
         <from>^/([a-z0-9]+)/?$</from>
         <to last="true">/index.jsp?page=$1</to>
     </rule>

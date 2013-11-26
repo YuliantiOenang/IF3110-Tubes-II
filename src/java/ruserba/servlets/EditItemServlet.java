@@ -6,16 +6,22 @@ package ruserba.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ruserba.beans.Item;
+import ruserba.database.DatabaseHelper;
 
 /**
  *
  * @author Ahmad Fauzan
  */
-public class RetrieveTableBarangServlet extends HttpServlet {
+public class EditItemServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -32,6 +38,23 @@ public class RetrieveTableBarangServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
+        DatabaseHelper.Connect();
+        String query = "SELECT * FROM barang WHERE id_barang=" + request.getParameter("id_barang");
+        ResultSet res = DatabaseHelper.executeQuery(query);
+        try {
+            if(res.next()) {
+                Item barang = new Item();
+                barang.setId(res.getInt("id_barang"));
+                barang.setName(res.getString("nama_barang"));
+                barang.setCategory(res.getInt("id_kategori"));
+                barang.setPrice(res.getInt("harga_barang"));
+                barang.setTersedia(res.getInt("tersedia"));
+                request.setAttribute("barang", barang);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditItemServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DatabaseHelper.Disconnect();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
