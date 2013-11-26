@@ -6,11 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><% out.println("Kategori: " + request.getAttribute("kategori")); %></title>
 </head>
 <body>
-	Ini adalah list.jsp. Dapet dari database: <br/>
+	<%@ include file="template/template.jsp" %> 
+	<br/><br/><br/>
 	<% 
+		out.println("<h1>Kategori: " + request.getAttribute("kategori") + "</h1>");
+	
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
 		for(Barang b: barangs){
 			out.println("<strong>Nama:</strong> "+b.getNama() + "<br/>");
