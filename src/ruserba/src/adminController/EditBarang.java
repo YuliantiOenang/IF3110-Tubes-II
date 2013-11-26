@@ -54,7 +54,9 @@ public class EditBarang extends HttpServlet {
 			DBA.executeQuery("select * from barang where id="+request.getParameter("id"));
 			request.setAttribute("edit",DBA.getQueryResult());
 			request.setAttribute("id", request.getParameter("id"));
-			request.getRequestDispatcher("/view/adminEditBarang.jsp").forward(request, response);
+
+			request.setAttribute("includeJspContent","/view/adminEditBarang.jsp");
+			request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 		}else response.sendRedirect("/ruserba/admin/login");
 	}
 

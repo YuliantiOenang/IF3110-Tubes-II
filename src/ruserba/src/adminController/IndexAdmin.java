@@ -53,7 +53,7 @@ public class IndexAdmin extends HttpServlet {
 				String Query = "select barang.id, barang.nama, barang.harga, " +
 						"barang.gambar, barang.stok, kategori.nama_kategori, kategori.gambar from barang" +
 						" join kategori on barang.id_kategori = kategori.id and kategori.id="+kateg; //jangan lupa diubah ke per kategori
-				B.executeQuery(Query);
+				B.executeQuery2(Query);
 				request.setAttribute("barang", B);
 			}
 			
@@ -61,7 +61,9 @@ public class IndexAdmin extends HttpServlet {
 			ResultSet RS = DBA.getQueryResult();
 			
 			request.setAttribute("listKategori",RS);
-			request.getRequestDispatcher("/view/adminIndex.jsp").forward(request, response);
+
+			request.setAttribute("includeJspContent", "/view/adminIndex.jsp");
+			request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 		}
 		else response.sendRedirect("/ruserba/admin/login");
 	}
