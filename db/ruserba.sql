@@ -16,6 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `username` char(30) DEFAULT NULL,
+  `password` char(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('admin','administrator');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `barang`
 --
 
@@ -37,7 +60,7 @@ CREATE TABLE `barang` (
 
 LOCK TABLES `barang` WRITE;
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
-INSERT INTO `barang` VALUES ('Beras Jepang',10000,995,'beras',5),('Beras Pandan Wangi',11000,995,'beras',5),('Beras Sentra Ramos',12000,1000,'beras',0),('Beras Rojolele',12500,1000,'beras',0),('Beras C4',13000,1000,'beras',0),('Tenderloin Beef',110000,1000,'daging',0),('Sirloin Beef',98000,1000,'daging',0),('Eyron Beef',95000,1000,'daging',0),('Rump Beef',95000,1000,'daging',0),('Lamosir',65000,1000,'daging',0),('Bandeng',26000,1000,'ikan',0),('Kembung',20000,1000,'ikan',0),('Banyar',22000,1000,'ikan',0),('Tongkol',20000,1000,'ikan',0),('Tengiri',40000,1000,'ikan',0),('Tomat',10000,1000,'sayur',0),('Wortel Lokal',8000,1000,'sayur',0),('Kentang Dieng',14000,1000,'sayur',0),('Brokoli',12000,1000,'sayur',0),('Kembang Kol',12000,1000,'sayur',0),('Sunkiest',24000,1000,'buah',0),('Apel Fuji',18000,1000,'buah',0),('Semangka',4000,1000,'buah',0),('Melon',8000,1000,'buah',0),('Pir',25000,1000,'buah',0);
+INSERT INTO `barang` VALUES ('Beras Jepang',10000,1000,'beras',0),('Beras Pandan Wangi',11000,1000,'beras',0),('Beras Sentra Ramos',12000,1000,'beras',0),('Beras Rojolele',12500,1000,'beras',0),('Beras C4',13000,1000,'beras',0),('Tenderloin Beef',110000,1000,'daging',0),('Sirloin Beef',98000,1000,'daging',0),('Eyron Beef',95000,1000,'daging',0),('Rump Beef',95000,1000,'daging',0),('Lamosir',65000,1000,'daging',0),('Bandeng',26000,1000,'ikan',0),('Kembung',20000,1000,'ikan',0),('Banyar',22000,1000,'ikan',0),('Tongkol',20000,1000,'ikan',0),('Tengiri',40000,1000,'ikan',0),('Tomat',10000,1000,'sayur',0),('Wortel Lokal',8000,1000,'sayur',0),('Kentang Dieng',14000,1000,'sayur',0),('Brokoli',12000,1000,'sayur',0),('Kembang Kol',12000,1000,'sayur',0),('Sunkiest',24000,1000,'buah',0),('Apel Fuji',18000,1000,'buah',0),('Semangka',4000,1000,'buah',0),('Melon',8000,1000,'buah',0),('Pir',25000,1000,'buah',0);
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-29 19:33:53
+-- Dump completed on 2013-11-27  0:23:39
