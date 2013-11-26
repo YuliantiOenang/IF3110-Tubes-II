@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="../js/ajaxShop.js"></script>
 <title>Detail Barang</title>
 </head>
 <body>
@@ -15,14 +16,20 @@
 		ArrayList<BarangBean> barangBean = (ArrayList<BarangBean>) request
 				.getAttribute("items");
 	%>
-	<% if (barangBean == null) barangBean = new ArrayList<BarangBean>(); %>
+	<%
+		if (barangBean == null)
+			barangBean = new ArrayList<BarangBean>();
+	%>
 
 	<%
 		@SuppressWarnings("unchecked")
 		ArrayList<KategoriBean> kategoriBean = (ArrayList<KategoriBean>) request
 				.getAttribute("categories");
 	%>
-	<% if (kategoriBean == null) kategoriBean = new ArrayList<KategoriBean>(); %>
+	<%
+		if (kategoriBean == null)
+			kategoriBean = new ArrayList<KategoriBean>();
+	%>
 
 	<%
 		for (int i = 0; i < barangBean.size(); i++) {
@@ -64,8 +71,11 @@
 	<%=b.getTotal_item()%>
 	<br />
 	<b>Jumlah Barang:</b>
+	<input type="text" name="qty" size="8" id="qty_<%=b.getId()%>" >"
+		value="0">
 	<br />
 	<b>Deskripsi Tambahan:</b>
+	<textarea name="deskripsi_tambahan" id="deskripsi_tambahan"></textarea>
 	<br />
 	<%
 		} else {
@@ -77,7 +87,7 @@
 	%>
 
 	<input type="button" value="Tambah ke Cart" id="beli"
-		onClick="onAddToCart('./addCart', <%=b.getId()%>>); return false;">
+		onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;">
 
 	<%
 		}

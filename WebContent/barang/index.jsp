@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="../js/ajaxShop.js"></script>
 <title>Gallery</title>
 </head>
 <body>
@@ -14,8 +15,11 @@
 		ArrayList<BarangBean> barangBean = (ArrayList<BarangBean>) request
 				.getAttribute("items");
 	%>
-	<% if (barangBean == null) barangBean = new ArrayList<BarangBean>(); %>
-	
+	<%
+		if (barangBean == null)
+			barangBean = new ArrayList<BarangBean>();
+	%>
+
 	<table align="left" cellpadding="0" cellspacing="1">
 		<tr bgcolor="blue">
 			<td width="150" align="center">Nama Barang</td>
@@ -43,8 +47,12 @@
 			</td>
 			<td align="center"><%=b.getPrice()%></td>
 			<td align="center"><%=b.getTotal_item()%></td>
-			<td align="center"></td>
-			<td align="center"></td>
+			<td align="center"><input type="text" name="qty" size="8"
+				id="qty_<%=b.getId()%>" value="0"></td>
+			<input type="hidden" name="deskripsi_tambahan" id="deskripsi_tambahan"></input>
+			<td align="center"><input type="button" value="Tambah ke Cart"
+				id="beli"
+				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;"></td>
 		</tr>
 		<%
 			}
