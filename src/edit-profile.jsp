@@ -150,7 +150,7 @@
 						<div class="form-field">
 							<p class="label">Alamat:</p>
 							<p>
-								<input type='text-area' name='alamat' id='alamat' maxlength="50" required="required" onkeyup="cekvalidAll()" value="<% out.print(alamat);%>" class="field-box kolom-12"/>
+								<input type='text' name='alamat' id='alamat' maxlength="50" required="required" onkeyup="cekvalidAll()" value="<% out.print(alamat);%>" class="field-box kolom-12"/>
 							</p>
 						</div>
 

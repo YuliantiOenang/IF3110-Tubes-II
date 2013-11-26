@@ -101,7 +101,7 @@
 				
 				<div id="alamat" class="form-field">
 					<p class="label">Alamat :</p>					
-					<input type='textarea' name='alamat' id='alamat' maxlength="50" required="required" onkeyup="cekvalidAll()" class="field-box kolom-12 field-area"></textarea>
+					<input type='text' name='alamat' id='alamat' maxlength="50" required="required" onkeyup="cekvalidAll()" class="field-box kolom-12 field-area"></textarea>
 				</div>
 				
 				

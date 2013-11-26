@@ -22,7 +22,7 @@
 		<jsp:include page="header.jsp"/>
 		
 		<!-- Navbar Section -->
-		<p id="src-title"><% out.print(session.getAttribute("jumlahsearch"));%> Result(s)</span></p>
+		<p id="src-title"><% out.print(session.getAttribute("jumlahsearch"));%> Result(s)</p>
 		
 		
 		<!-- End of Navbar -->
@@ -72,8 +72,8 @@
 				  %>
 				  	
 				 <% }%>
-				 <li><a href="search.jsp?f=<%out.print(o);%>&l=<%out.print(p);%>">&laquo;Previous</a></li>
-				 <li><a href="search.jsp?f=<%out.print(n);%>&l=<%out.print(m);%>">Next&raquo;</a></li>
+				 <li><a href="search.jsp?f=<%out.print(o);%>&amp;l=<%out.print(p);%>">&laquo;Previous</a></li>
+				 <li><a href="search.jsp?f=<%out.print(n);%>&amp;l=<%out.print(m);%>">Next&raquo;</a></li>
 				
 				
 			

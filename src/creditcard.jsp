@@ -46,7 +46,7 @@
 				<div id="card-number" class="form-field">
 					<p class="label">Card Number :</p>
 					<p>
-						<input type='text' name='validasicardnumber' id='validasicardnumber' maxlength="10" value ="tidak valid" readonly/>
+						<input type='text' name='validasicardnumber' id='validasicardnumber' value ="tidak valid" readonly/>
 						<input name="cardnumber" id="cardnumber" required="required" onkeyup="!!(ceknumber() & ceknamecard() & cekexpiredate())" class="field-box kolom-12" >
 					</p>
 				</div>
@@ -54,7 +54,7 @@
 				<div id="name-on-card" class="form-field">
 					<p class="label">Name On Card :</p>
 					<p>
-						<input type='text' name='validasinamecard' id='validasinamecard' maxlength="10" value ="tidak valid" readonly/>
+						<input type='text' name='validasinamecard' id='validasinamecard' value ="tidak valid" readonly/>
 						<input type = "text" name="namecard" id="namecard" required="required" onkeyup="ceknamecard()" class="field-box kolom-12"/>
 					</p>
 				</div>
@@ -63,7 +63,7 @@
 					<p class="label">Expired Date :</p>
 					<p>
 						<input type='text' name='validasiexpiredate' id='validasiexpiredate' maxlength="10" value ="tidak valid" readonly/>
-						<input type="date" name='expiredate' id='expiredate' maxlength="50" required="required" oninput="cekexpiredate()" class="field-box kolom-12"/>
+						<input type="date" name='expiredate' id='expiredate' required="required" oninput="cekexpiredate()" class="field-box kolom-12"/>
 					</p>
 				</div>				
 				<br/>

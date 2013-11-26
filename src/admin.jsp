@@ -30,7 +30,7 @@
 			<form name="faddbarang" id="faddbarang" action="insertbarang" method="post" enctype="multipart/form-data" onsubmit="return validateadd()" >
 			<div id="popupboxadd"> 
 			
-				<a href="javascript:addbarang('hide')" id ="close">[X] close</a> <br/><br/>
+				<a href="javascript:addbarang('hide')" id ="closea">[X] close</a> <br/><br/>
 				<input type="hidden" id="actionadmin" name="actionadmin" value="">
 				Nama&nbsp; &nbsp; &nbsp; &nbsp;      :
 				<input id= "namabarang" name="namabarang" type="text" value="" required="required"/><br/>
@@ -59,7 +59,7 @@
 			
 			<form name="feditbarang" id="feditbarang" action="editbarang" method="post" enctype="multipart/form-data" onsubmit="return validateedit()" >
 			<div id="popupboxedit"> 
-				<a href="javascript:editbarang('hide')" id ="close">[X] close</a> <br/>
+				<a href="javascript:editbarang('hide')" id ="closee">[X] close</a> <br/>
 				
 				<input id= "enamabarangtemp" name="enamabarangtemp" type="hidden"/><br/>				
 				Nama&nbsp; &nbsp; &nbsp; &nbsp;      :
