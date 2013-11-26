@@ -6,20 +6,18 @@ public class BarangUserBean {
 	private long id;
 	private long id_item;
 	private long id_user;
-	private String status;
+	private int status;
 	private int total_item;
-	private Date buyDate;
 	private String description;
 
-	public BarangUserBean(long id, long id_item, long id_user, String status,
-			int total_item, Date buyDate, String description) {
+	public BarangUserBean(long id, long id_item, long id_user, int status,
+			int total_item, String description) {
 		super();
 		this.id = id;
 		this.id_item = id_item;
 		this.id_user = id_user;
 		this.status = status;
 		this.total_item = total_item;
-		this.buyDate = buyDate;
 		this.description = description;
 	}
 
@@ -47,11 +45,11 @@ public class BarangUserBean {
 		this.id_user = id_user;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -61,14 +59,6 @@ public class BarangUserBean {
 
 	public void setTotal_item(int total_item) {
 		this.total_item = total_item;
-	}
-
-	public Date getBuyDate() {
-		return buyDate;
-	}
-
-	public void setBuyDate(Date buyDate) {
-		this.buyDate = buyDate;
 	}
 
 	public String getDescription() {
