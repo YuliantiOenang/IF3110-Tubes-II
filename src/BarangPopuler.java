@@ -50,7 +50,7 @@ public class BarangPopuler extends HttpServlet {
 			for(int i=0;i<5;i++){
 				ArrayList<Barang> barangKategori = new ArrayList<Barang>();
 				Statement state = con.createStatement();
-				ResultSet rs = state.executeQuery("SELECT * FROM transaksi, inventori, kategori WHERE transaksi.id_inventori = inventori.id_inventori AND inventori.id_kategori = kategori.id_kategori AND inventori.id_kategori = " + (i+1) + " ORDER BY transaksi.jumlah DESC LIMIT 3");
+				ResultSet rs = state.executeQuery("SELECT * FROM inventori, kategori WHERE inventori.id_kategori = kategori.id_kategori AND inventori.id_kategori = " + (i+1) + " ORDER BY inventori.total_transaksi DESC LIMIT 3");
 				
 				String kategori = null;
 				
@@ -74,7 +74,6 @@ public class BarangPopuler extends HttpServlet {
 				request.setAttribute("namaKategori" + i, formalify(kategori));
 				request.setAttribute("barangKategori" + i, barangKategori);
 			}
-			
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			System.out.println("SQLException caught: " +e.getMessage());
