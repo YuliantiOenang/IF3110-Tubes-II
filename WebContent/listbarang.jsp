@@ -1,0 +1,113 @@
+<%@page import="bean.Barang"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	ArrayList<Barang> pangan = (ArrayList<Barang>) request.getAttribute("pangan");
+	ArrayList<Barang> pakaian = (ArrayList<Barang>) request.getAttribute("pakaian");
+	ArrayList<Barang> elektronik = (ArrayList<Barang>) request.getAttribute("elektronik");
+	ArrayList<Barang> rumahtangga = (ArrayList<Barang>) request.getAttribute("rumahtangga");
+	ArrayList<Barang> olahraga = (ArrayList<Barang>) request.getAttribute("olahraga");
+%>
+
+<div id="content" class="float_l">
+	<% for (int x = 0; x < 3; x++) { %>
+		<div class="product_box">
+			<h3> <% out.print(pangan.get(x).getNama_barang()); %> </h3>
+			<a href="detail.php?id=#"><img
+				src="<%out.print(pangan.get(x).getGambar_barang());%>" /></a>
+			<p class="product_price">
+				Harga : Rp <% out.print(pangan.get(x).getHarga_barang()); %> ,00 <br> 
+				Stok : <% out.print(pangan.get(x).getStok()); %> <br>
+			<form name="beli" action="#" method="post">
+				<input type="hidden" name="id_barang"
+					value="<% out.print(pangan.get(x).getId_barang()); %>"> 
+					<input type="hidden" name="request_tambahan" value="-"> Quantity 
+					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="submit" value="Add to cart">
+			</form>
+			</p>
+		</div>
+	<% } %>
+	
+	<% for (int x = 0; x < 3; x++) { %>
+		<div class="product_box">
+			<h3> <% out.print(pakaian.get(x).getNama_barang()); %> </h3>
+			<a href="detail.php?id=#"><img
+				src="<%out.print(pakaian.get(x).getGambar_barang());%>" /></a>
+			<p class="product_price">
+				Harga : Rp <% out.print(pakaian.get(x).getHarga_barang()); %> ,00 <br> 
+				Stok : <% out.print(pakaian.get(x).getStok()); %> <br>
+			<form name="beli" action="#" method="post">
+				<input type="hidden" name="id_barang"
+					value="<% out.print(pakaian.get(x).getId_barang()); %>"> 
+					<input type="hidden" name="request_tambahan" value="-"> Quantity 
+					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="submit" value="Add to cart">
+			</form>
+			</p>
+		</div>
+	<% } %>
+	
+	<% for (int x = 0; x < 3; x++) { %>
+		<div class="product_box">
+			<h3> <% out.print(elektronik.get(x).getNama_barang()); %> </h3>
+			<a href="detail.php?id=#"><img
+				src="<%out.print(elektronik.get(x).getGambar_barang());%>" /></a>
+			<p class="product_price">
+				Harga : Rp <% out.print(elektronik.get(x).getHarga_barang()); %> ,00 <br> 
+				Stok : <% out.print(elektronik.get(x).getStok()); %> <br>
+			<form name="beli" action="#" method="post">
+				<input type="hidden" name="id_barang"
+					value="<% out.print(elektronik.get(x).getId_barang()); %>"> 
+					<input type="hidden" name="request_tambahan" value="-"> Quantity 
+					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="submit" value="Add to cart">
+			</form>
+			</p>
+		</div>
+	<% } %>
+	
+	<% for (int x = 0; x < 3; x++) { %>
+		<div class="product_box">
+			<h3> <% out.print(rumahtangga.get(x).getNama_barang()); %> </h3>
+			<a href="detail.php?id=#"><img
+				src="<%out.print(rumahtangga.get(x).getGambar_barang());%>" /></a>
+			<p class="product_price">
+				Harga : Rp <% out.print(rumahtangga.get(x).getHarga_barang()); %> ,00 <br> 
+				Stok : <% out.print(rumahtangga.get(x).getStok()); %> <br>
+			<form name="beli" action="#" method="post">
+				<input type="hidden" name="id_barang"
+					value="<% out.print(rumahtangga.get(x).getId_barang()); %>"> 
+					<input type="hidden" name="request_tambahan" value="-"> Quantity 
+					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="submit" value="Add to cart">
+			</form>
+			</p>
+		</div>
+	<% } %>
+	
+	<% for (int x = 0; x < 3; x++) { %>
+		<div class="product_box">
+			<h3> <% out.print(olahraga.get(x).getNama_barang()); %> </h3>
+			<a href="detail.php?id=#"><img
+				src="<%out.print(olahraga.get(x).getGambar_barang());%>" /></a>
+			<p class="product_price">
+				Harga : Rp <% out.print(olahraga.get(x).getHarga_barang()); %> ,00 <br> 
+				Stok : <% out.print(olahraga.get(x).getStok()); %> <br>
+			<form name="beli" action="#" method="post">
+				<input type="hidden" name="id_barang"
+					value="<% out.print(olahraga.get(x).getId_barang()); %>"> 
+					<input type="hidden" name="request_tambahan" value="-"> Quantity 
+					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="submit" value="Add to cart">
+			</form>
+			</p>
+		</div>
+	<% } %>
+	
+	
+	
+
+</div>
