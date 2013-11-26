@@ -64,6 +64,7 @@
 				bb++;
 			}
 		}
+		
 		function hideLogin() {
 			document.getElementById('login_cont').style.opacity = 1;
 			var x,aa,bb;
