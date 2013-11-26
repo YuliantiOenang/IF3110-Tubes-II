@@ -27,8 +27,21 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 
 				UserBean user = new UserBean();
 				String SearchQuery = request.getParameter("src");
+				String SearchQueryKategori = request.getParameter("search-kategori");
+				String SearchQueryHarga1 = request.getParameter("search-harga1");
+				String SearchQueryHarga2 = request.getParameter("search-harga2");
 				user.setType("getsearch");
-				user.setQuery("SELECT * FROM Barang WHERE (NamaBarang LIKE '%"+SearchQuery+"%')");
+				
+				if (SearchQuery.equals("ketikkan yang ingin dicari..") ){
+					SearchQuery="%";
+				}
+				
+				user.setQuery("SELECT * FROM Barang WHERE (NamaBarang LIKE '%"+SearchQuery+
+				"%') AND (Kategori LIKE '"+SearchQueryKategori+"') AND (Harga<"+SearchQueryHarga2+") AND (Harga>"+SearchQueryHarga1+")" );
+			
+				
+				
+				
 				user = UserDAO.login(user);
 				ArrayList<Barang> barangs = new ArrayList<Barang>();
 				barangs = user.getsearch();

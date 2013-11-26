@@ -6,6 +6,7 @@
 		response.sendRedirect("getsearch");
 	}
 	
+	
 %>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -21,7 +22,7 @@
 		<jsp:include page="header.jsp"/>
 		
 		<!-- Navbar Section -->
-		<p id="src-title"><% out.print(session.getAttribute("jumlahsearch"));%> Result(s) for <span class="src-param"><% out.print("''"+(String)session.getAttribute("squery")+"''"); %></span></p>
+		<p id="src-title"><% out.print(session.getAttribute("jumlahsearch"));%> Result(s)</span></p>
 		
 		
 		<!-- End of Navbar -->
@@ -43,7 +44,7 @@
 							<img class="gambar" src="res/img/product/<%str =(String)session.getAttribute("snama"+i);out.print(str);%>.jpg" alt=""/>
 						</div>
 						<div class="kolom-6">
-							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("snama"+i)%>"><%str =(String)session.getAttribute("snama"+i);out.print(str);%></a><%str =(String)session.getAttribute("snama"+i);out.print(str);%></a></p>
+							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("snama"+i)%>"><%str =(String)session.getAttribute("snama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("sharga"+i);out.print(intr);%> /kg</p>
 						</div>
 					</div>
