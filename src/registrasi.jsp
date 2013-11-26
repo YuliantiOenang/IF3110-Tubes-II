@@ -46,7 +46,7 @@
 					<p class="label">Username :</p>
 					<p>
 					<input type='text' name='validasiusername' id='validasiusername' maxlength="10" value ="tidak valid" readonly/>
-					<input name="username" title="minimal 5 karakter" id="username" required="required" onkeyup="!!(cekusername() & cekvalidAll())" class="field-box kolom-12"/>
+					<input name="rusername" title="minimal 5 karakter" id="rusername" required="required" onkeyup="!!(cekusername() & cekvalidAll())" class="field-box kolom-12"/>
 					</p>
 				</div>
 				
@@ -54,7 +54,7 @@
 					<p class="label">Password :</p>
 					<p>
 					<input type='text' name='validasipassword' id='validasipassword' maxlength="10" value ="tidak valid" readonly/>
-					<input type = "password" name="password" title="minimal 8 karakter" id="password" oninput="!!(cekPassword() & cekCPassword())" required="required" onkeyup="cekvalidAll()" class="field-box kolom-12"/>
+					<input type = "password" name="rpassword" title="minimal 8 karakter" id="rpassword" oninput="!!(cekPassword() & cekCPassword())" required="required" onkeyup="cekvalidAll()" class="field-box kolom-12"/>
 					</p>
 				</div>				
 

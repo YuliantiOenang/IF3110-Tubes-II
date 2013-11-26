@@ -27,8 +27,8 @@ try
      UserBean user = new UserBean();
 	user.setType("insertdata");
 	  user.setQuery("INSERT INTO user (username,password,email,namalengkap,nohp,provinsi,kotakabupaten,alamat,kodepos)VALUES('"+
-					request.getParameter("username")+"', '"+
-					request.getParameter("password")+"', '"+
+					request.getParameter("rusername")+"', '"+
+					request.getParameter("rpassword")+"', '"+
 					request.getParameter("email")+"', '"+
 					request.getParameter("namalengkap")+"', '"+
 					request.getParameter("nohp")+"', '"+
@@ -49,8 +49,8 @@ try
 	        
      else 
          response.getWriter().print(false);*/
-		  Cookie username = new Cookie("username",request.getParameter("username"));
-		  Cookie password = new Cookie("password", request.getParameter("password"));
+		  Cookie username = new Cookie("username",request.getParameter("rusername"));
+		  Cookie password = new Cookie("password", request.getParameter("rpassword"));
 
 		  // Set expiry date after 30 days
 		  username.setMaxAge(60*60*24*30); 
@@ -63,8 +63,8 @@ try
 		  response.setContentType("text/html");
 		  
 		  HttpSession session = request.getSession(true);	    
-          session.setAttribute("username",request.getParameter("username")); 
-		  session.setAttribute("password",request.getParameter("password")); 
+          session.setAttribute("username",request.getParameter("rusername")); 
+		  session.setAttribute("password",request.getParameter("rpassword")); 
 		  response.sendRedirect("creditcard.jsp");//harusnya ke creditcard.jsp
 
 

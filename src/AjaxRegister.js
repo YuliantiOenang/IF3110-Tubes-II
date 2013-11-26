@@ -5,7 +5,7 @@ function AJAXRegister(lol){
   var elem = document.getElementById(lol);
 
     var params = "";
-	if (lol=="username"){
+	if (lol=="rusername"){
 		url = "UsernameValidationServlet";
 	}else if (lol=="email"){
 		url="EmailValidationServlet";

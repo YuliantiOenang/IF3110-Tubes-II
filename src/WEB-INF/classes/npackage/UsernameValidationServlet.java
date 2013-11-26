@@ -25,9 +25,9 @@ try
 {	    
 
      UserBean user = new UserBean();
-     user.setUserName(request.getParameter("username"));
+     user.setUserName(request.getParameter("rusername"));
 	  user.setQuery("select * from user where username='"
-                        + request.getParameter("username")
+                        + request.getParameter("rusername")
                         + "'");
 
      user = UserDAO.login(user);

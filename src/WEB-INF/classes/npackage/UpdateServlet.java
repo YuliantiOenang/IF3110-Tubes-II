@@ -27,14 +27,14 @@ try
      UserBean user = new UserBean();
 	user.setType("insertdata");
 	
-	  user.setQuery("UPDATE user SET password='"+request.getParameter("password")+
+	  user.setQuery("UPDATE user SET password='"+request.getParameter("epassword")+
 					"', namalengkap='"+request.getParameter("namalengkap")+
 					"', nohp='"+	request.getParameter("nohp")+
 					"', provinsi='"+request.getParameter("provinsi")+
 					"', kotakabupaten='"+request.getParameter("kotakabupaten")+
 					"', alamat='"+request.getParameter("alamat")+
 					"', kodepos='"+request.getParameter("kodepos")+
-					"' WHERE username='"+request.getParameter("username")+"'");
+					"' WHERE username='"+request.getParameter("eusername")+"'");
 
 	user = UserDAO.login(user);
 	 	
@@ -48,8 +48,8 @@ try
 	        
      else 
          response.getWriter().print(false);*/
-		  Cookie username = new Cookie("username",request.getParameter("username"));
-		  Cookie password = new Cookie("password", request.getParameter("password"));
+		  Cookie username = new Cookie("username",request.getParameter("eusername"));
+		  Cookie password = new Cookie("password", request.getParameter("epassword"));
 
 		  // Set expiry date after 30 days
 		  username.setMaxAge(60*60*24*30); 
@@ -62,8 +62,8 @@ try
 		  response.setContentType("text/html");
 		  
 		  HttpSession session = request.getSession(true);	    
-          session.setAttribute("username",request.getParameter("username")); 
-		  session.setAttribute("password",request.getParameter("password")); 
+          session.setAttribute("username",request.getParameter("eusername")); 
+		  session.setAttribute("password",request.getParameter("epassword")); 
 		  response.sendRedirect("getdatamember");//harusnya ke creditcard.jsp
 
 

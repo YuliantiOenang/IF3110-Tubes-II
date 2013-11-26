@@ -88,7 +88,7 @@
 						<div class="form-field">
 							<p class="label">Username:</p>
 							<p>
-							<input name="username" title="minimal 5 karakter" id="username" required="required" onkeyup="cekvalidAll()" readonly value="<% out.print(username);%>" class="field-box kolom-12">
+							<input name="eusername" title="minimal 5 karakter" id="eusername" required="required" onkeyup="cekvalidAll()" readonly value="<% out.print(username);%>" class="field-box kolom-12">
 							</p>
 						</div>
 						
@@ -96,7 +96,7 @@
 							<p class="label">Change Password :</p>
 							<p>
 								<input type='text' name='validasipassword' id='validasipassword' maxlength="10" value ="valid" readonly/>
-								<input type = "password" name="password" title="minimal 8 karakter" id="password" oninput="!!(cekPassword() & cekCPassword())" required="required" onkeyup="cekvalidAll()" value="<% out.print(password);%>" class="field-box kolom-12">
+								<input type = "password" name="epassword" title="minimal 8 karakter" id="epassword" oninput="!!(cekPassword() & cekCPassword())" required="required" onkeyup="cekvalidAll()" value="<% out.print(password);%>" class="field-box kolom-12">
 							</p>
 						</div>
 
