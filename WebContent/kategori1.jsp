@@ -24,7 +24,7 @@
   <div id="topbar">
     <div id="topnav">
       <ul>
-        <li><a href="index2jspl">Home</a></li>
+        <li><a href="index2.jsp">Home</a></li>
 		<li><a href="#">Kategori barang</a>
           <ul>
             <li class="active"><a href="#">Kategori 1</a></li>
