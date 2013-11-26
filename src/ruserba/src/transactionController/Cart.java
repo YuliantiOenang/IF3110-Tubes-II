@@ -44,7 +44,6 @@ public class Cart extends HttpServlet {
 		
 		if (isLogin) {
 			int total = 0;
-			int ind = 1;
 			
 			ArrayList <String> arrayn = new ArrayList<String>();
 			ArrayList <String> arrayc = new ArrayList<String>();
@@ -53,7 +52,6 @@ public class Cart extends HttpServlet {
 			ArrayList <String> arrayst = new ArrayList<String>();
 			if (session.getAttribute("dibeli")!=null) {
 				ArrayList <String> array = (ArrayList<String>) session.getAttribute("dibeli");
-				ind = 1;
 				total = 0;
 				Kategori K = new Kategori(DBA);
 				for (String item : array) {
@@ -76,7 +74,6 @@ public class Cart extends HttpServlet {
 						}
 						int subtotal = harga * jml;
 						total += subtotal;
-						ind++;
 						arrayn.add(B.nama.get(0));
 						arrayc.add(k);
 						arrayp.add(B.harga.get(0));
