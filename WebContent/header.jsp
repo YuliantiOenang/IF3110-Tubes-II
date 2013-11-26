@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -15,15 +16,21 @@
 	<div id="AJS_body_wrapper">
 		<div id="AJS_wrapper">
 			<div id="AJS_header">
-				<div id="header_right">
-					<p></p>
-				</div>
+				<% out.println("<div id='site_title'><h1><a href=''>Ruko Serba Ada</a></h1></div>"); %>						
+       			<div id="header_right">
+       				<p>
+           
+           			</p>
+				</div>	
 				<div class="cleaner"></div>
 			</div>
 			<!-- End Of Header -->
+			
 			<div id="AJS_menubar">
 				<div id="top_nav" class="ddsmoothmenu">
 					<ul>
+						<li><a href="register.jsp">Sign Up</a></li>
+						<li><a href="#login_form">Log in </a></li>';
 					</ul>
 					<br style="clear: left" />
 				</div>
@@ -52,7 +59,6 @@
 
 			<div id="AJS_main">
 				<div id="sidebar" class="float_r">
-
 					<div class="sidebar_box">
 						<span class="bottom"></span>
 						<h3>Search Option :</h3>
@@ -77,11 +83,19 @@
 						</form>
 
 						<h3>Kategori</h3>   
-		                
+		                <div class="content"> 
+	                	<ul class="sidebar_list">
+	                       <% ArrayList kategori = (ArrayList<String>) request.getAttribute("kategori");
+	                       	  for (int i = 0; i < kategori.size(); i++) {
+	                       		  out.println(kategori.get(i));
+	                       	  }
+	                       %>
+	                    </ul>
+	                </div>
 					</div>
 				</div>
 
-				<!-- <script>
+				<script>
 					function verLogin() {
 						var username = document.forms['login']['username'].value;
 						var password = document.forms['login']['password'].value;
@@ -105,4 +119,4 @@
 								+ "&password=" + password, true);
 						xmlhttp.send();
 					}
-				</script> -->
+				</script>
