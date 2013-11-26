@@ -18,7 +18,7 @@
 <% 
 try {
  
-String connectionURL = "jdbc:mysql://localhost/test1"; //isi dengan server dan nama database
+String connectionURL = "jdbc:mysql://localhost/ruserba"; //isi dengan server dan nama database
 
 
 Connection connection = null; 

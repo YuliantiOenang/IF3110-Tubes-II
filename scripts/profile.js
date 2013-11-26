@@ -1,4 +1,8 @@
 window.addEventListener('load', function() {
+	if (localStorage.getItem('auth_token') === null) {
+		window.location.href = '/ruserba/register';
+	}
+	
 	document.getElementById('formtitle').innerHTML = 'Profil ' + localStorage.getItem('username');
 
 	var name = document.getElementsByName('name')[0];

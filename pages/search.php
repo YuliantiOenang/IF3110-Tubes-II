@@ -1,4 +1,4 @@
-<script src='/ruserba/scripts/addtobag.js'></script>
+<script src='/ruserba/scripts/addtocart.js'></script>
 <?php
 	$q = urldecode($_GET['q']);
 	$query = 'select * from barang left join kategori on barang.id_kategori=kategori.id_kategori where nama_barang like ? or nama_kategori like ? or harga_barang=?';
@@ -52,7 +52,9 @@
 			echo '</span>';
 			echo '<br>';
 			echo '</div>';
-			echo '<a class="button beli" name="'.$barang['id_barang'].'" href="javascript:void(0)"><div>Pesan Barang</div></a>';
+			if ($barang['tersedia'] > 0) {
+				echo '<a class="button beli" name="'.$barang['id_barang'].'" href="javascript:void(0)"><div>Pesan Barang</div></a>';
+			}
 			echo '</div>';
 			echo '</div>';
 			echo '<hr>';

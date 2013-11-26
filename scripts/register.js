@@ -1,4 +1,8 @@
 window.addEventListener('load', function() {
+	if (localStorage.getItem('auth_token') !== null) {
+		window.location.href = '/ruserba';
+	}
+
 	var username = document.getElementsByName('username')[0];
 	var password = document.getElementsByName('password')[0];
 	var confirm = document.getElementsByName('confirm')[0];
@@ -187,13 +191,13 @@ window.addEventListener('load', function() {
 				if (response['status'] == 'success') {
 					localStorage.setItem('username', username.value);
 					localStorage.setItem('auth_token', response['token']);
-					window.location.href = '/ruserba';
+					window.location.href = '/ruserba/registerkartu';
 				}
 			}
 		}
 		return false;
 	};
-}
+});
 
 function submitButton(formOk, button) {
 	if (formOk.indexOf(false) == -1) {
@@ -202,4 +206,4 @@ function submitButton(formOk, button) {
 	else {
 		button.disabled = true;
 	}
-});
+}

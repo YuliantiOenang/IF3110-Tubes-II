@@ -1,4 +1,5 @@
-<script src='/ruserba/scripts/addtobag.js'></script>
+<script>var cartcontent = JSON.parse('<?php echo isset($_SESSION["cart"]) ? json_encode($_SESSION["cart"]) : "{}"; ?>');</script>
+<script src='/ruserba/scripts/addamounttocart.js'></script>
 <?php
 	$query = 'select * from barang where id_barang=?';
 	$params = array($_GET['id']);
@@ -42,7 +43,13 @@
 	echo '</span>';
 	echo '<br>';
 	echo '<br>';
-	echo '<a class="button beli" name="'.$barang['id_barang'].'" href="javascript:void(0)"><div>Pesan Barang</div></a>';
+	echo '<br>';
+	if ($barang['tersedia'] > 0) {
+		echo 'Jumlah ';
+		echo '<input type="number" class="inputjumlah" name="jumlah" value="1" min="1" max="'.(isset($_SESSION['cart'][$barang['id_barang']]) ? ($barang['tersedia'] - $_SESSION['cart'][$barang['id_barang']]) : $barang['tersedia']).'"/>';
+		echo '<br>';
+		echo '<a class="button beli" name="'.$barang['id_barang'].'" href="javascript:void(0)"><div>Pesan Barang</div></a>';
+	}
 	echo '</div>';
 	echo '</div>';
 ?>

@@ -1,4 +1,6 @@
-<script src='/ruserba/scripts/addtobag.js'></script>
+<script>var basePageUrl = "<?php echo '/ruserba/kategori/'.$_GET['id']?>";</script>
+<script src='/ruserba/scripts/sort.js'></script>
+<script src='/ruserba/scripts/addtocart.js'></script>
 <?php    
     //mencari banyak data yang ada dalam tabel  
 	$query = 'select nama_kategori from kategori where id_kategori=?';
@@ -7,15 +9,44 @@
 	echo '<h3 class="judul_halaman">Kategori: ';
 	echo $result[0]['nama_kategori'];
 	echo '</h3>';
-	echo '<br/>';
 	$query = "select * from barang where id_kategori=?";
 	$params = array($_GET['id']);
 	include 'scripts/php/query.php';
 	$banyakBarang = count($result);
-	$page = isset($_GET['p']) ? $_GET['p'] : 1;  
-	$limit = 10;  
-	$mulai_dari = $limit * ($page - 1);  
-	$query = "select * from barang where id_kategori=? order by nama_barang limit ?, ? ";  
+	$page = isset($_GET['p']) ? $_GET['p'] : 1;
+	$limit = 10;
+	$mulai_dari = $limit * ($page - 1);
+	echo '<div id="dropdownsort">';
+	$query = "select * from barang where id_kategori=? order by ";
+	echo 'Urutkan berdasarkan ';
+	echo '<select id="selectorder">';
+	if (!isset($_GET['orderby']) || (isset($_GET['orderby']) && $_GET['orderby'] == 'name')) {
+		echo '<option selected=true>Nama</option>';
+		echo '<option>Harga</option>';
+		$query .= "nama_barang ";
+	}
+	else if (isset($_GET['orderby']) && $_GET['orderby'] == 'price') {
+		echo '<option>Nama</option>';
+		echo '<option selected=true>Harga</option>';
+		$query .= "harga_barang ";
+	}
+	echo '</select>';
+	echo '<select id="selectsort">';
+	if (!isset($_GET['sort']) || (isset($_GET['sort']) && $_GET['sort'] == 'asc')) {
+		echo '<option selected=true>Membesar</option>';
+		echo '<option>Mengecil</option>';
+		$query .= "asc ";
+	}
+	else if (isset($_GET['sort']) && $_GET['sort'] == 'desc') {
+		echo '<option>Membesar</option>';
+		echo '<option selected=true>Mengecil</option>';
+		$query .= "desc ";
+	}
+	$query .= "limit ?, ? ";
+	echo '</select>';
+	echo '</div>';
+	echo '<br/>';
+	echo '<br/>';
 	$params = array($_GET['id'], $mulai_dari, $limit);
 	include 'scripts/php/query.php';
 	foreach($result as $barang){
@@ -50,7 +81,9 @@
 		echo '</span>';
 		echo '<br>';
 		echo '</div>';
-		echo '<a class="button beli" name="'.$barang['id_barang'].'" href="javascript:void(0)"><div>Pesan Barang</div></a>';
+		if ($barang['tersedia'] > 0) {
+			echo '<a class="button beli" name="'.$barang['id_barang'].'" href="javascript:void(0)"><div>Pesan Barang</div></a>';
+		}
 		echo '</div>';
 		echo '</div>';
 		echo '<hr>';

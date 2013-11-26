@@ -21,15 +21,18 @@
 	<br />
 	<a id='cartbutton' class='button' href='/ruserba/cart'><div>
 		<img src='/ruserba/assets/cart.png' />
-		<?php
+		<span id='totalbarang'><?php
 			if (isset($_SESSION['cart'])) {
-				echo count($_SESSION['cart']);
+				$total = 0;
+				foreach ($_SESSION['cart'] as $id => $amount) {
+					$total += $amount;
+				}
+				echo $total;
 			}
 			else {
 				echo 0;
 			}
-		?>
-		 barang
+		?></span> barang
 	</div></a>
 </div>
 <div id='searchbar'>
