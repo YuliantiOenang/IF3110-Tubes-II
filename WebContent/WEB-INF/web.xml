@@ -69,4 +69,14 @@
     <servlet-name>ajaxbarang</servlet-name>
     <url-pattern>/ajaxbarang</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>fillsidebar</display-name>
+    <servlet-name>fillsidebar</servlet-name>
+    <servlet-class>fillsidebar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fillsidebar</servlet-name>
+    <url-pattern>/fillsidebar</url-pattern>
+  </servlet-mapping>
 </web-app>
