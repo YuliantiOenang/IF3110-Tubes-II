@@ -41,6 +41,21 @@
 			}
 			no++;
 		}
+		%>
+		<div class="pagination"> Halaman: 
+		<%
+		for(int i=0;i<Math.ceil(barangs.size()/10f);i++){
+			if(i * 10 == awal){
+				out.println("[" + (i+1) + "]");
+			} else {
+				%>	
+				<a href="showList?cat=<%= request.getParameter("cat") %>&start=<%= i*10 %>"><%= (i+1) %></a>
+				<%
+			}
+		}
+		%>
+		</div>
+		<%
 	%>
 </body>
 	<script src="transaction.js"></script>

@@ -216,7 +216,9 @@ a {
 }
 
 .pagination{
-	margin-top:430px;
+	clear: left;
+	margin-left: 10px;
+	
 }
 
 .category{
