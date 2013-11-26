@@ -73,12 +73,12 @@ public class RegisterServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 // Registrasi Gagals
-                RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("register");
                 dispatcher.forward(request, response);
             }
         } else {
             // Registrasi Gagal
-            RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("register");
             dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();

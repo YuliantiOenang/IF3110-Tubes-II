@@ -63,7 +63,8 @@ public class DatabaseHelper {
     public static void Disconnect() {
         if(conn != null) {
             try {
-                smt.close();
+                if(smt != null)
+                    smt.close();
                 conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);

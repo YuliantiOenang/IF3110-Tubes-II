@@ -66,15 +66,15 @@ public class RegisterKartuServlet extends HttpServlet {
             } finally {
                 if(DatabaseHelper.execute(query)) {
                     System.out.println("HASIL 1");
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("");
                     dispatcher.forward(request, response);
                 } else {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu");
                     dispatcher.forward(request, response);
                 }
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu");
             dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();

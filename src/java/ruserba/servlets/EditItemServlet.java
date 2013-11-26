@@ -51,15 +51,15 @@ public class EditItemServlet extends HttpServlet {
                 barang.setPrice(res.getInt("harga_barang"));
                 barang.setTersedia(res.getInt("tersedia"));
                 request.setAttribute("barang", barang);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin-edit.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("adminedit");
                 dispatcher.forward(request, response);
             } else {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin");
                 dispatcher.forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditItemServlet.class.getName()).log(Level.SEVERE, null, ex);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin");
             dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();
