@@ -6,6 +6,8 @@ package ruserba.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,36 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RequestServlet extends HttpServlet {
 
+    static HashMap<String, String> pages;
+    static final String suffix = " | Ruko Serba Ada";
+    
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        pages = new HashMap<String, String>();
+        pages.put("register", "Pendaftaran");
+        pages.put("search", " - Hasil Pencarian");
+        pages.put("profile", "Profil");
+        pages.put("registerkartu", "Pendaftaran Kartu Kredit");
+        pages.put("kategori", "");
+        pages.put("barang", "");
+        pages.put("cart", "Keranjang Belanja");
+    }
+    
+    private String getPageTitle(String name) {
+        if (pages.containsKey(name)) {
+            return pages.get(name);
+        }
+        return "404";
+    }
+    
+    private String getPageContent(String name) {
+        if (pages.containsKey(name)) {
+            return pages.get(name) + ".jsp";
+        }
+        return "error.jsp";
+    }
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -36,7 +68,15 @@ public class RequestServlet extends HttpServlet {
             out.println("<!DOCTYPE HTML>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RequestServlet</title>");
+            out.println("<title>");
+            if (request.getParameter("page") != null) {
+                out.println(getPageTitle(request.getParameter("page")));
+            }
+            else {
+                out.println("Beranda");
+            }
+            out.println(suffix);
+            out.println("</title>");
             out.println("<link rel='icon' type='image/png' href='assets/favicon.PNG' />");
             out.println("<link rel='stylesheet' media='only screen and (min-width:1224px)' href='css/desktop.css' />");
             out.println("</head>");
@@ -45,6 +85,22 @@ public class RequestServlet extends HttpServlet {
             out.println("<div id='header'>");
             request.getRequestDispatcher("header.jsp").include(request, response);
             out.println("</div>");
+            out.println("<div class='divider'>");
+            out.println("</div>");
+            out.println("<div id='content'>");
+            if (request.getParameter("page") != null) {
+                request.getRequestDispatcher(getPageContent(request.getParameter("page"))).include(request, response);
+            }
+            else {
+                request.getRequestDispatcher("home.jsp").include(request, response);
+            }
+            out.println("</div>");
+            out.println("<div class='divider'>");
+            out.println("</div>");
+            out.println("<div id='footer'>");
+            request.getRequestDispatcher("footer.jsp").include(request, response);
+            out.println("</div>");
+            out.println("<br/><br/><br/><br/><br/><br/>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");

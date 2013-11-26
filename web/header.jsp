@@ -8,8 +8,8 @@
 <%@page import="java.util.Map.Entry"%>
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<script src='/ruserba/scripts/session.js'></script>
-<script src='/ruserba/scripts/search.js'></script>
+<script src='js/session.js'></script>
+<script src='js/search.js'></script>
 <div id='logo'>
     <a href='/ruserba'><img src='/ruserba/assets/logo.png' /></a>
 </div>
