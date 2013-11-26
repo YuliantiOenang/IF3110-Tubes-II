@@ -31,7 +31,7 @@
 			barangBean = new ArrayList<BarangBean>();
 	%>
 
-	<table align="left" cellpadding="0" cellspacing="1">
+	<table cellpadding="0" cellspacing="1">
 		<tr bgcolor="blue">
 			<td width="100" align="center">No.</td>
 			<td width="150" align="center">Nama Barang</td>
