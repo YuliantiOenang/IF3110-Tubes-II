@@ -108,7 +108,7 @@ public class Gallery extends HttpServlet {
 					allResults.add(barang);
 				}
 				
-				String query2 = "SELECT COUNT(id) AS JmlBarang FROM barang WHERE id=id " + partial1 + partial2;
+				String query2 = "SELECT COUNT(id) AS JmlBarang FROM barang WHERE id=id";
 				
 				ResultSet rs2 = connection.createStatement().executeQuery(query2);
 				rs2.next();

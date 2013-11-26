@@ -20,6 +20,11 @@
 		if (barangBean == null)
 			barangBean = new ArrayList<BarangBean>();
 	%>
+	
+	Sort By: <br />
+	Nama : (<a href="?sort=1&jenisSort=1">ASC</a>,<a href="?sort=1&jenisSort=2">DESC</a>) <br />
+	Kategori : (<a href="?sort=2&jenisSort=1">ASC</a>,<a href="?sort=2&jenisSort=2">DESC</a>) <br />
+	Harga : (<a href="?sort=3&jenisSort=1">ASC</a>,<a href="?sort=3&jenisSort=2">DESC</a>) <br />
 
 	<table cellpadding="0" cellspacing="1">
 		<tr bgcolor="blue">
@@ -60,11 +65,19 @@
 			}
 		%>
 	</table>
-	
+		<%
+			String previous = "";
+			if (request.getParameter("sort") != null) {
+				previous = "&sort=" + request.getParameter("sort");
+			}
+			if (request.getParameter("jenisSort") != null) {
+				previous = previous + "&jenisSort=" + request.getParameter("jenisSort");
+			}
+		%>
 		<%
 			for (int i = 0; i < Math.round(Math.ceil(Double.parseDouble((String) request.getAttribute("total_pages")) / 10)); i++) {
 		%>
-			<a href="./index?page=<%= i+1 %>"><%= i+1 %> </a>
+			<a href="?page=<%= i+1 %><%= previous %>"><%= i+1 %> </a>
 		<%
 			}
 		%>
