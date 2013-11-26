@@ -5,16 +5,16 @@
 
 <div class="popup">
 	<p>Silakan masukkan username dan password Anda</p>
-	<form method="get" action="UserServlet">
-		<div>
-			<label for="username">Username</label>
-			<input type="text" name="username" value=""/>
-		</div>
-		<div>
-			<label for="password">Password</label>
-			<input type="password" name="password" value=""/>
-		</div>
-		<input type="submit" value="Log In" />
+	<form method="get" action="">
+	<div>
+		<label for="username">Username</label>
+		<input type="text" name="username" value=""/>
+	</div>
+	<div>
+		<label for="password">Password</label>
+		<input type="password" name="password" value=""/>
+	</div>
+	<input type="button" value="Log In" onclick="auth(username.value,password.value)" />
+	<a class="close" href="#close"></a>
 	</form>
-	<a class="close" href="index.jsp"></a>
 </div>
