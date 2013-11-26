@@ -89,4 +89,14 @@
     <servlet-name>buyprocess</servlet-name>
     <url-pattern>/buyprocess</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>editprofilesave</display-name>
+    <servlet-name>editprofilesave</servlet-name>
+    <servlet-class>tubes2wbd.editprofilesave</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editprofilesave</servlet-name>
+    <url-pattern>/editprofilesave</url-pattern>
+  </servlet-mapping>
 </web-app>
