@@ -8,12 +8,12 @@
 	// Query from database
 	ResultSet rs=st.executeQuery("SELECT * FROM user WHERE username='"+request.getParameter("username")+"'");
 	rs.next();
-	rs.getString();
+	rs.getString("cardno");
 	if (rs.wasNull()) {
-		out.print("true") ;
+		out.print("false") ;
 	}
 	else {
-		out.print("false") ;
+		out.print("true") ;
 	}
 	con.close();
 %>
