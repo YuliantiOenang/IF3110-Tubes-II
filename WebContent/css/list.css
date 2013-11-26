@@ -24,3 +24,8 @@
 	left: 10px;
 	top: 10px;
 }
+
+.cart_button{
+	position: relative;
+	top: 15px;
+}

@@ -2,6 +2,13 @@
 
 function validate(id_barang, id_div){
 	var y = document.getElementById("notif" + id_div);
+	var jml_beli = document.getElementById("quant" + id_div).value;
+	//alert("Beli " + jml_beli + " ya mbak?");
+	
+	if(parseInt(jml_beli) <= 0){
+		alert("Jumlah beli tidak valid!");
+		return;
+	}
 	
 	data = "id=" + id_barang;
 	
@@ -20,10 +27,10 @@ function validate(id_barang, id_div){
 		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var jumlahBarang = xmlhttp.responseText;
-			if(parseInt(jumlahBarang) > 0){
+			if(parseInt(jumlahBarang) >= parseInt(jml_beli)){
 				addToCart(id_barang);
 			} else {
-				alert("Barang sudah habis!");
+				alert("Jumlah tidak mencukupi!");
 			}
 			
 		}
