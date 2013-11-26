@@ -15,8 +15,13 @@
 		out.println("<h1>Kategori: " + request.getAttribute("kategori") + "</h1>");
 	
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
-		int no = 1;
+		int awal = (request.getParameter("start") == null ? 0 : Integer.parseInt(request.getParameter("start")));
+		int no = 0;
 		for(Barang b: barangs){
+			if(no < awal){
+				no++;
+				continue;
+			}
 			%>
 			<div class="list_barang">
 				<div class="gambar">
@@ -31,9 +36,11 @@
 				</div>
 			</div>
 			<%
+			if(no - awal == 9){
+				break;
+			}
 			no++;
 		}
-
 	%>
 </body>
 	<script src="transaction.js"></script>
