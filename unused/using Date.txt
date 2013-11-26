@@ -1,1 +1,0 @@
-Expired Date (YYYY-MM-DD)* : <input type="text" name="expired_date" id="expired_date"><br>
