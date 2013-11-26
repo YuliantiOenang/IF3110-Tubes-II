@@ -14,7 +14,7 @@
 					
 					PreparedStatement st;
 					
-					st = con.prepareStatement("SELECT Password FROM customer WHERE IdName=?");
+					st = con.prepareStatement("SELECT * FROM customer WHERE IdName=?");
 					st.setString(1,usr);
 					
 					ResultSet rs;
@@ -22,12 +22,10 @@
 					
 					while(rs.next()){
 						if (rs.getString(2).equals(pass)){
-							session.setAttribute("login_user", usr );
+							session.setAttribute("login_user", usr);
+							session.setAttribute("user_role", rs.getInt(11));
 							response.getWriter().write(1);
 						} else {
-							if(session != null){
-								session.invalidate();
-							}
 							response.getWriter().write(0);
 						}
 					}

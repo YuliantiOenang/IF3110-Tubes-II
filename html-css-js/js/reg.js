@@ -1,6 +1,6 @@
 function validateregisForm()
 {
-	document.getElementById('submit').disabled = true;
+	document.getElementById('btn-register').disabled = true;
 	var x=document.forms["regisform"]["username"].value;
 	if (x!=null && x!="" && x.length >= 5)
 	  {
@@ -37,7 +37,7 @@ function validateregisForm()
 											var dotpos=x.lastIndexOf(".");
 											if (x!=null && x!="" && atpos>0 && dotpos>=atpos+2 && dotpos+1<x.length && x!=y)
 											{	
-												document.getElementById('submit').disabled = false;
+												document.getElementById('btn-register').disabled = false;
 											}
 										}
 									}

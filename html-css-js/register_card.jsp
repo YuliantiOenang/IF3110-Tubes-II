@@ -1,13 +1,15 @@
 <%@ page import="java.sql.*, javax.sql.*, java.io.*, javax.naming.*" %>
-<html>
+<html lang="en-US">
 	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="res/css/style.css" media="all"/>
 		<script type="text/javascript" src="js/reg.js"></script>
 		<title>
 			Pendaftaran Kartu Kredit
 		</title>
 	</head>
 	<body>
-		<div id="content">
+		<div id="container">
 			<%
 				String submitted = request.getParameter("daftar");
 				if(submitted !=null){
@@ -50,48 +52,75 @@
 					} catch (Exception e) {out.println("Unable to connect to database."); };
 				}
 			%>
-			<h1>Lembar Pemakaian Kartu Kredit</h1>
+			
+			<!-- Header Section -->
+			<div id="header" class="frame">
+				<div class="kolom-7">
+					<img src="res/img/logo.png" alt="" id="logo"/>
+				</div>
+				<div class="kolom-4">
+					<div id="user-panel">
+						
+						<div id="user" class="frame">
+							<img id="user-pict" class="kolom-5" src="res/img/userpict_h.png" alt=""/>
+							<div id="user-text" class="kolom-7">
+								<h3>Welcome, <span class="user-name">Riandy</span>!</h3>
+								<p id="user-control">
+									<span class="edit-logout"><a href="">Edit Profile</a></span>
+									&nbsp;or&nbsp;
+									<span class="edit-logout"><a href="">Logout</a></span>
+								</p>
+								
+								<a href="#" class="btn">Check Your Cart</a>
+							</div>
+						</div>
+						
+						<div id="search-bar" class="frame">
+							<form action="search.php">
+								<input id="search-box" class="kolom-9" type="text" name="src" value="Ketikkan barang yang dicari..." onfocus="checkclear(this)" onblur="checkempty(this, 'Ketikkan barang yang dicari...')">
+								<input id="search-button" class="kolom-1" type="submit" value="">
+							</form>					
+						</div>
+					</div>
+				</div>			
+			</div>
+			<!-- End of Header -->
+			
+		<div id="form-registrasi" class="frame">
+			<p id="registration-title">Credit Card Registration</p>
+			
 			<form name="creditform" action="index.php" onsubmit="return validatecreditForm()" method="post">
-				<div id="form_one_row">
+				<div id="card-number" class="form-field">
+					<p class="label">
+						CardNumber :
+					</p>
+					<p><input class="field-box kolom-12" type="text" name="cardnumber">
+					</input></p>
+				</div>
+				
+				<div id="name-on-card" class="form-field">
 					<p id="label_form" class="label">
-						CardNumber
+						Name on Card :
 					</p>
-					<p id="label_form" class="partition">
-						:
-					</p>
-					<input id="label_form" class="text_field" type="text" name="cardnumber">
-					</input>
+					<p><input class="field-box kolom-12" type="text" name="nameoncard">
+					</input></p>
 				</div>
-				<div id="form_one_row">
-					<p id="label_form" class="label">
-						Name on Card
+				
+				<div id="expired-date" class="form-field">
+					<p class="label">
+						Expired Date :
 					</p>
-					<p id="label_form" class="partition">
-						:
-					</p>
-					<input id="label_form" class="text_field" type="text" name="nameoncard">
-					</input>
+					<p><input class="field-box kolom-12" type="date" name="expireddate">
+					</input></p>
 				</div>
-					<div id="form_one_row">
-					<p id="label_form" class="label">
-						Expired Date
-					</p>
-					<p id="label_form" class="partition">
-						:
-					</p>
-					<input id="label_form" type="date" name="expireddate">
-					</input>
-				</div>
-				<div id="form_one_row">
-					<input id="submit" type="submit" value="Submit" name="submitted"></input>
-				</div>
+				<br/>
+					<input id="btn-register" class="btn" type="submit" value="Submit" name="submitted"></input>
 			</form>
 			<form action="index.php" method="post">
-				<div id="form_one_row">
-					<input id="submit" type="submit" value="Skip" ></input>
-				</div>
-				<div id="form_one_row"></div>
+					<br/>
+					<p><input id="btn-register" class="btn" type="submit" value="Skip" ></input></p>
 			</form>
 		</div>	
+	</div>
 	</body>
 </html>
