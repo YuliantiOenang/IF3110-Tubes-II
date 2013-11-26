@@ -8,6 +8,6 @@
 <title>Ini adalah judul</title>
 </head>
 <body>
-	<a href="showList">Lihat List Barang</a>
+	<%@ include file="template/template.jsp" %> 
 </body>
 </html>
