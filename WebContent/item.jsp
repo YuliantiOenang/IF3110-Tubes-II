@@ -35,8 +35,6 @@
 				<input type='submit' class='cart' value = 'Add to Cart'></input>
 			 </form>
 		</div>
-		
-
 </div>
 <jsp:include page="footer.jsp" />
 
