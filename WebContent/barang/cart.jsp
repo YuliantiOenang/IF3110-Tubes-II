@@ -66,14 +66,12 @@
 				</div>
 			</td>
 			<td><%=b.getDescription()%></td>
-			<td>
-			<input type="button" value="Update Cart"
-				id="beli"
+			<td><input type="button" value="Update Cart" id="beli"
 				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/updateCart', <%=b.getId()%> ); return false;">
-			<a href="./deleteBarang?id=<%=b.getId()%>">Delete</a>
-			</td>
+				<a href="./deleteBarang?id=<%=b.getId()%>">Delete</a></td>
 			<%
-				}
+				break;
+						}
 			%>
 			<%
 				}
