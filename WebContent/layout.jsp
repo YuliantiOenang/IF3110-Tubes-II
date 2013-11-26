@@ -93,28 +93,28 @@
 							<div class='menuborder'></div>
 							</div>
 						</a>
-						<a href=''><div class='permenu per5'>
+						<a href='${pageContext.request.contextPath}/item.jsp'><div class='permenu per5'>
 							<div class='menuborder'></div>
 							<div class='menutxt'><h1 id='txtmenu1' class='menu'>Ladies Shoes</h1></div>
 							<div class='menuborder'></div>
 							</div>
 						</a>
 						
-						<a href=''><div class='permenu per5'>
+						<a href='${pageContext.request.contextPath}/item.jsp'><div class='permenu per5'>
 							<div class='menuborder'></div>
 							<div class='menutxt'><h1 id='txtmenu1' class='menu'>Man Shirt</h1></div>
 							<div class='menuborder'></div>
 							</div>
 						</a>
 						
-						<a href=''><div class='permenu per5'>
+						<a href='${pageContext.request.contextPath}/item.jsp'><div class='permenu per5'>
 							<div class='menuborder'></div>
 							<div class='menutxt'><h1 id='txtmenu1' class='menu'>Man Shoes</h1></div>
 							<div class='menuborder'></div>
 							</div>
 						</a>
 						
-						<a href=''><div class='permenu per5'>
+						<a href='${pageContext.request.contextPath}/item.jsp'><div class='permenu per5'>
 							<div class='menuborder'></div>
 							<div class='menutxt'><h1 id='txtmenu1' class='menu'>Man Hat</h1></div>
 							<div class='menuborder'></div>
@@ -129,8 +129,7 @@
 
 					<p class="right">
 						<a href="/shop/">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
-
-					</p>
-										
+					</p>					
+			</div>
 			</div>
 						

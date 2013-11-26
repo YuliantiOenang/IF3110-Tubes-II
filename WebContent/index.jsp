@@ -10,7 +10,7 @@
 </head>
 <body>
 	<!-- notes: layout on progress -->
-
+	
 	<jsp:include page="layout.jsp" />
 
 
