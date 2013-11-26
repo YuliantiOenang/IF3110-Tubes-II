@@ -27,8 +27,12 @@
 			<li><a href="#">Log Out</a></li>
 			<li><a href="registerform.jsp">Daftar</a></li>
 			<li><a href="cart.jsp">Shopping Bag</a></li>
-			<li id="searchbar"><button type="button" class="button" id="searchbutton">Search</button></li>
-			<li id="searchbar"><input type="text" name="search" id="cari" placeholder="Cari Barang"></li>
+			<li id="searchbar">
+				<form method="get" action="search.jsp">
+					<input type="submit" class="button" id="searchbutton" value="Cari" />
+					<input type="text" name="search" id="cari" placeholder="Cari Barang" />
+				</form>
+			</li>
 		</ul>
 	</nav>
 	<%@include file="loginform.jsp" %>
