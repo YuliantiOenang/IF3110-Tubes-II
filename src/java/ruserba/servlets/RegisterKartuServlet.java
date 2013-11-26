@@ -45,9 +45,9 @@ public class RegisterKartuServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if(user != null) {
-            String nokartu = request.getAttribute("nokartu").toString();
-            String nama = request.getAttribute("nama").toString();
-            String kadaluarsa = request.getAttribute("kadaluarsa").toString();
+            String nokartu = request.getParameter("nokartu");
+            String nama = request.getParameter("namakartu");
+            String kadaluarsa = request.getParameter("expiry");
             
             String query = "select username from kartu_kredit where username='" + user.getUsername() +"'";
             ResultSet res = DatabaseHelper.executeQuery(query);
@@ -65,6 +65,7 @@ public class RegisterKartuServlet extends HttpServlet {
                             + "'"+ nama  +"','"+ kadaluarsa +"')";
             } finally {
                 if(DatabaseHelper.execute(query)) {
+                    System.out.println("HASIL 1");
                     RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                     dispatcher.forward(request, response);
                 } else {
@@ -72,6 +73,9 @@ public class RegisterKartuServlet extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
             }
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
+            dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();
     }

@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import ruserba.beans.User;
 import ruserba.database.DatabaseHelper;
 
 /**
@@ -58,6 +60,15 @@ public class RegisterServlet extends HttpServlet {
         if(DatabaseHelper.execute("insert into user values ('"+username+"','"+password+"','"+key+"','"+ formatter.format(expDate) +"')")) {
             if(DatabaseHelper.execute("insert into user_profile (username,nama,email) values ('"+ username +"','"+ name +"','"+ alamatEmail +"')")) {
                 // Registrasi Berhasil
+                
+                User user = new User();
+                user.setUsername(username);
+                user.setName(name);
+                user.setEmail(alamatEmail);
+                
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
                 dispatcher.forward(request, response);
             } else {

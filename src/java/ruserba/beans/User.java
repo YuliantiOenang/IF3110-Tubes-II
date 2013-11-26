@@ -9,14 +9,14 @@ package ruserba.beans;
  * @author Ahmad Fauzan
  */
 public class User {
-    String username;
-    String name;
-    String email;
-    String alamat;
-    String kota;
-    String kodepos;
-    String provinsi;
-    String ponsel;
+    String username = "";
+    String name = "";
+    String email = "";
+    String alamat = "";
+    String kota = "";
+    String kodepos = "";
+    String provinsi = "";
+    String ponsel = "";
 
     public String getUsername() {
         return username;
