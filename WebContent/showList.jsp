@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="kelas.*"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,7 +13,10 @@
 	<% 
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
 		for(Barang b: barangs){
-			out.println("<strong>"+b.getNama() + "</strong><br/>");
+			out.println("<strong>Nama:</strong> "+b.getNama() + "<br/>");
+			out.println("<strong>Harga:</strong> "+b.getHarga() + "<br/>");
+			out.println("<strong>Jumlah:</strong> "+b.getJumlah() + "<br/>");
+			out.println("<hr>");
 		}
 
 	%>
