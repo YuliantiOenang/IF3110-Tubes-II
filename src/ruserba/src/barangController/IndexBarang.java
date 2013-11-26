@@ -91,7 +91,7 @@ public class IndexBarang extends HttpServlet {
 				Barang B2 = new Barang(DBA);
 				B2.executeQuery("select * from barang");
 				int jmlData = B2.nama.size();
-				System.out.println(jmlData);
+//				System.out.println(jmlData);
 				
 				//HTTP/1.1 200 OK Content-Type
 				response.setContentType("text/plain");
@@ -105,13 +105,14 @@ public class IndexBarang extends HttpServlet {
 
 				Barang B = new Barang(DBA);
 				B.executeQuery2(Query);
-				System.out.println(Query);
+//				System.out.println(Query);
 				
 				int size = B.nama.size();
 				int i;
 				String str="";
 				for (i=0;i<size;i++)
 				{
+//					System.out.print("beliBarangOKE"+B.id.get(i) + " ");
 					String input="<input type='text' id='beliBarangOKE"+B.id.get(i)+"'>";
 					str = str + "<tr>";
 					str = str + "<td><a href='/ruserba/barang/detail?id="+B.id.get(i)+"'> " + B.nama.get(i)+ "</a></td>";

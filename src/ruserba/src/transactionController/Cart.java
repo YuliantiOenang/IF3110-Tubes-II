@@ -2,7 +2,9 @@ package transactionController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javaModel.Barang;
+import javaModel.Helper;
 import javaModel.Kategori;
 
 import javax.servlet.ServletException;
@@ -36,37 +38,43 @@ public class Cart extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		
-		boolean isLogin = true;
-//		if (session.getAttribute("isLogin")!=null)
-//			isLogin = (boolean)session.getAttribute("isLogin");
-//		else
-//			isLogin = false;
+		boolean isLogin = false;
+		if (session.getAttribute("isLogin")!=null)
+			isLogin = (boolean)session.getAttribute("isLogin");
 		
 		if (isLogin) {
 			int total = 0;
 			
 			ArrayList <String> arrayn = new ArrayList<String>();
+			ArrayList <String> arrayid = new ArrayList<String>();
 			ArrayList <String> arrayc = new ArrayList<String>();
 			ArrayList <String> arrayp = new ArrayList<String>();
 			ArrayList <String> arrayq = new ArrayList<String>();
 			ArrayList <String> arrayst = new ArrayList<String>();
 			if (session.getAttribute("dibeli")!=null) {
 				ArrayList <String> array = (ArrayList<String>) session.getAttribute("dibeli");
-				total = 0;
-				Kategori K = new Kategori(DBA);
-				for (String item : array) {
-					if ((session.getAttribute(item)!=null) && ((int)session.getAttribute(item) > 0)){
-						int jml = (int)session.getAttribute(item);
-						String q = "select * from barang where nama = "+item;
+				total = 0;;
+				Kategori K = Helper.findAllKategori();
+				for (int i = 0; i < array.size (); i ++) {
+					if (session.getAttribute(array.get(i))==null)
+						continue;
+					if (!session.getAttribute(array.get(i)).equals("0")){
+						int jml = 0;
+						String sjml = (String) session.getAttribute(array.get(i));
+//						sjml = "12";
+//						System.out.println (sjml);
+						for (int j = 0; j < sjml.length(); j ++) {
+							jml = jml * 10 + (int) (sjml.charAt(j) - '0');
+						}
+						String q = "select * from barang where id = "+array.get(i);
 						String k = "";
 						Barang B = new Barang(DBA);
-						for (int i = 0; i < K.id.size(); i++)
-							if (K.id.get(i).equals(B.id.get(0))) {
-								k = K.nama_kategori.get(i);
-								break;
-							}
-						
 						B.executeQuery(q);
+						for (int i1 = 0; i1 < K.id.size(); i1++)
+							if (K.id.get(i1).equals(B.id_kat.get(0))) {
+								k = K.nama_kategori.get(i1);
+								break;
+							}				
 						
 						int harga = 0;
 						for (int j = 0; j < B.harga.get(0).length(); j ++) {
@@ -76,14 +84,17 @@ public class Cart extends HttpServlet {
 						total += subtotal;
 						arrayn.add(B.nama.get(0));
 						arrayc.add(k);
+						arrayid.add(array.get(0));
 						arrayp.add(B.harga.get(0));
-						arrayq.add(item);
+						arrayq.add(jml+"");
 						arrayst.add(subtotal+"");
+//						System.out.println (jml + " " + subtotal);
 					}
 				}
 			} 
 			request.setAttribute("total_shopping",total);
 			request.setAttribute("namabeli",arrayn);
+			request.setAttribute("idbeli",arrayid);
 			request.setAttribute("katbeli",arrayc);
 			request.setAttribute("hargabeli",arrayp);
 			request.setAttribute("jumlahbeli",arrayq);

@@ -18,6 +18,7 @@
 					<% 	
 						ArrayList <String> arrayn = (ArrayList <String>) request.getAttribute("namabeli");
 						ArrayList <String> arrayc = (ArrayList <String>) request.getAttribute("katbeli");
+						ArrayList <String> arrayid = (ArrayList <String>) request.getAttribute("idbeli");
 						ArrayList <String> arrayp = (ArrayList <String>) request.getAttribute("hargabeli");
 						ArrayList <String> arrayq = (ArrayList <String>) request.getAttribute("jumlahbeli");
 						ArrayList <String> arrayst = (ArrayList <String>) request.getAttribute("stbeli");
@@ -26,10 +27,10 @@
 							<div class='list_body' id='no'><p><%= i + 1 %></p></div>
 							<div class='list_body' id='item'><p><b><%= arrayc.get(i) %> :</b><br/> &nbsp &nbsp &nbsp<%= arrayn.get(i) %></p></div>
 							<div class='list_body' id='price'><p>IDR <%= arrayp.get(i) %></p></div>
-							<div class='list_body' id='qty'><input id='quantity_<%= arrayn.get(i) %>' type='number' onkeyup='cekCart(\"<%= arrayn.get(i) %>\", ".$_SESSION[$item].")' value='".$_SESSION[$item]."'></input></div>
-							<input type='hidden' id='id_barang_".$brg->nama."' value='".$brg->nama."'>
+							<div class='list_body' id='qty'><input id='quantity_<%= arrayn.get(i) %>' type='number' onkeyup='cekCart(<%= arrayn.get(i) %>, <%= arrayq.get(i) %>)' value='<%= arrayq.get(i) %>'></input></div>
+							<input type='hidden' id='id_barang_<%= arrayn.get(i) %>' value='<%= arrayn.get(i) %>'>
 							<div class='list_body' id='subtotal'><p>IDR <%= arrayst.get(i) %></p></div>
-							<div class='list_body' id='remove'><a href='".$this->makeUrl("barang/delete/".$brg->id)."' title='Remove ".$item." from your Shopping Cart'>x</a></div>
+							<div class='list_body' id='remove'><a href='barang/delete/<%= arrayid.get(i) %>' title='Remove <%= arrayn.get(i) %> from your Shopping Cart'>x</a></div>
 							</div>
 						<% } %>
 						<div class='row'>
