@@ -1,5 +1,6 @@
 <%@ page import="javaModel.Kategori" %>
 <%@ page import="javaModel.Barang" %>
+<%@ page import="javaModel.Helper" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.HashMap" %>
 <%@page import="java.util.Map" %>

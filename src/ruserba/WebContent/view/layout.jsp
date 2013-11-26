@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>Calvin and Salvy</title>
-<link rel='stylesheet' type='text/css' href='css/style.css' />
+<link rel='stylesheet' type='text/css' href='/ruserba/css/style.css' />
 <script type="text/javascript">
 	function hasClass(ele, cls) {
 		return ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -89,7 +89,7 @@
 </head>
 <body>
 	<% if (request.getAttribute("effect")!=null && (Boolean)request.getAttribute("effect")) { %>
-		<img alt='' class='loader' id='starter' src='img/site/logo_b.png' />
+		<img alt='' class='loader' id='starter' src='/ruserba/img/site/logo_b.png' />
 		<div class='prolog' id='starter2'>
 			<p>
 				We are here to provide you with a brand new aura in our country
@@ -108,19 +108,27 @@
 	<% } %>
 		<div class='conctr'>
 			<div class='head'>
-				<a href='home'><div class='logo'></div></a>
+				<a href='/ruserba/home'><div class='logo'></div></a>
 				<div class='status'>
-					<p>
-						You are not login. (<a href='#' onclick='showLogin()'>Login</a> or
-						<a href='register'>Register now</a>)
-					</p>
+					<% 
+					String userlogged = Helper.getUserLogged(session);
+					if (!userlogged.isEmpty()) { %>
+						<p class="left"> welcome, <a href='/ruserba/profile/index'><%= userlogged %></a>! (<a href='/ruserba/logout'>Logout</a>)
+						</p>
+						<p class="right">
+							<a href="cart/index') ?>">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
+						</p>
+					<% } else { %>
+						<p>
+							You are not login. (<a href='#' onclick='showLogin()'>Login</a> or
+							<a href='/ruserba/register'>Register now</a>)
+						</p>
+					<% } %>
 				</div>
 				<div class="menu">
-					<%
-						Kategori K = Helper.findAllKategori();
-					%>
+					<% Kategori K = Helper.findAllKategori(); %>
 					<% for (int i = 0; i < K.id.size(); i++) { %>
-					<a href="/cumigondrong/kategori/view/<%= K.id.get(i) %>">
+					<a href="/ruserba/kategori/view/<%= K.id.get(i) %>">
 						<div class="permenu per5">
 							<div class="menuborder"></div>
 							<div class="menutxt">
@@ -137,7 +145,7 @@
 						adalah segalanya.
 					</h2>
 					<a href='https://twitter.com/darksta5'><img alt=''
-						title='@calvinsalvy' src='img/site/twitter.png' id='footer_img' /></a>
+						title='@calvinsalvy' src='/ruserba/img/site/twitter.png' id='footer_img' /></a>
 				</div>
 			</div>
 			<div id='content_frame' onLoad="RefreshCartandShow()">
@@ -158,7 +166,7 @@
 						class='btn right'>Login</button>
 				</form>
 			</div>
-			<script src="js/login.js"></script>
+			<script src="/ruserba/js/login.js"></script>
 			<script>
 				var server = "";
 			</script>

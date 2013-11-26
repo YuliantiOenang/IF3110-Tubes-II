@@ -1,23 +1,27 @@
-package userController;
+package indexController;
 
 import java.io.IOException;
+import javaModel.Kategori;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import databaseLib.DatabaseAdapter;
+
 /**
- * Servlet implementation class Register
+ * Servlet implementation class Homes
  */
-@WebServlet("/register")
-public class Register extends HttpServlet {
+@WebServlet("/home")
+public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public HomeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +30,7 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setAttribute("includeJspContent", "register.jsp");
-		request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
+		response.sendRedirect("index?e=true");
 	}
 
 	/**

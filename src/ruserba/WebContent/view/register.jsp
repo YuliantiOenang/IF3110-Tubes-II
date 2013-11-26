@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList" %>
+<%@page import="java.util.Arrays" %>
 <form method="post">
 	<div class='register_div'>
 		<h1 class='header'>Register</h1>
@@ -34,8 +36,12 @@
 		
 		<div class='per_form small'>
 			<label>Provinsi</label>
-			<select value="" name="reg_provinsi" id="provinsi" required>
+			<select value="" name="reg_provinsi" id="provinsi" required="">
 				<option value="">Pilih Provinsi :</option>
+				<% ArrayList<String> provinsi = new ArrayList<String>(Arrays.asList("Aceh","Bali","Bangka Belitung","Banten","Bengkulu","Gorontalo","Jakarta","Jambi","Jawa Barat","Jawa Tengah","Jawa Timur","Kalimantan Barat","Kalimantan Selatan","Kalimantan Tengah","Kalimantan Timur","Kepulauan Riau","Lampung","Maluku","Maluku Utara","Nusa Tenggara Barat","Nusa Tenggara Timur","Papua","Papua Barat","Riau","Sulawesi Barat","Sulawesi Selatan","Sulawesi Tengah","Sulawesi Tenggara","Sulawesi Utara","Sumatera Barat","Sumatera Selatan","Sumatera Utara","Yogyakarta")); %>
+				<% for (String prof : provinsi) { %>
+					<option><%= prof %></option>
+				<% } %>
 			</select>
 			<span id="error-provinsi"></span>
 		</div>
