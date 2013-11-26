@@ -17,52 +17,37 @@
 	<div id="AJS_body_wrapper">
 		<div id="AJS_wrapper">
 			<div id="AJS_header">
-				<!-- 
-					<?php
-						if (!isset($_SESSION['username'])){
-							echo '<div id="site_title"><h1><a href="">Ruko Serba Ada</a></h1></div>';
-						} else {
-							echo '<div id="site_title"><h1><a href="">Welcome, '.$_SESSION['username'].'</a></h1></div>';
-						}
-					?>
-				-->
-
 				<%
 					if (session.getAttribute("username") == null) {
-						out.print("<div id=\"site_title\"><h1><a href=''>Ruko Serba Ada</a></h1></div>");
+						out.print("<div id=\"site_title\"><h1><a href=\"/ruko/index\">Ruko Serba Ada</a></h1></div>");
 					} else {
-						out.print("<div id=\"site_title\"> <h1><a href>Welcome,  "
+						out.print("<div id=\"site_title\"> <h1><a href=\"/ruko/index\">Welcome,  "
 								+ session.getAttribute("username") + "</a></h1></div>");
 					}
 				%>
-
 				<div id="header_right">
 					<p></p>
 				</div>
 				<div class="cleaner"></div>
 			</div>
 			<!-- End Of Header -->
-			
+
 			<div id="AJS_menubar">
 				<div id="top_nav" class="ddsmoothmenu">
 					<ul>
-						<li><a href="register.php">Sign Up</a></li>
-						<li><a href="#login_form">Log in </a></li>
-						<!-- 
-                		<?php
-                			if (!isset($_SESSION['username'])){
-								echo '<li><a href="register.php">Sign Up</a></li>
-									<li><a href="#login_form">Log in </a></li>';
+						<%
+							if (session.getAttribute("username") == null) {
+								out.print("<li><a href='register.php'>Sign Up</a></li>");
+								out.print("<li><a href='#login_form'>Log In</a></li>");
+							} else {
+								out.print("<li><a href=\"cardregist.php\"> Register Credit Card </a></li>");
+								out.print("<li><a href=\"shoppingbag.jsp\"> Shopping Bag </a></li>");
+								out.print("<li><a href=\"Profile?id="
+										+ session.getAttribute("username")
+										+ "\">Profile</a></li>");
+								out.print("<li><a href=\"logout.jsp\">Log out</a></li>");
 							}
-							else{
-								echo '	<li><a href="cardregist.php"> Register Credit Card </a></li>
-										<li><a href="shoppingbag.php"> Shopping Bag </a></li>
-										<li><a href="profile.php?id=',$_SESSION['username'],'">Profile</a></li>
-										<li><a href="logout.php">Log out</a></li>';
-
-							}
-						?>						
-					 -->
+						%>
 					</ul>
 					<br style="clear: left" />
 				</div>
@@ -75,24 +60,11 @@
 				<h2>Welcome Guest!</h2>
 				<p>Please enter your login and password here</p>
 
-				<!-- 				<form method="post" action="formhandlerservlet"> -->
-				<!-- 					<table cellpadding="0" cellspacing="0" border="0"> -->
-				<!-- 						<tr> -->
-				<!-- 							<td>Masukkan teks:</td> -->
-				<!-- 							<td><input type="text" name="enteredValue" /></td> -->
-				<!-- 						</tr> -->
-				<!-- 						<tr> -->
-				<!-- 							<td></td> -->
-				<!-- 							<td><input type="submit" value="Submit"></td> -->
-				<!-- 						</tr> -->
-				<!-- 					</table> -->
-				<!-- 				</form> -->
-
 				<form name="login" action="VerLoginServlet" method="post">
 					Username : <input type="text" name="username"><br>
-							Password : <input type="password" name="password"><br>
-									<div id="err_login"></div> <br> <input type="submit"
-										value="Log In" />
+					Password : <input type="password" name="password"><br>
+					<div id="err_login"></div> <br> <input type="submit"
+					value="Log In" />
 				</form>
 
 				<a class="close" href="#close"></a>
@@ -121,16 +93,18 @@
 									onblur="clearText(this)" class="txt_field" />
 						</form>
 
-						<h3>Kategori</h3>   
-		                <div class="content"> 
-	                	<ul class="sidebar_list">
-	                       <li> <a href='kategori?id=1&page=1&order=nama_barang'>Pangan</a></li>
-							<li> <a href='kategori?id=2&page=1&order=nama_barang'>Pakaian</a></li>
-							<li> <a href='kategori?id=3&page=1&order=nama_barang'>Elektronik</a></li>
-							<li> <a href='kategori?id=4&page=1&order=nama_barang'>Rumah Tangga</a></li>
-							<li> <a href='kategori?id=5&page=1&order=nama_barang'>Olah Raga</a></li>				
-	                    </ul>
-	                </div>
+						<h3>Kategori</h3>
+						<div class="content">
+							<ul class="sidebar_list">
+								<li><a href='kategori?id=1&page=1&order=nama_barang'>Pangan</a></li>
+								<li><a href='kategori?id=2&page=1&order=nama_barang'>Pakaian</a></li>
+								<li><a href='kategori?id=3&page=1&order=nama_barang'>Elektronik</a></li>
+								<li><a href='kategori?id=4&page=1&order=nama_barang'>Rumah
+										Tangga</a></li>
+								<li><a href='kategori?id=5&page=1&order=nama_barang'>Olah
+										Raga</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 

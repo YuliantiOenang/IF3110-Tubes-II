@@ -13,6 +13,20 @@ public class Barang {
 	private String keterangan;
 	private int stok;
 
+	public Barang(String id_barang, String nama_barang, String gambar_barang,
+			int harga_barang, int kategori_barang, int n_beli,
+			String keterangan, int stok) {
+		super();
+		this.id_barang = id_barang;
+		this.nama_barang = nama_barang;
+		this.gambar_barang = gambar_barang;
+		this.harga_barang = harga_barang;
+		this.kategori_barang = kategori_barang;
+		this.n_beli = n_beli;
+		this.keterangan = keterangan;
+		this.stok = stok;
+	}
+
 	public Barang(ResultSet rs) throws SQLException {
 		id_barang = rs.getObject(1).toString();
 		nama_barang = rs.getObject(2).toString();
