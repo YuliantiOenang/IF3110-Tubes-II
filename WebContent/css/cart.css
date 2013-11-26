@@ -1,0 +1,37 @@
+.div-table {
+	display: table;         
+	width: auto;         
+	background-color: #eee;         
+	border-spacing: 5px;
+}
+
+.div-table-row {
+	display: table-row;
+	width: auto;
+	clear: both;
+}
+
+.div-table-col {
+	float: left;
+	text-align: center;
+	display: table-column;         
+	width: 140px;         
+	background-color: #ccc;
+	padding: 5px; 
+}
+
+.div-table-col-head {
+	float: left;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	display: table-column;         
+	width: 140px;         
+	background-color: #ccc;
+	padding: 5px;  
+}
+
+p#total {
+	text-align: right;
+	font-weight: bold;
+}

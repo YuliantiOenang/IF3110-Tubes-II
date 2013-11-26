@@ -133,7 +133,7 @@ ul#menubar .sub-menu li a:hover {
 }
 
 /* Search Bar */
-#searchbar {
+ul#menubar li#searchbar {
 	margin-top: 4.5px;
 	float: right;
 }
@@ -208,7 +208,17 @@ ul#menubar .suggestion li a:hover {
 }
 
 #suggestkategori {
-	background : #000;
-	color : #fff;
+	background: #000;
+	color: #fff;
 	font-family: 'Lucida Sans Unicode';
+}
+
+/* Image Header */
+#headerlogo {
+	text-align: center;
+}
+
+#headerlogo img {
+	 width: 250px; 
+	 height: 250px;
 }

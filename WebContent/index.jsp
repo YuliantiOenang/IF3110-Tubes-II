@@ -18,7 +18,6 @@
 				<img src="images/howto.png"/>
 			</aside>
 		</div>
-		
 		<%@include file="footer.jsp" %>
 	</div>	
 </body>

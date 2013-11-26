@@ -17,6 +17,12 @@
 		%>
 		<div id="contentcontainer">
 		<article id="content" class="body">
+			<div class="sort">
+				<p id="sort-text">Sort by:<br>
+					<button type="button" class="button" id="sortnama">Nama</button>
+					<button type="button" class="button" id="sortharga">Harga</button>
+				</p>
+			</div>
 			<% while(goodies.next()) { %>
 			<div class="view">
 				<img src="<%= goodies.getObject("gambar") %>"/>
