@@ -30,11 +30,10 @@ function validate(method, value, id) {
 				if (method == "username") {
 					usernamevalid = false;
 					document.getElementById(id).style.color = "#ff0000";
-				} else {
+				} else if (method == "email") {
 					emailvalid = false;
 					document.getElementById(id).style.color = "#ff0000";
-				}
-				if (method == "number") {
+				} else if (method == "number") {
 					numbervalid = false;
 					document.getElementById(id).style.color = "#ff0000";
 				} else if (method == "name") {
