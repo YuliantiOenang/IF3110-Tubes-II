@@ -36,7 +36,7 @@ public class DeleteBarang extends HttpServlet {
 		if (session.getAttribute("username") == null) {
 			response.sendRedirect("../register.jsp");
 		} else {
-
+			/** Take ArrayList to delete Data */
 		}
 
 	}
