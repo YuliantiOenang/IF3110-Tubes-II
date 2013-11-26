@@ -104,7 +104,7 @@ public class IndexBarang extends HttpServlet {
 				Query = Query + " LIMIT "+offset+",10 ";
 
 				Barang B = new Barang(DBA);
-				B.executeQuery(Query);
+				B.executeQuery2(Query);
 				System.out.println(Query);
 				
 				int size = B.nama.size();
@@ -129,6 +129,21 @@ public class IndexBarang extends HttpServlet {
 		}
 		else
 		{
+			String Kategori = request.getParameter("kategori");
+			String NamaBarang = request.getParameter("nama_barang");
+			String harga = request.getParameter("harga");
+			String OP = request.getParameter("operator");
+			
+			if (Kategori == null) Kategori="";
+			if (NamaBarang == null) NamaBarang="";
+			if (harga == null) harga="";
+			if (OP == null) OP="";
+			
+			request.setAttribute("kategori", Kategori);
+			request.setAttribute("NamaBarang", NamaBarang);
+			request.setAttribute("harga", harga);
+			request.setAttribute("OP", OP);
+			
 			request.getRequestDispatcher("/view/Barang.jsp").forward(request, response);
 		}
 	}

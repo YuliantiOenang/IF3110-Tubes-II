@@ -38,4 +38,21 @@ public class Barang {
 			}
 		}catch (Exception e){}
 	}
+	
+	public void executeQuery2(String query)
+	{
+		DBA.executeQuery(query);
+		ResultSet RS = DBA.getQueryResult();
+		try
+		{
+			while (RS.next())
+			{
+				harga.add(RS.getObject(3).toString());
+				nama.add(RS.getObject(2).toString());
+				id.add(RS.getObject(1).toString());
+				gambar.add(RS.getObject(4).toString());
+				stok.add(RS.getObject(5).toString());
+			}
+		}catch (Exception e){}
+	}
 }
