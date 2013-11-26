@@ -79,4 +79,14 @@
     <servlet-name>fillsidebar</servlet-name>
     <url-pattern>/fillsidebar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>buyprocess</display-name>
+    <servlet-name>buyprocess</servlet-name>
+    <servlet-class>tubes2wbd.buyprocess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>buyprocess</servlet-name>
+    <url-pattern>/buyprocess</url-pattern>
+  </servlet-mapping>
 </web-app>
