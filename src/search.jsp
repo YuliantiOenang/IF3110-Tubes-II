@@ -1,5 +1,10 @@
 <%@ include file="header.jsp" %>
 		<script src="AJAXaddtocart.js"></script>
+		<script>
+			if (localStorage.user=="admin") {
+				window.location = "indexadmin.jsp"
+			}
+		</script>
 		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
@@ -49,7 +54,7 @@
 				}
 				
 				// Tentukan halaman last
-				int page_rows = 2;
+				int page_rows = 10;
 				int last = (int)Math.ceil((double)rows/page_rows);
 				
 				// Koreksi jika pagenum di luar range

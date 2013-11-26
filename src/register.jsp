@@ -1,5 +1,10 @@
 <%@ include file="header.jsp" %>
 		<script>
+			if (localStorage.user=="admin") {
+				window.location = "indexadmin.jsp"
+			}
+		</script>
+		<script>
 			if (localStorage.user!=null) {
 				window.location = "index.jsp"
 			}

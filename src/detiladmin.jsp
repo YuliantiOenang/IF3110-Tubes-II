@@ -1,5 +1,10 @@
 <%@ include file="header.jsp" %>
 		<script src="AJAXaddtocart.js"></script>
+		<script>
+			if (localStorage.user!="admin") {
+				window.location = "index.jsp"
+			}
+		</script>
 		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middleadmin.jsp" %>

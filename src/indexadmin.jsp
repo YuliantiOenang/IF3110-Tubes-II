@@ -1,5 +1,10 @@
 <%@ include file="header.jsp" %>
 		<link rel="stylesheet" href="layout.css">
+		<script>
+			if (localStorage.user!="admin") {
+				window.location = "index.jsp"
+			}
+		</script>
 	</head>
 <%@ include file="middleadmin.jsp" %>
 		<div id="container-left">

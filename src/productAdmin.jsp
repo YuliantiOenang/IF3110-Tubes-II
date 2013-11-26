@@ -1,5 +1,10 @@
 <%@ include file="header.jsp" %>
 		<script src="AJAXaddtocart.js"></script>
+		<script>
+			if (localStorage.user!="admin") {
+				window.location = "index.jsp"
+			}
+		</script>
 		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middleadmin.jsp" %>
@@ -57,7 +62,7 @@
 			}
 			
 			// Tentukan halaman last
-			int page_rows = 2;
+			int page_rows = 10;
 			int last = (int)Math.ceil((double)rows/page_rows);
 			
 			// Koreksi jika pagenum di luar range
@@ -82,6 +87,7 @@
 				out.print( "<img src=\"/tubes2/images/"+nama+".jpg\" alt='gambar' width='400' height='300'><br>");
 				out.print( "Nama: <a href='detiladmin.jsp?nama="+nama+"&harga="+harga+"'>"+nama+"</a><br>");
 				out.print( "Harga: "+harga+"<br>");
+				out.print( "-------------------------------------------------------------------<br><br>");
 				
 			}
 			
