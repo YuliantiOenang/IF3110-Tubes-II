@@ -50,5 +50,4 @@
         <error-code>404</error-code>
         <location>/index.jsp?page=error</location>
     </error-page>
---&gt;
-    </web-app>
+</web-app>
