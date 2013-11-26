@@ -31,6 +31,7 @@
 				<form method="get" action="search.jsp">
 					<input type="submit" class="button" id="searchbutton" value="Cari" />
 					<input type="text" name="search" id="cari" placeholder="Cari Barang" />
+					<input type="hidden" name="idx" value="1" />
 				</form>
 			</li>
 		</ul>
