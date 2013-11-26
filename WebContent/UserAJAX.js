@@ -30,16 +30,14 @@ function SubmitRegistration(){
 	else{
 	// code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
+	}	
 	
 	xmlhttp.onreadystatechange=function(){
-		window.alert(xmlhttp.status);
-		if (xmlhttp.readyState==4 && xmlhttp.status==200){		
-			//window.opener.document.getElementById("test").innerHTML=xmlhttp.responseText;
+		alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var responsecode = xmlhttp.responseText;
-			var response = JSON.parse(responsecode);
-			if(parseInt(response.code)==0){
-				window.alert("Registrasi Berhasil ! ");
+			if(parseInt(responsecode)==0){
+				window.alert("Registrasi Berhasil !");
 				// pindah ke halaman awal
 				// localStorage.id = document.forms["registration"]["username"].value;
 				// localStorage.pass=document.forms["registration"]["password"].value;
@@ -48,18 +46,18 @@ function SubmitRegistration(){
 				// localStorage.isCredit = 1;
 				// window.location.assign("CreditCard.html");
 			}
-			else if(response.code==1){
+			else if(parseInt(responsecode)==1){
 				window.alert("Id sudah digunakan");
 			}
-			else if(response.code==2){
+			else if(parseInt(responsecode)==2){
 				window.alert("email sudah digunakan");
 			}
 			else{
-				window.alert(response.code);
+				window.alert("Oi: " + responsecode);
 			}			
 		}
 	};
-	xmlhttp.open("POST","servlet", true);
+	xmlhttp.open("POST","servlet", false);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(data);
 }

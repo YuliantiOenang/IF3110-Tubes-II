@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.*;
+import java.lang.*;
 
 /**
  * Servlet implementation class UserServlet
@@ -43,42 +44,49 @@ public class UserServlet extends HttpServlet {
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (request.getParameter("type") == "registration"){
+		if (request.getParameter("type").equals("registration")){
 			
 			// Ambil parameter request
 			String username = request.getParameter("id");
 			String email = request.getParameter("email");
 			
 			// JSON Object untuk response
-			JSONObject responsetext = new JSONObject();
+			String responsetext;
 			
-			responsetext.put("code", "1");
 			if (CheckUsername(username)){
-				responsetext.put("code", "1");
+				responsetext = "1";
 			}
 			else if (CheckEmail(email)){
-				responsetext.put("code", "2");
+				responsetext = "2";
 			}
 			else{
 				String password = request.getParameter("password");
 				String fullname = request.getParameter("fullname");
-				String alamat = request.getParameter("a;amat");
+				String alamat = request.getParameter("alamat");
 				String provinsi = request.getParameter("provinsi");
 				String kota = request.getParameter("kota");
-				int kodepos = Integer.parseInt(request.getParameter("kodepos"));
-				int hp = Integer.parseInt(request.getParameter("hp"));
+				String kodepos = request.getParameter("kodepos");
+				String hp = request.getParameter("hp");
+				int kp;
+				int hape;
 				
-				AddUser(username, email, password, fullname, alamat, provinsi, kota, kodepos, hp);
+				if(!kodepos.equals(""))
+						kp = Integer.parseInt(kodepos);
+				else
+						kp = 0;
 				
-				responsetext.put("code", "0");
+			if(!hp.equals(""))
+					hape = Integer.parseInt(kodepos);
+			else
+					hape = 0;
+				
+				AddUser(username, email, password, fullname, alamat, provinsi, kota, kp, hape);
+				
+				responsetext = "3";
 			}
 			
-			response.getWriter().write(responsetext.toString());
+			response.getWriter().write(responsetext);
 		}	
 	}
 	
