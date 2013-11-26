@@ -7,10 +7,11 @@
 			<h1>LOGIN</h1>
 			<a class='exit' onclick='hideLogin()'>x</a>
 			<div id="loading"></div>
-			<form>
-				<label>Username</label><input type='text' id="login_username" name="Login[username]"></input><br/>
-				<label>Password</label><input type='password' id="login_password" name="Login[password]"></input><br/>
-				<button type='submit' onclick="login(); return false;" class='btn right'>Login</button>
+			<form action="login" method="post">
+				<label>Username</label><input type='text' id="username" name="username"></input><br/>
+				<label>Password</label><input type='password' id="password" name="password"></input><br/>
+				<!--   <button type="submit" onclick="login(); return false;" class="btn right">Login</button> -->
+				<button type="submit" class="btn right"></button>
 			</form>
 		</div>
 	</div>

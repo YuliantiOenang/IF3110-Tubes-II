@@ -52,7 +52,7 @@
 		function showLogin() {
 			document.getElementById('login_cont').style.opacity = 0;
 			document.getElementById('login_cont').style.top = "0px";
-			document.getElementById('login_username').focus();
+			document.getElementById('username').focus();
 			var x,aa,bb;
 			aa = 0;
 			bb = 0;
@@ -79,6 +79,41 @@
 			}
 		}
 	</script>
+	<%
+	boolean logout = ((Boolean)request.getAttribute("logout") != null);
+	
+	Cookie[] cookies = request.getCookies();
+	HttpSession sessions = request.getSession(true);
+	boolean isLogin = false;
+	String userid = null;
+	String username = null;
+	if (cookies != null) {
+		for (int i = 0; i < cookies.length; i++) {
+			Cookie cookie = cookies[i];
+			if (cookie.getName().equals("user_id")) {
+				if (!logout) {
+					isLogin = true;
+					userid = cookie.getValue();
+				} else {
+					cookie.setValue(null);
+					cookie.setMaxAge(0);
+				}
+			}
+			if (cookie.getName().equals("username")) {
+				if (!logout) {
+					username = cookie.getValue();
+				} else {
+					cookie.setValue(null);
+					cookie.setMaxAge(0);
+				}
+			}
+		}
+	}
+	if (isLogin && sessions.getAttribute("user_id") == null) {
+		sessions.setAttribute("user_id", userid);
+		sessions.setAttribute("username", username);
+	}
+	%>
 </head>
 <body>
 <!-- for first animation -->
@@ -123,13 +158,20 @@
 				</div>
 			
 			<div class='status'>
-					<!-- <p class="left"> welcome, <a href=''>name_here</a>! (<a href=''>Logout</a>)
-					</p> -->
-					<p class="left">You are not login. (<a href='#' onclick='showLogin()'>Login</a> or <a href='${pageContext.request.contextPath}/register.jsp'>Register now</a>)					</p>
-
+				<%
+				if (request.getSession(true).getAttribute("user_id") != null) {
+				%>
+					<p class="left"> welcome, <a href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>! (<a href="logout">Logout</a>)</p>
 					<p class="right">
 						<a href="/shop/">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
-					</p>					
+					</p>
+				<%
+				} else {
+				%>
+					<p class="left">You are not login. (<a onclick="showLogin()">Login</a> or <a href='${pageContext.request.contextPath}/register.jsp'>Register now</a>)</p>
+				<%
+				}
+				%>
 			</div>
 			</div>
 						
