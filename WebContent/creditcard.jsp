@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/validate.js"></script>
 <title>Insert title here</title>
+<script src="js/validate.js"></script>
 </head>
 <body>
 <jsp:include page="layout.jsp" />
@@ -32,9 +33,9 @@
 		<input type="hidden" name="return">
 		<button type="submit" id="btn" class="btn">Register</button>
 
- 		<?php if (!$sudahSet): ?>
+<!--  		<?php if (!$sudahSet): ?>
 			<a href="<?php echo $this->makeUrl('index/home') ?>" class="btn">Skip</a>
-		<?php endif; ?>
+		<?php endif; ?> -->
 		
 	</div>
 </form>

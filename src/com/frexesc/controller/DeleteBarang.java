@@ -1,7 +1,6 @@
 package com.frexesc.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 
- * Servlet implementation class Search
+ * Servlet implementation class DeleteBarang
  * 
  */
-public class Search extends HttpServlet {
+public class DeleteBarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Search() {
+	public DeleteBarang() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,9 +36,7 @@ public class Search extends HttpServlet {
 		if (session.getAttribute("username") == null) {
 			response.sendRedirect("../register.jsp");
 		} else {
-			DbConnection dbConnection = new DbConnection();
-			Connection connection = dbConnection.mySqlConnection();
-			
+			/** Take ArrayList to delete Data */
 		}
 
 	}

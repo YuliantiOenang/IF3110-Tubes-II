@@ -48,7 +48,7 @@ public class Cart extends HttpServlet {
 			Connection connection = dbConnection.mySqlConnection();
 
 			String query = "SELECT * FROM barang_user WHERE id_user="
-					+ session.getAttribute("user_id");
+					+ session.getAttribute("user_id") + " AND status=0";
 			String query2 = "SELECT * FROM barang";
 
 			try {

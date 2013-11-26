@@ -1,6 +1,5 @@
 package com.frexesc.model;
 
-import java.util.Date;
 
 public class BarangUserBean {
 	private long id;
