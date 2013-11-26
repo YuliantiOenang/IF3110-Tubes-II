@@ -64,9 +64,9 @@ a img  {
 	border: none;  
 }  
 
-a:hover, a:focus, a:active  
+a:hover, a:focus, a:active, a:VISITED
 {
-	color: blue;
+	color: black;
 }
 
 .popular{

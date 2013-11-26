@@ -15,15 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 import kelas.Barang;
 
 /**
- * Servlet implementation class DetailBarang
+ * Servlet implementation class validateBarang
  */
-public class DetailBarang extends HttpServlet {
+public class validateBarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailBarang() {
+    public validateBarang() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,51 +33,32 @@ public class DetailBarang extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String db = "toko_imba";
-		java.sql.Connection con = null;
-		int barangId = -1;
-		try{
-			barangId = Integer.parseInt(request.getParameter("gid"));
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		Barang barang = null;
-		try {
-			Class.forName("org.gjt.mm.mysql.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/"+db, "root", "");
-			System.out.println (db+ "database successfully opened.");
-			
-			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM inventori NATURAL JOIN kategori WHERE id_inventori = " + barangId);
-
-			while(rs.next()){
-				String name = rs.getString("nama_inventori");
-				barang = new Barang(name);
-				barang.setId_cat(rs.getInt("id_kategori"));
-				barang.setId_inven(rs.getInt("id_inventori"));
-				barang.setDesc(rs.getString("description"));
-				barang.setHarga(rs.getInt("harga"));
-				barang.setGambar(rs.getString("gambar"));
-				barang.setJumlah(rs.getInt("jumlah"));
-			}
-			
-			request.setAttribute("barang", barang);
-		}
-		catch(SQLException | ClassNotFoundException e) {
-			System.out.println("SQLException caught: " +e.getMessage());
-		}
-		
-		request.getRequestDispatcher("detail.jsp").forward(request, response);
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+		
+		String db = "toko_imba";
+		java.sql.Connection con = null;
+		int id = Integer.parseInt(request.getParameter("id"));
 
+		try {
+			Class.forName("org.gjt.mm.mysql.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/"+db, "root", "");
+			System.out.println (db+ "database successfully opened.");
+			
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery("SELECT * FROM inventori WHERE id_inventori = " + id);
+			int jumlahBarang = 0;
+			while(rs.next()){
+				jumlahBarang = rs.getInt("jumlah");
+			}
+			response.getWriter().write(String.valueOf(jumlahBarang));
+		}
+		catch(SQLException | ClassNotFoundException e) {
+			System.out.println("SQLException caught: " +e.getMessage());
+		}		
+	}
 }

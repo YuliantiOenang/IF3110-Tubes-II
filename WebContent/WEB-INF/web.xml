@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>WBD</display-name>
   <welcome-file-list>
-  	<welcome-file>home</welcome-file>
+    <welcome-file>home</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -39,15 +39,35 @@
   <servlet-mapping>
     <servlet-name>DetailBarang</servlet-name>
     <url-pattern>/detail</url-pattern>
-</servlet-mapping>
- <servlet>
- 	<description></description>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>UserServlet</servlet-class>
- </servlet>
+  </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>validateBarang</display-name>
+    <servlet-name>validateBarang</servlet-name>
+    <servlet-class>validateBarang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>validateBarang</servlet-name>
+    <url-pattern>/validateBarang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>addToCart</display-name>
+    <servlet-name>addToCart</servlet-name>
+    <servlet-class>addToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addToCart</servlet-name>
+    <url-pattern>/addToCart</url-pattern>
   </servlet-mapping>
 </web-app>
