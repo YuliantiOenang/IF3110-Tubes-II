@@ -24,6 +24,7 @@
 			</li>
 			<!--div id="log"></div-->
 			<li><a href="#login_form">Log In</a></li>
+			<li><a href="#">Log Out</a></li>
 			<li><a href="registerform.jsp">Daftar</a></li>
 			<li><a href="cart.jsp">Shopping Bag</a></li>
 			<li id="searchbar"><button type="button" class="button" id="searchbutton">Search</button></li>

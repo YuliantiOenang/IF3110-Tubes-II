@@ -4,6 +4,7 @@
 	<title>RAN's Shop - Home</title>
 	<link rel="stylesheet" href="css/main.css" type="text/css"/> 
 	<link rel="stylesheet" href="css/halamanbarang.css" type="text/css"/>
+	<script src="login.js"></script>
 </head>
 <body id="index" class="home">
 	<div id="container">
@@ -21,7 +22,7 @@
 					String query2 = "SELECT * FROM barang WHERE kategori = \"" +
 							categories.getObject("kategori") + "\" ORDER BY terjual DESC";
 					ResultSet mostBoughtProducts = statement2.executeQuery(query2); %>
-					<h2><%= categories.getObject("kategori") %></h2>
+					<div><h2><%= categories.getObject("kategori") %></h2></div>
 					<% for(int i = 1; i <= 3; i++) { 
 						if(mostBoughtProducts.next()) { %>
 						<div class="view">
