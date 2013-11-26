@@ -19,12 +19,12 @@
 	}
 	if(request.getParameter("kategori")!=null){
 		kategori = request.getParameter("kategori");
-		out.println("<h3>Barang-barang "+kategori+" yang kami jual</h3><hr>");
-		out.println("<div style='text-align:right'>Sort by <a href='halamanbarang.jsp?kategori="+kategori+"&sort=nama'>Name</a> | <a href='halamanbarang.php?kategori="+kategori+"&sort=harga'>Harga</a></div>");
+		out.println("<h3>Edit Barang - "+kategori+"</h3><hr>");
+		out.println("<div id='sort'>Sort by <a href='halamanbarang.jsp?kategori="+kategori+"&sort=nama'>Name</a> | <a href='halamanbarang.php?kategori="+kategori+"&sort=harga'>Harga</a></div>");
 	}else{
 		kategori = null;
-		out.println("<h3>Barang-barang yang kami jual</h3><hr>");
-		out.println("<div style='text-align:right'>Sort by <a href='halamanbarang.jsp?sort=nama'>Name</a> | <a href='halamanbarang.php?sort=harga'>Harga</a></div>");
+		out.println("<h3>Edit Barang</h3><hr>");
+		out.println("<div id='sort'>Sort by <a href='halamanbarang.jsp?sort=nama'>Name</a> | <a href='halamanbarang.php?sort=harga'>Harga</a></div>");
 	}
 	%>
 	<center id="indikator"></center>
@@ -55,9 +55,9 @@
 		}
 		<% 
 		if(request.getParameter("kategori")!=null){
-			out.println("xmlhttp.open('GET','ajaxbarang?page='+pages+'&kategori="+kategori+"&sort="+sort+"',true);");
+			out.println("xmlhttp.open('GET','ajaxeditbarang?page='+pages+'&kategori="+kategori+"&sort="+sort+"',true);");
 		}else{
-			out.println("xmlhttp.open('GET','ajaxbarang?page='+pages+'&sort="+sort+"',true);");
+			out.println("xmlhttp.open('GET','ajaxeditbarang?page='+pages+'&sort="+sort+"',true);");
 		}
 		%>
 		xmlhttp.send();
