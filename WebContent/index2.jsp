@@ -39,7 +39,7 @@
 		<script>
 			var username = localStorage.getItem('username');
 			if (username === null) {
-				document.write('<li><a href="#" onClick="MyWindow=window.open(' + " 'frontgate.php','Login','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;" + '">Login</a></li>');
+				document.write('<li><a href="#" onClick="MyWindow=window.open(' + " 'frontgate.jsp','Login','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;" + '">Login</a></li>');
 			}
 			else {
 				document.write('<li><a href="profile.jsp?username=' + username + '">' + username + '</a></li>');
