@@ -57,6 +57,7 @@
 							}catch(ClassNotFoundException ce){out.println(ce);} 
 
 						con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
+						PreparedStatement kya;
 						
 						PreparedStatement pst;
 						String password = request.getParameter("changepassword");
@@ -68,6 +69,14 @@
 						String kodepos = request.getParameter("kodepos");
 						
 						String loggedin = (String)session.getAttribute("login_user");
+						
+						kya = con.prepareStatement("SELECT * FROM customer WHERE IdName=?");
+						kya.setString(1,loggedin);
+						ResultSet rs;
+					
+						rs  = kya.executeQuery();
+					
+						
 						pst = con.prepareStatement("UPDATE customer SET NamaLengkap=? ,Password=? ,NomorHP=? ,Alamat=? ,Kota=? ,Provinsi=? ,KodePos=? WHERE IdName=?");
 						pst.setString(1,namalengkap);
 						pst.setString(2,password);
@@ -77,9 +86,35 @@
 						pst.setString(6,provinsi);
 						pst.setString(7,kodepos);
 						pst.setString(8,loggedin);
-
+						
 						pst.executeUpdate();
 						pst.clearParameters();
+						
+						while (rs.next()){
+							if (namalengkap.equals(rs.getString(3))){
+								out.println("<script> alert('Namalengkap tidak diubah'); </script>");
+							}
+							if (password.equals(rs.getString(2))){
+								out.println("<script> alert('Password tidak diubah'); </script>");
+							}
+							if (nomorhp.equals(rs.getString(4))){
+								out.println("<script> alert('NomorHP tidak diubah'); </script>");
+							}
+							if (alamat.equals(rs.getString(5))){
+								out.println("<script> alert('Alamat tidak diubah'); </script>");
+							}
+							if (kota.equals(rs.getString(6))){
+								out.println("<script> alert('Kota tidak diubah'); </script>");
+							}
+							if (provinsi.equals(rs.getString(7))){
+								out.println("<script> alert('Provinsi tidak diubah'); </script>");
+							}
+							if (kodepos.equals(rs.getString(8))){
+								out.println("<script> alert('Kode Pos tidak diubah'); </script>");
+							}
+						}
+						
+						kya.clearParameters();
 						
 						con.close();
 						} catch (Exception e) {out.println("Unable to connect to database."); };
