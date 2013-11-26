@@ -13,18 +13,18 @@ var str="";
 
 if (window.XMLHttpRequest)
 {// code for IE7+, Firefox, Chrome, Opera, Safari
-	xmlhttp=new XMLHttpRequest();
+	xmlhttpEA=new XMLHttpRequest();
 }
 else
 {// code for IE6, IE5
-	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	xmlhttpEA=new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-xmlhttp.onreadystatechange=function()
+xmlhttpEA.onreadystatechange=function()
 {
-	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	if (xmlhttpEA.readyState==4 && xmlhttpEA.status==200)
 	{
-		var parsedData = JSON.parse(xmlhttp.responseText);		
+		var parsedData = JSON.parse(xmlhttpEA.responseText);		
 		str = str+parsedData['content'];
 		GPage = parsedData['pageOf'];
 		GJmlPage = Math.floor(parsedData['jmlPage']);
@@ -51,9 +51,9 @@ function init(URL,name,jenis,searchName,searchKateg,searchHarga,searchOP)
 		bookmark[i] = false;
 		GScroll[i] = (i-1) * 400;
 	}
-	xmlhttp.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true); //URL samain
+	xmlhttpEA.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true); //URL samain
 	CurPage++;
-	xmlhttp.send();
+	xmlhttpEA.send();
 }
 
 onscroll = function() {
@@ -64,9 +64,9 @@ onscroll = function() {
 	//alert("Page :"+CurPage+" Scroll : "+GScroll[CurPage]);
 	bookmark[CurPage] = true;
 	setTimeout(function(){		
-		xmlhttp.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true);
+		xmlhttpEA.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true);
 	 CurPage++;
-	 xmlhttp.send();
+	 xmlhttpEA.send();
 	},2000);
   }
 };
