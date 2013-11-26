@@ -10,6 +10,7 @@
 <b>Stok </b>: <%=B.stok.get(0)%><br>
 <hr>
 
-<button onclick='pertanyaan(<%=B.id.get(0)%>)'> Beli </button>
+Jumlah Barang : <input type="text" id="beliBarangOKE<%=B.id.get(0)%>"><br>
+<button onclick='pertanyaan(<%=B.id.get(0)%>,<%=B.stok.get(0)%>)'> Beli </button>
 
 

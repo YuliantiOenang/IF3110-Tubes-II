@@ -33,11 +33,19 @@ function beliBarang()
 	keterangan = "";
 }
 
-function pertanyaan(id_b)
+function pertanyaan(id_b,stok)
 {
 	id_order = 5;
 	id_barang = id_b;
-	jumlah = prompt("Masukkan jml barang","");
-	keterangan = prompt("Tambahkan keterangan order (jika ada)","");
-	beliBarang();
+	
+	var jumlah = document.getElementById("beliBarangOKE"+id_b).value;
+	if ((jumlah == null) || (jumlah == ""))
+		alert("jumlah barang harus diisi");
+	else if (jumlah > stok) alert("Pemesanan barang melebihi stok, hanya tersisa "+stok+" barang");
+	else
+	{
+		keterangan = prompt("Tambahkan keterangan order (jika ada)","");
+		beliBarang();
+	}
+	
 }
