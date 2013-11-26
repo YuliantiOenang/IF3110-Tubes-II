@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2013 at 05:55 AM
+-- Generation Time: Nov 26, 2013 at 11:38 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -119,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `creditcardname` varchar(50) DEFAULT NULL,
   `expireddate` date DEFAULT NULL,
   `privilege` enum('Admin','User') NOT NULL DEFAULT 'User',
+  `transaction` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -127,8 +128,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `alamat`, `provinsi`, `kotakabupaten`, `kodepos`, `nomor_handphone`, `creditcardnum`, `creditcardname`, `expireddate`, `privilege`) VALUES
-('lala', 'email', 'Password', 'FULL', 'alamat', 'provinsi', 'kota', 1313, 144141, 1234, 'lala', '1912-12-13', 'User');
+INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `alamat`, `provinsi`, `kotakabupaten`, `kodepos`, `nomor_handphone`, `creditcardnum`, `creditcardname`, `expireddate`, `privilege`, `transaction`) VALUES
+('Hafizh', 'asda@adsaas.com', '11111111', 'alalala s', '2qwewqeqwe', 'qweeq', 'qwew', 1123213, 1123213, 4444, 'HafizhA', '1992-12-12', 'User', 0),
+('Hafizhs', 'asda@adsaas.comq', '', '', '', '', '', 0, 0, 1232131, 'HafizhAdi', '1212-12-12', 'User', 0),
+('lala', 'email', '', '', '', '', '', 0, 0, 1232131, 'HafizhAdi', '1212-12-12', 'User', 0);
 
 --
 -- Constraints for dumped tables

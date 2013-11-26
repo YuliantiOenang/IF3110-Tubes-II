@@ -83,11 +83,61 @@ public class UserServlet extends HttpServlet {
 				
 				AddUser(username, email, password, fullname, alamat, provinsi, kota, kp, hape);
 				
-				responsetext = "3";
+				responsetext = "0";
 			}
 			
 			response.getWriter().write(responsetext);
-		}	
+		}
+		else if (request.getParameter("type").equals("profile")){
+			
+			// Ambil parameter request
+			String username = request.getParameter("id");	
+			String password = request.getParameter("password");
+			String fullname = request.getParameter("fullname");
+			String alamat = request.getParameter("alamat");
+			String provinsi = request.getParameter("provinsi");
+			String kota = request.getParameter("kota");
+			String kodepos = request.getParameter("kodepos");
+			String hp = request.getParameter("hp");
+			int kp;
+			int hape;
+				
+			if(!kodepos.equals(""))
+					kp = Integer.parseInt(kodepos);
+			else
+					kp = 0;
+				
+			if(!hp.equals(""))
+					hape = Integer.parseInt(kodepos);
+			else
+					hape = 0;
+				
+			EditProfile(username, password, fullname, alamat, provinsi, kota, kp, hape);	
+			
+			response.getWriter().write("0");
+		}
+		else if (request.getParameter("type").equals("creditcard")){
+			// Ambil parameter request
+			int CreditCard = Integer.parseInt(request.getParameter("cardnum"));
+
+			// Response
+			String responsetext;
+			
+			if (CheckCredit(CreditCard)){
+				responsetext = "1";
+			}
+			else{
+				String id = request.getParameter("id");
+				String cardname = request.getParameter("cardname");
+				String expdate = request.getParameter("expdate");
+				
+			EditCCard(id, cardname, CreditCard, expdate);	
+				
+				responsetext = "0";
+			}
+						
+			response.getWriter().write(responsetext);
+		}
 	}
 	
 	// FUNGSI EDIT
@@ -142,7 +192,7 @@ public class UserServlet extends HttpServlet {
 				conn = DriverManager.getConnection(DBURL, USER, PASS);
 						
 				// Konstruksi query
-				String query = "UPDATE user SET creditcardname = '" + creditname + "', creditcardnum = " + creditnum + ", expireddate = '" + expired + "'";
+				String query = "UPDATE user SET creditcardname = '" + creditname + "', creditcardnum = " + creditnum + ", expireddate = '" + expired + "' WHERE id='" + id + "'";
 				System.out.println(query);
 						
 				stmt = conn.createStatement();
@@ -178,7 +228,7 @@ public class UserServlet extends HttpServlet {
 				conn = DriverManager.getConnection(DBURL, USER, PASS);
 						
 				// Konstruksi query
-				String query = "UPDATE user SET password = '" + password + "', full_name = '" + fullname + "', alamat = '" + alamat + "', provinsi= '" + provinsi + "', kotakabupaten = '" + kota + "', kodepos = " + kodepos + ", nomor_handphone = " + hp;	
+				String query = "UPDATE user SET password = '" + password + "', full_name = '" + fullname + "', alamat = '" + alamat + "', provinsi= '" + provinsi + "', kotakabupaten = '" + kota + "', kodepos = " + kodepos + ", nomor_handphone = " + hp + " WHERE id='" + id + "'";	
 				System.out.println(query);
 						
 				stmt = conn.createStatement();
@@ -289,7 +339,7 @@ public class UserServlet extends HttpServlet {
 					return true;
 			else
 				return false;
-		}
+	}
 
 	// Mengembalikan true apabila telah terdapat kartu kredit dengan nomor CreditCard, false bila tidak
 	private boolean CheckCredit(int CreditCard){
@@ -335,4 +385,51 @@ public class UserServlet extends HttpServlet {
 					return false;
 			}
 
+	// Login, mengembalikan true bila login berhasil dan false bila gagal
+	private boolean Login(String id, String password){
+		// Variabel akses
+		Connection conn = null;
+		Statement stmt = null;
+		int Result = 0;
+					
+		// Coba buka koneksi
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DBURL, USER, PASS);
+						
+			// Konstruksi query
+			String query = "SELECT COUNT(1) as hasil FROM user WHERE id = '" + id + "' AND password = '" + password + "'";
+			System.out.println(query);
+						
+			stmt = conn.createStatement();
+						
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			Result = rs.getInt("hasil");
+		}catch(SQLException se){
+			se.printStackTrace();	
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}					
+		}
+					
+		if (Result == 1)
+				return true;
+		else
+			return false;
+	}
+	
+	public static void main(String[] arg0){
+		
+	}
 }
