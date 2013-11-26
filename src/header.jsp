@@ -33,7 +33,7 @@
 							%>
 							
 							
-							<h3>Welcome, <span class="user-name"><a href="edit-profile.jsp" id="member"><% out.println(valuelagi); %></a></span>!</h3>
+							<h3>Welcome, <span class="user-name"><a href="getdatamember" id="member"><% out.println(valuelagi); %></a></span>!</h3>
 							<p id="user-control">
 								<span class="edit-logout">	<a href='logout.jsp' id='logout2'>Logout</a></span>
 							</p>
@@ -56,9 +56,41 @@
 					</div>
 					
 					<div id="search-bar" class="frame">
-						<form name="search-form" action="getsearch" onsubmit="return validateForm('search-form', 'src', 'Ketikkan barang yang dicari...')">
-							<input id="search-box" class="kolom-9" type="text" name="src" value="Ketikkan barang yang dicari..." onfocus="checkclear(this)" onblur="checkempty(this, 'Ketikkan barang yang dicari...')">
+						<form name="search-form" action="getsearch" onsubmit="return validateForm('search-form', 'src', 'ketikkan yang ingin dicari..')">
+							<input id="search-box" class="kolom-9" type="text" name="src" value="ketikkan yang ingin dicari.." onfocus="checkclear(this)" onblur="checkempty(this, 'ketikkan yang ingin dicari..')">
+
 							<input id="search-button" class="kolom-1" type="submit" value="">
+							<select id="search-kategori" name="search-kategori">
+								<option value = "%">- kategori -</option>
+								<option value = "Beras">Beras</option>
+								<option value = "Daging">Daging</option>
+								<option value = "Sayuran">Sayuran</option>
+								<option value = "Frozen Food">Frozen Food</option>
+								<option value = "Snack">Snack</option>
+							</select><br/>
+							<select id="search-harga1" name="search-harga1">
+								<option value = "-1">- harga -</option>
+								<option value = "0">0</option>
+								<option value = "10000">10.000</option>
+								<option value = "25000">25.000</option>
+								<option value = "50000">50.000</option>
+								<option value = "100000">100.000</option>
+								<option value = "250000">250.000</option>
+								<option value = "500000">500.000</option>
+							</select>
+							<a> &nbsp; - &nbsp; </a>
+							<select id="search-harga2" name="search-harga2">
+								<option value = "999999999">- harga -</option>
+								<option value = "0">0</option>
+								<option value = "10000">10.000</option>
+								<option value = "25000">25.000</option>
+								<option value = "50000">50.000</option>
+								<option value = "100000">100.000</option>
+								<option value = "250000">250.000</option>
+								<option value = "500000">500.000</option>
+																
+							</select>
+							
 						</form>					
 					</div>
 				</div>
@@ -69,9 +101,9 @@
 			<div id="popupbox"> 
 				<a href="javascript:login('hide')" id ="close">[X] close</a> <br/><br/>
 				Username:
-				<input name="username" size="14" /><br/>
+				<input id= "username" type="text" name="username" /><br/>
 				Password:
-				<input name="password" type="password" size="14" /><br/><br/>
+				<input id="password" name="password" type="password"  /><br/><br/>
 				<input type="button" name="button" id= "sbmtlogin" onclick="forLogin()" value="login" />
 				</div> 
 			
@@ -88,6 +120,9 @@
 				<li><a href="getsayuran">Sayuran</a></li>
 				<li><a href="getfrozen">Frozen Food</a></li>
 				<li><a href="getsnack">Snack</a></li>
+				<% if (valuelagi !=null){if(valuelagi.equals("admin")){%>
+				<li><a href="getadmin">Halaman Admin</a></li>
+				<%}}%>
 			</ul>
 		</div>
 		<!-- End of Navbar -->
@@ -96,16 +131,23 @@
 	<script src="Ajaxlogin.js"></script> 
 	<script>
 	function forLogin(){
+		
 		var username = AJAXPost();
 		
-		if (username.length!=3){
+		if (username!="1"){
 			
 			document.getElementById('sbmtlogin').value="Login\nLogin Sukses";
-			var newhtml =		'<h3>Welcome, <span class="user-name"><a href="edit-profile.jsp" id="member">'+username+'</a></span>!</h3><p id="user-control"><span class="edit-logout">	<a href="logout.jsp" id="logout2">Logout</a></span></p>';
+			var newhtml =		'<h3>Welcome, <span class="user-name"><a href="getdatamember" id="member">'+username+'</a></span>!</h3><p id="user-control"><span class="edit-logout">	<a href="logout.jsp" id="logout2">Logout</a></span></p>';
 			document.getElementById("logreg").innerHTML=newhtml;
+			if(username=="admin"){
+				var newhtml2 =		'<ul><li><a href="getberas">Beras</a></li><li><a href="getdaging">Daging</a></li><li><a href="getsayuran">Sayuran</a></li><li><a href="getfrozen">Frozen Food</a></li><li><a href="getsnack">Snack</a></li><li><a href="getadmin">Halaman Admin</a></li></ul>';
+				document.getElementById("navbar").innerHTML=newhtml2;
+			}
 	
 		}else{
 			document.getElementById('sbmtlogin').value="Login\nusername/password salah";
 		}
+		
+		
 	}
 	</script>	

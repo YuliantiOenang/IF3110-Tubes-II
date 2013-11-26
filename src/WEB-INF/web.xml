@@ -6,9 +6,44 @@ version="2.5">
 <description>
 My First Servlet
 </description>    
+
+<multipart-config>
+    <location>/tmp</location>
+    <max-file-size>20848820</max-file-size>
+    <max-request-size>418018841</max-request-size>
+    <file-size-threshold>1048576</file-size-threshold>
+</multipart-config>
 <servlet> 
    <servlet-name>LoginServlet</servlet-name> 
    <servlet-class>npackage.LoginServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>CartController</servlet-name> 
+   <servlet-class>npackage.CartController</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>FileUploadServlet</servlet-name> 
+   <servlet-class>npackage.FileUploadServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>insertbarang</servlet-name> 
+   <servlet-class>npackage.insertbarang</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>editbarang</servlet-name> 
+   <servlet-class>npackage.editbarang</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>DeleteSelectedItem</servlet-name> 
+   <servlet-class>npackage.DeleteSelectedItem</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>NamaBarangValidationServlet</servlet-name> 
+   <servlet-class>npackage.NamaBarangValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
+   <servlet-name>getadmin</servlet-name> 
+   <servlet-class>npackage.getadmin</servlet-class> 
 </servlet> 
 <servlet> 
    <servlet-name>UpdateServlet</servlet-name> 
@@ -66,6 +101,7 @@ My First Servlet
    <servlet-name>CardNumberValidationServlet</servlet-name> 
    <servlet-class>npackage.CardNumberValidationServlet</servlet-class> 
 </servlet> 
+
 <servlet> 
    <servlet-name>EmailValidationServlet</servlet-name> 
    <servlet-class>npackage.EmailValidationServlet</servlet-class> 
@@ -92,8 +128,32 @@ My First Servlet
    <url-pattern>/UsernameValidationServlet</url-pattern> 
 </servlet-mapping> 
 <servlet-mapping> 
+   <servlet-name>FileUploadServlet</servlet-name> 
+   <url-pattern>/FileUploadServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>NamaBarangValidationServlet</servlet-name> 
+   <url-pattern>/NamaBarangValidationServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
    <servlet-name>getdatamember</servlet-name> 
    <url-pattern>/getdatamember</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>CartController</servlet-name> 
+   <url-pattern>/CartController</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>DeleteSelectedItem</servlet-name> 
+   <url-pattern>/DeleteSelectedItem</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>getadmin</servlet-name> 
+   <url-pattern>/getadmin</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>editbarang</servlet-name> 
+   <url-pattern>/editbarang</url-pattern> 
 </servlet-mapping> 
 <servlet-mapping> 
    <servlet-name>getbestbuy</servlet-name> 
@@ -142,6 +202,10 @@ My First Servlet
 <servlet-mapping> 
    <servlet-name>insertdata</servlet-name> 
    <url-pattern>/insertdata</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>insertbarang</servlet-name> 
+   <url-pattern>/insertbarang</url-pattern> 
 </servlet-mapping> 
 <servlet-mapping> 
    <servlet-name>insertcreditcard</servlet-name> 

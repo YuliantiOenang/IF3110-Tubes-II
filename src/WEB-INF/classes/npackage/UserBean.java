@@ -43,6 +43,15 @@ import java.util.ArrayList;
 		return beras;
 	}
 	
+	public void clearArraylist(){
+		search = new ArrayList<Barang>();
+		beras = new ArrayList<Barang>();
+		daging = new ArrayList<Barang>();
+		sayuran = new ArrayList<Barang>();
+		frozen = new ArrayList<Barang>();
+		snack = new ArrayList<Barang>();
+	
+	}
 	public void setberas(Barang newberas){	
 		beras.add(newberas);
 	}

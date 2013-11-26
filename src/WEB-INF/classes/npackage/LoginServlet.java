@@ -56,14 +56,14 @@ try
 		  response.setContentType("text/html");
 		  
 		  HttpSession session = request.getSession(true);	    
-          session.setAttribute("username",user.getUsername()); 
-		  session.setAttribute("password",user.getPassword()); 
+          session.setAttribute("username",request.getParameter("username")); 
+		  session.setAttribute("password",request.getParameter("password")); 
 		  session.setAttribute("cardnumber",user.getNoCredit());
-		  response.getWriter().println(user.getUsername());
+		  response.getWriter().print(user.getUsername());
      }
 	        
      else 
-         response.getWriter().println(1);//error page 
+         response.getWriter().print(1);//error page 
 
 
 } 

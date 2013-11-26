@@ -104,6 +104,36 @@ body {
 	padding-left: 7px;
 }
 
+#search-kategori {
+	width: 200px;
+	height: 30px;
+	color: #cccccc;
+	font-size: 12px;
+	padding-left: 0;
+	margin-left: -37px;
+	margin-top:3px;
+}
+
+
+#search-harga1 {
+	width: 85px;
+	height: 30px;
+	color: #cccccc;
+	font-size: 12px;
+	padding-left: 0;
+	margin-left: -37px;
+	margin-top:3px;
+}
+
+#search-harga2 {
+	width: 85px;
+	height: 30px;
+	color: #cccccc;
+	font-size: 12px;
+	padding-left: 0;
+	margin-top:3px;
+}
+
 #search-button {
 	background-image: url('../img/btn_src.png');
 	background-color: #B20000;
@@ -211,8 +241,8 @@ body {
 	border-color: #cccccc;
 	border-width: 2px;
 	padding: 20px 0;
-	max-height: 176px;
-	min-width: 186px;
+	height: 176px;
+	width: 186px;
 	
 }
 .gambar:hover{
@@ -519,14 +549,50 @@ body {
 	margin-top: 15px;
 }
 
-  #popupbox{
+ #popupbox{
   margin: 0; 
   margin-left: 42%; 
-  margin-top: -150px; 
+  margin-top: -10%; 
   padding-top: 10px; 
   width: 20%; 
   height: 150px; 
   position: absolute; 
+  background: #B20000; 
+  border: solid #000000 2px; 
+  z-index: 9; 
+  font-family: arial; 
+  visibility: hidden; 
+  }
+  
+  #popupboxadd{
+  margin: 0; 
+  text-align: left;
+  margin-left: 25%; 
+  margin-top: 0%; 
+  padding: 10px; 
+  width: 20%; 
+  height: 230px; 
+  position: fixed;
+  top: 15em;
+  right: 35em;
+  background: #B20000; 
+  border: solid #000000 2px; 
+  z-index: 9; 
+  font-family: arial; 
+  visibility: hidden; 
+  }
+  
+  #popupboxedit{
+  margin: 0; 
+  text-align: left;
+  margin-left: 25%; 
+  margin-top: 0%; 
+  padding: 10px; 
+  width: 20%; 
+  height: 200px; 
+  position: fixed;
+  top: 15em;
+  right: 35em;
   background: #B20000; 
   border: solid #000000 2px; 
   z-index: 9; 
