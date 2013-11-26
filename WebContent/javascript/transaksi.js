@@ -38,7 +38,7 @@ if(localStorage.wbduser){
 	function generateSideBar(tab_shopping){
 		var xmlhttp;
 		var content_sb ="<div><span>NO.</span><span  style='margin-left:10px'>nama brg</span><span  style='margin-left:20px'>qtt</span><span  style='margin-left:10px'>price</span></div>";
-		var itt =0;
+		var itt=0;
 		var total=0;
 		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
 			xmlhttp=new XMLHttpRequest();
@@ -51,8 +51,8 @@ if(localStorage.wbduser){
 				if(localStorage.wbduser) localStorage.shoppingbag=JSON.stringify(shopping_bag);				
 				for(var k=0;k<isi.length;k++){
 					itt++;
-					total+=isi[k].dibeli*isi[k].harga;
 					if(parseInt(isi[k].dibeli)>0){
+						total+=(parseInt(isi[k].dibeli)*parseInt(isi[k].harga));
 						content_sb += "<div id=k"+isi[k].id+"><span>"+itt+"</span><span  style='margin-left:20px'>"+isi[k].nama+"</span><span  style='margin-left:20px'>"+isi[k].dibeli+"</span><span  style='margin-left:10px'>"+isi[k].harga+"</span><a href='javascript:doInCart(0,"+isi[k].id+",0)'><img src='images/cancel.png' width=15 height=15/></a></div>";
 					}
 				}
