@@ -59,6 +59,7 @@ public class showList extends HttpServlet {
 			while(rs.next()){
 				String name = rs.getString("nama_inventori");
 				Barang brg = new Barang(name);
+				brg.setId_inven(rs.getInt("id_inventori"));
 				brg.setDesc(rs.getString("description"));
 				brg.setHarga(rs.getInt("harga"));
 				brg.setJumlah(rs.getInt("jumlah"));

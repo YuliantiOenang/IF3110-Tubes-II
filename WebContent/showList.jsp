@@ -16,7 +16,7 @@
 	
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
 		for(Barang b: barangs){
-			out.println("<strong>Nama:</strong> "+b.getNama() + "<br/>");
+			out.println("<strong>Nama:</strong> <a href=\"detail?gid=" + b.getId_inven() + "\">"+b.getNama() + "</a><br/>");
 			out.println("<strong>Harga:</strong> "+b.getHarga() + "<br/>");
 			out.println("<strong>Jumlah:</strong> "+b.getJumlah() + "<br/>");
 			out.println("<hr>");

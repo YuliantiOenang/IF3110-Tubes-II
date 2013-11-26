@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<img src="res/header.png" height="258px" width="915px"><br/>
+<a href=""><img src="res/header.png" height="258px" width="915px"></a><br/>
 <link href='http://fonts.googleapis.com/css?family=Gorditas' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/homepage.css" type="text/css">   
 

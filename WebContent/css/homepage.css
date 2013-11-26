@@ -60,6 +60,15 @@ a{
 	cursor: pointer;
 }
 
+a img  {  
+	border: none;  
+}  
+
+a:hover, a:focus, a:active  
+{
+	color: blue;
+}
+
 .popular{
 	margin-top: 220px;
 }

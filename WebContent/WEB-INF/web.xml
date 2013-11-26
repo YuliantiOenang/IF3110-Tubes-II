@@ -30,4 +30,14 @@
     <servlet-name>BarangPopuler</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailBarang</display-name>
+    <servlet-name>DetailBarang</servlet-name>
+    <servlet-class>DetailBarang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailBarang</servlet-name>
+    <url-pattern>/detail</url-pattern>
+  </servlet-mapping>
 </web-app>

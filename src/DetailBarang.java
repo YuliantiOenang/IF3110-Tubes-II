@@ -15,21 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import kelas.Barang;
 
 /**
- * Servlet implementation class BarangPopuler
+ * Servlet implementation class DetailBarang
  */
-public class BarangPopuler extends HttpServlet {
+public class DetailBarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BarangPopuler() {
+    public DetailBarang() {
         super();
         // TODO Auto-generated constructor stub
-    }
-    
-    public String formalify(String name){
-    	return Character.toUpperCase(name.charAt(0)) + name.substring(1);
     }
 
 	/**
@@ -37,47 +33,41 @@ public class BarangPopuler extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String db = "toko_imba";
 		java.sql.Connection con = null;
-
+		int barangId = -1;
+		try{
+			barangId = Integer.parseInt(request.getParameter("gid"));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		Barang barang = null;
 		try {
 			Class.forName("org.gjt.mm.mysql.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost/"+db, "root", "");
 			System.out.println (db+ "database successfully opened.");
 			
-			
-			 
-			for(int i=0;i<5;i++){
-				ArrayList<Barang> barangKategori = new ArrayList<Barang>();
-				Statement state = con.createStatement();
-				ResultSet rs = state.executeQuery("SELECT * FROM transaksi, inventori, kategori WHERE transaksi.id_inventori = inventori.id_inventori AND inventori.id_kategori = kategori.id_kategori AND inventori.id_kategori = " + (i+1) + " ORDER BY transaksi.jumlah DESC LIMIT 3");
-				
-				String kategori = null;
-				
-				while(rs.next()){
-					if(kategori == null){
-						kategori = rs.getString("nama_kategori");
-					}
-					String name = rs.getString("nama_inventori");
-					Barang brg = new Barang(name);
-					brg.setDesc(rs.getString("description"));
-					brg.setHarga(rs.getInt("harga"));
-					brg.setJumlah(rs.getInt("jumlah"));
-					barangKategori.add(brg);
-					//request.setAttribute("name", name);
-				}
-				
-				//System.out.println("kategori:" + formalify(kategori));
-				request.setAttribute("namaKategori" + i, formalify(kategori));
-				request.setAttribute("barangKategori" + i, barangKategori);
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery("SELECT * FROM inventori NATURAL JOIN kategori WHERE id_inventori = " + barangId);
+
+			while(rs.next()){
+				String name = rs.getString("nama_inventori");
+				barang = new Barang(name);
+				barang.setDesc(rs.getString("description"));
+				barang.setHarga(rs.getInt("harga"));
+				barang.setJumlah(rs.getInt("jumlah"));
 			}
 			
+			request.setAttribute("barang", barang);
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			System.out.println("SQLException caught: " +e.getMessage());
 		}
-				
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("detail.jsp").forward(request, response);
+		
 	}
 
 	/**
