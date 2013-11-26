@@ -7,14 +7,22 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
+		<%
+		connection = DriverManager.getConnection(db_url, "root", "");
+		assert(connection != null);
+		statement = connection.createStatement();
+		String query = "SELECT * FROM barang WHERE nama = " + request.getParameter("barang");
+		ResultSet goods = statement.executeQuery(query);
+		%>
 		
 		<div id="contentcontainer">
+		<% while(goods.next()) { %>
 		<article id="content" class="body">
-			<img id="imgbarang" src="images/cocacola.jpg"/>
-			<h2>Coca Cola</h2>
+			<img id="imgbarang" src="<%= goods.getObject("gambar")%>"/>
+			<h2><%= goods.getObject("nama") %></h2>
 			<form>
 			<p>Keterangan: </p>
-			<p>Minuman soda menyegarkan.</p>
+			<p><%= goods.getObject("keterangan") %></p>
 			<p>Tambahan permintaan: </p>
 			<textarea></textarea>
 			<p>Masukkan jumlah yang akan dibeli: </p>
@@ -22,6 +30,7 @@
 			<input type="button" id="buybutton" value="Beli!">
 			</form>
 		</article>
+		<% } connection.close(); %>
 		
 		<%@include file="sidebar.jsp" %>
 		</div>
