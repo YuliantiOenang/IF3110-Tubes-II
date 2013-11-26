@@ -40,7 +40,7 @@
 			<td width="100" align="center">Deskripsi Tambahan</td>
 			<td width="100" align="center">Aksi</td>
 		</tr>
-
+		<% int totalHarga = 0; %>
 		<%
 			for (int i = 0; i < barangUserBean.size(); i++) {
 		%>
@@ -58,6 +58,7 @@
 			<%
 				if (b2.getId() == b.getId_item()) {
 			%>
+			<% totalHarga = totalHarga + b.getTotal_item() * b2.getPrice(); %>
 			<td><%=b2.getName()%></td>
 			<td><input type="text" name="qty" size="8"
 				id="qty_<%=b.getId()%>" value="<%=b.getTotal_item()%>"></td>
@@ -67,7 +68,7 @@
 			</td>
 			<td><%=b.getDescription()%></td>
 			<td><input type="button" value="Update Cart" id="beli"
-				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/updateCart', <%=b.getId()%> ); return false;">
+				onClick="onUpdateCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/updateCart', <%=b.getId()%> ); return false;">
 				<a href="./deleteBarang?id=<%=b.getId()%>">Delete</a></td>
 			<%
 				break;
@@ -80,6 +81,16 @@
 		<%
 			}
 		%>
+		
+		<tr bgcolor="yellow">
+		<td></td>
+		<td>Total:</td>
+		<td></td>
+		<td><div id="total_harga"><%= totalHarga %></div></td>
+		<td></td>
+		<td></td>
+		</tr>
+		
 	</table>
 
 </body>
