@@ -9,9 +9,10 @@ else
 
 xmlhttp2.onreadystatechange=function()
 {
-	if (xmlhttp2.readyState==4 && xmlhttp.status==200)
+	if (xmlhttp2.readyState==4 && xmlhttp2.status==200)
 	{
 		var parsedData = JSON.parse(xmlhttp2.responseText);		
+		if (parsedData['content']=="") parsedData['content']="<select><option>--No Suggestions--</option></select>";
 		document.getElementById('suggestions').innerHTML=parsedData['content'];
 	}
 };

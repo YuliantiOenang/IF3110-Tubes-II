@@ -112,11 +112,13 @@ public class IndexBarang extends HttpServlet {
 				String str="";
 				for (i=0;i<size;i++)
 				{
+					String input="<input type='text' id='beliBarangOKE"+B.id.get(i)+"'>";
 					str = str + "<tr>";
-					str = str + "<td>" + B.nama.get(i)+ "</td>";
+					str = str + "<td><a href='/ruserba/barang/detail?id="+B.id.get(i)+"'> " + B.nama.get(i)+ "</a></td>";
 					str = str + "<td>" + B.harga.get(i) + "</td>";
 					str = str + "<td>" + "<img src='/ruserba/images/barang/"+B.gambar.get(i)+"' width='100' height='100'>" + "</td>";
 					str = str + "<td>" + B.stok.get(i) + "</td>";
+					str = str + "<td> " + input + "<button onclick='pertanyaan("+B.id.get(i)+","+B.stok.get(i)+")'> Beli </button></td>";
 					str = str + "</tr>";
 				}
 				JSONObject json = new JSONObject();
@@ -144,7 +146,8 @@ public class IndexBarang extends HttpServlet {
 			request.setAttribute("harga", harga);
 			request.setAttribute("OP", OP);
 			
-			request.getRequestDispatcher("/view/Barang.jsp").forward(request, response);
+			request.setAttribute("includeJspContent", "/view/Barang.jsp");
+			request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 		}
 	}
 

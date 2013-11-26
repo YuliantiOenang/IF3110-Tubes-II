@@ -105,32 +105,4 @@ public class Cart extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-	
-//    public function cari(String condition, String params){
-//        if(!$this->_fields){
-//            $this->deskripsi();
-//        }
-//        
-//        $db = $this->getCheckedDBConnection();    
-//        $sql = "SELECT * FROM `{$this->_tableName}` WHERE {$condition} LIMIT 1";
-//        $stmt = $db->prepare($sql);
-//        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-//        $stmt->execute($params);
-//        $result = $stmt->fetch();
-//
-//        if ($result == null) return null;
-//        foreach($result as $field=>$value){
-//            //field must present
-//            assert(isset($this->_fields[$field]));
-//            $this->_fields[$field]['changed'] = false;
-//            $this->_fields[$field]['value'] = $value;
-//        }
-//
-//        $this->_key = $this->_fields['id']['value'];
-//        $this->_keyField = 'id';
-//
-//
-//        return $this;
-//    }
-
 }

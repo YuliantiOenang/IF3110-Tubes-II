@@ -51,7 +51,8 @@ public class TambahBarang extends HttpServlet {
 		{
 			DBA.executeQuery("select * from kategori");
 			request.setAttribute("listK", DBA.getQueryResult());
-			request.getRequestDispatcher("/view/adminAddBarang.jsp").forward(request, response);
+			request.setAttribute("includeJspContent", "/view/adminAddBarang.jsp");
+			request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 		}else response.sendRedirect("/ruserba/admin");
 	}
 
