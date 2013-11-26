@@ -1,3 +1,4 @@
+<%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,10 +12,30 @@
 <link href="css/modal.css" rel="stylesheet" type="text/css" />
 
 </head>
+
 <body>
 	<div id="AJS_body_wrapper">
 		<div id="AJS_wrapper">
 			<div id="AJS_header">
+				<!-- 
+					<?php
+						if (!isset($_SESSION['username'])){
+							echo '<div id="site_title"><h1><a href="">Ruko Serba Ada</a></h1></div>';
+						} else {
+							echo '<div id="site_title"><h1><a href="">Welcome, '.$_SESSION['username'].'</a></h1></div>';
+						}
+					?>
+				-->
+
+				<%
+					if (session.getAttribute("username") == null) {
+						out.print("<div id=\"site_title\"><h1><a href=''>Ruko Serba Ada</a></h1></div>");
+					} else {
+						out.print("<div id=\"site_title\"> <h1><a href>Welcome,  "
+								+ session.getAttribute("username") + "</a></h1></div>");
+					}
+				%>
+
 				<div id="header_right">
 					<p></p>
 				</div>
@@ -24,29 +45,55 @@
 			<div id="AJS_menubar">
 				<div id="top_nav" class="ddsmoothmenu">
 					<ul>
+						<li><a href="register.php">Sign Up</a></li>
+						<li><a href="#login_form">Log in </a></li>
+						<!-- 
+                		<?php
+                			if (!isset($_SESSION['username'])){
+								echo '<li><a href="register.php">Sign Up</a></li>
+									<li><a href="#login_form">Log in </a></li>';
+							}
+							else{
+								echo '	<li><a href="cardregist.php"> Register Credit Card </a></li>
+										<li><a href="shoppingbag.php"> Shopping Bag </a></li>
+										<li><a href="profile.php?id=',$_SESSION['username'],'">Profile</a></li>
+										<li><a href="logout.php">Log out</a></li>';
+
+							}
+						?>						
+					 -->
 					</ul>
 					<br style="clear: left" />
 				</div>
 				<!-- end of ddsmoothmenu -->
 			</div>
 			<!-- END of AJS_menubar -->
-
 			<!-- popup form #1 -->
 			<a href="#x" class="overlay" id="login_form"></a>
 			<div class="popup">
 				<h2>Welcome Guest!</h2>
 				<p>Please enter your login and password here</p>
-				<form name="login" action="javascript:verLogin();" method="post">
-					<div>
-						<label for="login">Login</label> <input type="text" id="login"
-							value="" />
-					</div>
-					<div>
-						<label for="password">Password</label> <input type="password"
-							id="password" value="" />
-					</div>
-					<input type="submit" value="Log In" />
+
+				<!-- 				<form method="post" action="formhandlerservlet"> -->
+				<!-- 					<table cellpadding="0" cellspacing="0" border="0"> -->
+				<!-- 						<tr> -->
+				<!-- 							<td>Masukkan teks:</td> -->
+				<!-- 							<td><input type="text" name="enteredValue" /></td> -->
+				<!-- 						</tr> -->
+				<!-- 						<tr> -->
+				<!-- 							<td></td> -->
+				<!-- 							<td><input type="submit" value="Submit"></td> -->
+				<!-- 						</tr> -->
+				<!-- 					</table> -->
+				<!-- 				</form> -->
+
+				<form name="login" action="VerLoginServlet" method="post">
+					Username : <input type="text" name="username"><br>
+							Password : <input type="password" name="password"><br>
+									<div id="err_login"></div> <br> <input type="submit"
+										value="Log In" />
 				</form>
+
 				<a class="close" href="#close"></a>
 			</div>
 
@@ -62,47 +109,49 @@
 								onfocus="clearText(this)" onblur="clearText(this)"
 								class="txt_field" /> <input type="submit" value="Cari"
 								alt="Search" id="searchbutton" title="Search" class="sub_btn" />
-							<p>Kategori :</p>
-							<select name="s_kategori">
-								<option value="1">Pangan</option>
-								<option value="2">Pakaian</option>
-								<option value="3">Elektronik</option>
-								<option value="4">Rumah Tangga</option>
-								<option value="5">Olah Raga</option>
+								<p>Kategori :</p> <select name="s_kategori">
+									<option value="1">Pangan</option>
+									<option value="2">Pakaian</option>
+									<option value="3">Elektronik</option>
+									<option value="4">Rumah Tangga</option>
+									<option value="5">Olah Raga</option>
 							</select><br>
-							<p>Harga kurang dari :</p>
-							<input type="text" name="s_harga" id="keyword" title="keyword"
-								onfocus="clearText(this)" onblur="clearText(this)"
-								class="txt_field" />
+									<p>Harga kurang dari :</p> <input type="text" name="s_harga"
+									id="keyword" title="keyword" onfocus="clearText(this)"
+									onblur="clearText(this)" class="txt_field" />
 						</form>
 
-						<h3>Kategori</h3>   
-		                
+						<h3>Kategori</h3>
+						<div class="content">
+							<ul class="sidebar_list">
+								<!-- <!-- 								<?php -->
+								-->
+								<!-- 					    		$kategori_query = 'SELECT DISTINCT kategori_barang FROM `progin_13511059`.barang'; -->
+								<!-- 								$kategori_hasil = mysql_query($kategori_query,$con); -->
+								<!-- 								if(!$kategori_hasil){ -->
+								<!-- 									echo'Tidak dapat mengakses kategori'; -->
+								<!-- 								} -->
+								<!-- 								else{ -->
+								<!-- 									while($kategori_row = mysql_fetch_array($kategori_hasil)){ -->
+								<!-- 										getCateLink($kategori_row['kategori_barang']); -->
+								<!-- 									} -->
+								<!-- 								} -->
+								<!-- 							?> -->
+							</ul>
+						</div>
 					</div>
 				</div>
-
-				<!-- <script>
-					function verLogin() {
-						var username = document.forms['login']['username'].value;
-						var password = document.forms['login']['password'].value;
-						var err_login;
-						var isLogin = false;
-						if (window.XMLHttpRequest) {
-							xmlhttp = new XMLHttpRequest();
-						} else {
-							xmlhttp = new AciveXObject("Microsoft.XMLHTTP");
-						}
-						xmlhttp.onreadystatechange = function() {
-							if (xmlhttp.readyState == 4
-									&& xmlhttp.status == 200) {
-								err_login = xmlhttp.responseText;
-								if (err_login == "") {
-									//Handle SESSION & LOCAL STORAGE
-								}
-							}
-						}
-						xmlhttp.open("GET", "login.php?username=" + username
-								+ "&password=" + password, true);
-						xmlhttp.send();
-					}
-				</script> -->
+				<!-- 								<script> -->
+				<!-- 				// function verLogin() { // var username = -->
+				<!-- 				document.forms['login']['username'].value; // var password = -->
+				<!-- 				document.forms['login']['password'].value; // var err_login = -->
+				<!-- 				document.getElementById("err_login"); // var isLogin = false; // if -->
+				<!-- 				(window.XMLHttpRequest) { // xmlhttp = new XMLHttpRequest(); // } -->
+				<!-- 				else { // xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // } // -->
+				<!-- 				xmlhttp.onreadystatechange = function() { // if (xmlhttp.readyState -->
+				<!-- 				== 4 // && xmlhttp.status == 200) { // err_login.innerHTML = -->
+				<!-- 				xmlhttp.responseText; // if (err_login == "") { // //Handle SESSION -->
+				<!-- 				& LOCAL STORAGE // } // } // } // xmlhttp.open("GET", -->
+				<!-- 				"login.php?username=" + username // + "&password=" + password, -->
+				<!-- 				true); // xmlhttp.send(); // } -->
+				<!-- 								</script> -->
