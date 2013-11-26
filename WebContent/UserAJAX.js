@@ -59,7 +59,7 @@ function SubmitRegistration(){
 			}			
 		}
 	};
-	xmlhttp.open("POST","UserServlet", true);
+	xmlhttp.open("POST","servlet", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(data);
 }

@@ -44,10 +44,10 @@
  	<description></description>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>Servlets.UserServlet</servlet-class>
+    <servlet-class>UserServlet</servlet-class>
  </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
-    <url-pattern>/UserServlet</url-pattern>
+    <url-pattern>/servlet</url-pattern>
   </servlet-mapping>
 </web-app>
