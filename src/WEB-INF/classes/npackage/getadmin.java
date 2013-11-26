@@ -43,11 +43,14 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 					String sharga = "admberasharga" + (i+1);
 					String skategori = "admberaskategori" + (i+1);
 					String sjumlah = "admberasjumlah" + (i+1);
+					
 					session.setAttribute(snama,barangs.get(i).getNama());
 					session.setAttribute(sid,barangs.get(i).getId());
 					session.setAttribute(sharga,barangs.get(i).getHarga());
 					session.setAttribute(skategori,barangs.get(i).getKategori());
-					session.setAttribute(sjumlah,barangs.get(i).getJumlah());				
+					session.setAttribute(sjumlah,barangs.get(i).getJumlah());	
+					String sdeskripsi = "admberasdeskripsi" + (i+1);
+					session.setAttribute(sdeskripsi,barangs.get(i).getDeskripsi());	
 				}
 				
 				user.clearArraylist();
@@ -67,7 +70,10 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 					session.setAttribute(sid,barangs.get(i).getId());
 					session.setAttribute(sharga,barangs.get(i).getHarga());
 					session.setAttribute(skategori,barangs.get(i).getKategori());
-					session.setAttribute(sjumlah,barangs.get(i).getJumlah());				
+					session.setAttribute(sjumlah,barangs.get(i).getJumlah());	
+
+					String sdeskripsi = "admdagingdeskripsi" + (i+1);
+					session.setAttribute(sdeskripsi,barangs.get(i).getDeskripsi());						
 				}
 				
 				user.clearArraylist();
@@ -87,7 +93,10 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 					session.setAttribute(sid,barangs.get(i).getId());
 					session.setAttribute(sharga,barangs.get(i).getHarga());
 					session.setAttribute(skategori,barangs.get(i).getKategori());
-					session.setAttribute(sjumlah,barangs.get(i).getJumlah());				
+					session.setAttribute(sjumlah,barangs.get(i).getJumlah());	
+
+					String sdeskripsi = "admsayurandeskripsi" + (i+1);
+					session.setAttribute(sdeskripsi,barangs.get(i).getDeskripsi());						
 				}
 				
 				user.clearArraylist();
@@ -107,7 +116,10 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 					session.setAttribute(sid,barangs.get(i).getId());
 					session.setAttribute(sharga,barangs.get(i).getHarga());
 					session.setAttribute(skategori,barangs.get(i).getKategori());
-					session.setAttribute(sjumlah,barangs.get(i).getJumlah());				
+					session.setAttribute(sjumlah,barangs.get(i).getJumlah());	
+
+					String sdeskripsi = "admfrozendeskripsi" + (i+1);
+					session.setAttribute(sdeskripsi,barangs.get(i).getDeskripsi());						
 				}
 				
 				user.clearArraylist();
@@ -127,7 +139,10 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 					session.setAttribute(sid,barangs.get(i).getId());
 					session.setAttribute(sharga,barangs.get(i).getHarga());
 					session.setAttribute(skategori,barangs.get(i).getKategori());
-					session.setAttribute(sjumlah,barangs.get(i).getJumlah());				
+					session.setAttribute(sjumlah,barangs.get(i).getJumlah());
+
+					String sdeskripsi = "admsnackdeskripsi" + (i+1);
+					session.setAttribute(sdeskripsi,barangs.get(i).getDeskripsi());						
 				}
 				
 				

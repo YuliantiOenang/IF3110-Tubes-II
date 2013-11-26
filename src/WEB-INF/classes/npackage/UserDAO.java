@@ -72,10 +72,12 @@ package npackage;
 			}
 			if (bean.getType()=="getsearch"){
 				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				barang.setDeskripsi(rs.getString("Deskripsi"));
 				bean.setsearch(barang);
 				while (rs.next()){
 				//ambil hasil result search	
 				barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				barang.setDeskripsi(rs.getString("Deskripsi"));
 				bean.setsearch(barang);
 				
 				}

@@ -1,7 +1,7 @@
 
-function AJAXAdd(){
-	
-    var elem = document.getElementById("faddbarang").elements;
+function AJAXAdd(bro){
+
+    var elem = document.getElementById(bro).elements;
     var params = "";
     url = "NamaBarangValidationServlet";
 	

@@ -7,6 +7,7 @@ public class Barang{
 	private int harga;
 	private String kategori;
 	private int jumlah;
+	private String deskripsi;
 	
 	
 	public Barang(){
@@ -15,6 +16,7 @@ public class Barang{
 		harga=-1;
 		kategori="";
 		jumlah=-1;
+		deskripsi="";
 	}
 	
 	public Barang(int id_,String nama_, int harga_,String kategori_,int jumlah_){
@@ -23,6 +25,7 @@ public class Barang{
 		harga=harga_;
 		kategori=kategori_;
 		jumlah=jumlah_;
+		deskripsi="";
 	}
 	
 	public int getId(){
@@ -41,6 +44,10 @@ public class Barang{
 		return kategori;
 	}
 	
+	public String getDeskripsi(){
+		return deskripsi;
+	}
+	
 	public int getJumlah(){
 		return jumlah;
 	}
@@ -53,6 +60,10 @@ public class Barang{
 	}
 	public void setHarga(int harga_){
 		harga=harga_;
+	}
+	
+	public void setDeskripsi(String deskripsi_){
+		deskripsi=deskripsi_;
 	}
 	public void setKategori(String kategori_){
 		kategori=kategori_;

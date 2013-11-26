@@ -33,7 +33,9 @@ public class editbarang extends HttpServlet {
 		user.setType("insertdata");
 		user.setQuery("UPDATE barang SET namabarang='"+
 		request.getParameter("enamabarang")+"', harga='"+
-		request.getParameter("ehargabarang")+"' WHERE namabarang='"+
+		request.getParameter("ehargabarang")+"', jumlah='"+
+		request.getParameter("ejumlahbarang")+"', deskripsi='"+
+		request.getParameter("edeskripsibarang")+"' WHERE namabarang='"+
 		request.getParameter("enamabarangtemp")+"'");
 		
 		user = UserDAO.login(user);

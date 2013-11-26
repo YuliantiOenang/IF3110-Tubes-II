@@ -34,7 +34,9 @@ public class insertbarang extends HttpServlet {
 		user.setQuery("INSERT INTO barang (idbarang, namabarang,harga,kategori,jumlah,deskripsi) VALUES('0', '"+
 		request.getParameter("namabarang")+"', '"+
 		request.getParameter("hargabarang")+"', '"+
-		request.getParameter("kategoribarang")+"', '0', '-')");
+		request.getParameter("kategoribarang")+"', '"+
+		request.getParameter("jumlahbarang")+"', '"+
+		request.getParameter("deskripsibarang")+"')");
 
 		user = UserDAO.login(user);
 			

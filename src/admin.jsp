@@ -10,7 +10,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Search</title>
+	<title>Halaman Admin</title>
 	<link rel="stylesheet" type="text/css" href="res/css/style.css" media="all"/>
 </head>
 <body>
@@ -24,16 +24,18 @@
 				response.sendRedirect("index.jsp");}
 			
 			} %>
-		<!-- Navbar Section -->
 			
+		<!-- Navbar Section -->
+				
 			<form name="faddbarang" id="faddbarang" action="insertbarang" method="post" enctype="multipart/form-data" onsubmit="return validateadd()" >
 			<div id="popupboxadd"> 
+			
 				<a href="javascript:addbarang('hide')" id ="close">[X] close</a> <br/><br/>
-				
+				<input type="hidden" id="actionadmin" name="actionadmin" value="">
 				Nama&nbsp; &nbsp; &nbsp; &nbsp;      :
-				<input id= "namabarang" name="namabarang" type="text" required="required"/><br/>
+				<input id= "namabarang" name="namabarang" type="text" value="" required="required"/><br/>
 				Harga   &nbsp;&nbsp; &nbsp; &nbsp;   :
-				<input id="hargabarang" name="hargabarang" type="text" required="required"/><br/>
+				<input id="hargabarang" pattern="[0-9]+[0-9]*" name="hargabarang" type="text" required="required"/><br/>
 				Kategori  &nbsp;&nbsp; :
 				<select id="kategoribarang" name="kategoribarang">
 					<option value = "%">- kategori -</option>
@@ -43,6 +45,10 @@
 					<option value = "Frozen Food">Frozen Food</option>
 					<option value = "Snack">Snack</option>
 				</select><br/>
+				Jumlah   &nbsp; &nbsp; &nbsp;   :
+				<input id="jumlahbarang" pattern="[0-9]+[0-9]*" name="jumlahbarang" type="text" required="required"/><br/>
+				Deskripsi &nbsp;   :
+				<input id="deskripsibarang" name="deskripsibarang" type="text" required="required"/><br/>
 				File Gambar :
 				<input id="filebarang" name="filebarang" type="file" required="required"/>
 				<br/><br/>
@@ -54,11 +60,16 @@
 			<form name="feditbarang" id="feditbarang" action="editbarang" method="post" enctype="multipart/form-data" onsubmit="return validateedit()" >
 			<div id="popupboxedit"> 
 				<a href="javascript:editbarang('hide')" id ="close">[X] close</a> <br/>
+				
 				<input id= "enamabarangtemp" name="enamabarangtemp" type="hidden"/><br/>				
 				Nama&nbsp; &nbsp; &nbsp; &nbsp;      :
-				<input id= "enamabarang" name="enamabarang" type="text" required="required"/><br/>
+				<input id= "enamabarang" name="enamabarang" type="text" required="required" value=""/><br/>
 				Harga   &nbsp;&nbsp; &nbsp; &nbsp;   :
-				<input id="ehargabarang" name="ehargabarang" type="text" required="required"/><br/>
+				<input id="ehargabarang" name="ehargabarang" pattern="[0-9]+[0-9]*" type="text" required="required"/><br/>
+				Jumlah   &nbsp; &nbsp; &nbsp;   :
+				<input id="ejumlahbarang" name="ejumlahbarang" pattern="[0-9]+[0-9]*" type="text" required="required"/><br/>
+				Deskripsi   :
+				<input id="edeskripsibarang" name="edeskripsibarang" type="text" required="required"/><br/>
 				File Gambar :
 				<input id="efilebarang" name="efilebarang" type="file"/>
 				<br/><br/>
@@ -95,7 +106,7 @@
 							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("admberasnama"+i)%>"><%str =(String)session.getAttribute("admberasnama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("admberasharga"+i);out.print(intr);%> /kg</p>
 							<input type="checkbox" name="cdelete" value="<%str =(String)session.getAttribute("admberasnama"+i);str2="edit("+str+")";out.print(str);%>">delete&nbsp; &nbsp;&nbsp; &nbsp;
-							<input type="button" name="buttonadd" onclick="edit('<%out.print((String)session.getAttribute("admberasnama"+i));%>','<%out.print((Integer)session.getAttribute("admberasharga"+i));%>')" value="EDIT">
+							<input type="button" name="buttonadd" onclick="edittest('<%out.print((String)session.getAttribute("admberasnama"+i));%>','<%out.print((Integer)session.getAttribute("admberasharga"+i));%>','<%out.print((Integer)session.getAttribute("admberasjumlah"+i));%>','<%out.print((String)session.getAttribute("admberasdeskripsi"+i));%>')" value="EDIT">
 						</div>
 					</div>
 				</div>
@@ -121,7 +132,7 @@
 							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("admdagingnama"+i)%>"><%str =(String)session.getAttribute("admdagingnama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("admdagingharga"+i);out.print(intr);%> /kg</p>
 							<input type="checkbox" name="cdelete" value="<%str =(String)session.getAttribute("admdagingnama"+i);out.print(str);%>">delete&nbsp; &nbsp;&nbsp; &nbsp;
-							<input type="button" name="buttonadd" onclick="edit('<%out.print((String)session.getAttribute("admdagingnama"+i));%>','<%out.print((Integer)session.getAttribute("admdagingharga"+i));%>')" value="EDIT">
+							<input type="button" name="buttonadd" onclick="edittest('<%out.print((String)session.getAttribute("admdagingnama"+i));%>','<%out.print((Integer)session.getAttribute("admdagingharga"+i));%>','<%out.print((Integer)session.getAttribute("admdagingjumlah"+i));%>','<%out.print((String)session.getAttribute("admdagingdeskripsi"+i));%>')" value="EDIT">
 						</div>
 					</div>
 				</div>
@@ -146,7 +157,7 @@
 							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("admsayurannama"+i)%>"><%str =(String)session.getAttribute("admsayurannama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("admsayuranharga"+i);out.print(intr);%> /kg</p>
 							<input type="checkbox" name="cdelete" value="<%str =(String)session.getAttribute("admsayurannama"+i);out.print(str);%>">delete&nbsp; &nbsp;&nbsp; &nbsp;
-							<input type="button" name="buttonadd" onclick="edit('<%out.print((String)session.getAttribute("admsayurannama"+i));%>','<%out.print((Integer)session.getAttribute("admsayuranharga"+i));%>')" value="EDIT">
+							<input type="button" name="buttonadd" onclick="edittest('<%out.print((String)session.getAttribute("admsayurannama"+i));%>','<%out.print((Integer)session.getAttribute("admsayuranharga"+i));%>','<%out.print((Integer)session.getAttribute("admsayuranjumlah"+i));%>','<%out.print((String)session.getAttribute("admsayurandeskripsi"+i));%>')" value="EDIT">
 						</div>
 					</div>
 				</div>
@@ -170,7 +181,7 @@
 							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("admfrozennama"+i)%>"><%str =(String)session.getAttribute("admfrozennama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("admfrozenharga"+i);out.print(intr);%> /kg</p>							
 							<input type="checkbox" name="cdelete" value="<%str =(String)session.getAttribute("admfrozennama"+i);out.print(str);%>">delete&nbsp; &nbsp;&nbsp; &nbsp;
-							<input type="button" name="buttonadd" onclick="edit('<%out.print((String)session.getAttribute("admfrozennama"+i));%>','<%out.print((Integer)session.getAttribute("admfrozenharga"+i));%>')" value="EDIT">
+							<input type="button" name="buttonadd" onclick="edittest('<%out.print((String)session.getAttribute("admfrozennama"+i));%>','<%out.print((Integer)session.getAttribute("admfrozenharga"+i));%>','<%out.print((Integer)session.getAttribute("admfrozenjumlah"+i));%>','<%out.print((String)session.getAttribute("admfrozendeskripsi"+i));%>')" value="EDIT">
 						</div>
 					</div>
 				</div>
@@ -194,7 +205,7 @@
 							<p class="nama-produk-b"><a href="getbarang?namabarang=<%=(String)session.getAttribute("admsnacknama"+i)%>"><%str =(String)session.getAttribute("admsnacknama"+i);out.print(str);%></a></p>
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("admsnackharga"+i);out.print(intr);%> /kg</p>							
 							<input type="checkbox" name="cdelete" value="<%str =(String)session.getAttribute("admsnacknama"+i);out.print(str);%>">delete&nbsp; &nbsp;&nbsp; &nbsp;
-							<input type="button" name="buttonadd" onclick="edit('<%out.print((String)session.getAttribute("admsnacknama"+i));%>','<%out.print((Integer)session.getAttribute("admsnackharga"+i));%>')" value="EDIT">
+							<input type="button" name="buttonadd" onclick="edittest('<%out.print((String)session.getAttribute("admsnacknama"+i));%>','<%out.print((Integer)session.getAttribute("admsnackharga"+i));%>','<%out.print((Integer)session.getAttribute("admsnackjumlah"+i));%>','<%out.print((String)session.getAttribute("admsnackdeskripsi"+i));%>')" value="EDIT">
 						</div>
 					</div>
 				</div>
@@ -212,28 +223,42 @@
 	<!-- Javascript -->
 	<script src="res/js/common.js" type="text/javascript"></script>
 	<script src="AjaxAdd.js"></script> 
+	<script src="AjaxEdit.js"></script> 
 	<script>
 	function validateadd(){
-		
-		var username = AJAXAdd();
-		
-		if (username=="true" && document.getElementById("kategoribarang").value!="%"){
+		document.getElementById("actionadmin").value="insertbarang";
+		var username = AJAXAdd("faddbarang");
 			
+	
+		if (username=="true" && document.getElementById("kategoribarang").value!="%"){
+				alert("tambah barang sukses");
 			return true;
 	
 		}else if (username=="false"){
 			alert("nama sudah ada");
 			return false;
 		}else{
-			alert("kategori harus di isi");
+			alert("kategori harus di isi"+username);
 			return false;
 		}
 	}
 	</script>
 	<script>
-		function validateedit(){
-		
-	return true;
+	function validateedit(){
+	document.getElementById("actionadmin").value="editbarang";
+		var username ="";
+		if (document.getElementById("enamabarang").value!=document.getElementById("enamabarangtemp").value){
+		username = AJAXEdit("feditbarang");
+		}
+		if (username=="true"){
+			alert("edit sukses");
+			return true;
+	
+		}else if (username=="false"){
+			alert("nama sudah ada");
+			return false;
+		}
+		return true;
 	}
 	</script>
 	<script>
@@ -244,11 +269,24 @@
 		editbarang('show');
 		
 	}
+	
+	</script>
+	<script>
+	function edittest(nb,hb,jb,db){
+		document.getElementById("enamabarang").value=nb;
+		document.getElementById("enamabarangtemp").value=nb;
+		document.getElementById("ehargabarang").value=hb;
+		document.getElementById("ejumlahbarang").value=jb;
+		document.getElementById("edeskripsibarang").value=db;
+		editbarang('show');
+		
+	}
 	</script>
 	<script>
 	function konfirmasidelete(){
 		var user_choice = window.confirm('Delete Selected Item?');
 		if(user_choice==true) {
+				alert("delete sukses");
 			return true;
 		} else {
 			return false;

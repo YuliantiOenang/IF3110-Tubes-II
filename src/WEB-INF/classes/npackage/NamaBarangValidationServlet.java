@@ -25,10 +25,16 @@ try
 {	    
 
      UserBean user = new UserBean();
-     user.setUserName(request.getParameter("namabarang"));
+	 String nama = null;
+	
+		nama =request.getParameter("namabarang");
+
+	
+     user.setUserName(nama);
 	  user.setQuery("select * from barang where namabarang='"
-                        + request.getParameter("namabarang")
+                        + nama
                         + "'");
+	System.out.println(user.getQuery());
 
      user = UserDAO.login(user);
 	 	

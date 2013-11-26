@@ -42,6 +42,10 @@ My First Servlet
    <servlet-class>npackage.NamaBarangValidationServlet</servlet-class> 
 </servlet> 
 <servlet> 
+   <servlet-name>ENamaBarangValidationServlet</servlet-name> 
+   <servlet-class>npackage.ENamaBarangValidationServlet</servlet-class> 
+</servlet> 
+<servlet> 
    <servlet-name>getadmin</servlet-name> 
    <servlet-class>npackage.getadmin</servlet-class> 
 </servlet> 
@@ -134,6 +138,10 @@ My First Servlet
 <servlet-mapping> 
    <servlet-name>NamaBarangValidationServlet</servlet-name> 
    <url-pattern>/NamaBarangValidationServlet</url-pattern> 
+</servlet-mapping> 
+<servlet-mapping> 
+   <servlet-name>ENamaBarangValidationServlet</servlet-name> 
+   <url-pattern>/ENamaBarangValidationServlet</url-pattern> 
 </servlet-mapping> 
 <servlet-mapping> 
    <servlet-name>getdatamember</servlet-name> 
