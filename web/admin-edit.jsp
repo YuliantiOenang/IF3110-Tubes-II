@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<jsp:useBean id="barang" scope="request" class="ruserba.beans.Item"/>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,16 +17,16 @@
     </head>
     <body>
         <div class='formcontainer'>
-            <h2 id='formtitle'>Edit Barang | </h2>
+            <h2 id='formtitle'>Edit Barang | <jsp:getProperty name="barang" property="name"/></h2>
             <br />
             <form id='formprofile' method='post' action='SaveProfileServlet'>
-                <span class='formlabel'>Nama barang</span><input type='text' name='name_barang' /><br />
+                <span class='formlabel'>Nama barang</span><input type='text' name='name_barang' value='<jsp:getProperty name="barang" property="name"/>' /><br />
                 <br />
-                <span class='formlabel'>Kategori</span><input type='text' name='category' value='' /><br />
+                <span class='formlabel'>Kategori</span><input type='text' name='category' value='<jsp:getProperty name="barang" property="category"/>' /><br />
                 <br />
-                <span class='formlabel'>Harga Barang</span><input type='text' name='harga' /><br />
+                <span class='formlabel'>Harga Barang</span><input type='text' name='harga' value='<jsp:getProperty name="barang" property="price"/>'/><br />
                 <br />
-                <span class='formlabel'>Jumlah Tersedia </span><input type='text' name='tersedia' /><br />
+                <span class='formlabel'>Jumlah Tersedia </span><input type='text' name='tersedia' value='<jsp:getProperty name="barang" property="tersedia"/>'/><br />
                 <br />
                 <span class='formlabel'>Gambar </span><input type='file' name='gambar' /><br />
                 <br />

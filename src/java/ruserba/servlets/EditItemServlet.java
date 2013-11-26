@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,9 +51,16 @@ public class EditItemServlet extends HttpServlet {
                 barang.setPrice(res.getInt("harga_barang"));
                 barang.setTersedia(res.getInt("tersedia"));
                 request.setAttribute("barang", barang);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin-edit.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+                dispatcher.forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditItemServlet.class.getName()).log(Level.SEVERE, null, ex);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+            dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();
     }
