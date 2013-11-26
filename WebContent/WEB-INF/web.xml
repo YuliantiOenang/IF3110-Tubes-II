@@ -35,6 +35,18 @@
 		<servlet-name>AddCart</servlet-name>
 		<servlet-class>com.frexesc.controller.AddCart</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Cart</servlet-name>
+		<servlet-class>com.frexesc.controller.Cart</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Payment</servlet-name>
+		<servlet-class>com.frexesc.controller.Payment</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>com.frexesc.controller.Search</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
@@ -70,6 +82,18 @@
 	<servlet-mapping>
 		<servlet-name>AddCart</servlet-name>
 		<url-pattern>/barang/addCart</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Cart</servlet-name>
+		<url-pattern>/barang/cart</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Payment</servlet-name>
+		<url-pattern>/barang/payment</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/barang/search</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
