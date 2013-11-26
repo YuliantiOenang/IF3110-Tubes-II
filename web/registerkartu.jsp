@@ -19,7 +19,7 @@
             <div id='skipregisterkartu'><a href='/ruserba'>Lewati tahap ini</a></div>
             <br />
             <br />
-            <form id='formregisterkartu' method='post'>
+            <form id='formregisterkartu' method='post' action="RegisterKartuServlet">
                     <span class='formlabel'>Nomor kartu</span><input type='text' name='nokartu' maxlength='16'><br />
                     <br />
 

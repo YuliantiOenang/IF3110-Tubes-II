@@ -7,10 +7,16 @@ package ruserba.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import ruserba.beans.User;
 import ruserba.database.DatabaseHelper;
 
 /**
@@ -36,13 +42,37 @@ public class RegisterKartuServlet extends HttpServlet {
         
         DatabaseHelper.Connect();
         
-        String query = "insert into kartu_kredit values (?,?,?,?)";
-        if(DatabaseHelper.execute(query)) {
-            // Berhasil
-        } else {
-            // Gagal
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user != null) {
+            String nokartu = request.getAttribute("nokartu").toString();
+            String nama = request.getAttribute("nama").toString();
+            String kadaluarsa = request.getAttribute("kadaluarsa").toString();
+            
+            String query = "select username from kartu_kredit where username='" + user.getUsername() +"'";
+            ResultSet res = DatabaseHelper.executeQuery(query);
+            try {
+                if(res.next()) {
+                    query = "update kartu_kredit set no_kartu='"+ nokartu +"', nama='"+ nama  +"', "
+                            + "kadaluarsa='"+ kadaluarsa +"' where username='"+ user.getUsername() +"'";
+                } else {
+                    query = "insert into kartu_kredit values ('"+user.getUsername() +"','"+ nokartu +"',"
+                            + "'"+ nama  +"','"+ kadaluarsa +"')";
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterKartuServlet.class.getName()).log(Level.SEVERE, null, ex);
+                query = "insert into kartu_kredit values ('"+user.getUsername() +"','"+ nokartu +"',"
+                            + "'"+ nama  +"','"+ kadaluarsa +"')";
+            } finally {
+                if(DatabaseHelper.execute(query)) {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
+                    dispatcher.forward(request, response);
+                }
+            }
         }
-        
         DatabaseHelper.Disconnect();
     }
 
