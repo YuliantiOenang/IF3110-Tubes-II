@@ -1,0 +1,110 @@
+<script src="ajaxLoader.js"></script>
+<script src="validator.js"></script>
+<script>
+
+window.setInterval("validasi()",200);
+
+function validasi(){
+	u = document.getElementById('txt_un').value;
+	p = document.getElementById('txt_pass').value;
+	cp = document.getElementById('txt_cpass').value;
+	nl = document.getElementById('txt_nl').value;
+	e = document.getElementById('txt_email').value;
+	valun(u);
+	valp(p);
+	valcp(cp);
+	valnl(nl);
+	valemail(e);
+	button();
+}
+function button(){
+	hp = document.getElementById('txt_hp').value;
+	al = document.getElementById('txt_al').value;
+	pr = document.getElementById('txt_pr').value;
+	kab = document.getElementById('txt_kab').value;
+	kp = document.getElementById('txt_kp').value;
+	if (ulength && elength && vun && vp && vcp && vnl && vemail && (hp.length>0) && (al.length>0) && (pr.length>0) && (kab.length>0) && (kp.length>0))
+	{
+		if (!buttonon) {
+			document.getElementById('buttonRegister').innerHTML="<button class=\"button\" onclick=\"clicked()\" >daftar</button>";
+			buttonon = true;
+		}
+	}
+	else
+	{
+		document.getElementById('buttonRegister').innerHTML="<button class=\"buttonFake\" disabled>daftar</button>";
+		buttonon = false;
+	}
+}
+function clicked(){
+	postForm("completeRegistration.jsp", function()
+		{
+			if (xmlhttp.readyState==4) {
+				alert("registrasi berhasil!");
+				document.location.href = "index.jsp";
+			}
+		}, document.forms["Registrasi"]
+	);
+}
+</script>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="letoy.css">
+	<link rel="stylesheet" type="text/css" href="detail.css">
+	<script src="header.js"></script>
+</head>
+
+<body>
+
+<div id='topBorder'>
+</div>
+<div id='contentArea'>
+	<h2>
+	<form id="Registrasi">
+		<div class="fullLine">
+			<div class="halfLineToR">Username : </div>
+			<div class="halfLineToL"><input class="textInput" type="text" name="un" id="txt_un" onkeyup="valun2(this.value)" onkeydown="valun2(this.value)" /></br><span class="errorMsg" id="vun"></span><span class="errorMsg" id="vun2"></span></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Password : </div>
+			<div class="halfLineToL"><input class="textInput" type="password" name="pass" id="txt_pass" /></br><span class="errorMsg"  id="vp"></span></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Confirm Password : </div>
+			<div class="halfLineToL"><input type="password" class="textInput" name="cpass" id="txt_cpass" /></br><span class="errorMsg"  id="vcp"></span></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Nama Lengkap : </div>
+			<div class="halfLineToL"><input type="text" class="textInput" name="nl" id="txt_nl" /></br><span class="errorMsg"  id="vnl"></span></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Nomor Handphone : </div>
+			<div class="halfLineToL"><input type="text" class="textInput" name="nh" id="txt_hp" /></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Alamat : </div>
+			<div class="halfLineToL"><textarea rows="8" cols="50" class="textInput"  name="al" id="txt_al"> </textarea> </div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Provinsi : </div>
+			<div class="halfLineToL"><input type="text" class="textInput" name="prov" id="txt_pr" /></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR"> Kabupaten : </div>
+			<div class="halfLineToL"><input type="text" class="textInput" name="kab" id="txt_kab" /></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR"> Kode Pos : </div>
+			<div class="halfLineToL"> <input type="text" class="textInput" name="kp" id="txt_kp" /></div>
+		</div><div class="fullLine">
+			<div class="halfLineToR">Email : </div>
+			<div class="halfLineToL"><input type="text" class="textInput" name="ema" id="txt_email" onkeyup="valemail2(this.value)" onkeydown="valemail2(this.value)" /></br><span class="errorMsg"  id="vemail"></span><span class="errorMsg"  id="vemail2"></span></div>
+		</div>
+		
+	</form>
+		<div id='buttonRegister'><button class="buttonFake" disabled>daftar</button></div>
+	</h2>
+</div>
+<div id='footer'>
+	Yanuar Aristya . Aldy Wirawan . Yodi Pramudito
+</div>
+
+<div id='header' >
+	<script>drawHeaderContent();</script>
+</div>
+
+</body>
+</html>

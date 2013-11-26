@@ -1,0 +1,32 @@
+.topCategory{
+	display:block;
+	position:relative;
+	top:10px;
+	width: 100%;
+	height: 200px;
+}
+
+.topCategoryTitle{
+	display:block;
+	position:relative;
+	top:0px;
+	width:100%;
+	text-align: center;
+}
+
+.homeImageViewer{
+	display:block;
+	position:relative;
+	margin: auto;
+	width:548px;
+	height:160px;
+}
+
+.homeImage{
+	display:span;
+	position:relative;
+	padding:0;
+	width:160px;
+	height:160px;
+	background:#333333;
+}

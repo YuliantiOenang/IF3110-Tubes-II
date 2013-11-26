@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="letoy.css">
+	<link rel="stylesheet" type="text/css" href="registrasiCC.css">
+	<script src="header.js"></script>
+	<script src="ajaxLoader.js"></script>
+	<script>
+		function validateCC() {
+			postForm("validateCC.jsp", 
+			function() {
+				if (xmlhttp.readyState==4) {
+					document.getElementById("validationResponse").innerHTML = xmlhttp.responseText;
+					setTimeout(
+						function(){
+							if (xmlhttp.responseText == "Berhasil")
+								window.location = 'index.jsp';
+						}
+					, 3000);
+				}
+				else document.getElementById("validationResponse").innerHTML = "Processing..."},
+			document.forms["CCform"]);
+			
+		}
+	</script>
+</head>
+
+<body>
+	<div id='topBorder'></div>
+
+	<div id='contentArea'>
+		<div id='pembayaranView'>
+			<ul>
+				<li><h1>Registrasi Kartu Kredit!</h1></li>
+				<li><form id="CCform">
+					<br><h2>Nomor Kartu</h2> <input class='textInput' type="text" name="nomor_kartu"><br><br>
+					<h2>Nama</h2> <input class='textInput'type="text" name="nama"><br><br>
+					<h2>Tanggal Kadaluarsa ("YYYY-MM-DD")</h2> <input class='textInput'type="text" name="tanggal"><br><br>
+					<input class='button' type='button' onclick="validateCC()" value='Submit'></input>
+					<a href = 'index.html'><input class='button' type='button' value='Skip'></input></a>
+				</form></li>
+				<li><h2 id="validationResponse"></h2></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id='footer'>
+		Yanuar Aristya . Aldy Wirawan . Yodi Pramudito
+	</div>
+
+	<div id='header' >
+		<a href="index.html"> <img src="resource\logo.png" id='logo'> </a>
+		<form>
+		<input class="textInput" id='searchBar' type="text" name="searchItem">
+		<input class="button" id='searchButton' type="submit" value="">
+		<select class="dropDown" id='kategoriDropDown' name="category">
+			<option value="default" selected>kategori...</option>
+			<option value="aksesoris">aksesoris</option>
+			<option value="pakaian">pakaian</option>
+			<option value="makanan">makanan</option>
+			<option value="mainan">mainan</option>
+			<option value="furnitur">furnitur</option>
+		</select>
+		</form>
+		<script> drawHeaderContent(); </script>
+		<a href="shoppingChart.html"><button class="buttonHeader" id='shoppingChart' type="button">tas belanja</button></a>	
+	</div>
+
+</body>
+</html>
