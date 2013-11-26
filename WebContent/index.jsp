@@ -29,7 +29,6 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
-						<strong>Jumlah:</strong> <%= b.getJumlah() %><br/><br/>
 					</div>
 				</div>
 				<%
