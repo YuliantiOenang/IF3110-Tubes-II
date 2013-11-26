@@ -1,9 +1,12 @@
 package admin;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.sql.*;
+import java.util.List;
 
 public class admin_login extends HttpServlet{
 	
@@ -21,6 +24,8 @@ public class admin_login extends HttpServlet{
 		PrintWriter out = response.getWriter();
 		out.println("<h1>" + "admin form" + "</h1>");
 		out.println("Test");
+		
+		List ids=null,namas=null,hargas=null,solds=null,stoks=null,images=null,kategoris=null;
 		try{
 	         // Register JDBC driver
 			 
@@ -36,19 +41,29 @@ public class admin_login extends HttpServlet{
 	         ResultSet rs = stmt.executeQuery(sql);
 	         out.println("Test");
 	         // Extract data from result set
+	         out.println("<h1>NAMA BARANG INI BOR #Hmif48<br></h1><ul>");
 	         while(rs.next()){
 	            //Retrieve by column name
-	            int id  = rs.getInt("id");
-	            //int age = rs.getInt("age");
-	            //String first = rs.getString("first");
-	            //String last = rs.getString("last");
-	            
-	            //Display values
-	            out.println("ID: " + id + "<br>");
-	            out.println(", Username: " + rs.getString("username")+ "<br>");
-	            out.println(", Alamat: " + rs.getString("alamat") + "<br>");
-	            out.println(", Provinsi: " + rs.getString("provinsi") + "<br>");
+	        	
+	        	out.print("<li> id : "+rs.getInt("id")+"</li>");
+	        	out.print("<li> nama :"+rs.getString("nama")+"</li>");
+	        	//out.print("<li> harga :"+rs.getInt("harga")+"</li>");
+	        	//out.print("<li> sold :"+rs.getInt("sold")+"</li>");
+	        	//out.print("<li> stok :"+rs.getInt("stok")+"</li>");
+	        	//out.print("<li> image :"+rs.getString("image")+"</li>");
+	        	//out.print("<li> kategori :"+rs.getString("kategori")+"</li>");
+	        	 /*
+	            ids.add(rs.getInt("id"));
+	            namas.add(rs.getString("nama"));
+	            hargas.add(rs.getInt("harga"));
+	            solds.add(rs.getInt("sold"));
+	            stoks.add(rs.getInt("stok"));
+	            images.add(rs.getString("image"));
+	            kategoris.add(rs.getString("kategori"));
+	            */
 	         }
+	         out.println("</ul>");
+	         
 	         out.println("</body></html>");
 
 	         // Clean-up environment
@@ -65,6 +80,10 @@ public class admin_login extends HttpServlet{
 	         e.getMessage();
 	         
 	      }
+		//out.print("Kosong gak : " + ids.isEmpty());
+		//request.setAttribute("listid", ids);
+        //RequestDispatcher view = request.getRequestDispatcher("apa.jsp");
+        //view.forward(request, response);
 	}
 	
 	
