@@ -68,6 +68,7 @@
 		<%
 			}
 		%>
-
+	<br />
+	Klik <a href="./cart">disini</a> untuk masuk ke shopping cart <br />
 </body>
 </html>

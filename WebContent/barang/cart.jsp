@@ -92,6 +92,10 @@
 		</tr>
 		
 	</table>
-
+	<br />
+	<% if (barangUserBean.size() != 0) { %>
+		Klik <a href="./payment">disini</a> untuk melakukan pembayaran <br />
+	<% } %>
+	Klik <a href="./">disini</a> untuk kembali ke halaman utama barang <br />
 </body>
 </html>

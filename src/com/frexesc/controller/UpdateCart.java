@@ -98,6 +98,7 @@ public class UpdateCart extends HttpServlet {
 								.parseInt(request.getParameter("qty"))
 								|| Integer
 										.parseInt(request.getParameter("qty")) <= 0) {
+							/** TODO : Show remaining stock */
 							response.getWriter()
 									.write("Failure: Transaksi tidak berhasil, qty yang dimasukkan tidak valid. qty dikembalikan ke "
 											+ allResults.get(0).getTotal_item());
