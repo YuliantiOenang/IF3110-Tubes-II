@@ -1,16 +1,16 @@
 package com.frexesc.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.ssi.ResponseIncludeWrapper;
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -35,9 +35,11 @@ public class AddCart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 		// TODO Auto-generated method stub
-		System.out.println("test");
+		HttpSession session = request.getSession();
+		if (session.getAttribute("username") == null) {
+			response.getWriter().write("Redirect: ../register.jsp");
+		}
 	}
 
 	/**
@@ -49,11 +51,52 @@ public class AddCart extends HttpServlet {
 		// TODO Auto-generated method stub
 		DbConnection dbConnection = new DbConnection();
 		Connection connection = dbConnection.mySqlConnection();
-		
-		System.out.println("test");
 
-		response.setContentType("text/html");
-		response.getWriter().write("String Data to return");
+		HttpSession session = request.getSession();
+		if (session.getAttribute("username") == null) {
+			response.getWriter().write("Redirect: ../register.jsp");
+		} else {
+			response.setContentType("text/html"); // set Content Type for AJAX
+
+			String query = "SELECT * FROM barang WHERE id="
+					+ request.getParameter("id_barang");
+
+			try {
+				ResultSet rs = connection.createStatement().executeQuery(query);
+				
+				while (rs.next()) {
+					if (Integer.valueOf(rs.getString("jumlah_barang")) < Integer
+							.valueOf(request.getParameter("qty"))
+							|| Integer.valueOf(request.getParameter("qty")) <= 0) {
+						response.getWriter()
+								.write("Failure: Transaksi tidak berhasil, qty yang dimasukkan tidak valid.");
+					} else {
+						String deskripsiTambahan = request
+								.getParameter("deskripsi_tambahan");
+						if (deskripsiTambahan == null)
+							deskripsiTambahan = "";
+
+						// Add to Cart here
+						String query2 = "INSERT INTO barang_user (id_barang,id_user,status,jumlah_barang,deskripsi_tambahan) VALUES ("
+								+ request.getParameter("id_barang")
+								+ ", "
+								+ session.getAttribute("user_id")
+								+ ", 0, "
+								+ request.getParameter("qty")
+								+ ", \""
+								+ deskripsiTambahan + "\")";
+						
+						connection.createStatement().executeQuery(query2);
+
+						response.getWriter().write("Success: Transaksi berhasil!");
+					}					
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }

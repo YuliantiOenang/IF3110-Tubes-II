@@ -14,7 +14,7 @@
 	<jsp:include page="layout.jsp" />
 
 
-<!--   	<%
+   	<%
 		if (request.getSession(true).getAttribute("user_id") == null) {
 	%>
 	<form name="login_form" action="login" method="post">
@@ -32,7 +32,7 @@
 	<%
 		}
 	%>
- -->
+ 
 	<jsp:include page="footer.jsp" />	
 </body>
 </html>

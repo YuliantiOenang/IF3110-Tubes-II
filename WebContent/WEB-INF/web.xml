@@ -49,6 +49,10 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Gallery</servlet-name>
+		<url-pattern>/barang/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Gallery</servlet-name>
 		<url-pattern>/barang/index</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
