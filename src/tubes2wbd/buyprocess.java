@@ -20,6 +20,11 @@ import org.json.*;
  */
 public class buyprocess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
+	final String DB_URL="jdbc:mysql://localhost/wbd1";
+	//  Database credentials
+	final String USER = "root";
+	final String PASS = "";  
     
 	private JSONObject tabel;
 	private String username;
@@ -43,7 +48,12 @@ public class buyprocess extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("data") != null) {
-			tabel = new JSONObject(request.getParameter("data"));
+			try {
+				tabel = new JSONObject(request.getParameter("data"));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if (request.getParameter("username") != null) {
 			username = request.getParameter("username");
@@ -60,19 +70,25 @@ public class buyprocess extends HttpServlet {
 			String sql;
 			
 			for (int i = 0; i < tabel.length(); i++) {
-				if (tabel.getJSONObject(i) > 0) {
-					int jumlah = tabel.getJSONObject(i);
+				if (Integer.parseInt((String)tabel.get(""+i)) > 0) {
+					int jumlah = Integer.parseInt((String)tabel.get(""+i));
 					sql = "UPDATE barang SET jumlah = jumlah - "+jumlah+",terjual = terjual +"+jumlah+" WHERE id = "+i;
 					ResultSet rs = stmt.executeQuery(sql);
 				}
 			}
 			
 			sql = "UPDATE anggota SET jmlhtransaksi = jmlhtransaksi+1 WHERE username = "+username;
-			rs = stmt.executeQuery(sql);
+			ResultSet rs = stmt.executeQuery(sql);
 			
 		} catch (ClassNotFoundException e) {	
 			e.printStackTrace();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

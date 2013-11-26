@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -18,6 +17,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class editprofilesave extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
+	final String DB_URL="jdbc:mysql://localhost/wbd1";
+	//  Database credentials
+	final String USER = "root";
+	final String PASS = "";  
     
 	String username,password,nama,nomorhp,alamat,provinsi,kota,kodepos,email,file_name;
 	
@@ -58,6 +62,7 @@ public class editprofilesave extends HttpServlet {
 			kodepos = request.getParameter("kodepos");
 		if (request.getParameter("email") != null)
 			email = request.getParameter("email");
+		
 		
 		Connection conn = null;
 	    Statement stmt = null;
