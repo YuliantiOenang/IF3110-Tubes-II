@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="js/validate.js"></script>
 <title>Insert title here</title>
 <script src="js/validate.js"></script>
+
+<link rel='stylesheet' type='text/css' href="${pageContext.request.contextPath}/css/date.css" />
+
 </head>
 <body>
 <jsp:include page="layout.jsp" />
@@ -27,7 +29,7 @@
 		</div>
 			
 		<div class='per_form'>
-			<label>Expired Date</label><input onfocus="loadCalendar()" type="text" name="date" id="date" value="" required>
+			<label>Expired Date</label><input type="text" name="expired_date" id="expired_date" required>
 			<span class='error' id="error-expired_date"></span>
 		</div>
 		<input type="hidden" name="return">
@@ -40,13 +42,14 @@
 	</div>
 </form>
 
-<script src="<?php echo $this->getBaseUrl() ?>/js/credit.js"></script>
+<!-- <script src="<?php echo $this->getBaseUrl() ?>/js/credit.js"></script>
 <script>
 	var server = "<?php echo $this->getBaseUrl() ?>";
 </script>
-	
+	 -->
+	 <script src="js/date.js"></script>
 	<!-- new! -->
-	<jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp" />
 
 </body>
 </html>
