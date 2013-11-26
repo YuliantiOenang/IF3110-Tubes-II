@@ -48,7 +48,8 @@
 				<img src="<%= goodies.getObject("gambar") %>"/>
 				<div class="mask">
 					<h2><a href="detailbarang.jsp?barang='<%= goodies.getObject("nama") %>'" class="info">
-					<%= goodies.getObject("nama") %></a></h2><p>Harga: <%= goodies.getObject("harga") %>
+					<%= goodies.getObject("nama") %></a></h2>
+					<p>Harga: <%= goodies.getObject("harga") %>
 					<br />Masukkan jumlah yang akan dibeli:
 					<br /><input type="number" id="qty" name="quantity" min="0">
 					<input type="button" id="buybutton" value="Beli!">
