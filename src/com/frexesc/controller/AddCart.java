@@ -84,8 +84,13 @@ public class AddCart extends HttpServlet {
 								+ ", \""
 								+ deskripsiTambahan + "\")";
 						
-						connection.createStatement().executeQuery(query2);
-
+						connection.createStatement().executeUpdate(query2);
+						
+						// Update to Barang here
+						String query3 = "UPDATE barang SET jumlah_barang=" + (Integer.parseInt(rs.getString("jumlah_barang")) - Integer.parseInt(request.getParameter("qty"))) + " WHERE id=" + request.getParameter("id_barang"); 
+						
+						connection.createStatement().executeUpdate(query3);
+						
 						response.getWriter().write("Success: Transaksi berhasil!");
 					}					
 				}

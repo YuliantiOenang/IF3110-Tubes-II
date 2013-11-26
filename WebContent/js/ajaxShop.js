@@ -2,6 +2,9 @@
 // 26 November 2013
 // @version 1.0.1
 
+function $(id) { return document.getElementById(id); }
+function get(elem) { return parseFloat($(elem).innerHTML) || 0; }
+
 function onAddToCart(strUrl, id) {
         var self = this;
             
@@ -26,6 +29,8 @@ function onAddToCart(strUrl, id) {
 
                 alert(self.xmlHttpRequest.responseText);
                 if (n != -1) {
+                   var newValue = get('jumlah_barang_' + id) * 1 - parseInt(document.getElementById('qty_' + id).value);
+                   document.getElementById('jumlah_barang_' + id).innerHTML = newValue;
                    document.getElementById('qty_' + id).value = 0;
                    document.getElementById('deskripsi_tambahan').value = "";
                 }

@@ -68,10 +68,12 @@
 		if (b.getTotal_item() > 0) {
 	%>
 	<b>Stok :</b>
-	<%=b.getTotal_item()%>
+	<div id="jumlah_barang_<%=b.getId()%>">
+		<%=b.getTotal_item()%>
+	</div>
 	<br />
 	<b>Jumlah Barang:</b>
-	<input type="text" name="qty" size="8" id="qty_<%=b.getId()%>" >"
+	<input type="text" name="qty" size="8" id="qty_<%=b.getId()%>"
 		value="0">
 	<br />
 	<b>Deskripsi Tambahan:</b>
