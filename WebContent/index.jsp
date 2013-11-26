@@ -9,11 +9,12 @@
 <title>KLK STORE</title>
 </head>
 <body>
+	<div class="page_container">
 	<%@ include file="template/template.jsp" %>
+	<link rel="stylesheet" href="css/index.css" type="text/css">
 	<br/><br/><br/> 
 	<%
 		out.println("<h1>BARANG POPULER</h1>");
-		out.println("<hr>");	
 		for(int i=0;i<5;i++){
 			out.println("<h1>Kategori: " + request.getAttribute("namaKategori" + i) + "<br/></h1>");
 			ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangKategori" + i);
@@ -37,9 +38,9 @@
 			%>
 			</div>
 			<% 
-			out.println("<hr>");
 		}
 		
 	%>
+	</div>
 </body>
 </html>
