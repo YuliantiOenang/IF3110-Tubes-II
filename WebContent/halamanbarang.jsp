@@ -8,31 +8,29 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
-		
+		<%
+		connection = DriverManager.getConnection(db_url, "root", "");
+		assert(connection != null);
+		statement = connection.createStatement();
+		String query = "SELECT * FROM barang WHERE kategori = " + request.getParameter("kategori");
+		ResultSet goodies = statement.executeQuery(query);
+		%>
 		<div id="contentcontainer">
 		<article id="content" class="body">
+			<% while(goodies.next()) { %>
 			<div class="view">
-				<img src="images/cocacola.jpg"/>
+				<img src="<%= goodies.getObject("gambar") %>"/>
 				<div class="mask">
-					<h2><a href="detailbarang.jsp" class="info">Barang Dummy 1</a></h2>
-					<p>Harga: 1000
+					<h2><a href="detailbarang.jsp?barang='<%= goodies.getObject("nama") %>'" class="info">
+					<%= goodies.getObject("nama") %></a></h2>
+					<p>Harga: <%= goodies.getObject("harga") %>
 					<br>Masukkan jumlah yang akan dibeli:
 					<br><input type="number" id="qty" name="quantity" min="0">
 					<input type="button" id="buybutton" value="Beli!">
 					</p>
 				</div>
 			</div>
-			<div class="view">
-				<img src="images/floridina.jpg"/>
-				<div class="mask">
-					<h2><a href="detailbarang.jsp" class="info">Barang Dummy 2</a></h2>
-					<p>Harga: 2000
-					<br>Masukkan jumlah yang akan dibeli:
-					<br><input type="number" id="qty" name="quantity" min="0">
-					<input type="button" id="buybutton" value="Beli!">
-					</p>
-				</div>
-			</div>
+			<% } connection.close(); %>
 		</article>
 		
 		<%@include file="sidebar.jsp" %>

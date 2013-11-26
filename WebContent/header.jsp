@@ -17,11 +17,12 @@
 	<nav>
 		<ul id="menubar">
 			<li><a href="index.jsp">Home</a></li>
-			<li><a href="halamanbarang.jsp">Kategori Barang</a>
+			<li><a href="#">Kategori Barang</a>
 				<ul class="sub-menu">	
 					<% while (categories.next()) { %>
-					<li><a href="halamanbarang.jsp"><%= categories.getObject("kategori") %></a></li>
-					<% } %>
+					<li><a href="halamanbarang.jsp?kategori='<%= categories.getObject("kategori") %>'">
+					<%= categories.getObject("kategori") %></a></li>
+					<% } connection.close();%>
 				</ul>
 			</li>
 			<!--div id="log"></div-->
