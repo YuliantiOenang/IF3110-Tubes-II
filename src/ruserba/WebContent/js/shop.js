@@ -27,7 +27,7 @@ xmlhttpShop.onreadystatechange=function()
 
 function beliBarang()
 {
-	xmlhttpShop.open("GET","http://localhost:8080/ruserba/barang/beli?id_barang="+id_barang+"&id_order="+id_order+"&jumlah="+jumlah+"&keterangan="+keterangan,true);
+	xmlhttpShop.open("GET","/ruserba/barang/beli?id_barang="+id_barang+"&id_order="+id_order+"&jumlah="+jumlah+"&keterangan="+keterangan,true);
 	xmlhttpShop.send();
 	jumlah = "";
 	keterangan = "";

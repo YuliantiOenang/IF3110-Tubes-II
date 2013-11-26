@@ -4,5 +4,5 @@ function searchClick()
 	var harga = document.getElementById("harga").value;
 	var kategori = document.getElementById("kategori").value;
 	var operator = document.getElementById("operator").value;
-	init('http://localhost:8080/ruserba/barang','harga','ASC',search,kategori,harga,operator);
+	init('/ruserba/barang','harga','ASC',search,kategori,harga,operator);
 }

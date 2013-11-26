@@ -90,7 +90,7 @@
 <script src="/ruserba/js/suggest.js" type="text/javascript"></script>
 <script src="/ruserba/js/shop.js" type="text/javascript"></script>
 </head>
-<body onload="init('http://localhost:8080/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
+<body onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
 	<%
 		Kategori K = Helper.findAllKategori();
 	%>
