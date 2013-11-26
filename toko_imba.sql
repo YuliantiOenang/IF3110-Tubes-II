@@ -2,12 +2,11 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Inang: 127.0.0.1
--- Waktu pembuatan: 26 Nov 2013 pada 05.40
--- Versi Server: 5.5.32
--- Versi PHP: 5.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Nov 26, 2013 at 05:55 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `toko_imba`
+-- Database: `toko_imba`
 --
 CREATE DATABASE IF NOT EXISTS `toko_imba` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `toko_imba`;
@@ -26,25 +25,9 @@ USE `toko_imba`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `credit_card`
+-- Table structure for table `inventori`
 --
 
-DROP TABLE IF EXISTS `credit_card`;
-CREATE TABLE IF NOT EXISTS `credit_card` (
-  `id_credit_card` int(10) NOT NULL AUTO_INCREMENT,
-  `credit_card_number` int(20) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `expired_date` date NOT NULL,
-  PRIMARY KEY (`id_credit_card`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `inventori`
---
-
-DROP TABLE IF EXISTS `inventori`;
 CREATE TABLE IF NOT EXISTS `inventori` (
   `id_inventori` int(10) NOT NULL AUTO_INCREMENT,
   `id_kategori` int(10) NOT NULL,
@@ -58,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `inventori` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
--- Dumping data untuk tabel `inventori`
+-- Dumping data for table `inventori`
 --
 
 INSERT INTO `inventori` (`id_inventori`, `id_kategori`, `nama_inventori`, `jumlah`, `gambar`, `description`, `harga`) VALUES
@@ -96,10 +79,9 @@ INSERT INTO `inventori` (`id_inventori`, `id_kategori`, `nama_inventori`, `jumla
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
-DROP TABLE IF EXISTS `kategori`;
 CREATE TABLE IF NOT EXISTS `kategori` (
   `id_kategori` int(10) NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(100) NOT NULL,
@@ -107,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `kategori` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -120,103 +102,43 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengguna`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `pengguna`;
-CREATE TABLE IF NOT EXISTS `pengguna` (
-  `id_pengguna` int(10) NOT NULL AUTO_INCREMENT,
-  `nama_pengguna` varchar(100) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `nomor_hp` varchar(50) NOT NULL,
-  `alamat` varchar(200) NOT NULL,
-  `provinsi` varchar(100) NOT NULL,
-  `kota_kabupaten` varchar(100) NOT NULL,
-  `kode_pos` varchar(10) NOT NULL,
-  `total_transaksi` int(11) NOT NULL,
-  PRIMARY KEY (`id_pengguna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `full_name` varchar(30) NOT NULL,
+  `alamat` varchar(30) NOT NULL,
+  `provinsi` varchar(30) NOT NULL,
+  `kotakabupaten` varchar(30) NOT NULL,
+  `kodepos` int(11) NOT NULL,
+  `nomor_handphone` int(20) NOT NULL,
+  `creditcardnum` int(11) NOT NULL DEFAULT '0',
+  `creditcardname` varchar(50) DEFAULT NULL,
+  `expireddate` date DEFAULT NULL,
+  `privilege` enum('Admin','User') NOT NULL DEFAULT 'User',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengguna`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `nama_pengguna`, `username`, `password`, `email`, `nomor_hp`, `alamat`, `provinsi`, `kota_kabupaten`, `kode_pos`, `total_transaksi`) VALUES
-(4, 'wkwk', 'aaa', 'aa', 'aa@aa.com', '12198', 'asaunu', 'asausah', 'asahsua', '1111', 100),
-(5, 'harits elfahmi', 'aaaaa', '70c881d4a26984ddce795f6f71817c9cf4480e79', 'adilelfahmi@gmail.com', '0', '', '', '', '0', 100);
-
--- --------------------------------------------------------
+INSERT INTO `user` (`id`, `email`, `password`, `full_name`, `alamat`, `provinsi`, `kotakabupaten`, `kodepos`, `nomor_handphone`, `creditcardnum`, `creditcardname`, `expireddate`, `privilege`) VALUES
+('lala', 'email', 'Password', 'FULL', 'alamat', 'provinsi', 'kota', 1313, 144141, 1234, 'lala', '1912-12-13', 'User');
 
 --
--- Struktur dari tabel `transaksi`
---
-
-DROP TABLE IF EXISTS `transaksi`;
-CREATE TABLE IF NOT EXISTS `transaksi` (
-  `id_transaksi` int(10) NOT NULL AUTO_INCREMENT,
-  `id_pengguna` int(10) NOT NULL,
-  `id_inventori` int(10) NOT NULL,
-  `jumlah` int(100) NOT NULL,
-  PRIMARY KEY (`id_transaksi`),
-  KEY `id_pengguna` (`id_pengguna`),
-  KEY `id_inventori` (`id_inventori`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
-
---
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `id_pengguna`, `id_inventori`, `jumlah`) VALUES
-(29, 4, 1, 3),
-(30, 4, 2, 4),
-(31, 4, 3, 5),
-(32, 4, 4, 6),
-(33, 4, 5, 7),
-(34, 4, 6, 8),
-(35, 4, 7, 9),
-(36, 4, 8, 10),
-(37, 4, 9, 11),
-(38, 4, 10, 12),
-(39, 4, 11, 13),
-(40, 4, 12, 14),
-(41, 4, 13, 15),
-(42, 4, 14, 16),
-(43, 4, 15, 17),
-(44, 4, 16, 18),
-(45, 4, 17, 19),
-(46, 4, 18, 20),
-(47, 4, 19, 21),
-(48, 4, 20, 22),
-(49, 4, 21, 23),
-(50, 4, 22, 24),
-(51, 4, 23, 25),
-(52, 4, 24, 26),
-(53, 4, 25, 27),
-(54, 4, 26, 28),
-(55, 4, 27, 29),
-(56, 4, 28, 30),
-(57, 4, 29, 31),
-(58, 4, 30, 32);
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `inventori`
+-- Constraints for table `inventori`
 --
 ALTER TABLE `inventori`
   ADD CONSTRAINT `inventori_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
-
---
--- Ketidakleluasaan untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`),
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_inventori`) REFERENCES `inventori` (`id_inventori`);
-SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
