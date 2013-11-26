@@ -6,12 +6,18 @@ package ruserba.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ruserba.database.DatabaseHelper;
 
 /**
  *
@@ -69,16 +75,41 @@ public class RequestServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>");
-            if (request.getParameter("page") != null) {
-                out.println(getPageTitle(request.getParameter("page")));
+            String page = request.getParameter("page");
+            if (page != null) {
+                String title = getPageTitle(page);
+                DatabaseHelper.Connect();
+                if (page.equals("kategori")) {
+                    String query = "select nama_kategori from kategori where id_kategori=" + request.getParameter("id");
+                    ResultSet result = DatabaseHelper.executeQuery(query);
+                    try {
+                        result.next();
+                        title = result.getString("nama_kategori");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (page.equals("barang")) {
+                    String query = "select nama_barang from barang where id_barang=" + request.getParameter("id");
+                    ResultSet result = DatabaseHelper.executeQuery(query);
+                    try {
+                        result.next();
+                        title = result.getString("nama_barang");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (page.equals("search")) {
+                    title = URLDecoder.decode(request.getParameter("q"), "UTF-8") + title;
+                }
+                DatabaseHelper.Disconnect();
+                out.println(title);
             }
             else {
                 out.println("Beranda");
             }
             out.println(suffix);
             out.println("</title>");
-            out.println("<link rel='icon' type='image/png' href='assets/favicon.PNG' />");
-            out.println("<link rel='stylesheet' media='only screen and (min-width:1224px)' href='css/desktop.css' />");
+            out.println("<link rel='icon' type='image/png' href='/ruserba/assets/favicon.PNG' />");
+            out.println("<link rel='stylesheet' media='only screen and (min-width:1224px)' href='/ruserba/css/desktop.css' />");
             out.println("</head>");
             out.println("<body>");
             out.println("<div id='wrapper'>");
@@ -88,8 +119,8 @@ public class RequestServlet extends HttpServlet {
             out.println("<div class='divider'>");
             out.println("</div>");
             out.println("<div id='content'>");
-            if (request.getParameter("page") != null) {
-                request.getRequestDispatcher(getPageContent(request.getParameter("page"))).include(request, response);
+            if (page != null) {
+                request.getRequestDispatcher(getPageContent(page)).include(request, response);
             }
             else {
                 request.getRequestDispatcher("home.jsp").include(request, response);

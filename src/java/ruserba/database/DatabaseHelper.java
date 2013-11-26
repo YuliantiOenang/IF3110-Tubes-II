@@ -23,6 +23,7 @@ public class DatabaseHelper {
     static String DB_USER = "root";
     static String DB_PASS = "";
     static Connection conn;
+    static Statement smt;
     
     public static void Connect() { 
         try {
@@ -37,7 +38,7 @@ public class DatabaseHelper {
     
     public static ResultSet executeQuery(String sql) {
         try {
-            Statement smt = conn.createStatement();
+            smt = conn.createStatement();
             ResultSet result = smt.executeQuery(sql);
             return result;
         } catch (SQLException ex) {
@@ -47,7 +48,6 @@ public class DatabaseHelper {
     }
     
     public static boolean execute(String sql) {
-        Statement smt;
         try {
             System.out.println("HASIL");
             smt = conn.createStatement();
@@ -63,6 +63,7 @@ public class DatabaseHelper {
     public static void Disconnect() {
         if(conn != null) {
             try {
+                smt.close();
                 conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);
