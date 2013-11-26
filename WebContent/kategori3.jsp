@@ -6,8 +6,7 @@
 
 <!3 baris di atas ngga tau buat apa, cuma liat dari tutorial>
 
-
-<title>RuserBabaAlif</title>
+<title>Whatshop</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="styles/layout.css" type="text/css" />
@@ -16,7 +15,7 @@
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
-      <a href="#"><img src="images/icon_whatshop.png" alt="Whatshop" width="200" height="44"> </img></a>
+      <a href="index2.jsp"><img src="images/icon_whatshop.png" alt="Whatshop" width="200" height="44"> </img></a>
     </div>
     <br class="clear" />
   </div>
@@ -25,27 +24,18 @@
   <div id="topbar">
     <div id="topnav">
       <ul>
-        <li class="active"><a href="index2.jsp">Home</a></li>
+        <li><a href="index2.jsp">Home</a></li>
 		<li><a href="#">Kategori barang</a>
           <ul>
             <li><a href="kategori1.jsp">Kategori 1</a></li>
             <li><a href="kategori2.jsp">Kategori 2</a></li>
-            <li><a href="kategori3.jsp">Kategori 3</a></li>
+            <li class="active"><a href="kategori3.jsp">Kategori 3</a></li>
 			<li><a href="kategori4.jsp">Kategori 4</a></li>
 			<li><a href="kategori5.jsp">Kategori 5</a></li>
           </ul>
         </li>
-		<li><a href="keranjang.jsp">Keranjang belanja</a></li> 
-		<script>
-			var username = localStorage.getItem('username');
-			if (username === null) {
-				document.write('<li><a href="#" onClick="MyWindow=window.open(' + " 'frontgate.php','Login','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'); return false;" + '">Login</a></li>');
-			}
-			else {
-				document.write('<li><a href="profile.jsp?username=' + username + '">' + username + '</a></li>');
-				document.write('<li><a href="logout.jsp"> Logout </a></li>');
-			}
-		</script>
+		<li><a href="keranjang.jsp">Keranjang belanja</a></li>
+        <li><a href="#">Login</a></li>
         
       </ul>
     </div>
@@ -61,19 +51,11 @@
     <br class="clear" />
   </div>
 </div>
-<div class="wrapper col3">
-  <div id="intro">
-    <div class="fl_left">
-      <h2>Diskon khusus hari ini</h2>
-      <p>Diskon 90% untuk barang kategori 1 dan 2</p>
-      <p class="readmore"><a href="#">Belanja sekarang &raquo;</a></p>
-    </div>
-    <div class="fl_right"><img src="images/gambar/gambar2.jpg" alt="" /></div>
-    <br class="clear" />
-  </div>
-</div>
 <div class="wrapper col4">
   <div id="services">
+	<ul>
+	  <q>Kategori 1</q>
+	</ul>
     <ul>
       <li>
         <div class="fl_left"><img src="images/gambar/meat2.jpg" alt="" /></div>
@@ -100,7 +82,81 @@
         </div>
       </li>
     </ul>
+	<ul>
+	  <q></q>
+	</ul>
+	<ul>
+      <li>
+        <div class="fl_left"><img src="images/gambar/meat2.jpg" alt="" /></div>
+        <div class="fl_right">
+          <h2>Daging glonggongan</h2>
+          <p>Daging glonggongan asli, tanpa pengawet buatan</p>
+          <p class="readmore"><a href="#">Beli sekarang &raquo;</a></p>
+        </div>
+      </li>
+      <li>
+        <div class="fl_left"><img src="images/gambar/brokoli2.jpg" alt="" /></div>
+        <div class="fl_right">
+          <h2>Brokoli KW</h2>
+          <p>Brokoli made in China asli, KW super</p>
+          <p class="readmore"><a href="#">Beli sekarang &raquo;</a></p>
+        </div>
+      </li>
+      <li class="last">
+        <div class="fl_left"><img src="images/gambar/milk2.jpg" alt="" /></div>
+        <div class="fl_right">
+          <h2>Susu janda liar</h2>
+          <p>Dijamin Anda puas. Tidak puas uang kembali</p>
+          <p class="readmore"><a href="#">Beli sekarang &raquo;</a></p>
+        </div>
+      </li>
+    </ul>
+	<ul>
+	  <q></q>
+	</ul>
+	<ul>
+      <li>
+        <div class="fl_left"><img src="images/gambar/meat2.jpg" alt="" /></div>
+        <div class="fl_right">
+          <h2>Daging glonggongan</h2>
+          <p>Daging glonggongan asli, tanpa pengawet buatan</p>
+          <p class="readmore"><a href="#">Beli sekarang &raquo;</a></p>
+        </div>
+      </li>
+      <li>
+        <div class="fl_left"><img src="images/gambar/brokoli2.jpg" alt="" /></div>
+        <div class="fl_right">
+          <h2>Brokoli KW</h2>
+          <p>Brokoli made in China asli, KW super</p>
+          <p class="readmore"><a href="#">Beli sekarang &raquo;</a></p>
+        </div>
+      </li>
+      <li class="last">
+        <div class="fl_left"><img src="images/gambar/milk2.jpg" alt="" /></div>
+        <div class="fl_right">
+          <h2>Susu janda liar</h2>
+          <p>Dijamin Anda puas. Tidak puas uang kembali</p>
+          <p class="readmore"><a href="#">Beli sekarang &raquo;</a></p>
+        </div>
+      </li>
+    </ul>
     <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col3">
+  <div id="pagination-flickr">
+	<ul id="pagination-flickr">
+	  <li class="previous-off">«Previous</li>
+	  <li class="active">1</li>
+	  <li><a href="?page=2">2</a></li>
+	  <li><a href="?page=3">3</a></li>
+	  <li><a href="?page=4">4</a></li>
+	  <li><a href="?page=5">5</a></li>
+	  <li><a href="?page=6">6</a></li>
+	  <li><a href="?page=7">7</a></li>
+	  <li class="next"><a href="?page=2">Next »</a></li>
+	</ul>
+	<br class="clear" />
   </div>
 </div>
 <div class="wrapper col5">
