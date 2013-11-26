@@ -37,16 +37,24 @@ public class admin_login extends HttpServlet{
 	         // Execute SQL query
 	         Statement stmt = conn.createStatement();
 	         String sql;
-	         sql = "SELECT * FROM user";
+	         sql = "SELECT * FROM produk";
 	         ResultSet rs = stmt.executeQuery(sql);
+	         
 	         out.println("Test");
 	         // Extract data from result set
 	         out.println("<h1>NAMA BARANG INI BOR #Hmif48<br></h1><ul>");
 	         while(rs.next()){
 	            //Retrieve by column name
 	        	
-	        	out.print("<li> id : "+rs.getInt("id")+"</li>");
-	        	out.print("<li> nama :"+rs.getString("nama")+"</li>");
+	        	out.print("<li> id : "+rs.getObject(1).toString()+"</li>");
+	        	out.print("<li> nama :"+rs.getObject(2).toString()+"</li>");
+	        	out.print("<li> harga :"+rs.getObject(3).toString()+"</li>");
+	        	out.print("<img src=\""+rs.getString("image")+"\">");
+	        	//out.print("<li> sold :"+rs.getInt("sold")+"</li>");
+	        	//out.print("<li> stok :"+rs.getInt("stok")+"</li>");
+	        	//out.print("<li> image :"+rs.getString("image")+"</li>");
+	        	//out.print("<li> kategori :"+rs.getString("kategori")+"</li>");
+	        	
 	        	//out.print("<li> harga :"+rs.getInt("harga")+"</li>");
 	        	//out.print("<li> sold :"+rs.getInt("sold")+"</li>");
 	        	//out.print("<li> stok :"+rs.getInt("stok")+"</li>");
