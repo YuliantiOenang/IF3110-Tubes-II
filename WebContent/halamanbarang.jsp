@@ -8,8 +8,8 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
-		<%@include file="sidebar.jsp" %>
 		
+		<div id="contentcontainer">
 		<article id="content" class="body">
 			<div class="view">
 				<img src="images/cocacola.jpg"/>
@@ -34,6 +34,9 @@
 				</div>
 			</div>
 		</article>
+		
+		<%@include file="sidebar.jsp" %>
+		</div>
 		
 		<%@include file="footer.jsp" %>
 	</div>	

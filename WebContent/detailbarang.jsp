@@ -7,8 +7,8 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
-		<%@include file="sidebar.jsp" %>
 		
+		<div id="contentcontainer">
 		<article id="content" class="body">
 			<img id="imgbarang" src="images/cocacola.jpg"/>
 			<h2>Coca Cola</h2>
@@ -22,6 +22,9 @@
 			<input type="button" id="buybutton" value="Beli!">
 			</form>
 		</article>
+		
+		<%@include file="sidebar.jsp" %>
+		</div>
 		
 		<%@include file="footer.jsp" %>
 	</div>	

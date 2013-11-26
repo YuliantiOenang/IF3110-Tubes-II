@@ -7,11 +7,17 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
-		<%@include file="sidebar.jsp" %>
 		
-		<article id="content" class="body">
-			<p>Ini ceritanya Content</p>
-		</article>
+		<div id = contentcontainer>
+			<article id="content" class="body">
+				<h2>Ini barang yang sering dibeli lhoo~</h2>
+				<p>Harusnya sih ada gambar produknya gitu. Harusnya.</p>
+			</article>
+			
+			<aside id="indexsidebar" class="body">
+				<img src="images/howto.png"/>
+			</aside>
+		</div>
 		
 		<%@include file="footer.jsp" %>
 	</div>	
