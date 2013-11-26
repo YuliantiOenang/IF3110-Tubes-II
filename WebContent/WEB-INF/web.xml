@@ -2,6 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>WBD</display-name>
   <welcome-file-list>
+    <welcome-file>home</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -24,9 +25,14 @@
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>Servlets.UserServlet</servlet-class>
+    <display-name>BarangPopuler</display-name>
+    <servlet-name>BarangPopuler</servlet-name>
+    <servlet-class>BarangPopuler</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
+    <servlet-name>BarangPopuler</servlet-name>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
 </web-app>

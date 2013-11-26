@@ -1,13 +1,31 @@
-<%@page import="java.util.Date"%>
+<%@page import="java.util.*"%>
+<%@page import="kelas.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ini adalah judul</title>
+<title>KLK STORE</title>
 </head>
 <body>
-	<%@ include file="template/template.jsp" %> 
+	<%@ include file="template/template.jsp" %>
+	<br/><br/><br/> 
+	<%
+		out.println("<h1>BARANG POPULER</h1>");
+		out.println("<hr>");	
+		for(int i=0;i<5;i++){
+			out.println("<h1>Kategori: " + request.getAttribute("namaKategori" + i) + "<br/></h1>");
+			ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangKategori" + i);
+			for(Barang b: barangs){
+				out.println("<strong>Nama:</strong> "+b.getNama() + "<br/>");
+				out.println("<strong>Harga:</strong> Rp"+b.getHarga() + "<br/>");
+				out.println("<strong>Jumlah:</strong> "+b.getJumlah() + "<br/>");
+				out.println("<br/>");
+			}
+			out.println("<hr>");
+		}
+		
+	%>
 </body>
 </html>
