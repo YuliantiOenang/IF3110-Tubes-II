@@ -5,7 +5,6 @@
 	String db_url = "jdbc:mysql://localhost/ruserba";
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	Connection connection = DriverManager.getConnection(db_url, "root", "");
-	assert(connection != null);
 	Statement statement = connection.createStatement();
 	ResultSet categories = statement.executeQuery("SELECT DISTINCT kategori FROM barang");
 	%>
@@ -18,7 +17,7 @@
 			<li><a href="#">Kategori Barang</a>
 				<ul class="sub-menu">	
 					<% while (categories.next()) { %>
-					<li><a href="halamanbarang.jsp?kategori='<%= categories.getObject("kategori") %>'">
+					<li><a href="halamanbarang.jsp?kategori=<%= categories.getObject("kategori") %>">
 					<%= categories.getObject("kategori") %></a></li>
 					<% } connection.close();%>
 				</ul>
