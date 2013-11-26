@@ -67,8 +67,6 @@
 			
 			<form name="editform" action="profile.jsp" onsubmit="return validatepass()" method="post">
 				<%
-					session.setAttribute("login_user", "karakuri");
-					out.println(session.getAttribute("login_user"));
 					Connection con = null;
 					
 					try {
@@ -76,7 +74,7 @@
 						Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 						}catch(ClassNotFoundException ce){out.println(ce);} 
 
-					con = DriverManager.getConnection("jdbc:mysql://localhost/ruserba","root","");
+					con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
 					
 					PreparedStatement st;
 					ResultSet rs;

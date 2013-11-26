@@ -37,7 +37,27 @@ function validateregisForm()
 											var dotpos=x.lastIndexOf(".");
 											if (x!=null && x!="" && atpos>0 && dotpos>=atpos+2 && dotpos+1<x.length && x!=y)
 											{	
-												document.getElementById('btn-register').disabled = false;
+												x=document.forms["regisform"]["username"].value;
+												y=document.forms["regisform"]["email"].value;
+												// validation on server side
+												var xmlhttp;
+												if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+													xmlhttp = new XMLHttpRequest();
+												}
+												else {// code for IE6, IE5
+													xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+												}
+												
+												xmlhttp.onreadystatechange = function() {
+													if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+														if (xmlhttp.responseText == 0) { // failed
+															alert("Usernama atau Email sudah dipakai.");
+														} else  // success
+															document.getElementById('btn-register').disabled = false;
+													}
+												}
+												xmlhttp.open("GET", "svr/validate_registration.jsp?username="+x+"&email="+y, true);
+												xmlhttp.send();
 											}
 										}
 									}
@@ -70,6 +90,7 @@ function isDigits(argvalue) {
 
 function validatecreditForm()
 {
+	var z=document.forms["creditform"]["expireddate"].value;
 	var x=document.forms["creditform"]["cardnumber"].value;
 	if (x==null || x=="" || !isDigits(x) )
 	  {
@@ -82,7 +103,6 @@ function validatecreditForm()
 	  alert("Name on Card harus diisi");
 	  return false;
 	  }	
-
 	// validation on server side
 	var xmlhttp;
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -90,17 +110,17 @@ function validatecreditForm()
 	}
 	else {// code for IE6, IE5
 	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}						
+	}		
 	xmlhttp.onreadystatechange = function() {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == 0) { // failed
-			alert("CardNumber dan Nama tidak sesuai");
+			alert("CardNumber sudah dipakai");
 		} else { // success
-			return true;
+			self.location="index.jsp";
 		}
 	}
 	}
-	xmlhttp.open("GET", "svr/validate_regis_card.php?number="+x+"&name="+y, true);
+	xmlhttp.open("GET", "svr/validate_regis_card.jsp?number="+x+"&name="+y+"&tanggal="+z, true);
 	xmlhttp.send();	  
 }
 

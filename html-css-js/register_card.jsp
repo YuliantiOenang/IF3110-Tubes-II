@@ -19,7 +19,7 @@
 						Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 						}catch(ClassNotFoundException ce){out.println(ce);} 
 
-					con = DriverManager.getConnection("jdbc:mysql://localhost/ruserba","root","");
+					con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
 					
 					PreparedStatement st;
 					String username = request.getParameter("username");
@@ -89,7 +89,7 @@
 		<div id="form-registrasi" class="frame">
 			<p id="registration-title">Credit Card Registration</p>
 			
-			<form name="creditform" action="index.php" onsubmit="return validatecreditForm()" method="post">
+			<form name="creditform">
 				<div id="card-number" class="form-field">
 					<p class="label">
 						CardNumber :
@@ -114,7 +114,7 @@
 					</input></p>
 				</div>
 				<br/>
-					<input id="btn-register" class="btn" type="submit" value="Submit" name="submitted"></input>
+					<input id="btn-register" class="btn" type="button" value="Submit" name="submitted" onclick="validatecreditForm()"></input>
 			</form>
 			<form action="index.php" method="post">
 					<br/>

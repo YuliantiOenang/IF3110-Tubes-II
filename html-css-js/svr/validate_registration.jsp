@@ -9,26 +9,24 @@
 
 					con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
 					
-					String usr = request.getParameter("usr");
-					String pass = request.getParameter("pass");
+					String usr = request.getParameter("username");
+					String eml = request.getParameter("email");
 					
 					PreparedStatement st;
 					
-					st = con.prepareStatement("SELECT * FROM customer WHERE IdName=?");
+					st = con.prepareStatement("SELECT * FROM customer WHERE IdName=? OR Email=?");
 					st.setString(1,usr);
+					st.setString(2,eml);
 					
 					ResultSet rs;
 					rs  = st.executeQuery();
 					
-					while(rs.next()){
-						if (rs.getString(2).equals(pass)){
-							session.setAttribute("login_user", usr);
-							session.setAttribute("user_role", rs.getInt(11));
+					if(!rs.next()){
 							response.getWriter().print(1);
 						} else {
 							response.getWriter().print(0);
 						}
-					}
+					
 					
 					st.clearParameters();
 					con.close();
