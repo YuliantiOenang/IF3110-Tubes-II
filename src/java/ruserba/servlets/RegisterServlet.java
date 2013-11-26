@@ -69,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("registerkartu");
                 dispatcher.forward(request, response);
             } else {
                 // Registrasi Gagals

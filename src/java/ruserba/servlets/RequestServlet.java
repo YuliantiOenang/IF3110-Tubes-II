@@ -50,7 +50,7 @@ public class RequestServlet extends HttpServlet {
     
     private String getPageContent(String name) {
         if (pages.containsKey(name)) {
-            return pages.get(name) + ".jsp";
+            return name + ".jsp";
         }
         return "error.jsp";
     }
