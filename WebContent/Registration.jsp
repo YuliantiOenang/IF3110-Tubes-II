@@ -1,33 +1,15 @@
-<%@ page import = "java.sql.*" %>
-<%@ page import = "database.UserSQL; " %>
-
 <!DOCTYPE html>
 <html>
 
 <!-- Head -->
 <head><script src="FormValidation.js"></script>
+<script src="UserAJAX.js"></script>
 </head>
 
 <!-- Body -->
 <body>
 
 <!-- JSP Script -->
-
-<%
-	String username = request.getParameter("username");
-	String fullname = request.getParameter("fullname");
-	String hp = request.getParameter("hp");
-	String email = request.getParameter("email");
-	String alamat = request.getParameter("alamat");
-	String provinsi = request.getParameter("provinsi");
-	String kota = request.getParameter("kota");
-	String kodepos = request.getParameter("kodepos");
-	String password = request.getParameter("password");
-	
-	UserSQL.AddUser(username, email, password, fullname, alamat, provinsi, kota, Integer.parseInt(kodepos), Integer.parseInt(hp));
-
-%>
-
 
 <!-- Form Pendaftaran -->	
 <form method="post" action="Registration.jsp" name="registration" >
@@ -41,7 +23,7 @@
 <span><br>Kodepos:* <input type="text" name="kodepos"id="kodepos"></span>
 <span><br>Password: <input id="pass" type="password" name="password" onkeyup='validate("password")' required><label id = "password"></label></span> 
 <span><br>Confirm Password: <input type="password" name="confirm" onkeyup='validate("confirm")' required><label id = "confirm"></label></span> 
-<br><input type="submit" id="submitbutton" value="Register">
+<br><input type="button" id="submitbutton" onclick = "SubmitRegistration()" value="Register">
 <p>*optional</p>
 </form>
 
