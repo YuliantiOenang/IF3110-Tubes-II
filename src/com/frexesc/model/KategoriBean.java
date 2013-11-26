@@ -7,11 +7,11 @@ public class KategoriBean {
 	private String name;
 	private ArrayList<BarangBean> itemList;
 
-	public KategoriBean(int id, String name, ArrayList<BarangBean> itemList) {
+	public KategoriBean(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.itemList = itemList;
+		this.itemList = new ArrayList<BarangBean>();
 	}
 
 	public int getId() {
