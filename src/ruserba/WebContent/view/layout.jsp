@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@page import="javaModel.Helper"%>
 <%@page import="databaseLib.DatabaseAdapter"%>
-<%@page import="org.eclipse.jdt.internal.compiler.ast.ForeachStatement"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page import="javaModel.Kategori" %>
 <html>
@@ -120,7 +119,7 @@
 						Kategori K = Helper.findAllKategori();
 					%>
 					<% for (int i = 0; i < K.id.size(); i++) { %>
-					<a href="/cumigondrong/kategori/view/<%= K.id.get(i) %>">
+					<a href="/ruserba/barang?kategori=<%= K.nama_kategori.get(i) %>">
 						<div class="permenu per5">
 							<div class="menuborder"></div>
 							<div class="menutxt">
@@ -225,14 +224,20 @@
 	</script>
 	<div id='search-popup' class='search-popup' onclick='opensearch()'></div>
 	<div id='search-popup-content' class='search-popup-content'>
-		<form action="" method="get">
+		<form action="/ruserba/barang" method="get">
 			<h4>Search</h4>
 			<p onclick='closesearch()'>x</p>
-			<input type="text" name="q" value="" placeholder="Nama Barang">
-			<select name="kat">
-				<option value="0">All Categories</option>
-			</select> <input type="number" name="h1" value="" placeholder="Harga Bawah">
-			<input type="number" name="h2" value="" placeholder="Harga Atas">
+			<input type="text" name="nama_barang" value="" placeholder="Nama Barang">
+			<select name="kategori">
+				<option value="">All Categories</option>
+			</select>
+			<input type="number" name="harga" value="" placeholder="Harga">
+			<select name="operator" id="operator">
+			<option value="">--Pilih--</option>
+			<option value="L">Less than</option>
+			<option value="E">Equal </option>
+			<option value="G">Greater </option> 
+			</select>
 			<button type="submit" class="btn">Search</button>
 		</form>
 	</div>
