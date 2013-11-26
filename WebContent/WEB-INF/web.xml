@@ -22,17 +22,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UserServlet</display-name>
-    <servlet-name>UserServlet</servlet-name>
-    <servlet-class>Servlets.UserServlet</servlet-class>
     <display-name>BarangPopuler</display-name>
     <servlet-name>BarangPopuler</servlet-name>
     <servlet-class>BarangPopuler</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UserServlet</servlet-name>
-    <url-pattern>/UserServlet</url-pattern>
     <servlet-name>BarangPopuler</servlet-name>
     <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>Servlets.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
 </web-app>
