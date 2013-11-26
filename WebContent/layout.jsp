@@ -82,14 +82,12 @@
 </head>
 <body>
 <!-- for first animation -->
-	
+	<div class='search-box'> <input type="text" id="name" class="input" placeholder="search bar"/></div>
 	<div class='conctr'>
 			<div class='head'>
-			<a href='/index/home'><div class='logo'></div></a>
-			
-			<div class='menu'>
-
-						<a href=''><div class='permenu per5'>
+			<a href='${pageContext.request.contextPath}/index.jsp'><div class='logo'></div></a>
+				<div class='menu'>
+						<a href='${pageContext.request.contextPath}/item.jsp'><div class='permenu per5'>
 							<div class='menuborder'></div>
 							<div class='menutxt'><h1 id='txtmenu1' class='menu'>Ladies Dress</h1></div>
 							<div class='menuborder'></div>
@@ -121,44 +119,18 @@
 							<div class='menutxt'><h1 id='txtmenu1' class='menu'>Man Hat</h1></div>
 							<div class='menuborder'></div>
 							</div>
-						</a>
-						
-			</div>
+						</a>			
+				</div>
 			
 			<div class='status'>
-					
 					<!-- <p class="left"> welcome, <a href=''>name_here</a>! (<a href=''>Logout</a>)
 					</p> -->
-					<p>You are not login. (<a href='#' onclick='showLogin()'>Login</a> or <a href='${pageContext.request.contextPath}/register.jsp'>Register now</a>)</p>
-				<?php endif ?>
-					
+					<p class="left">You are not login. (<a href='#' onclick='showLogin()'>Login</a> or <a href='${pageContext.request.contextPath}/register.jsp'>Register now</a>)					</p>
+
 					<p class="right">
 						<a href="/shop/">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
-					</p>
-			</div>
-			
-			<div class='menu'>
-				<a href='/index/shop'> </a>
 
+					</p>
+										
 			</div>
-			
-		</div>
-		<h2 id='footer_txt'><b>www.jayset.com Oficial Website</b></br>Cause jay & set is something.</h2>
-		<a href='https://twitter.com/dave_rex'><img title='@calvinsalvy' src='${pageContext.request.contextPath}/img/site/twitter.png' id='footer_img'/></a>
-	</div>
-	
-	<div id='login_cont'>
-		<div id='login_box'>
-			<h1>LOGIN</h1>
-			<a class='exit' onclick='hideLogin()'>x</a>
-			<div id="loading"></div>
-			<form>
-				<label>Username</label><input type='text' id="login_username" name="Login[username]"></input><br/>
-				<label>Password</label><input type='password' id="login_password" name="Login[password]"></input><br/>
-				<button type='submit' onclick="login(); return false;" class='btn right'>Login</button>
-			</form>
-		</div>
-	</div>
-	
-</body>
-</html>
+						

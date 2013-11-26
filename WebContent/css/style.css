@@ -80,7 +80,7 @@
 		}
 		div.status p a {
 			cursor: pointer;
-			color : #bca549;
+			color :blue;
 		}
 		div.status p.left{
 			float:left;
@@ -332,8 +332,9 @@ p {
 	text-align : justify;
 	font-weight: normal;
 	font-style: normal;
-	color : #DDDDDD;
+	color : black;
 }
+
 textarea {
 	font-family : Candara;
 	border : 1px solid #AAAAAA;
@@ -1011,7 +1012,18 @@ div#price p{margin-top : 10px;margin-left : 2px;text-align:center}
 div#qty p{margin-top : 10px;text-align:center;margin-left : 0px;}
 div#msg p{margin-top : 0px;margin-left : 2px;text-align:center;}
 
-
+/***********************
+  	 SEARCH-BAR
+***********************/
+div.search-box {
+	position:absolute;
+	left:77%;
+	top:2%;
+}
+div.search-box input{
+	width: 160px;
+	height: 30px;
+}
 
 /***********************
   	 SEARCH-POPUP
