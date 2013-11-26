@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +39,7 @@ public class RequestServlet extends HttpServlet {
         pages.put("kategori", "");
         pages.put("barang", "");
         pages.put("cart", "Keranjang Belanja");
+        pages.put("admin", "Admin");
     }
     
     private String getPageTitle(String name) {
@@ -49,6 +50,7 @@ public class RequestServlet extends HttpServlet {
     }
     
     private String getPageContent(String name) {
+        System.out.println(name);
         if (pages.containsKey(name)) {
             return name + ".jsp";
         }

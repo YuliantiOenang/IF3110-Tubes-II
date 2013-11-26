@@ -22,6 +22,10 @@
         <servlet-name>RequestServlet</servlet-name>
         <servlet-class>ruserba.servlets.RequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditItemServlet</servlet-name>
+        <servlet-class>ruserba.servlets.EditItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -34,7 +38,10 @@
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/index.jsp</url-pattern>
     </servlet-mapping>
-    <session-config>
+    <servlet-mapping>
+        <servlet-name>EditItemServlet</servlet-name>
+        <url-pattern>/EditItemServlet</url-pattern>
+    </servlet-mapping><session-config>
         <session-timeout>
             30
         </session-timeout>
