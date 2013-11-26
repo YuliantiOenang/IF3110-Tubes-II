@@ -4,11 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="refresh" content="3; url=home.jsp" />
+<meta http-equiv="refresh" content="3; url=index.jsp" />
 <title>Insert title here</title>
 </head>
 <body>
-<%= request.getAttribute("response") %>
+<%= request.getAttribute("response") %><br />
 If you are not directed in 3 seconds, please click this <a href="index.jsp">link</a>
+<% if (request.getSession(true).getAttribute("user_id") == null) { %>
+<script>
+alert("login failed");
+</script>
+<% } %>
 </body>
 </html>

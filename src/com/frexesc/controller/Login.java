@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +47,7 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession(true);
+		
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE username='" + username + "' and password='" + password + "' LIMIT 1");
@@ -53,13 +55,21 @@ public class Login extends HttpServlet {
 				request.setAttribute("response", "login successful");
 				session.setAttribute("user_id", rs.getInt("id"));
 				session.setAttribute("username", rs.getString("username"));
+				
+				/* Creating cookies */
+				Cookie idCookie = new Cookie("user_id", rs.getString("id"));
+				Cookie usernameCookie = new Cookie("username", rs.getString("username"));
+				idCookie.setMaxAge(60 * 60 * 24 * 30);
+				usernameCookie.setMaxAge(60 * 60 * 24 * 30);
+				
+				/* Adding cookies to response */
+				response.addCookie(idCookie);
+				response.addCookie(usernameCookie);
 			} else {
 				request.setAttribute("response", "login unsuccessful");
 			}
 			dispatcher = getServletContext().getRequestDispatcher("/loginresponse.jsp");
 			dispatcher.forward(request, response);
-			
-			//response.sendRedirect("loginresponse.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
