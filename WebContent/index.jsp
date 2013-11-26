@@ -17,12 +17,27 @@
 		for(int i=0;i<5;i++){
 			out.println("<h1>Kategori: " + request.getAttribute("namaKategori" + i) + "<br/></h1>");
 			ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangKategori" + i);
+			%>
+			<div class="pull_left">
+			<%
 			for(Barang b: barangs){
-				out.println("<strong>Nama:</strong> "+b.getNama() + "<br/>");
-				out.println("<strong>Harga:</strong> Rp"+b.getHarga() + "<br/>");
-				out.println("<strong>Jumlah:</strong> "+b.getJumlah() + "<br/>");
-				out.println("<br/>");
+				%>
+				<div class="list_barang">
+					<div class="gambar">
+						<img src="res/<%= b.getGambar() %>" width="150px" height="150px">
+					</div>
+					<div class="list_desc">
+						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
+						<strong>Harga:</strong> <%= b.getHarga() %><br/>
+						<strong>Jumlah:</strong> <%= b.getJumlah() %><br/><br/>
+					</div>
+				</div>
+				<%
 			}
+			
+			%>
+			</div>
+			<% 
 			out.println("<hr>");
 		}
 		

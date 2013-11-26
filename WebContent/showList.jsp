@@ -17,12 +17,20 @@
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
 		int no = 1;
 		for(Barang b: barangs){
-			out.println("<strong>Nama:</strong> <a href=\"detail?gid=" + b.getId_inven() + "\">"+b.getNama() + "</a><br/>");
-			out.println("<strong>Harga:</strong> "+b.getHarga() + "<br/>");
-			out.println("<strong>Jumlah:</strong> "+b.getJumlah() + "<br/>");
-			out.println("<img src=\"res/addtocart.png\" width=125 onclick='validate(" + b.getId_inven() + ", " + no + ")' >");
-			out.println("<div id='notif"+no+"'></div>");
-			out.println("<hr>");
+			%>
+			<div class="list_barang">
+				<div class="gambar">
+					<img src="res/<%= b.getGambar() %>" width="150px" height="150px">
+				</div>
+				<div class="list_desc">
+					<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
+					<strong>Harga:</strong> <%= b.getHarga() %><br/>
+					<strong>Jumlah:</strong> <%= b.getJumlah() %><br/><br/>
+					<img src="res/addtocart.png" width=125 onclick='validate(<%= b.getId_inven() %>,<%= no %>)'>
+					<div id='notif<%=no%>'></div>
+				</div>
+			</div>
+			<%
 			no++;
 		}
 
