@@ -3,8 +3,6 @@ window.addEventListener('load', function() {
 		window.location.href = '/ruserba/register';
 	}*/
 	
-	document.getElementById('formtitle').innerHTML = 'Profil ' + localStorage.getItem('username');
-
 	var name = document.getElementsByName('name')[0];
 	var password = document.getElementsByName('password')[0];
 	var confirm = document.getElementsByName('confirm')[0];
