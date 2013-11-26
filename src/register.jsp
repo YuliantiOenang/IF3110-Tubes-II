@@ -80,8 +80,11 @@
 				}
 			}
 		</script>
+		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
+	<div id="container-left">
+	<div id="container">
 		<h2>Registrasi Akun</h2>
 		<form name="registrasi">
 			Username: <input type="text" name="username" size="40" onchange="validateForm()"><small> minimal 5 karakter</small><br>
@@ -96,5 +99,7 @@
 			Confirm password: <input type="password" name="confpassword" size="40" onchange="validateForm()"><small> == password</small><br>
 			<button id="submit" type="button" onclick="AJAXregister()" disabled>Register</button>
 		</form>
+		</div>
+	</div>
 	</body>
 </html>

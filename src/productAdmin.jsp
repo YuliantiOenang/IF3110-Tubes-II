@@ -2,11 +2,11 @@
 		<script src="AJAXaddtocart.js"></script>
 		<link rel="stylesheet" href="layout.css">
 	</head>
-<%@ include file="middle.jsp" %>
+<%@ include file="middleadmin.jsp" %>
 		<div id="product">
 		<div id="container">
 		<h2><%= request.getParameter("kategori").substring(0,1).toUpperCase()+request.getParameter("kategori").substring(1) %></h2>
-		<form id="sort" action="product.jsp" method="get">
+		<form id="sort" action="productAdmin.jsp" method="get">
 			Sort : <select name="sort">
 				<option value="namaasc" selected>Nama (a-z)</option>
 				<option value="namadsc">Nama (z-a)</option>
@@ -80,10 +80,9 @@
 				String nama=rs.getString("nama");
 				String harga=rs.getString("harga");
 				out.print( "<img src=\"/tubes2/images/"+nama+".jpg\" alt='gambar' width='400' height='300'><br>");
-				out.print( "Nama: <a href='detil.jsp?nama="+nama+"&harga="+harga+"'>"+nama+"</a><br>");
+				out.print( "Nama: <a href='detiladmin.jsp?nama="+nama+"&harga="+harga+"'>"+nama+"</a><br>");
 				out.print( "Harga: "+harga+"<br>");
-				out.print( "Banyak: <input type='text' name='qty' id='"+nama+"'>");
-				out.print( "<button type='button' onclick='AJAXaddtocart(\""+nama+"\")'>Add to cart</button><br><br>");
+				
 			}
 			
 			// Display Paginasi
@@ -91,19 +90,19 @@
 			if (pagenum == 1) {
 			}
 			else {
-				out.print( " <a href='product.jsp?pagenum=1&kategori="+kategori+"&sort="+sort+"'> <<-First</a> ");
+				out.print( " <a href='productAdmin.jsp?pagenum=1&kategori="+kategori+"&sort="+sort+"'> <<-First</a> ");
 				out.print( " ");
 				int previous = pagenum-1;
-				out.print( " <a href='product.jsp?pagenum="+previous+"&kategori="+kategori+"&sort="+sort+"'> <-Previous</a> ");
+				out.print( " <a href='productAdmin.jsp?pagenum="+previous+"&kategori="+kategori+"&sort="+sort+"'> <-Previous</a> ");
 			} 
 			out.print( " ---- ");
 			if (pagenum == last) {
 			}
 			else {
 				int next = pagenum+1;
-				out.print( " <a href='product.jsp?pagenum="+next+"&kategori="+kategori+"&sort="+sort+"'>Next -></a> ");
+				out.print( " <a href='productAdmin.jsp?pagenum="+next+"&kategori="+kategori+"&sort="+sort+"'>Next -></a> ");
 				out.print( " ");
-				out.print( " <a href='product.jsp?pagenum="+last+"&kategori="+kategori+"&sort="+sort+"'>Last ->></a> ");
+				out.print( " <a href='productAdmin.jsp?pagenum="+last+"&kategori="+kategori+"&sort="+sort+"'>Last ->></a> ");
 			} 
 			con.close();
 		%>

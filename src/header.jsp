@@ -47,7 +47,13 @@
 						xmlhttp.send("username="+username+"&password="+password);
 						if (xmlhttp.responseText.trim()=="true") {
 							localStorage.user=username;
-							window.location = "index.jsp";
+							//Tambahan Fajar
+							if (localStorage.user=="admin") {
+								window.location = "indexadmin.jsp";
+							}
+							else {
+								window.location = "index.jsp";
+							}
 						}
 						else {
 							alert("Username/password salah");
@@ -81,12 +87,23 @@
 				localStorage.clear();
 				window.location="index.jsp";
 			}
+			
 			function renderAccount() {
 				var element=document.getElementById("account");
 				if (localStorage.user==null) {
 					element.innerHTML='<button type="button" onclick="login()">Login</button><br>';
 					element.innerHTML+='<a href="register.jsp"><button type="button">Register</button></a><br>';
 					element.innerHTML+='<a href="cart.jsp"><button type="button">Cart</button></a><br>';
+				}
+				//Tambahan Fajar
+				else if (localStorage.user=="admin") {
+					element.innerHTML="Welcome admin <br>";
+					element.innerHTML+='<button type="button" onclick="logout()">Logout</button><br>';
+					element.innerHTML+='<a href="addBarangadmin.jsp"><button type="button">Tambah Barang</button></a><br>';
+					element.innerHTML+='<a href="hapusBarangadmin.jsp"><button type="button">Hapus Barang</button></a><br>';
+					element.innerHTML+='<a href="ubahadmin.jsp"><button type="button">Ubah Info Barang</button></a><br>';
+					//element.innerHTML+='<button type="button" onclick="addBarang()">Tambah Barang</button><br>';
+					//element.innerHTML+='<button type="button" onclick="hapusBarang()">Hapus Barang</button><br>';
 				}
 				else {
 					element.innerHTML="Welcome <a href='profile.jsp'>"+localStorage.user+"</a><br>";

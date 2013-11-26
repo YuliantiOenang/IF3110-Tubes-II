@@ -123,8 +123,11 @@
 				}
 			}
 		</script>
+		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
+		<div id="container-left">
+		<div id="container">
 		<h2>Profil</h2>
 		<form name="registrasi">
 			Transaksi : <input type="text" name="transaksi" size="40" readonly> kali<br><br>
@@ -143,5 +146,7 @@
 		<script>
 			setAccountInfo();
 		</script>
+		</div>
+		</div>
 	</body>
 </html>

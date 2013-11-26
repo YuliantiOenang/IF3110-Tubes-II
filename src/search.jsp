@@ -1,7 +1,10 @@
 <%@ include file="header.jsp" %>
 		<script src="AJAXaddtocart.js"></script>
+		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
+		<div id="product">
+		<div id="container">
 		<h2>Search Result</h2>
 		<%
 			String keyword=request.getParameter("keyword");
@@ -97,5 +100,7 @@
 				con.close();
 			}
 		%>
+		</div>
+	</div>
 	</body>
 </html>

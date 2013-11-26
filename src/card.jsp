@@ -29,8 +29,11 @@
 				}
 			}
 		</script>
+		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
+		<div id="container-left">
+		<div id="container">
 		<h2>Registrasi Kartu Kredit</h2>
 		<form name="card">
 			Card no: <input type="text" name="cardno"><br>
@@ -39,5 +42,7 @@
 			<button id="submit" type="button" onclick="AJAXcard()">OK</button>
 			<a href="index.jsp"><button type="button">Skip</button></a>
 		</form>
+		</div>
+		</div>
 	</body>
 </html>

@@ -1,7 +1,10 @@
 <%@ include file="header.jsp" %>
 		<script src="AJAXaddtocart.js"></script>
+		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
+		<div id="product">
+		<div id="container">
 		<h2>Home</h2>
 		<%
 			String[] kategori={"beras","daging","ikan","sayur","buah"};
@@ -18,14 +21,19 @@
 					rs.next();
 					String nama=rs.getString("nama");
 					String harga=rs.getString("harga");
-					out.print( "<img src=\"/tubes2/images/"+nama+".jpg\" alt='gambar' width='400' height='300'><br>");
+					out.print( "<div id=\"containertop3\">");
+					out.print( "<img src=\"/tubes2/images/"+nama+".jpg\" alt='gambar' width='200' height='150'><br>");
 					out.print( "Nama: <a href='detil.jsp?nama="+nama+"&harga="+harga+"'>"+nama+"</a><br>");
 					out.print( "Harga: "+harga+"<br>");
-					out.print( "Banyak: <input type='text' name='qty' id='"+nama+"'>");
-					out.print( "<button type='button' onclick='AJAXaddtocart(\""+nama+"\")'>Add to cart</button><br><br>");
+					out.print( "Banyak: <input type='texttop3' name='qty' id='"+nama+"'>");
+					out.print( "<button type='button' onclick='AJAXaddtocart(\""+nama+"\")'>Add to cart</button>");
+					out.print( "</div>");
 				}
+				out.print( "<br><br><br><br><br><br><br><br><br><br><br><br>");
 				con.close();
 			}
 		%>
+		</div>
+		</div>
 	</body>
 </html>

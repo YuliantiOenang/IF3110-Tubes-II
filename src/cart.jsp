@@ -1,3 +1,4 @@
+
 <%@ include file="header.jsp" %>
 		<script src="AJAXaddtocart.js"></script>
 		<script>
@@ -79,13 +80,19 @@
 				window.location = "index.jsp";
 			}
 		</script>
+		<link rel="stylesheet" href="layout.css">
 	</head>
+	<body>
 <%@ include file="middle.jsp" %>
+		<div id="container-left">
+		<div id="container">
 		<h2>Cart</h2>
 		<div id="cart">
 			<script>
 				renderCart();
 			</script>
+		</div>
+		</div>
 		</div>
 	</body>
 </html>
