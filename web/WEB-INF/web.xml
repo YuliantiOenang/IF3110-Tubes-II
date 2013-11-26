@@ -22,6 +22,10 @@
         <servlet-name>RequestServlet</servlet-name>
         <servlet-class>ruserba.servlets.RequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RetrieveTableBarangServlet</servlet-name>
+        <servlet-class>ruserba.servlets.RetrieveTableBarangServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -34,6 +38,10 @@
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/index.jsp</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveTableBarangServlet</servlet-name>
+        <url-pattern>/RetrieveTableBarangServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -43,4 +51,5 @@
         <error-code>404</error-code>
         <location>/index.jsp?page=error</location>
     </error-page>
-</web-app>
+--&gt;
+    </web-app>
