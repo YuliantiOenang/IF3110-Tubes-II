@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.nio.channels.SeekableByteChannel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
