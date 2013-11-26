@@ -1,4 +1,4 @@
-<%@page import="java.nio.channels.SeekableByteChannel"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -42,6 +42,7 @@
 				<div class="cleaner"></div>
 			</div>
 			<!-- End Of Header -->
+			
 			<div id="AJS_menubar">
 				<div id="top_nav" class="ddsmoothmenu">
 					<ul>
@@ -99,7 +100,6 @@
 
 			<div id="AJS_main">
 				<div id="sidebar" class="float_r">
-
 					<div class="sidebar_box">
 						<span class="bottom"></span>
 						<h3>Search Option :</h3>
@@ -121,37 +121,41 @@
 									onblur="clearText(this)" class="txt_field" />
 						</form>
 
-						<h3>Kategori</h3>
-						<div class="content">
-							<ul class="sidebar_list">
-								<!-- <!-- 								<?php -->
-								-->
-								<!-- 					    		$kategori_query = 'SELECT DISTINCT kategori_barang FROM `progin_13511059`.barang'; -->
-								<!-- 								$kategori_hasil = mysql_query($kategori_query,$con); -->
-								<!-- 								if(!$kategori_hasil){ -->
-								<!-- 									echo'Tidak dapat mengakses kategori'; -->
-								<!-- 								} -->
-								<!-- 								else{ -->
-								<!-- 									while($kategori_row = mysql_fetch_array($kategori_hasil)){ -->
-								<!-- 										getCateLink($kategori_row['kategori_barang']); -->
-								<!-- 									} -->
-								<!-- 								} -->
-								<!-- 							?> -->
-							</ul>
-						</div>
+						<h3>Kategori</h3>   
+		                <div class="content"> 
+	                	<ul class="sidebar_list">
+	                       <li> <a href='kategori?id=1&page=1&order=nama_barang'>Pangan</a></li>
+							<li> <a href='kategori?id=2&page=1&order=nama_barang'>Pakaian</a></li>
+							<li> <a href='kategori?id=3&page=1&order=nama_barang'>Elektronik</a></li>
+							<li> <a href='kategori?id=4&page=1&order=nama_barang'>Rumah Tangga</a></li>
+							<li> <a href='kategori?id=5&page=1&order=nama_barang'>Olah Raga</a></li>				
+	                    </ul>
+	                </div>
 					</div>
 				</div>
-				<!-- 								<script> -->
-				<!-- 				// function verLogin() { // var username = -->
-				<!-- 				document.forms['login']['username'].value; // var password = -->
-				<!-- 				document.forms['login']['password'].value; // var err_login = -->
-				<!-- 				document.getElementById("err_login"); // var isLogin = false; // if -->
-				<!-- 				(window.XMLHttpRequest) { // xmlhttp = new XMLHttpRequest(); // } -->
-				<!-- 				else { // xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // } // -->
-				<!-- 				xmlhttp.onreadystatechange = function() { // if (xmlhttp.readyState -->
-				<!-- 				== 4 // && xmlhttp.status == 200) { // err_login.innerHTML = -->
-				<!-- 				xmlhttp.responseText; // if (err_login == "") { // //Handle SESSION -->
-				<!-- 				& LOCAL STORAGE // } // } // } // xmlhttp.open("GET", -->
-				<!-- 				"login.php?username=" + username // + "&password=" + password, -->
-				<!-- 				true); // xmlhttp.send(); // } -->
-				<!-- 								</script> -->
+
+				<script>
+					function verLogin() {
+						var username = document.forms['login']['username'].value;
+						var password = document.forms['login']['password'].value;
+						var err_login;
+						var isLogin = false;
+						if (window.XMLHttpRequest) {
+							xmlhttp = new XMLHttpRequest();
+						} else {
+							xmlhttp = new AciveXObject("Microsoft.XMLHTTP");
+						}
+						xmlhttp.onreadystatechange = function() {
+							if (xmlhttp.readyState == 4
+									&& xmlhttp.status == 200) {
+								err_login = xmlhttp.responseText;
+								if (err_login == "") {
+									//Handle SESSION & LOCAL STORAGE
+								}
+							}
+						}
+						xmlhttp.open("GET", "login.php?username=" + username
+								+ "&password=" + password, true);
+						xmlhttp.send();
+					}
+				</script>

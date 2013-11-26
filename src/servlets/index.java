@@ -27,6 +27,7 @@ public class index extends HttpServlet {
 	private ArrayList<Barang> rumahtangga = new ArrayList<Barang>();
 	private ArrayList<Barang> olahraga = new ArrayList<Barang>();
 	private ArrayList<String> kategori_url = new ArrayList<String>();
+
 	public index() {
 	}
 	protected void doGet(HttpServletRequest request,
@@ -52,6 +53,7 @@ public class index extends HttpServlet {
 		ResultSet rs_rumahtangga = null;
 		ResultSet rs_olahraga = null;
 		ResultSet rs_kategori = null;
+
 		String q_pangan = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 1 ORDER BY n_beli DESC LIMIT 0,3";
 		String q_pakaian = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 2 ORDER BY n_beli DESC LIMIT 0,3";
 		String q_elektronik = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 3 ORDER BY n_beli DESC LIMIT 0,3";
@@ -68,6 +70,7 @@ public class index extends HttpServlet {
 			rs_rumahtangga = stmt[3].executeQuery(q_rumahtangga);
 			rs_olahraga = stmt[4].executeQuery(q_olahraga);
 			rs_kategori = stmt[5].executeQuery(q_kategori);
+
 			while (rs_pangan.next()) {
 				Barang temp = new Barang(rs_pangan);
 				pangan.add(temp);
