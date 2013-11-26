@@ -30,6 +30,10 @@
 	display: none;
 }
 
+#contentfull .field {
+	clear: both;
+}
+
 #contentfull .field:hover .hint {
     position: absolute;
     display: block;
