@@ -54,8 +54,8 @@
 	</ul></nav>
 	</header><!-- /#banner -->
 	<!-- buat animasi kotak login user -->
-	<div id='mbox' style='display:none;'></div>
-	<div id='back_mbox' style='display:none;'></div><div id='fade_mbox' style='display:none;'></div>
+	<div id='mbox'></div>
+	<div id='back_mbox'></div><div id='fade_mbox'></div>
 	<!-- kotak user login -->
 	<div id="userlogin">
 	<form method="post">

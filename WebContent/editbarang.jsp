@@ -2,8 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE HTML>
 <html>
-<head><title>Halaman Barang</title>
-<link rel="stylesheet" href="css/halamanbarang.css" type="text/css" />
+<head><title>Edit Barang</title>
+<link rel="stylesheet" href="css/editbarang.css" type="text/css" />
 </head>
 <body id="index" class="home">
 	<div>
@@ -20,11 +20,11 @@
 	if(request.getParameter("kategori")!=null){
 		kategori = request.getParameter("kategori");
 		out.println("<h3>Barang-barang "+kategori+" yang kami jual</h3><hr>");
-		out.println("<div>Sort by <a href='halamanbarang.jsp?kategori="+kategori+"&sort=nama'>Name</a> | <a href='halamanbarang.jsp?kategori="+kategori+"&sort=harga'>Harga</a></div>");
+		out.println("<div style='text-align:right'>Sort by <a href='halamanbarang.jsp?kategori="+kategori+"&sort=nama'>Name</a> | <a href='halamanbarang.php?kategori="+kategori+"&sort=harga'>Harga</a></div>");
 	}else{
 		kategori = null;
 		out.println("<h3>Barang-barang yang kami jual</h3><hr>");
-		out.println("<div>Sort by <a href='halamanbarang.jsp?sort=nama'>Name</a> | <a href='halamanbarang.jsp?sort=harga'>Harga</a></div>");
+		out.println("<div style='text-align:right'>Sort by <a href='halamanbarang.jsp?sort=nama'>Name</a> | <a href='halamanbarang.php?sort=harga'>Harga</a></div>");
 	}
 	%>
 	<center id="indikator"></center>

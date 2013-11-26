@@ -197,3 +197,18 @@ ul#menubar .suggestion li a:hover {
 	right: -200px;
 	bottom : 30px;
 }
+
+#mbox {
+	display:none;	
+}
+
+#back_mbox {
+	display: none;	
+}
+
+#fade_mbpx {
+	display:none;	
+}
+}
+}
+}
