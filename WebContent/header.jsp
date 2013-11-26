@@ -75,22 +75,21 @@
 					<div class="sidebar_box">
 						<span class="bottom"></span>
 						<h3>Search Option :</h3>
-						<form name="search" action="search.php" method="get">
-							<input type="hidden" name="page" value="1"> <input
-								type="text" name="searched" id="keyword" title="keyword"
-								onfocus="clearText(this)" onblur="clearText(this)"
-								class="txt_field" /> <input type="submit" value="Cari"
-								alt="Search" id="searchbutton" title="Search" class="sub_btn" />
-								<p>Kategori :</p> <select name="s_kategori">
+						<form name="search" action="search" method="get">
+							<input type="hidden" name="page" value="1"> 
+							<input type="hidden" name="order" value="nama_barang"> 
+							<input type="text" name="nama_barang" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" /> 
+							<input type="submit" value="Cari" alt="Search" id="searchbutton" title="Search" class="sub_btn" />
+							<p>Kategori :</p>
+							<select name="kategori">
 									<option value="1">Pangan</option>
 									<option value="2">Pakaian</option>
 									<option value="3">Elektronik</option>
 									<option value="4">Rumah Tangga</option>
 									<option value="5">Olah Raga</option>
 							</select><br>
-									<p>Harga kurang dari :</p> <input type="text" name="s_harga"
-									id="keyword" title="keyword" onfocus="clearText(this)"
-									onblur="clearText(this)" class="txt_field" />
+									<p>Harga kurang dari :</p> 
+									<input type="text" name="harga" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
 						</form>
 
 						<h3>Kategori</h3>
