@@ -8,6 +8,7 @@
 <title>Search Result</title>
 </head>
 <body>
+	<div class="page_container">
 		<%@ include file="template/template.jsp" %> 
 		<br/><br/><br/>
 		<form action="search" method="get">
@@ -31,17 +32,27 @@
 		String query_category = request.getParameter("query_category");
 		String query_price = request.getParameter("query_price");
 		
+		boolean pertama = true;
 		String result = "";
 		if(!query_name.equals("")){
 			result += "nama " + query_name;
+			pertama = false;
 		}
 		
 		if(!query_category.equals("")){
-			result += " dan kategori " + query_category;
+			if(!pertama){
+				result += " dan ";
+			}
+			result += "kategori " + query_category;
+			pertama = false;
 		}
 		
 		if(!query_price.equals("")){
-			result += " dan harga " + query_price;
+			if(!pertama){
+				result += " dan ";
+			}
+			result += "harga " + query_price;
+			pertama = false;
 		}
 		
 		out.println("<h1>Hasil Pencarian untuk " + result + "</h1>");
@@ -98,5 +109,7 @@
 		}
 		%>
 		</div>
+		</div>
 </body>
+<script src="transaction.js"></script>
 </html>

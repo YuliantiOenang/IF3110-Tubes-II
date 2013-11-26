@@ -210,9 +210,10 @@ a {
 
 .goodsimage{
 	border: solid #000000;
-	width:475px;
+	width:470px;
 	float:left;
 	vertical-align: middle;
+	margin-left: 10px;
 }
 
 .pagination{
