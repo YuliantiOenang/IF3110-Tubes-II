@@ -70,7 +70,7 @@ public class ajaxbarang extends HttpServlet {
 	        	out.println("<div class='view'>");
 				out.println("<img src="+rs.getString("gambar")+" width='318' height='238'/>");
 				out.println("<div class='mask'>");
-				out.println("<h2><a href='detailbarang.php?id="+rs.getString("id")+"'>"+rs.getString("nama")+"</a></h2>");
+				out.println("<h2><a href='detailbarang.jsp?id="+rs.getString("id")+"'>"+rs.getString("nama")+"</a></h2>");
 				out.println("<p>Harga: "+rs.getString("harga")+"</p>");
 				out.println("<form action='shoppingbag.jsp' method='GET'>Masukkan jumlah yang akan dibeli: ");
 				out.println("<input type='number' name='quantity' min='0' id='qty2'><input type='button' value='Beli!' id='buy' onclick='tempBuy("+rs.getString("id")+",qty2.value)'></form>");

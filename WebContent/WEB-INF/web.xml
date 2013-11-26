@@ -71,23 +71,33 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>search</display-name>
+    <servlet-name>search</servlet-name>
+    <servlet-class>tubes2wbd.search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>search</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ajaxbeli</display-name>
+    <servlet-name>ajaxbeli</servlet-name>
+    <servlet-class>tubes2wbd.ajaxbeli</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ajaxbeli</servlet-name>
+    <url-pattern>/ajaxbeli</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>fillsidebar</display-name>
     <servlet-name>fillsidebar</servlet-name>
-    <servlet-class>fillsidebar</servlet-class>
+    <servlet-class>tubes2wbd.fillsidebar</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>fillsidebar</servlet-name>
     <url-pattern>/fillsidebar</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>buyprocess</display-name>
-    <servlet-name>buyprocess</servlet-name>
-    <servlet-class>tubes2wbd.buyprocess</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>buyprocess</servlet-name>
-    <url-pattern>/buyprocess</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

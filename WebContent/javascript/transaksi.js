@@ -1,3 +1,18 @@
+var shopping_bag = [];
+var isi,buyitem;
+function initialize_bag(){
+	if(localStorage.shoppingbag){
+		shopping_bag = JSON.parse(localStorage.shoppingbag);
+		generateSideBar(shopping_bag);
+	}else{
+		for(var i=0;i<=40;i++){
+			shopping_bag[i]=0;
+		}
+	}
+}
+if(localStorage.wbduser){
+	initialize_bag();
+}
 	function tempBuy(id_brg,qtty){
 		var xmlhttp;
 		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -15,20 +30,9 @@
 						alert("Pembelian tidak bisa dilakukan. Jumlah barang yang tersisa hanya ada "+(parseInt(xmlhttp.responseText)-parseInt(shopping_bag[id_brg]))+" buah.");
 			}
 		}
-		xmlhttp.open("POST","ajaxbeli.php",true);
+		xmlhttp.open("POST","ajaxbeli",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("id="+id_brg+"&qtt="+qtty);
-	}
-
-	function initialize_bag(){
-		if(localStorage.shoppingbag){
-			shopping_bag = JSON.parse(localStorage.shoppingbag);
-			generateSideBar(shopping_bag);
-		}else{
-			for(var i=0;i<=sum_item+1;i++){
-				shopping_bag[i]=0;
-			}
-		}
 	}
 
 	function generateSideBar(tab_shopping){
@@ -45,19 +49,21 @@
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
 				isi = JSON.parse(xmlhttp.responseText);
 				if(localStorage.wbduser) localStorage.shoppingbag=JSON.stringify(shopping_bag);				
-			for(var k=0;k<isi.length;k++){
+				for(var k=0;k<isi.length;k++){
 					itt++;
 					total+=isi[k].dibeli*isi[k].harga;
-					content_sb += "<div id=k"+isi[k].id+"><span>"+itt+"</span><span  style='margin-left:20px'>"+isi[k].nama+"</span><span  style='margin-left:20px'>"+isi[k].dibeli+"</span><span  style='margin-left:10px'>"+isi[k].harga+"</span><a href='javascript:doInCart(0,"+isi[k].id+",0)'><img src='images/cancel.png' width=15 height=15/></a></div>";	
-			}
-			content_sb += "<hr/><div><pre>Total     :       Rp "+total+",-</pre></div><input type='button' value='Bayar Transaksi' id='deal' onclick='cekkartu()'>";
+					if(parseInt(isi[k].dibeli)>0){
+						content_sb += "<div id=k"+isi[k].id+"><span>"+itt+"</span><span  style='margin-left:20px'>"+isi[k].nama+"</span><span  style='margin-left:20px'>"+isi[k].dibeli+"</span><span  style='margin-left:10px'>"+isi[k].harga+"</span><a href='javascript:doInCart(0,"+isi[k].id+",0)'><img src='images/cancel.png' width=15 height=15/></a></div>";
+					}
+				}
+				content_sb += "<hr/><div><pre>Total     :       Rp "+total+",-</pre></div><input type='button' value='Bayar Transaksi' id='deal' onclick='cekkartu()'>";
 				document.getElementById("s_bar").innerHTML=content_sb;
 			}else{
 				//alert("PIKACHU!");
 				//document.getElementById("indikator").innerHTML="<img src='images/loader.gif'><p>Memuat barang-barang yang lain...</p>";
 			}
 		}
-		xmlhttp.open("POST","fillsidebar.php",true);
+		xmlhttp.open("POST","fillsidebar",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("data="+JSON.stringify(tab_shopping));
 	}
@@ -81,7 +87,7 @@
 				initialize_bag();
 			}
 		}
-		xmlhttp.open("POST","buyprocess.php",true);
+		xmlhttp.open("POST","buyprocess",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("data="+JSON.stringify(shopping_bag)+"&username="+localStorage.wbduser);	
 	}
@@ -109,13 +115,13 @@
 			if(xmlhttp.responseText=="error"){
 				alert("Gagal mengambil data kartu kredit dari database.");
 			}else if(xmlhttp.responseText=="notregistered"){
-				window.location="registercardform.php";
+				window.location="registercardform.jsp";
 			}else{
 				buy();
 			}
 		}
 	}
-	xmlhttp.open("POST","cekkartukredit.php",true);
+	xmlhttp.open("POST","cekkartukredit",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("username="+localStorage.wbduser);
 	}
