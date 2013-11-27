@@ -14,10 +14,10 @@
                 break;
             }
         }
-        if(!adaCookies){
+        if(adaCookies){
     %>
 			<script type="text/javascript">
-						window.alert("Maaf Anda harus LOGIN terlebih dahulu");
+						window.alert("Anda Sudah mendaftarkan kartu Kredit!");
 						window.location="index.jsp";
 						</script>
 		<%
