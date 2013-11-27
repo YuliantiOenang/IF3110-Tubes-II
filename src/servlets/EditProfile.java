@@ -79,7 +79,8 @@ public class EditProfile extends HttpServlet {
 
 		System.out.println("INI SQL[EDIT PROFILE]=>"+query);
 		// Run the query		
-		int hasil = dbAccess.doQueryUpdate(query);		
+		int hasil = dbAccess.doQueryUpdate(query);
+		
 		RequestDispatcher view = request.getRequestDispatcher("");
 		view.forward(request, response);
 	}

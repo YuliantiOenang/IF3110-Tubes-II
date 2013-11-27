@@ -11,6 +11,8 @@
 		var province = document.forms['edit']['province'].value;
 		var kecamatan = document.forms['edit']['kecamatan'].value;
 		var postcode = document.forms['edit']['postalcode'].value;
+		var numRegex = /^\d+$/;
+		var isNum = numRegex.test(hpnum);
 		var fullNameRegexStr = /^[A-Z][a-z]+([\ ][A-Za-z]+)+$/;
 		var isNameValid = fullNameRegexStr.test(namalengkap);
 		var isValid = true;
@@ -20,6 +22,8 @@
 		} else if (password != repassword) {
 			isValid = false;
 		} else if (!isNameValid) {
+			isValid = false;
+		} else if (!isNum){
 			isValid = false;
 		}
 		if (isValid) {
@@ -98,6 +102,19 @@
 			return true;
 		}
 	}
+	function checkNum(fld){
+		var err_phonenum = document.getElementById("err_phonenum");
+		var isAllNum = /^\d+$/;
+		var isValid = isAllNum.test(fld.value);
+		confirmAll();
+		if (!isValid){
+			err_phonenum.innerHTML = "Phone number must only contains 0-9";
+			return false;
+		} else {
+			err_phonenum.innerHTML = "";
+			return true;
+		}
+	}
 </script>
 <% // Validasi SESSION
 if (session.getAttribute("username") == null){
@@ -114,12 +131,14 @@ if (session.getAttribute("username") == null){
 	<br> Nama Lengkap: <input type="text" name="fullname"
 		onkeyup="checkFullName(this)">
 	<div id="err_fullname"></div>
-	<br> Nomor Hand Phone: <input type="text" name="hpnum"><br>
-	Alamat : <input type="text" name="address"><br> Provinsi :
+	<br> Nomor Hand Phone: <input type="text" name="hpnum"
+		onkeyup="checkNum(this)">
+	<div id="err_phonenum"></div>
+	<br> Alamat : <input type="text" name="address"><br> Provinsi :
 	<input type="text" name="province"><br> Kecamatan : <input
 		type="text" name="kecamatan"><br> Kode Pos : <input
 		type="text" name="postalcode"><br> <input type="submit"
-		id="subedit" value="Edit">
+		id="subedit" value="Edit" disabled>
 	<div id="edit_error"></div>
 </form>
 <% } %>

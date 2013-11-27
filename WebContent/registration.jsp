@@ -132,6 +132,18 @@
 			return true;
 		}
 	}
+	function checkNum(fld){
+		var err_phonenum = document.getElementById("err_phonenum");
+		var isAllNum = /^\d+$/;
+		var isValid = isAllNum.test(fld.value);
+		if (!isValid){
+			err_phonenum.innerHTML = "Phone number must only contains 0-9";
+			return false;
+		} else {
+			err_phonenum.innerHTML = "";
+			return true;
+		}
+	}
 </script>
 <form name="register" action="Registration" method="post"
 	onsubmit="return checkUsername();">
@@ -147,12 +159,18 @@
 	<br> Nama Lengkap: <input type="text" name="fullname"
 		onkeyup="checkFullName(this)">
 	<div id="err_fullname"></div>
-	<br> Nomor Hand Phone: <input type="text" name="hpnum"> <br>
-	Alamat : <input type="text" name="address"> <br> Provinsi
-	: <input type="text" name="province"> <br> Kecamatan : <input
-		type="text" name="kecamatan"> <br> Kode Pos : <input
-		type="text" name="postalcode"> <br> Email : <input
-		type="text" name="Email" onkeyup="checkEmail(this)">
+	<br> Nomor Hand Phone: <input type="text" name="hpnum"
+		onkeyup="checkNum(this)">
+	<div id="err_phonenum"></div>
+	
+	<br> Alamat : <input type="text" name="address">	 
+	<br> Provinsi : <input type="text" name="province"> 
+	<br> Kecamatan : <input	type="text" name="kecamatan"> 
+	<br> Kode Pos : <input type="text" name="postalcode"
+		onkeyup="checkNum(this)">
+	<div id="err_phonenum"></div> 
+	
+	<br> Email : <input	type="text" name="Email" onkeyup="checkEmail(this)">
 	<div id="err_email"></div>
 	<br> <input type="submit" id="daftar" value="Register" disabled>
 	<div id="reg_error"></div>
