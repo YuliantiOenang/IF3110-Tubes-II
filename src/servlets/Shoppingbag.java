@@ -59,7 +59,6 @@ public class Shoppingbag extends HttpServlet {
 				}
 				request.setAttribute("card", card);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

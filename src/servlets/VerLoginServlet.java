@@ -22,30 +22,18 @@ import bean.DatabaseAccess;
 public class VerLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public VerLoginServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String username;
 		String password;
 		username = request.getParameter("username");
@@ -53,8 +41,7 @@ public class VerLoginServlet extends HttpServlet {
 
 		String nilai = "awal";
 		DatabaseAccess dbAccess = new DatabaseAccess();
-		String SQL = "SELECT * FROM `user` WHERE USERNAME=\"" + username
-				+ "\" AND PASSWORD =\"" + password + "\";";
+		String SQL = "SELECT * FROM `user` WHERE USERNAME=\"" + username + "\" AND PASSWORD =\"" + password + "\";";
 		System.out.println(SQL);
 		ResultSet rs = dbAccess.doQuery(SQL);
 
@@ -67,12 +54,16 @@ public class VerLoginServlet extends HttpServlet {
 		try {
 			System.out.println("masuk");
 			while (rs.next()) {
+				String role = rs.getObject(10).toString();
+				System.out.println("role : "+role);
 				i++;
 				nilai = "berhasil";
 				System.out.println("berhasil login" + i);
 				// session handling
 				HttpSession session = request.getSession();
+				session.setAttribute("IT", null);
 				session.setAttribute("username",username);
+				session.setAttribute("role", role);
 				System.out.println("Session :"+((String)session.getAttribute("username")));			
 //				
 //				if (session.isNew()) {

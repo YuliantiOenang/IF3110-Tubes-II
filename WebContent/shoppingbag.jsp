@@ -11,12 +11,10 @@
 		ArrayList<String> kartu = new ArrayList<String>();
 		kartu=(ArrayList<String>) request.getAttribute("card");
 		shopList = (ArrayList<Transaksi>) session.getAttribute("IT");
-		System.out.println(shopList.get(0).getRequest_tambahan());
-		System.out.println(""+shopList.size());
 		
 		if (shopList != null) {
 			int totalPengeluaran = 0;
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < shopList.size(); i++) {
 				totalPengeluaran += (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQt());
 				out.print("<h4><b>" + (i + 1) + ". "+ shopList.get(i).getBarang().getNama_barang()+ "</b></h4>");
 				out.print("<p>Quantity : "+ shopList.get(i).getQt() + "</p>");
