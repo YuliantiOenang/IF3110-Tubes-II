@@ -35,7 +35,6 @@ function beliBarang()
 function pertanyaan(id_b,stok)
 {
 	id_barang = id_b;
-	
 	jumlah = document.getElementById("quantity_"+id_b).value;
 	keterangan = document.getElementById("keterangan_"+id_b).value;
 
