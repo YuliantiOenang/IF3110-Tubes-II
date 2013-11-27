@@ -17,12 +17,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<?php echo SITEURL . '/include/css/style.css'?>">	
+		<link rel="stylesheet" type="text/css" href="../include/css/style.css">	
 	</head>
 		
 	<body> 
 	
-	<%@ include file="header.jsp" %>
+	<%@ include file="Header.jsp" %>
 		
 		<!--content-->
 		<div class="populer">
