@@ -35,7 +35,7 @@ public class AdminBarang extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	final String UPLOAD_DIRECTORY = "C:/Users/James Jaya/workspace/Frexesc/WebContent/img/barang/";
+	//final String UPLOAD_DIRECTORY = "C:/Users/James Jaya/workspace/Frexesc/WebContent/img/barang/";
 
 	public AdminBarang() {
 		super();
@@ -133,10 +133,10 @@ public class AdminBarang extends HttpServlet {
 			System.out.println(filename.toString());
 			Part filePart = request.getPart("photo");
 			String fileName = getFileName(filePart);
-			
+
 			String[] sp = fileName.toString().split("\\.");
 			sp[1] = sp[1].toLowerCase();
-			OutputStream out = new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + id + "." + sp[1]));
+			OutputStream out = new FileOutputStream(new File(request.getRealPath("") + "\\img\\barang\\" + id + "." + sp[1]));
 			InputStream filecontent = filePart.getInputStream();
 
 			int read = 0;
@@ -174,9 +174,12 @@ public class AdminBarang extends HttpServlet {
 			String updateQuery = "UPDATE barang SET id_kategori='" + barang.getId_category() + "', nama_barang='" + barang.getName() + "', harga_barang='" + barang.getPrice() + "', keterangan='" + barang.getDescription() + "', jumlah_barang='" + barang.getTotal_item() + "' WHERE id='" + barang.getId() + "'";
 			try {
 				Statement statement = connection.createStatement();
-				statement.executeUpdate(updateQuery);
 				PrintWriter out = response.getWriter();
-				out.print("success");
+				if (statement.executeUpdate(updateQuery) < 1) {
+					out.print("not");
+				} else {
+					out.print("success");
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -199,8 +202,6 @@ public class AdminBarang extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			
 			System.out.println(old);
 			Part filePart = request.getPart("photo");
 			String fileName = getFileName(filePart);
@@ -211,7 +212,7 @@ public class AdminBarang extends HttpServlet {
 			} else {
 				old = request.getRealPath("") + "\\img\\barang\\" + id + "." + sp[1];
 			}
-			OutputStream out = new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + id + "." + sp[1]));
+			//OutputStream out = new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + id + "." + sp[1]));
 			OutputStream out2 = new FileOutputStream(new File(old));
 			InputStream filecontent = filePart.getInputStream();
 
@@ -219,12 +220,14 @@ public class AdminBarang extends HttpServlet {
 			final byte[] bytes = new byte[1024];
 
 			while ((read = filecontent.read(bytes)) != -1) {
-				out.write(bytes, 0, read);
+				//out.write(bytes, 0, read);
 				out2.write(bytes, 0, read);
 			}
+			/*
 			if (out != null) {
 				out.close();
 			}
+			*/
 			if (out2 != null) {
 				out2.close();
 			}
