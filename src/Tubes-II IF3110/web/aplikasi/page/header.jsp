@@ -17,7 +17,7 @@
                 <input type="text" name="search_input" placeholder="Cari disini">
                 <input type="submit" name="submit" value="Cari">
             </form>
-            <a id="keranjang_belanja" class="menu_cell hyperlink" href="<%= HOME_URL %>keranjang/">Keranjang Belanja <?php if(isset($_SESSION['shopping_bag'])) { $result = json_decode($_SESSION['shopping_bag'], true); print '<span id="total_keranjang">'.count($result['data']).'</span>'; } ?></a>
+            <a id="keranjang_belanja" class="menu_cell hyperlink" href="<%= HOME_URL %>keranjang/">Keranjang Belanja <% if(total_keranjang) != null) { $result = json_decode(total_keranjang, true); out.print("<span id="total_keranjang">"+count($result['data'])+"</span>"); } %></a>
             </div>
         </nav>
         <div class="container">

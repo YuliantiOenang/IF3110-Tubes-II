@@ -24,6 +24,13 @@
     <url-pattern>/proses/json*</url-pattern>
   </servlet-mapping>
   
-  <!--  -->
-
+  <servlet>
+      <servlet-name>kategori_1</servlet-name>
+      <servlet-class>org.if3110.web.kategori1</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>kategori_1</servlet-name>
+    <url-pattern>/kat1</url-pattern>
+  </servlet-mapping>
 </web-app>
