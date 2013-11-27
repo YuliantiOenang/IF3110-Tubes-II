@@ -51,7 +51,6 @@ public class Shoppingbag extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-		
 //		
 //		<?php
 //			include 'connect.php';
