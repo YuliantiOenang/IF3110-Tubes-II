@@ -1,7 +1,15 @@
 .panel {
-    background-color: #444;
+    background-color: black;
     padding: 5px;
     text-align: right;
+    max-height:30px;
+    width: 900px;
+}
+
+.panel #viewcart{
+	float:left;
+	position:relative;
+	top:-8px;
 }
 
 .panel #regislink{
