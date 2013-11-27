@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Inang: 127.0.0.1
--- Waktu pembuatan: 29 Okt 2013 pada 11.20
--- Versi Server: 5.5.27
--- Versi PHP: 5.4.7
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2013 at 03:49 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `database`
+-- Database: `tes`
 --
+CREATE DATABASE IF NOT EXISTS `tes` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tes`;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `kartukredit`
+--
+
+CREATE TABLE IF NOT EXISTS `kartukredit` (
+  `nokartu` varchar(30) NOT NULL DEFAULT '0',
+  `namakartu` varchar(30) NOT NULL DEFAULT '0',
+  `tglkadaluwarsa` varchar(30) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kartukredit`
+--
+
+INSERT INTO `kartukredit` (`nokartu`, `namakartu`, `tglkadaluwarsa`) VALUES
+('675462375427', 'kughjgb', 'kjhjk');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
 --
 
 CREATE TABLE IF NOT EXISTS `produk` (
@@ -36,18 +57,16 @@ CREATE TABLE IF NOT EXISTS `produk` (
   `kategori` varchar(60) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id`, `nama`, `harga`, `sold`, `stok`, `image`, `kategori`, `keterangan`) VALUES
 (1, 'malkist', 5000, 3, 7, 'assets/img/snack/malkist.jpg', 'snack', 'tes keterangan'),
-(2, 'kacangatom', 2000, 4, 6, 'assets/img/snack/kacangatom.jpg', 'snack', 'keterangan snack'),
 (3, 'tango', 6000, 2, 8, 'assets/img/snack/tango.jpg', 'snack', 'keterangan snack'),
 (4, 'chiki', 1000, 1, 9, 'assets/img/snack/chiki.jpg', 'snack', 'keterangan snack'),
-(5, 'oreo', 4000, 7, 3, 'assets/img/snack/oreo.jpg', 'snack', 'keterangan snack'),
 (6, 'milkshake', 10000, 3, 7, 'assets/img/minuman/milkshake.jpg', 'minuman', 'keterangan minuman'),
 (7, 'kopi', 6000, 9, 1, 'assets/img/minuman/kopi.jpg', 'minuman', 'keterangan minuman'),
 (8, 'esteh', 2500, 8, 2, 'assets/img/minuman/esteh.jpg', 'minuman', 'keterangan minuman'),
@@ -78,12 +97,13 @@ INSERT INTO `produk` (`id`, `nama`, `harga`, `sold`, `stok`, `image`, `kategori`
 (33, 'terong belanda', 1000, 3, 4, 'assets/img/buah/terong-belanda.png', 'buah', 'dimakan sebagai buah segar, untuk bumbu masak, sayuran dan minuman.'),
 (34, 'pisang mas', 25000, 4, 7, 'assets/img/buah/pisang-mas.png', 'buah', 'Buah pisang sebagai bahan pangan merupakan sumber energi (karbohidrat) dan mineral, terutama kalium'),
 (35, 'pisang', 15000, 3, 7, 'assets/img/buah/Pisang.png', 'buah', 'Buah pisang sebagai bahan pangan merupakan sumber energi (karbohidrat) dan mineral, terutama kalium'),
-(36, 'kentang', 2000, 4, 6, 'assets/img/buah/kentang.png', 'buah', '"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+(36, 'kentang', 2000, 4, 6, 'assets/img/buah/kentang.png', 'buah', '"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+(37, 'oreo', 4000, 4, 5, 'assets/img/snack/oreo.jpg', 'snack', 'oreo');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -97,17 +117,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `kodepos` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
   `password` varchar(60) NOT NULL,
-  `transaksi` int(11) NOT NULL,
-  `balance` int(11) NOT NULL,
+  `transaksi` int(11) NOT NULL DEFAULT '0',
+  `balance` int(11) NOT NULL DEFAULT '0',
+  `role` varchar(30) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `nama`, `nohp`, `alamat`, `provinsi`, `kota`, `kodepos`, `email`, `password`, `transaksi`, `balance`) VALUES
-(1, 'andreas', 'andreas dwi', '081234567890', 'Jln. Ganesha 10', 'Jawa Barat', 'Bandung', '40116', 'andreas.dwi@gmail.com', '12345678', 0, 0);
+INSERT INTO `user` (`id`, `username`, `nama`, `nohp`, `alamat`, `provinsi`, `kota`, `kodepos`, `email`, `password`, `transaksi`, `balance`, `role`) VALUES
+(1, 'andreas', 'andreas dwi', '081234567890', 'Jln. Ganesha 10', 'Jawa Barat', 'Bandung', '40116', 'andreas.dwi@gmail.com', '12345678', 0, 0, 'admin'),
+(2, 'asasasa', 'asasas asasa', '', '', '', '', '', 'Asd@gd.com', '12345678', 0, 0, 'user'),
+(3, 'fsdjfhskdjhkj', 'jhkjh kjhjkh', '', '', '', '', '', 'sdfas@df.com', '12345678', 0, 0, 'user'),
+(4, 'fsdjfhskdjhkj', 'jhkjh kjhjkh', '', '', '', '', '', 'sdfas@df.com', '12345678', 0, 0, 'user'),
+(5, 'dsfsdsf', 'kljhkl kn', 'kljd', '', '', '', '', 'ssd@sjfh.com', '12345678', 0, 0, 'user');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
