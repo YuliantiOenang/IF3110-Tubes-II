@@ -2,11 +2,14 @@
 <html>
 <head>
 	<link rel='stylesheet' type='text/css' href="${pageContext.request.contextPath}/css/style.css" />
+	
 	<script type="text/javascript">
 		function fitpict(obj) {
 			fitimg(obj,340,340,true,true,false);
 		}
 	</script>
+	
+	
 </head>
 <body>
 <jsp:include page="layout.jsp" />

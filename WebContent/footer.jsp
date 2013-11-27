@@ -2,6 +2,8 @@
 		<a href='https://twitter.com/dave_rex'><img title='@calvinsalvy' src='${pageContext.request.contextPath}/img/site/twitter.png' id='footer_img'/></a>
 	</div>
 	
+</div>
+	
 	<div id='login_cont'>
 		<div id='login_box'>
 			<h1>LOGIN</h1>
