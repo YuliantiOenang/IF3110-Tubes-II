@@ -268,7 +268,7 @@ function ProcessRegistrationResponse(xmlhttp){
 // FUNGSI LAINNYA
 function InitializeValue(){
 	alert("INITIALIZE")
-	document.getElementById("username").innerHTML = localStorage.user_id;
+	document.getElementById("username2").innerHTML = localStorage.user_id;
 	document.getElementById("email").innerHTML = localStorage.email;
 	document.getElementById("transaksi").innerHTML = localStorage.transaction;
 	document.forms["registration"]["password"].value = localStorage.password;
