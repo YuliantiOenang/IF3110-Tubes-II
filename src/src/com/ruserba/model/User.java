@@ -15,6 +15,7 @@ public class User implements java.io.Serializable	{
 	private String nomor_kartu;
 	private String nama_kartu;
 	private String ekspirasi_kartu;
+	private boolean admin;
 
 	public int getIdUser(){
 		return this.id_user;
@@ -105,6 +106,13 @@ public class User implements java.io.Serializable	{
 	}
 	public void setEkspirasiKartu(String ekspirasi_kartu){
 		this.ekspirasi_kartu = ekspirasi_kartu;
+	}
+
+	public boolean getAdmin()	{
+		return this.admin;
+	}
+	public void setAdmin(boolean admin){
+		this.admin = admin;
 	}
 
 }
