@@ -71,26 +71,6 @@
 			document.location.href = 'browse.jsp?sortBy='+sort+'&currentPage='+page+'&keyword='+keyword+'&kategori='+kategori;
 		}
 		
-		function addItem(nama) {
-			var xmlhttp;
-			if (window.XMLHttpRequest)
-			  {// code for IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp=new XMLHttpRequest();
-			  }
-			else
-			  {// code for IE6, IE5
-			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			  }
-			xmlhttp.onreadystatechange=function()
-			  {
-			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					alert(xmlhttp.response);
-				}
-			  }
-			xmlhttp.open("GET","addItem.jsp?username="+localStorage['activeUser']+"&namabarang="+nama+"&jumlah="+document.forms[localStorage['activeUser']['quantity']+"&keterangan=",true);
-			xmlhttp.send();
-		}
 	</script>
 </head>
 <body>
