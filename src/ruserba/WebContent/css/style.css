@@ -29,13 +29,9 @@
 	}
 	
 	div.conctr{
-		position : absolute;
-		width : 960px;
-		height : 550px;
-		left : 50%;
-		top : 50%;
-		margin-left : -480px;
-		margin-top : -275px;
+		width: 960px;
+		margin: 0 auto;
+		margin-top: 30px;
 	}
 	
 	div.head{
@@ -161,6 +157,11 @@ div.prolog{
 /***********************
        FOOTER
 ***********************/
+.footer {
+	position: relative;
+	
+}
+
 #footer_txt {
 	position: absolute;
 	top:70px;
@@ -1450,4 +1451,40 @@ div.show {
 }
 #suggestions ul {
 	list-style: none;
+}
+
+/***********
+* MediaQuery
+************/
+
+@media (max-width: 960px) {
+  div.conctr {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  div.menu {
+  	display: none;
+  }
+  div.status {
+  	width:100%;
+  }
+  div#content_frame {
+  	width:100%;
+  }
+  .footer {
+  	display:none;
+  }
+  div.home_categori {
+	width: 100%;
+  }
+  .howto {
+	width: 100%;
+  }
+  div.search-popup {
+	top: 10%;
+	right: 0;
+	left: inherit;
+	
+  }
 }
