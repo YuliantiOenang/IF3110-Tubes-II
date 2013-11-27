@@ -64,6 +64,9 @@ public class Gallery extends HttpServlet {
 			try {
 				String partial1 = "";
 				String partial2 = "";
+				String partial3 = "";
+				String partial4 = "";
+				String partial5 = "";
 
 				if (sort != 0) {
 					if (sort == 1)
@@ -81,13 +84,26 @@ public class Gallery extends HttpServlet {
 						partial2 = " DESC ";
 					}
 				}
+				
+				if (request.getParameter("name") != null) {
+					partial3 = " AND ( barang.nama_barang LIKE '%" + request.getParameter("name") + "%' ) ";
+				}
+				
+				if (request.getParameter("category") != null) {
+					partial4 = " AND barang.id_kategori=" + Integer.parseInt(request.getParameter("category")) +" ";
+				}
+				
+				if (request.getParameter("price") != null) {
+					partial5 = " AND barang.harga_barang=" + Integer.parseInt(request.getParameter("price")) + " ";
+				}
 
 				if (page != 0) {
 					page = page * 10;
 				}
+				
 
 				String query = "SELECT kategori.nama, barang.gambar, barang.id, barang.id_kategori, barang.nama_barang, barang.harga_barang, barang.jumlah_barang, barang.keterangan FROM barang JOIN kategori ON barang.id_kategori=kategori.id "
-						+ partial1 + partial2 + "LIMIT " + page + ",10"; // Select
+						 + partial3 + partial4 + partial5 + partial1 + partial2 + "LIMIT " + page + ",10"; // Select
 																			// all
 																			// items
 																			// based
@@ -108,10 +124,17 @@ public class Gallery extends HttpServlet {
 					allResults.add(barang);
 				}
 				
-				String query2 = "SELECT COUNT(id) AS JmlBarang FROM barang WHERE id=id";
+				String query2 = "SELECT COUNT(id) AS JmlBarang FROM barang WHERE id=id " + partial3 + partial4 + partial5;
 				
 				ResultSet rs2 = connection.createStatement().executeQuery(query2);
 				rs2.next();
+				
+				if (request.getParameter("category") != null) {
+					String query3 = "SELECT * FROM kategori WHERE id=" + Integer.parseInt(request.getParameter("category"));
+					ResultSet rs3 = connection.createStatement().executeQuery(query3);
+					rs3.next();
+					request.setAttribute("category_name", rs3.getString("nama"));
+				}
 
 				request.setAttribute("items", allResults);
 				request.setAttribute("total_pages", rs2.getString("JmlBarang"));

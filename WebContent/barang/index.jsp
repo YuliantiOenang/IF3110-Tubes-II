@@ -7,10 +7,106 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<jsp:include page="../header.jsp" />
 <script src="../js/ajaxShop.js"></script>
 <title>Gallery</title>
+
+<script type="text/javascript">
+	var run = false;
+	function fitbarang(obj) {
+		fitimg(obj, 180, 175, true, true, false);
+	}
+	function backToPict(id) {
+		if (!run) {
+			var x, y, vara, varb, varc, vard;
+			vara = 0;
+			varb = 0;
+			for (x = 0; x <= 11; x++) {
+				setTimeout(
+						function() {
+							if (x == 0)
+								run = true;
+							document.getElementById('cart' + id).style.opacity = 1 - (0.1 * vara);
+							if (vara == 10)
+								addClass(document.getElementById('cart' + id),
+										" hidden");
+							vara++;
+							console.log(x + ' : cart' + id);
+						}, (50 * (varb + 1)));
+				varb++;
+			}
+			setTimeout(
+					function() {
+						varc = 0;
+						vard = 0;
+						for (y = 0; y <= 11; y++) {
+							setTimeout(
+									function() {
+										if (varc == 0)
+											removeClass(
+													document
+															.getElementById('item'
+																	+ id),
+													"hidden");
+										document.getElementById('item' + id).style.opacity = 0.1 * varc;
+										varc++;
+										console.log(y + ' : item' + id);
+										if (varc == 11)
+											run = false;
+									}, (120 + (50 * (vard + 1))));
+							vard++;
+						}
+					}, 600);
+		}
+	}
+	function goToCart(id) {
+		if (!run) {
+			var x, y, vara, varb, varc, vard;
+			vara = 0;
+			varb = 0;
+			for (x = 0; x <= 11; x++) {
+				setTimeout(
+						function() {
+							if (vara == 0)
+								run = true;
+							document.getElementById('item' + id).style.opacity = 1 - (0.1 * vara);
+							if (vara == 10)
+								addClass(document.getElementById('item' + id),
+										" hidden");
+							vara++;
+							console.log(x + ' : item' + id);
+						}, (50 * (varb + 1)));
+				varb++;
+			}
+			setTimeout(
+					function() {
+						varc = 0;
+						vard = 0;
+						for (y = 0; y <= 11; y++) {
+							setTimeout(
+									function() {
+										if (varc == 0)
+											removeClass(
+													document
+															.getElementById('cart'
+																	+ id),
+													"hidden");
+										document.getElementById('cart' + id).style.opacity = 0.1 * varc;
+										varc++;
+										console.log(y + ' : cart' + id);
+										if (varc == 11)
+											run = false;
+									}, (120 + (50 * (vard + 1))));
+							vard++;
+						}
+					}, 600);
+		}
+	}
+</script>
+
 </head>
 <body>
+	<jsp:include page="../layout.jsp" />
 	<%
 		@SuppressWarnings("unchecked")
 		ArrayList<BarangBean> barangBean = (ArrayList<BarangBean>) request
@@ -21,10 +117,41 @@
 			barangBean = new ArrayList<BarangBean>();
 	%>
 	
+	<div class='header_divider'>
+		<% if (request.getAttribute("category_name") == null ) { %>
+		<h1 class='header'>All Categories</h1>
+		<% } else { %>
+		<h1 class='header'><%= request.getAttribute("category_name") %></h1>
+		<% } %>
+	</div>
+	
+		<%
+			String previous = "";
+			String previous2 = "";
+			if (request.getParameter("sort") != null) {
+				previous = "&sort=" + request.getParameter("sort");
+			}
+			if (request.getParameter("jenisSort") != null) {
+				previous = previous + "&jenisSort=" + request.getParameter("jenisSort");
+			}
+			if (request.getParameter("name") != null) {
+				previous = previous + "&name=" + request.getParameter("name");
+				previous2 = "&name=" + request.getParameter("name");
+			}
+			if (request.getParameter("category") != null) {
+				previous = previous + "&category=" + request.getParameter("category");
+				previous2 = previous2 + "&category=" + request.getParameter("category");
+			}
+			if (request.getParameter("price") != null) {
+				previous = previous + "&price=" + request.getParameter("price");
+				previous2 = previous2 + "&price=" + request.getParameter("price");
+			}
+		%>
+	
 	Sort By: <br />
-	Nama : (<a href="?sort=1&jenisSort=1">ASC</a>,<a href="?sort=1&jenisSort=2">DESC</a>) <br />
-	Kategori : (<a href="?sort=2&jenisSort=1">ASC</a>,<a href="?sort=2&jenisSort=2">DESC</a>) <br />
-	Harga : (<a href="?sort=3&jenisSort=1">ASC</a>,<a href="?sort=3&jenisSort=2">DESC</a>) <br />
+	Nama : (<a href="?sort=1&jenisSort=1<%= previous2 %>">ASC</a>,<a href="?sort=1&jenisSort=2<%= previous2 %>">DESC</a>) <br />
+	Kategori : (<a href="?sort=2&jenisSort=1<%= previous2 %>">ASC</a>,<a href="?sort=2&jenisSort=2<%= previous2 %>">DESC</a>) <br />
+	Harga : (<a href="?sort=3&jenisSort=1<%= previous2 %>">ASC</a>,<a href="?sort=3&jenisSort=2<%= previous2 %>">DESC</a>) <br />
 
 	<table cellpadding="0" cellspacing="1">
 		<tr bgcolor="blue">
@@ -57,7 +184,7 @@
 				id="qty_<%=b.getId()%>" value="0">
 			<input type="hidden" name="deskripsi_tambahan" id="deskripsi_tambahan">
 			</td>
-			<td align="center"><input type="button" value="Tambah ke Cart"
+			<td align="center"><input class="button" type="button" value="Tambah ke Cart"
 				id="beli"
 				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;"></td>
 		</tr>
@@ -65,15 +192,6 @@
 			}
 		%>
 	</table>
-		<%
-			String previous = "";
-			if (request.getParameter("sort") != null) {
-				previous = "&sort=" + request.getParameter("sort");
-			}
-			if (request.getParameter("jenisSort") != null) {
-				previous = previous + "&jenisSort=" + request.getParameter("jenisSort");
-			}
-		%>
 		<%
 			for (int i = 0; i < Math.round(Math.ceil(Double.parseDouble((String) request.getAttribute("total_pages")) / 10)); i++) {
 		%>
@@ -83,5 +201,6 @@
 		%>
 	<br />
 	Klik <a href="./cart">disini</a> untuk masuk ke shopping cart <br />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>
