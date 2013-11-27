@@ -155,12 +155,12 @@
 						if (barangUserBean.size() != 0) {
 					%>
 					<a
-						href='<?php echo $this->getBaseUrl() ?>/profile/credit?redirect=shop/payment'><input
+						href='./payment'><input
 						type="btn" name="submit" value="Process to payment" class="button"></a>
 					<%
 						}
 					%>
-					<a href='<?php echo $this->getBaseUrl() ?>/kategori'><input
+					<a href='./'><input
 						type="btn" name="submit" value="Add Item" class="button"></a>
 				</div>
 			</div>
