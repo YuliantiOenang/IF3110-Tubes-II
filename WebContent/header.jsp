@@ -50,7 +50,7 @@
 				} else {
 					%>
 						<li><a href="profile.jsp">Welcome, <%= session.getAttribute("Username") %>!</a></li>
-						<li><a href="server/invalidate_customer.jsp" onclick="invalidateUser()">Log Out</a></li>
+						<li><a href="server/invalidate_customer.jsp">Log Out</a></li>
 					<%
 				}
 			%>

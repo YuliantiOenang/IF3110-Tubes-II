@@ -16,7 +16,8 @@
 			<label for="password">Password</label>
 			<input type="password" name="password" value=""/>
 		</div>
-		<a href="index.jsp"><input type="button" value="Log In" onclick="validateUser()" /></a>
+		<input type="button" value="Log In" onclick="validateUser()" />
+		
 		<a class="close" href="index.jsp"></a>
 	</form>
 </div>

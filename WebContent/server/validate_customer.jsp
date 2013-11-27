@@ -9,25 +9,28 @@
 	String password = request.getParameter("pass");
 	
 	ResultSet user = statement.executeQuery(
-			"SELECT DISTINCT tipe "
+			"SELECT tipe "
 			+ "FROM anggota "
 			+ "WHERE username='" + username
 			+ "' AND password='" + password
 			+ "'"
 		);
 	
-	if (user == null) {
-		out.print("0"); // user not found
-	} else {
-		user.next();
-		session.setAttribute("Username", username);
-		if (user.getObject("tipe").toString().equals("User")) {
-			out.print("1"); // normal user
-			session.setAttribute("Privilege", "User");
+	if (user != null) {
+		if (user.next()) {
+			if (user.getObject("tipe").toString().equals("User")) {
+				out.print("1"); // normal user
+				session.setAttribute("Privilege", "User");
+			} else {
+				out.print("2"); // admin euy
+				session.setAttribute("Privilege", "Admin");
+			}
+			session.setAttribute("Username", username);
 		} else {
-			out.print("2"); // admin euy
-			session.setAttribute("Privilege", "Admin");
-		}
+			out.print("0"); // user not found
+		}	
+	} else {
+		out.print("0"); // user not found
 	}
 	
 	connection.close();

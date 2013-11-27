@@ -39,6 +39,7 @@ function validateUser()
 				// store username into cookie :3
 				setCookie("Username", x, 30);
 			}
+			window.location.reload();
 		}
 	};
 
