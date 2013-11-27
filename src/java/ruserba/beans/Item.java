@@ -13,7 +13,7 @@ public class Item {
     String name;
     int category;
     int price;
-    String picturePath;
+    String picturePath; 
     int tersedia;
     String ket;
 

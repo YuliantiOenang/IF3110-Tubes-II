@@ -337,3 +337,15 @@ a {
     margin:5px; 
     overflow:hidden;
 }
+
+#popup {
+    background-color: white;
+    position: fixed;
+    top : 45%;
+    left : 45%;
+    width: 10%;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 10px;
+    border: black solid 1px;
+}

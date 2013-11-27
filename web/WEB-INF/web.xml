@@ -30,6 +30,14 @@
         <servlet-name>EditItemServlet</servlet-name>
         <servlet-class>ruserba.servlets.EditItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveItemServlet</servlet-name>
+        <servlet-class>ruserba.servlets.SaveItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteItemServlet</servlet-name>
+        <servlet-class>ruserba.servlets.DeleteItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -49,7 +57,16 @@
     <servlet-mapping>
         <servlet-name>EditItemServlet</servlet-name>
         <url-pattern>/EditItemServlet</url-pattern>
-    </servlet-mapping><session-config>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveItemServlet</servlet-name>
+        <url-pattern>/SaveItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteItemServlet</servlet-name>
+        <url-pattern>/DeleteItemServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
         <session-timeout>
             30
         </session-timeout>

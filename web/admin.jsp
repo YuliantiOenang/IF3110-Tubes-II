@@ -13,11 +13,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/desktop.css">
+        <script src='js/admin.js'></script>
         <title>Admin Page</title>
     </head>
     <body>
 
-
+        <div id="popup">
+            <span id="warning">Do you want to delete it ? </span>
+            <form method="post" action="DeleteItemServlet">
+                <input type ="hidden" value="" name="id_popup" id="id_popup" />
+                <input type ="submit" value="yes"/>
+            </form>
+            <button onclick="closePopup()">No</button>
+        </div>
         <%
             String query = "select * from kategori";
             DatabaseHelper.Connect();
@@ -56,8 +64,8 @@
                     <form method="post" action="EditItemServlet">
                         <input type="hidden" value='<%= resultKategori.getInt("id_barang") %>' name="id_barang" />
                         <input type="submit" name="edit" value="Edit" />
-                        <input type="submit" name="delete" value="Delete" />
                     </form>
+                        <button onclick="delete_item(<%= resultKategori.getInt("id_barang") %>)">Delete</button>
                 </div>
                 <%
                     }

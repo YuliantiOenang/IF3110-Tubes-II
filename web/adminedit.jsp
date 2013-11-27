@@ -17,10 +17,11 @@
     </head>
     <body>
         <div class='formcontainer'>
-            <h2 id='formtitle'>Edit Barang | <jsp:getProperty name="barang" property="name"/></h2>
+            <h2 id='formtitle'>Edit <jsp:getProperty name="barang" property="name"/></h2>
             <br />
-            <form id='formprofile' method='post' action='SaveProfileServlet'>
-                <span class='formlabel'>Nama barang</span><input type='text' name='name_barang' value='<jsp:getProperty name="barang" property="name"/>' /><br />
+            <form id='formprofile' method='post' action='SaveItemServlet'>
+                <input type="hidden" name="id_barang" value="<jsp:getProperty name="barang" property="id" />" />
+                <span class='formlabel'>Nama barang</span><input type='text' name='nama_barang' value='<jsp:getProperty name="barang" property="name"/>' /><br />
                 <br />
                 <span class='formlabel'>Kategori</span><input type='text' name='category' value='<jsp:getProperty name="barang" property="category"/>' /><br />
                 <br />
