@@ -7,7 +7,6 @@
 	if (session.getAttribute("role")!= null) {
 	if (session.getAttribute("role").equals("admin")){
 		out.println("OKE");
-	}}
 %>
 <div id="content" class="float_l">
 	<h2>Edit Barang</h2>
@@ -21,7 +20,7 @@
 				<option value="3">Elektronik</option>
 				<option value="4">Rumah Tangga</option>
 				<option value="5">Olah Raga</option>
-			</select><br>
+			</select><br><br>
 			<input type="submit" id="subedit" value="Pilih Kategori">
 		</form>
 </div>
@@ -35,11 +34,11 @@
 	%>
 <%	} %>
 <%
-// 		} else {
-// 			out.println("<h1>You must logged on as Admin</h1>");
-// 		}
-// 	} else {
-// 		out.println("<h1>403 Forbidden</h1>");
-// 	}
+		} else {
+			out.println("<h1>You must logged on as Admin</h1>");
+		}
+	} else {
+		out.println("<h1>403 Forbidden</h1>");
+	}
 %>
 <jsp:include page="footer.jsp" />

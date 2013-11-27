@@ -81,7 +81,7 @@ public class EditProfile extends HttpServlet {
 		// Run the query		
 		int hasil = dbAccess.doQueryUpdate(query);
 		
-		RequestDispatcher view = request.getRequestDispatcher("");
+		RequestDispatcher view = request.getRequestDispatcher("/");
 		view.forward(request, response);
 	}
 }

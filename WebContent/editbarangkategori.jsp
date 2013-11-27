@@ -27,26 +27,17 @@
 			<% out.print(barang.get(i).getStok()); %><br>
 		<form name="beli" action="EditBarang" method="post">
 			<input type="hidden" name="id_barang" value="<%out.print(barang.get(i).getId_barang());%>">
-			<label>New Name</label><input type="text" name="new_name" value="<% out.println(barang.get(i).getNama_barang());%>">
-			<label>New Value</label><input type="text" name="new_price" value="<% out.print(barang.get(i).getHarga_barang()); %>">
-			<label>New Stock</label><input type="text" name="new_stock" value="<% out.print(barang.get(i).getStok()); %>"><br>
-			<input type="submit" value="Edit">
+			<label>New Name</label><input type="text" name="new_name" value="<% out.println(barang.get(i).getNama_barang());%>"><br>
+			<label>New Value</label><input type="text" name="new_price" value="<% out.print(barang.get(i).getHarga_barang()); %>"><br>
+			<label>New Stock</label><input type="text" name="new_stock" value="<% out.print(barang.get(i).getStok()); %>"><br><br>
+			<input type="submit" value="Edit"><br>
 		</form>
-		<a href='#deleteconf'>Delete</a>
+		<form action="DeleteBarang" method="post">
+			<input type="hidden" name="id_barang" value="<%out.print(barang.get(i).getId_barang());%>">
+    		<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete?')" />
+		</form>
 		</p>
 	</div>
-	<a href="#x" class="overlay" id="deleteconf"></a>
-			<div class="popup">
-				<h2>Warning</h2>
-				<p>Are you sure?</p>
-
-				<form name="hapuspopup" action="DeleteBarang" method="post">
-					<input type="hidden" name="id_barang" value="<%out.print(barang.get(i).getId_barang());%>">
-					<input type="submit" value="Delete" />
-					id :<%out.print(barang.get(i).getId_barang());%>;
-				</form>
-				<a class="close" href="#close"></a>
-			</div>
 		
 	<%
 		}

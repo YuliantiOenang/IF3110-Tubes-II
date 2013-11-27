@@ -44,7 +44,7 @@ DatabaseAccess dbAccess = new DatabaseAccess();
 		String query = "DELETE FROM `barang` WHERE id_barang="+id_barang;
 		
 		dbAccess.doQueryUpdate(query);
-		RequestDispatcher view = request.getRequestDispatcher("editbarang.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("sukses.jsp");
 		view.forward(request, response);
 	}
 
