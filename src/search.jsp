@@ -82,11 +82,12 @@
                            <div class="barang">
                                 <% 
                                 out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
-                                out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' height=100%");
+                                out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' height=100%/>");
                                 out.print("</a>");
                                 %>
                            </div>
                            <div class="barang">
+                               Nama :
                                 <span class="barang_nama">
                                     <%
                                      out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
@@ -95,7 +96,17 @@
                                      %>
                                 </span>
                                 <br/>
+                                Kategori :
+                                <span class="barang_nama">
+                                    <%
+                                     out.print("<a href='barang.jsp?kategori="+hasil1.getString("id_kategori")+"'>");
+                                     out.print(hasil1.getString("nama_kategori"));
+                                     out.print("</a>");
+                                     %>
+                                </span>
+                                <br/>
                                 <span class="barang_tersedia"></span>
+                                Harga :
                                 <span class="barang_harga">
                                      <% 
                                      out.print("Rp "+hasil1.getString("harga_barang")+",00");
@@ -106,7 +117,7 @@
                                 <br/>
                                 <%
                                 out.print("Jumlah : ");
-                                out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10>");
+                                out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10/>");
                                 %>
                                 <br/>
                                 <%
