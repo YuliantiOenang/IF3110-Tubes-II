@@ -44,7 +44,7 @@
     				out.println("<input type='checkbox' id='show-description-"+slideid+"'/>");
     				out.println("<label for='show-description-"+slideid+"' class='show-description-label'>");
     				out.println(""+rs.getString("kategori")+" #"+rank+"</label>");
-    				out.println("<div class='description-text'><a href='detailbarang.php?id="+rs2.getString("id")+"'>"+rs2.getString("nama")+"</a>");
+    				out.println("<div class='description-text'><a href='detailbarang.jsp?id="+rs2.getString("id")+"'>"+rs2.getString("nama")+"</a>");
     				out.println("<p>"+rs2.getString("keterangan")+"</p>");
     				out.println("</div></div></li>"); 
     				rank++;
