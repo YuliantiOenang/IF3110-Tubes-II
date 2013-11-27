@@ -38,9 +38,8 @@ function pertanyaan(id_b,stok)
 	id_order = 5;
 	id_barang = id_b;
 	
-	var jumlah = document.getElementById("beliBarangOKE"+id_b).value;
-//	var jumlah = document.getElementById("beliBarangOKE").value;
-//	System.out.println("beliBarangOKE"+id_b);
+	jumlah = document.getElementById("beliBarangOKE"+id_b).value;
+	
 	if ((jumlah == null) || (jumlah == ""))
 		alert("jumlah barang harus diisi");
 	else if (jumlah > stok) alert("Pemesanan barang melebihi stok, hanya tersisa "+stok+" barang");

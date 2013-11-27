@@ -43,17 +43,9 @@ public class BarangBeli extends HttpServlet {
 		String id_order = request.getParameter("id_order");
 		String jumlah = request.getParameter("jumlah");
 		String keterangan = request.getParameter("keterangan");
-//		System.out.println(id_barang);
 		try
 		{
-			/*
-			String Query = "INSERT INTO order_item (id_order,id_barang,jumlah,tambahan) " +
-					"VALUES ('"+id_barang+"','"+
-					id_order+"','"+jumlah+"','"+keterangan+"')";
-			DBA.insertQuery(Query);
-			System.out.println(Query);
-			*/
-			session.removeAttribute("dibeli");
+//			session.removeAttribute("dibeli");
 			if (session.getAttribute("dibeli")==null) {
 				ArrayList<String> dibeli = new ArrayList<>();
 				dibeli.add(id_barang);
@@ -69,8 +61,12 @@ public class BarangBeli extends HttpServlet {
 					}
 //				System.out.println(id_barang + " " + exist);
 				if (exist) {
-					int jml = (int) session.getAttribute(id_barang);
-					session.setAttribute(id_barang,jml+jumlah);
+					Integer jml = Integer.parseInt((String)session.getAttribute(id_barang));
+					int jml2 = 0;
+					for (int i = 0; i < jumlah.length(); i ++)
+						jml2 = jml2 * 10 + (int) (jumlah.charAt(i) - '0');
+					jml += jml2;
+					session.setAttribute(id_barang,jml+"");
 				} else {
 					session.setAttribute(id_barang,jumlah);
 					dibeli.add(id_barang);
