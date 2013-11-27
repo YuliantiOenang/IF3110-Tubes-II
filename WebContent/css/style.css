@@ -34,7 +34,7 @@
 		left : 50%;
 		top : 50%;
 		margin-left : -480px;
-		margin-top : -260px;
+		margin-top : -290px;
 	}
 	
 	div.head{
@@ -237,7 +237,7 @@ h1{
 }
 
 h1.header {
-	font-size: 100px;
+	font-size: 80px;
 	line-height: 55px;
 	text-align: left;
 }
@@ -923,14 +923,14 @@ div.triplebest div.best {
 	list-style: none;
 }
 .pagination ul > li {
-	padding: 10px;
+	padding: 9px;
 	font-size: 1.2em;
 	margin-right: 10px;
 	display: inline-block;
 	background: rgba(0,0,0,.5)
 }
 .pagination ul > li > a {
-	color: #999;
+	color: #ddd;
 }
 
 .howto {

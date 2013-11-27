@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<jsp:include page="../header.jsp" />
 <title>Pembayaran</title>
 </head>
 <body>
-<%= request.getAttribute("response") %><br />
+	<jsp:include page="../layout.jsp" /><br />
+<h1 class='small-header'><%= request.getAttribute("response") %></h1>
 Klik <a href="./">disini</a> untuk kembali ke halaman pembelian <br />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

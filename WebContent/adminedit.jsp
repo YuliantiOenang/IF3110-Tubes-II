@@ -7,9 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+<jsp:include page="header.jsp" />
+
 <script src="js/admin.js"></script>
 </head>
 <body>
+
+<jsp:include page="layout.jsp" />
+
 <%
 @SuppressWarnings("unchecked")
 ArrayList<BarangBean> barangs = (ArrayList<BarangBean>)request.getAttribute("barangs");
@@ -59,5 +65,8 @@ for (int i = 0; i < kategoris.size(); i++) {
 	}
 	%>
 </table>
+
+<jsp:include page="footer.jsp" />
+
 </body>
 </html>
