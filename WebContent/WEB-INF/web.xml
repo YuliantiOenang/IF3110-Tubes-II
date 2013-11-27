@@ -121,6 +121,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>register</display-name>
+    <servlet-name>register</servlet-name>
+    <servlet-class>tubes2wbd.register</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>validasi</display-name>
     <servlet-name>validasi</servlet-name>
     <servlet-class>tubes2wbd.validasi</servlet-class>
