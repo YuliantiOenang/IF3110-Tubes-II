@@ -14,6 +14,10 @@
 		int totalHarga = (Integer) request.getAttribute("total");
 		%>
 			<h1>View Cart</h1>
+			<h1>
+				<button type="button" onclick="clearCart()">Clear All</button>
+				<button type="button" onclick="buyCart()">Buy All</button>
+			</h1>
 			<h1>Total Harga: <%= totalHarga %></h1>
 		<%
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
@@ -33,7 +37,11 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
-						<strong>Jumlah Dibeli:</strong> <%= b.getJumlah() %><br/><br/>
+						<form class = "inline_form">
+							<strong>Jumlah Dibeli:</strong> <input type="text" id="quant<%= no %>" value="<%= b.getJumlah() %>"><br/><br/>
+							<button type="button" onclick="changeItemCount(<%= b.getId_inven() %>, <%= no %>)">Ubah</button>
+						</form>
+						<div class="notif<%= no %>"></div>
 					</div>
 				</div>
 			<% 
@@ -63,4 +71,9 @@
 		%>
 	</div>
 </body>
+	<script src="transaction.js"></script>
+	<script type="text/javascript">
+	   //alert("Checking if credit card is exist on jsp");
+	   checkUser();
+	</script>
 </html>

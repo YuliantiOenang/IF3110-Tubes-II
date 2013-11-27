@@ -1,7 +1,19 @@
 .panel {
-    background-color: #444;
-    height: 34px;
-    padding: 10px;
+    background-color: black;
+    padding: 5px;
+    text-align: right;
+    max-height:30px;
+    width: 900px;
+}
+
+.panel #viewcart{
+	float:left;
+	position:relative;
+	top:-8px;
+}
+
+.panel #regislink{
+	color: white;
 }
 .overlay {
     background-color: rgba(0, 0, 0, 0.6);

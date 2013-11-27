@@ -50,6 +50,113 @@ function validate(id_barang, id_div){
 	xmlhttp.send(data);
 }
 
+function changeItemCount(inv_id, div_id){
+	var newVal = document.getElementById('quant' + div_id).value;
+	var notif_bar = document.getElementById("notif" + div_id);
+	data = "id_barang=" + inv_id;
+	data += "&jumlah=" + newVal;
+		
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else{
+	// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}	
+	
+	xmlhttp.onreadystatechange=function(){
+		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
+			//alert("response: " + xmlhttp.responseText);
+			notif_bar.innerHTML = xmlhttp.responseText;
+			//document.getElementById("quant" + div_id).value = newVal;
+		}
+	};
+	xmlhttp.open("POST","updateBarang", false);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	//alert("Change item count called");
+	xmlhttp.send(data);
+}
+
+function checkUser(){
+	//cek udah login?
+	//alert("used id:" + localStorage.used_id);
+	if(localStorage.user_id == undefined){
+		window.location = "home";
+		return;
+	}
+	
+	//cek credit card != 0?
+	if(localStorage.cardnum == 0){
+		window.location = "CreditCard.jsp";
+		return;
+	}
+}
+
+function buyCart(){
+	data = "mode=buy";
+	if(localStorage.user_id == undefined){
+		alert("Maaf, Anda harus login terlebih dahulu.");
+		return;
+	} else {
+		data=data+"&user_id="+localStorage.user_id;
+	}
+	
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	 }
+	else{
+	// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}	
+	
+	xmlhttp.onreadystatechange=function(){
+		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
+			var responsecode = xmlhttp.responseText;
+			window.location.reload();
+			//alert(responsecode);
+		}
+	};
+	xmlhttp.open("POST","viewCart", false);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.send(data);
+}
+
+function clearCart(){
+	data = "mode=clear";
+	if(localStorage.user_id == undefined){
+		alert("Maaf, Anda harus login terlebih dahulu.");
+		return;
+	}
+	
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	 }
+	else{
+	// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}	
+	
+	xmlhttp.onreadystatechange=function(){
+		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
+			var responsecode = xmlhttp.responseText;
+			window.location.reload();
+			//alert(responsecode);
+		}
+	};
+	xmlhttp.open("POST","viewCart", false);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.send(data);
+}
+
 function addToCart(id_barang, id_div){
 	//alert("notif" + id_div);
 	var notif_bar = document.getElementById("notif" + id_div);
@@ -58,15 +165,11 @@ function addToCart(id_barang, id_div){
 	data = "id_barang=" + id_barang;
 	data += "&jumlah=" + jml_beli;
 	
-	/*
-	if(localStorage.id_user == undefined){
+	
+	if(localStorage.user_id == undefined){
 		notif_bar.innerHTML = "Maaf, Anda harus login terlebih dahulu.";
 		return;
-	} else {
-		data=data+"&id_user="+localStorage.id_user;
-	}*/
-	
-	//alert("lewat lho");
+	}
 	
 	//lakukan koneksi ke servlet
 	var xmlhttp;

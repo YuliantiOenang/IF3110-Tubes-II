@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.*;
-import java.lang.*;
-
 /**
  * Servlet implementation class UserServlet
  */
@@ -27,17 +24,13 @@ public class UserServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
+	// FUNGSI WAJIB IMPLEMENTASI SERVLET
     public UserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
@@ -82,8 +75,7 @@ public class UserServlet extends HttpServlet {
 					hape = 0;
 				
 				AddUser(username, email, password, fullname, alamat, provinsi, kota, kp, hape);
-				
-				responsetext = "0";
+				responsetext = GetData(username);
 			}
 			
 			response.getWriter().write(responsetext);
@@ -108,7 +100,7 @@ public class UserServlet extends HttpServlet {
 					kp = 0;
 				
 			if(!hp.equals(""))
-					hape = Integer.parseInt(kodepos);
+					hape = Integer.parseInt(hp);
 			else
 					hape = 0;
 				
@@ -138,10 +130,24 @@ public class UserServlet extends HttpServlet {
 						
 			response.getWriter().write(responsetext);
 		}
+		else if (request.getParameter("type").equals("login")){
+			String username = request.getParameter("id");	
+			String password = request.getParameter("password");
+			String responsetext = "";
+			
+			if(Login(username, password))
+				responsetext = GetData(username);								
+			else
+				responsetext = "1";
+			
+			response.getWriter().write(responsetext);
+		}
+		else{
+			response.getWriter().write("Unknown Type"); 		
+		}
 	}
 	
 	// FUNGSI EDIT
-
 	// Akan memasukkan user baru di dalam database, namun informasi database masih kosong
 	// Akan menghasilkan akun dengan privilege User
 	private void AddUser(String id, String email, String password, String fullname, String alamat, String provinsi, String kota, int kodepos, int hp){
@@ -428,8 +434,61 @@ public class UserServlet extends HttpServlet {
 		else
 			return false;
 	}
-	
-	public static void main(String[] arg0){
 		
+	// FUNGSI PENGAMBILAN DATA
+	// Mengembalikan data user dengan id tertentu
+	private String GetData(String id){
+		// Variabel akses
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String responsetext = "";
+		
+		// Coba buka koneksi
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DBURL, USER, PASS);
+								
+			// Konstruksi query
+			String query = "SELECT * FROM user WHERE id = '" + id + "'";
+			System.out.println(query);
+								
+			stmt = conn.createStatement();
+								
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next()){
+				responsetext = "0|";
+				responsetext = responsetext + rs.getString("id")+"|";
+				responsetext = responsetext + rs.getString("password")+"|";
+				responsetext = responsetext + rs.getString("email")+"|";
+				responsetext = responsetext + rs.getString("full_name")+"|";
+				responsetext = responsetext + rs.getString("alamat")+"|";
+				responsetext = responsetext + rs.getString("provinsi")+"|";
+				responsetext = responsetext + rs.getString("kotakabupaten")+"|";
+				responsetext = responsetext + rs.getInt("kodepos")+"|";
+				responsetext = responsetext + rs.getInt("nomor_handphone")+"|";
+				responsetext = responsetext + rs.getInt("creditcardnum")+"|";
+				responsetext = responsetext + rs.getString("privilege")+"|";
+				responsetext = responsetext + rs.getInt("transaction")+"|";
+			}
+		}catch(SQLException se){
+			se.printStackTrace();	
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}					
+		}
+		
+		return responsetext;
 	}
 }
