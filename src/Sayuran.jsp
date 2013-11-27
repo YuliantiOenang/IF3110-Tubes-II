@@ -43,7 +43,7 @@
 				test = Integer.parseInt(request.getParameter("l"));
 			}
 			for (int i =Integer.parseInt(request.getParameter("f"));i<=test;i++){ 
-			out.print((Integer)session.getAttribute("syjumlah"+i));%>
+			%>
 				<div class="kolom-6 product">					
 					<div class="frame">
 						<div class="kolom-6">
@@ -93,8 +93,8 @@
 				  %>
 				  	
 				 <% }%>
-				 <li><a href="Sayuran.jsp?f=<%out.print(o);%>&l=<%out.print(p);%>">&laquo;Previous</a></li>
-				 <li><a href="Sayuran.jsp?f=<%out.print(n);%>&l=<%out.print(m);%>">Next&raquo;</a></li>
+				 <li><a href="Sayuran.jsp?f=<%out.print(o);%>&amp;l=<%out.print(p);%>">&laquo;Previous</a></li>
+				 <li><a href="Sayuran.jsp?f=<%out.print(n);%>&amp;l=<%out.print(m);%>">Next&raquo;</a></li>
 				
 				
 			

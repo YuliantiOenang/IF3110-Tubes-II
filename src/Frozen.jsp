@@ -92,8 +92,8 @@
 				  %>
 				  	
 				 <% }%>
-				 <li><a href="Frozen.jsp?f=<%out.print(o);%>&l=<%out.print(p);%>">&laquo;Previous</a></li>
-				 <li><a href="Frozen.jsp?f=<%out.print(n);%>&l=<%out.print(m);%>">Next&raquo;</a></li>
+				 <li><a href="Frozen.jsp?f=<%out.print(o);%>&amp;l=<%out.print(p);%>">&laquo;Previous</a></li>
+				 <li><a href="Frozen.jsp?f=<%out.print(n);%>&amp;l=<%out.print(m);%>">Next&raquo;</a></li>
 				
 				
 			
