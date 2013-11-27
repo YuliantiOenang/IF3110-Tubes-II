@@ -97,8 +97,7 @@ response.setContentType("text/html");
 	                	if(!localStorage.wbdusername) {
 	                    	document.getElementById("welcome").innerHTML = "<button onclick='login()'>Login</button> &nbsp; Belum punya akun? &nbsp; <a href='registrasi.jsp'>Daftar</a>";
 						} else {
-	                    	document.getElementById("welcome").innerHTML = "Welcome, <a href='Profile?username="+ localStorage.wbdusername+"'>"+localStorage.wbdusername+"</a>! <button onclick='logout()'>Logout</button>";
-	                    	document.getElementById("admin").innerHTML = "<a href=\"admin.jsp\">Admin</a>"; 
+	                    	document.getElementById("welcome").innerHTML = "Welcome, <a href='Profile?username="+ localStorage.wbdusername+"'>"+localStorage.wbdusername+"</a>! <button onclick='logout()'>Logout</button>"; 
 	                    }
 	                }
 	            </script>
