@@ -91,6 +91,8 @@ public class ViewCart extends HttpServlet {
     }
     
     public void buyCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	String id_user = request.getParameter("id_user");
+    	
     	HttpSession session = request.getSession(true);
 		String db = "toko_imba";
 		java.sql.Connection con = null;
@@ -108,7 +110,7 @@ public class ViewCart extends HttpServlet {
 					
 					//Update jumlah transaksi yang di user
 					String localStorageId = "Hafizh"; //temporary gaaaaaan
-					state.executeUpdate("UPDATE user SET transaction = transaction + " + barangIndex.y +  " WHERE id='" + localStorageId +"'");
+					state.executeUpdate("UPDATE user SET transaction = transaction + " + barangIndex.y +  " WHERE id='" + id_user +"'");
 					
 					//Update jumlah transaksi yang di inventori
 					state.executeUpdate("UPDATE inventori SET total_transaksi=total_transaksi + " + barangIndex.y + " WHERE id_inventori=" + barangIndex.x);
@@ -128,6 +130,13 @@ public class ViewCart extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		viewCart(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mode = request.getParameter("mode");
 		System.out.println("Mode: " + mode);
 		if(mode == null){
@@ -137,13 +146,6 @@ public class ViewCart extends HttpServlet {
 		} else if(mode.equals("buy")){
 			buyCart(request, response);
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }
