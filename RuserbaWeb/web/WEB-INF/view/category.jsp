@@ -7,13 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/ruserbaweb.css">
-        <title>Ruserba: Apa Apa Ada Semua Serba Ada</title>
-    </head>
     <body>
         <div id="main">
+            
             <div id="header">
                 <div id="widgetBar">
 
@@ -31,11 +27,11 @@
 
                 </div>
 
-                <a href="#">
-                    <img src="#" id="logo" alt="Affable Bean logo">
+                <a href="../../WEB-INF/">
+                    <img src="res/sirup.jpg" id="logo" alt="Ruserba Logo">
                 </a>
 
-                <img src="#" id="logoText" alt="the affable bean">
+                <img src="res/logo.png" id="logoText" alt="Ruserba: Apa Apa Ada Semua Serba Ada">
             </div>
 
             <div id="categoryLeftColumn">

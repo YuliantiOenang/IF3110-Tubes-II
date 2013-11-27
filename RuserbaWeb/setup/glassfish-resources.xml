@@ -8,6 +8,6 @@
     <description>connect to ruserbaweb database</description>
     <property name="URL" value="jdbc:mysql://localhost:3306/ruserbaweb?zeroDateTimeBehavior=convertToNull"/>
     <property name="User" value="root"/>
-    <property name="Password" value="nbuser"/>
+    <property name="Password" value=""/>
   </jdbc-connection-pool>
 </resources>
