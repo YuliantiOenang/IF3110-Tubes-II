@@ -1,6 +1,6 @@
 </div>
 			<div class='head'>
-			<a href='${pageContext.request.contextPath}/index/home'><div class='logo'></div></a>
+			<a href='${pageContext.request.contextPath}/home'><div class='logo'></div></a>
 			<div class='status'>
 				<!-- <?php if ($this->userLogged()): ?>
 					<p class="left"> welcome, <a href='<?php echo $this->makeUrl('profile/index') ?>/'><?php echo $this->userLogged() ?></a>! (<a href='<?php echo $this->makeUrl('index/logout') ?>'>Logout</a>)
