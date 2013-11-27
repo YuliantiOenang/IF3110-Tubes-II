@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
-    import="com.frexesc.model.*, java.util.*"
-    %>
+	pageEncoding="ISO-8859-1" import="com.frexesc.model.*, java.util.*"%>
 <!DOCTYPE html">
 <html>
 <head>
@@ -14,59 +12,61 @@
 </head>
 <body>
 
-<jsp:include page="layout.jsp" />
-
-<%
-@SuppressWarnings("unchecked")
-ArrayList<BarangBean> barangs = (ArrayList<BarangBean>)request.getAttribute("barangs");
-@SuppressWarnings("unchecked")
-ArrayList<KategoriBean> kategoris = (ArrayList<KategoriBean>)request.getAttribute("kategoris");
-for (int i = 0; i < kategoris.size(); i++) {
-%>
-	<a href="admin?action=edit&category=<%= kategoris.get(i).getId()%>"><%= kategoris.get(i).getName()%></a>
-<%
-}
-%>
-<table border="1">
-	<tr>
-		<th>id</th>
-		<th>kategori</th>
-		<th>nama</th>
-		<th>harga</th>
-		<th>deskripsi</th>
-		<th>gambar</th>
-		<th>jumlah</th>
-		<th>edit</th>
-		<th>hapus</th>
-	</tr>
+	<jsp:include page="layout.jsp" />
+	<h1 class="header">Edit Barang</h1>
 	<%
-	String[] categories = {"Ladies Dress", "Ladies Shoes", "Men Shirt", "Men Shoes", "Men Hat"};
-	for (int i = 0; i < barangs.size(); i++) {
-		BarangBean b = barangs.get(i);
+		@SuppressWarnings("unchecked")
+		ArrayList<BarangBean> barangs = (ArrayList<BarangBean>) request.getAttribute("barangs");
+		@SuppressWarnings("unchecked")
+		ArrayList<KategoriBean> kategoris = (ArrayList<KategoriBean>) request.getAttribute("kategoris");
+		for (int i = 0; i < kategoris.size(); i++) {
 	%>
-	<tr id="<%= "r"+b.getId() %>">
-		<td id="<%= "id"+b.getId() %>"><%= b.getId() %></td>
-		<td id="<%= "cat"+b.getId() %>"><%= categories[(int)(b.getId_category())-1] %></td>
-		<td id="<%= "name"+b.getId() %>"><%= b.getName() %></td>
-		<td id="<%= "pri"+b.getId() %>"><%= b.getPrice() %></td>
-		<td id="<%= "desc"+b.getId() %>"><%= b.getDescription() %></td>
-		<td id="<%= "pic"+b.getId() %>"><%= b.getPicture() %></td>
-		<td id="<%= "total"+b.getId() %>"><%= b.getTotal_item() %></td>
-		<td id="<%= "edit"+b.getId() %>"><button onclick="editbarang(<%= b.getId() %>)">edit</button></td>
-		<td>
-			<form method="post" action="admin" onsubmit='return confirmdelete("<%=b.getName()%>")'>
-				<input type="hidden" name="id" value="<%= b.getId() %>" />
-				<input type="hidden" name="action" value="delete" />
-				<button>hapus</button>
-			</form>
-		</td>
-	</tr>
+	<a href="admin?action=edit&category=<%=kategoris.get(i).getId()%>"><%=kategoris.get(i).getName()%></a>
 	<%
-	}
+		}
 	%>
-</table>
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th>kategori</th>
+			<th>nama</th>
+			<th>harga</th>
+			<th>deskripsi</th>
+			<th>gambar</th>
+			<th>jumlah</th>
+			<th>edit</th>
+			<th>hapus</th>
+		</tr>
+		<%
+			String[] categories = { "Ladies Dress", "Ladies Shoes", "Men Shirt", "Men Shoes", "Men Hat" };
+			for (int i = 0; i < barangs.size(); i++) {
+				BarangBean b = barangs.get(i);
+		%>
+		<tr id="<%="r" + b.getId()%>">
+			<td id="<%="id" + b.getId()%>"><%=b.getId()%></td>
+			<td id="<%="cat" + b.getId()%>"><%=categories[(int) (b.getId_category()) - 1]%></td>
+			<td id="<%="name" + b.getId()%>"><%=b.getName()%></td>
+			<td id="<%="pri" + b.getId()%>"><%=b.getPrice()%></td>
+			<td id="<%="desc" + b.getId()%>"><%=b.getDescription()%></td>
+			<td id="<%="pic" + b.getId()%>"><a href="#" onclick="window.open('admin?action=pic&id=<%= b.getId()%>', 'newwindow', 'width=500, height=250'); return false;"><%=b.getPicture()%></a></td>
+			<td id="<%="total" + b.getId()%>"><%=b.getTotal_item()%></td>
+			<td id="<%="edit" + b.getId()%>">
+			<button onclick="editbarang(<%=b.getId()%>)">edit</button></td>
+			<td>
+				<form method="post" action="admin"
+					onsubmit='return confirmdelete("<%=b.getName()%>")'>
+					<input type="hidden" name="id" value="<%=b.getId()%>" /> <input
+						type="hidden" name="action" value="delete" />
+					<button>hapus</button>
+				</form>
+			</td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
 
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 </body>
 </html>

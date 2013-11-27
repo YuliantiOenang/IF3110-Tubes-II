@@ -63,7 +63,7 @@
 				<a href="${pageContext.request.contextPath}/barang/cart">Shopping
 					Cart</a> <img
 					src='${pageContext.request.contextPath}/img/site/cart_white.png'
-					style='margin-right: 5px;' />
+					class='img_layout' />
 			</p>
 			<%
 				} else if (request.getSession(true).getAttribute("role")
@@ -78,7 +78,7 @@
 				<a href="${pageContext.request.contextPath}/barang/cart">Shopping
 					Cart</a> <img
 					src='${pageContext.request.contextPath}/img/site/cart_white.png'
-					style='margin-right: 5px;' />
+					class='img_layout' />
 			</p>
 			<%
 				}

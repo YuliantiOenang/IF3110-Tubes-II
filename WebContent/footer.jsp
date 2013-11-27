@@ -17,27 +17,49 @@
 	</div>
 	
 	
-	<!-- FOR SEARCH BAR -->
-	<div id = 'search-popup' class='search-popup <?php if ((isset($search_show))&&($search_show)) echo "left-hide";?>' onclick='opensearch()'></div>
-	<div id = 'search-popup-content' class='search-popup-content <?php if ((isset($search_show))&&($search_show)) echo "left-show";?>'>
-		<form action="<?php echo $this->makeUrl('barang/search') ?>" method="get">
-			<?php 
-				$q = (isset($_GET['q'])?$_GET['q']:"");
-				$kat = (isset($_GET['kat'])?$_GET['kat']:""); 
-				$h1 = (isset($_GET['h1'])?$_GET['h1']:""); 
-				$h2 = (isset($_GET['h2'])?$_GET['h2']:""); 
-			?>
+	<!-- FOR SEARCH BAR -->	
+	<%
+		if (request.getParameter("search") != null) {
+	%>
+		<div id = 'search-popup' class='search-popup left-hide' onclick='opensearch()'></div>
+		<div id = 'search-popup-content' class='search-popup-content left-show'>
+	<%
+		} else {
+	%>
+		<div id = 'search-popup' class='search-popup' onclick='opensearch()'></div>
+		<div id = 'search-popup-content' class='search-popup-content'>
+	<%
+		}
+	%>
+	
+	<%
+		String temp_name = "";
+		int temp_category = 0;
+		int temp_price = 0;
+		if (request.getParameter("name") != null) {
+			temp_name = request.getParameter("name");
+		}
+		if (request.getParameter("category") != null) {
+			temp_category = Integer.parseInt(request.getParameter("category"));
+		}
+		if (request.getParameter("price") != null) {
+			temp_price = Integer.parseInt(request.getParameter("price"));
+		}
+	%>
+			<form method="get" action="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/">
 			<h4>Search</h4>
 			<p onclick='closesearch()'>x</p>
-			<input type="text" name="q" value="<?php echo $q ?>" placeholder="Nama Barang">
-			<select name="kat" value="<?php echo $kat ?>" required>
-				<option value="0">All Categories</option>
-				<?php foreach ($_listkategori_ as $key => $value): ?>
-					<option value="<?php echo $value->id ?>"><?php echo $value->nama_kategori ?></option>
-				<?php endforeach ?>
+			<input type="text" name="name" value="<%= temp_name %>" placeholder="Nama Barang" id="name">
+			<select name="category" value="<%= temp_category %>" required id="category">
+				<option value="0" <% if (temp_category == 0) %>selected<% ; %>>All Categories</option>
+				<option value="1" <% if (temp_category == 1) %>selected<% ; %>>Ladies Dress</option>
+				<option value="2" <% if (temp_category == 2) %>selected<% ; %>>Ladies Shoes</option>
+				<option value="3" <% if (temp_category == 3) %>selected<% ; %>>Man Shirt</option>
+				<option value="4" <% if (temp_category == 4) %>selected<% ; %>>Man Shoes</option>
+				<option value="5" <% if (temp_category == 5) %>selected<% ; %>>Man Hat</option>
 			</select>
-			<input type="number" name="h1" value="<?php echo $h1 ?>" placeholder="Harga Bawah">
-			<input type="number" name="h2" value="<?php echo $h2 ?>" placeholder="Harga Atas">
+			<input type="number" name="price" value="<%= temp_price %>" placeholder="Harga" id="price">
+			<input type="hidden" name="search" value="true">
 			<button type="submit" class="btn">Search</button>
-		</form>
+			</form>
 	</div>

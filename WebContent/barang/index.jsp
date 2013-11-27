@@ -213,7 +213,7 @@
 				id='deskripsi_tambahan'></textarea>
 			<input type='button' class='cart small' id='beli' value='Add to Cart'
 				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;"></input>
-			<p class='back' href=$ onclick('backToPic(<%= b.getId() %>)')>
+			<p class='back' href=# onclick='backToPict(<%= b.getId() %>)'>
 			<label class='qty small'>back</label>
 			</p>
 			</div>
@@ -264,8 +264,6 @@
 				<ul>
 		</div>
 
-	<br /> Klik
-	<a href="./cart">disini</a> untuk masuk ke shopping cart
 	<br />
 	<jsp:include page="../footer.jsp" />
 </body>
