@@ -1,5 +1,6 @@
 <%@page import="javaModel.Credit" %>
 <%@page import="java.util.ArrayList" %>
+
 <% Credit C = (Credit) request.getAttribute("credit"); %>
 <form method="post" id="form_credit" onsubmit="credit(); return false;">
 	<div class='register_div'>
