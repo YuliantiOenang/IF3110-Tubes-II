@@ -76,7 +76,7 @@ function login()
 			var decodeJSON = JSON.parse(http.responseText);
 			
 			document.getElementById("welcome").innerHTML="WELCOME,"+decodeJSON.nama;
-			document.getElementById("welcome2").innerHTML="WELCOME,"+decodeJSON.nama;
+			//document.getElementById("welcome2").innerHTML="WELCOME,"+decodeJSON.nama;
 			
                         var lightbox = document.getElementById("lightbox");
 			var dimmer = document.getElementById("dim");

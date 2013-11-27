@@ -194,9 +194,8 @@
 					db.stat.executeUpdate(request.getParameter("query")+"`foto`="+"'images/"+session.getAttribute("nama")+"."+parseDot[1]+"',`status`='tersedia' WHERE no_alat='"+session.getAttribute("id")+"'");
 					%>
 					<script>
-						var nama = document.getElementById('submit');
-						var harga = document.getElementById('harga');
-						window.alert("berhasil memasukkan gambar" + nama + harga);
+						window.alert("berhasil mengubah database");
+                                                window.location="index.jsp";
 					</script>
 					<%
 					File hapus=new File("C:/xampp/tomcat/webapps/Tugas_Besar2_Web/images/" +session.getAttribute("oldNama")+"."+parseDot[1]);
