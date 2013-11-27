@@ -14,6 +14,7 @@
             Connection koneksi = null;
             int kategori = Integer.valueOf(request.getParameter("kategori"));
             String query = "SELECT * FROM barang WHERE id_kategori="+kategori+" ORDER BY ";
+            int pages;
         %>
         <%
             try {
@@ -26,6 +27,17 @@
             }
             Statement stm1 = koneksi.createStatement();                   
             ResultSet hasil1 = stm1.executeQuery("SELECT * FROM barang WHERE id_kategori="+kategori);
+            hasil1.last();
+            int banyakBarang = hasil1.getRow();
+            hasil1.beforeFirst();
+            if(request.getParameter("page")==null){
+                pages=1;
+            } else {
+                pages = Integer.valueOf(request.getParameter("page"));
+            }
+            int limit = 10;
+            int mulai_dari = limit * (pages - 1);
+            hasil1 = stm1.executeQuery("SELECT * FROM barang WHERE id_kategori="+kategori+" LIMIT "+mulai_dari+", "+limit);
             Statement stm2 = koneksi.createStatement();                    
             ResultSet hasil2 = stm2.executeQuery("SELECT * FROM kategori WHERE id_kategori="+kategori);
             hasil2.next();
@@ -91,7 +103,8 @@
                 <br/>
                 <br/>
                 <%
-                 hasil1 = stm1.executeQuery(query);
+                query = query +" LIMIT "+mulai_dari+" ,"+limit;
+                hasil1 = stm1.executeQuery(query);
                 while(hasil1.next()){
                     %>
                     <div class="halaman_category_container">
@@ -99,7 +112,7 @@
                            <div class="barang">
                                 <% 
                                 out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
-                                out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' height=100%");
+                                out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' height=100%/>");
                                 out.print("</a>");
                                 %>
                            </div>
@@ -134,6 +147,19 @@
                     </div>
                     <hr>
                 <% 
+                }
+                int banyakHalaman = (int) Math.ceil(banyakBarang / limit);
+                if (banyakHalaman > 1) {
+                    out.print("<div class='paginasi'>");
+                    out.print("Halaman : "); 
+                        for(int i = 1; i <= banyakHalaman; i++){
+                                if(pages != i){
+                                        out.print("<a href='search.jsp?kata"+request.getParameter("kata")+"&pilihan="+request.getParameter("pilihan")+"&page="+i+"'>["+i+"]</a>");
+                                } else {
+                                        out.print("["+i+"]");
+                                }
+                        }
+                     out.print("</div>");
                 }
                 %>
             </div>

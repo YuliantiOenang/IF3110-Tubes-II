@@ -55,7 +55,7 @@
                 <div class="barang_container">
                     <div class="barang_gambar_detail">
                         <%
-                        out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' width=100%/");
+                        out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' width=100%/>");
                         
                         %>
                     </div>
@@ -85,7 +85,7 @@
                         <br/>
                         <%
                         out.print("Jumlah : ");
-                        out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10>");
+                        out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10 />");
                         %>
                         <br/>
                         <%

@@ -72,4 +72,6 @@
 				out.print("</div>");
 				out.print("<hr/>");
 				}
+            out.print("<h3 class='judul_halaman'>Mekanisme Transaksi</h3>");
+            out.print("<img src='assets/mekanisme.jpg' height=100%/>'");
         %>

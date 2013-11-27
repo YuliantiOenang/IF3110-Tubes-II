@@ -6,9 +6,11 @@
 
 <script src='js/session.js'></script>
 <script src='js/search.js'></script>
+<div id="header_nonkategori">
 <div id='logo'>
 	<a href='index.jsp'><img src='assets/logo.png' /></a>
 </div>
+
 <div id='loggedout'>
 	<a id='loginbutton' class='button' href='javascript:void(0)'><div>Masuk</div></a>
 	<form id='loginform' method='post'>
@@ -59,4 +61,22 @@
 		<input type='submit' name='searchsubmit' />
 		<a id='searchbutton' href='javascript:void(0)'><img src="assets/search.png" /></a>
 	</form>
+</div>
+</div>
+<div id="header_kumpulankategori">
+<div class="header_kategori">
+    <a href='barang.jsp?kategori=1'>Baju</a>
+</div>
+<div class="header_kategori">
+    <a href='barang.jsp?kategori=2'>Gadget</a>
+</div>
+<div class="header_kategori">
+    <a href='barang.jsp?kategori=3'>Celana</a>
+</div>
+<div class="header_kategori">
+    <a href='barang.jsp?kategori=4'>Indomie</a>
+</div>
+<div class="header_kategori">
+    <a href='barang.jsp?kategori=5'>Minuman</a>
+</div>
 </div>
