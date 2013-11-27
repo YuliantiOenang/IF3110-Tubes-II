@@ -1,17 +1,17 @@
 
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -21,6 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import kelas.Barang;
 import kelas.Database;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  * Servlet implementation class DetailBarang
@@ -97,17 +101,35 @@ public class InventoriAdmin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String action = request.getParameter("action");
-		int id = Integer.parseInt(request.getParameter("gid"));
-		
-		Barang barang = new Barang(request.getParameter("nama"));
-		barang.setHarga(Integer.parseInt(request.getParameter("harga")));
-		barang.setJumlah(Integer.parseInt(request.getParameter("jumlah")));
-		barang.setId_cat(Integer.parseInt(request.getParameter("kategori")));
-		barang.setDesc(request.getParameter("desc"));
+		if(!ServletFileUpload.isMultipartContent(request)){
+			response.getWriter().write("Non-multipart");
+			return;			
+		}
 		
 		try{
+			
+			List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+			String action = ""; int id = -1;
+			Barang barang = new Barang("");
+			
+			for (FileItem item : multiparts) {
+			    if (item.isFormField()) {
+			        String key = item.getFieldName();
+			        String value = item.getString();
+			        
+			        if(key.equals("action")) action = value;
+			        else if(key.equals("gid")) id = Integer.parseInt(value);
+			        else if(key.equals("nama")) barang.setNama(value);
+			        else if(key.equals("harga")) barang.setHarga(Integer.parseInt(value));
+			        else if(key.equals("jumlah")) barang.setJumlah(Integer.parseInt(value));
+			        else if(key.equals("kategori")) barang.setId_cat(Integer.parseInt(value));
+			        else if(key.equals("desc")) barang.setDesc(value);
+			    }else{
+			        barang.setGambar(item.getName());
+			    }
+			}
+		
+		
 			java.sql.Connection con = null;
 			Class.forName("org.gjt.mm.mysql.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost/"+DB_NAME, Database.getUser(), Database.getPass());
@@ -116,47 +138,82 @@ public class InventoriAdmin extends HttpServlet {
 			Statement statement = con.createStatement();
 			
 			if(action.equals("add")){
-				id = add(request, statement, barang);
+				id = add(multiparts, statement, barang);
 			}else if(action.equals("edit")){
-				edit(statement, id, barang);
+				edit(multiparts, statement, id, barang);
 			}else if(action.equals("delete")){
 				delete(statement, id);
 			}
+			
+			if(action.equals("delete"))
+				response.sendRedirect("");
+			else
+				response.sendRedirect("inventori?action=edit&gid=" + Integer.toString(id));
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		if(action.equals("delete"))
-			response.sendRedirect("");
-		else
-			response.sendRedirect("inventori?action=edit&gid=" + Integer.toString(id));
 	}
 	
 	private static String quote(String str){
 		return new StringBuilder().append('"').append(str).append('"').toString();
 	}
 	
-	private void copyDefault(int id){
-		/*try{
-				
-			System.out.println("copy def");
-			System.out.println(getServletContext().getRealPath("/res/barang/" + id + ".jpg"));
-			
-			Scanner src = new Scanner(getServletContext().getResourceAsStream("res/barang/default.jpg"));
-			
-			InputStream is = getServletContext().getResourceAsStream("res/barang/default.jpg");			
-			BufferedOutputStream dest = new BufferedOutputStream(new FileOutputStream(new File(getServletContext().getRealPath("/res/barang/" + id + ".jpg"))));
-			
-				
-			src.close(); dest.close();		
-			System.out.println("copy def end");
+	private static void copyFile(File src, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(src);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
+	
+	private void syncTemp(int id){
+		try{
+			String src = Database.uploadDir + id + ".jpg";
+			String dest = getServletContext().getRealPath("/res/barang/" + id + ".jpg");
+			copyFile(new File(src), new File(dest));
 		}catch(Exception e){
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
-	private int add(HttpServletRequest request, Statement statement, Barang barang) throws SQLException{
+	private void copyDefault(int id){
+		try{
+			String src = Database.uploadDir + "default.jpg";
+			String dest = Database.uploadDir + id + ".jpg";
+			copyFile(new File(src), new File(dest));
+			
+			syncTemp(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	private void uploadImg(List<FileItem> multiparts, int id){
+	    try{              
+	        for(FileItem item : multiparts){
+	            if(!item.isFormField()){
+	                item.write( new File(Database.uploadDir + id + ".jpg"));
+	            }
+	        }
+	       System.out.println("File Uploaded Successfully");
+	       syncTemp(id);
+	    } catch (Exception ex) {
+	    	System.out.println("File Upload Failed due to " + ex);
+	    }
+	}
+	
+	private int add(List<FileItem> multiparts, Statement statement, Barang barang) throws SQLException{
 		StringBuilder query = new StringBuilder();
 				
 		query.append("INSERT INTO inventori(id_kategori, nama_inventori, jumlah, gambar, description, harga) VALUES (");
@@ -179,18 +236,19 @@ public class InventoriAdmin extends HttpServlet {
 		
 		System.out.println("id :" + barang.getId_inven());
 		
+		System.out.println("field: " + barang.getFieldGambar());
 		
-		if(request.getParameter("gambar").equals("")){
-			//copyDefault(barang.getId_inven());
+		if(barang.getFieldGambar().equals("")){
+			copyDefault(barang.getId_inven());
 		}else{
-			
+			uploadImg(multiparts, barang.getId_inven());
 		}
 		
 		
 		return barang.getId_inven();
 	}
 	
-	private void edit(Statement statement, int id, Barang barang) throws SQLException{
+	private void edit(List<FileItem> multiparts, Statement statement, int id, Barang barang) throws SQLException{
 		StringBuilder query = new StringBuilder();
 		
 		query.append("UPDATE inventori SET ");
@@ -200,14 +258,30 @@ public class InventoriAdmin extends HttpServlet {
 		query.append("description = ").append(quote(barang.getDesc())).append(",");
 		query.append("harga = ").append(barang.getHarga());
 		query.append(" WHERE id_inventori = ").append(id);
+		
+		if(!barang.getFieldGambar().equals("")){
+			uploadImg(multiparts, barang.getId_inven());
+		}
 
 		statement.executeUpdate(query.toString());
+	}
+	
+	private void deleteFile(int id){
+		try{
+			File permanent = new File(Database.uploadDir + id + ".jpg");
+			File temp = new File(getServletContext().getRealPath("/res/barang/" + id + ".jpg"));
+			
+			permanent.delete(); temp.delete();			
+		}catch(Exception e){
+			e.printStackTrace();
+		}		
 	}
 	
 	private void delete(Statement statement, int id) throws SQLException{
 		StringBuilder query = new StringBuilder();
 		
 		query.append("DELETE FROM inventori WHERE id_inventori = ").append(id);
+		deleteFile(id);
 		
 		statement.executeUpdate(query.toString());
 	}

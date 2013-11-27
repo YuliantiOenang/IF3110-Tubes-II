@@ -44,6 +44,10 @@ public class Barang {
 	public void setGambar(String gambar) {
 		this.gambar = gambar;
 	}
+	
+	public String getFieldGambar(){
+		return gambar;
+	}
 
 	public String getDesc() {
 		return desc;
