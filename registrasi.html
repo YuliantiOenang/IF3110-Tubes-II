@@ -40,8 +40,9 @@ function clicked(){
 	postForm("completeRegistration.jsp", function()
 		{
 			if (xmlhttp.readyState==4) {
+				localStorage.setItem('activeUser', document.getElementById('txt_un').value);
 				alert("registrasi berhasil!");
-				document.location.href = "validateCC.html";
+				document.location.href = "registrasiCC.html";
 			}
 		}, document.forms["Registrasi"]
 	);

@@ -28,24 +28,30 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="letoy.css">
-	<link rel="stylesheet" type="text/css" href="profile.css">
+	<link rel="stylesheet" type="text/css" href="detail.css">
 	<script src="header.js"></script>
 	<script src="ajaxLoader.js"></script>
 </head>
 
 <body>
 	<div id="topBorder"></div>
-	<div id="contentArea">
+	<div id='contentArea'>
 		<div class='division'>
 			<img src="resource\\<%=rs.getString(1)%>.jpg" class="image">
 			<div id='description'>
 				<h1><%= rs.getString(1)%></h1>
 				<h2><%= rs.getString(2)%></h2>
 			</div>
-			<div class='division'>
+		</div>
+		<div class='division'>
+			<h2 id='textPermintaan'>permintaan khusus</h2>
+			<textarea class="textInput" id='request' type="text" name="request"></textarea>
+			<div id='statistic'>
 				<h2>harga: Rp.<%= rs.getString(3)%><BR>
 				jumlah pembelian <input class="textInput" id='quantity' type="text" name="jumlah" value="0"> </br>
 				</h2>
+				<input class="button" type="submit" value="tambahkan ke tas!">
+			</div>
 		</div>
 	</div>
 	<div id="header">

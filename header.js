@@ -19,9 +19,13 @@ function IsLogin(){
 	}
 }
 
+function getUsername() {
+	return localStorage.getItem('activeUser');
+}
+
 function drawHeaderContent(){
 	document.getElementById('header').innerHTML="";
-	document.getElementById('header').innerHTML+="<a href=\"index.jsp\"> <img src=\"resource\\logo.png\" id='logo'> </a>";
+	document.getElementById('header').innerHTML+="<a href=\"index.jsp?kategori=0\"> <img src=\"resource\\logo.png\" id='logo'> </a>";
 	document.getElementById('header').innerHTML+="<form id='searchform' method='get' action='browse.php'><input id='hilang' name='sortBy' value=popularitas><input id='hilang' name='currentPage' value =1><input class=\"textInput\" id='searchBar' type=\"text\" name=\"keyword\">";
 	document.getElementById('searchform').innerHTML+="<input class=\"button\" id='searchButton' type=\"submit\" value=\"\">";
 	document.getElementById('searchform').innerHTML+="<select class=\"dropDown\" id='kategoriDropDown' name='category'>";
@@ -57,7 +61,7 @@ function drawHeaderContent(){
 	//		}
 	if (localStorage.getItem('activeUser') != "") {
 		document.getElementById('header').innerHTML+="<button class=\"buttonHeader\" id='logout' type=\"button\" onclick=\"logout()\">keluar</button>";
-		document.getElementById('header').innerHTML+="<a href=\"profile.html\"><button class=\"buttonHeader\" id='profile' type=\"button\">selamat datang, " + localStorage.getItem('activeUser') +"!</button></a>";
+		document.getElementById('header').innerHTML+="<a href=\"profile.jsp?username="+localStorage.getItem('activeUser')+"\"><button class=\"buttonHeader\" id='profile' type=\"button\">selamat datang, " + localStorage.getItem('activeUser') +"!</button></a>";
 	} else {
 		document.getElementById('header').innerHTML+="<a href=\"registrasi.html\"><button class=\"buttonHeader\" id='register' type=\"button\" >daftar!</button></a>";
 		document.getElementById('header').innerHTML+="<button class=\"buttonHeader\" id='login' type=\"button\" onclick=\"triggerPopupLogin()\">masuk</button>";
@@ -101,12 +105,14 @@ function login(){
 		  {
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				if (xmlhttp.response != "") {
+				if (xmlhttp.response == 0) {
+					alert("Login gagal, periksa kembali username dan password anda");
+				}
+				else {
 					localStorage.setItem('activeUser', xmlhttp.response);
 					IsLogin = true;
 					drawHeaderContent();
 				}
-				else alert("Login gagal, periksa kembali username dan password anda");
 			}
 		  }
 		xmlhttp.open("GET","verifyLogin.jsp?username="+user+"&password="+pass,true);

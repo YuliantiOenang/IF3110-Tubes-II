@@ -11,7 +11,7 @@
 		con = DriverManager.getConnection("jdbc:mysql://localhost/ruserba","root","");
 		
 		PreparedStatement st;
-		String query = "INSERT INTO user(username, password, fullname, alamat, provinsi, kota, kodepos, nohp, tipe, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO user(username, password, fullname, alamat, provinsi, kota, kodepos, nohp, tipe, transaksi, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		st = con.prepareStatement(query);
 		st.setString(1, request.getParameter("un"));
@@ -23,7 +23,8 @@
 		st.setString(7, request.getParameter("kab"));
 		st.setString(8, request.getParameter("kp"));
 		st.setString(9, "pembeli");
-		st.setString(10, request.getParameter("ema"));
+		st.setInt(10, 0);
+		st.setString(11, request.getParameter("ema"));
 		
 		response.getWriter().print(st);
 		st.executeUpdate();

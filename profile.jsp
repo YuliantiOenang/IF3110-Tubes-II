@@ -32,8 +32,7 @@
 		cp = document.forms['dataForm']['cpass'].value;
 		nl = document.forms['dataForm']['nl'].value;
 		e = document.forms['dataForm']['ema'].value;
-		alert(cp);
-		valp(p);
+		valpEdit(p);
 		valcp(cp);
 		valnl(nl);
 		valemail(e);
@@ -46,32 +45,32 @@
 		pr = document.forms['dataForm']['prov'].value;
 		kab = document.forms['dataForm']['kab'].value;
 		kp = document.forms['dataForm']['kp'].value;
-		if (ulength && elength && vun && vp && vcp && vnl && vemail && (hp.length>0) && (al.length>0) && (pr.length>0) && (kab.length>0) && (kp.length>0))
+		if (elength && vp && vcp && vnl && vemail && (hp.length>0) && (al.length>0) && (pr.length>0) && (kab.length>0) && (kp.length>0))
 		{
 			if (!buttonon) {
-				document.getElementById('buttonRegister').innerHTML="<button class=\"button\" onclick=\"clicked()\" >daftar</button>";
+				document.getElementById('buttonSubmit').innerHTML="<button id='editableButton' class='button' onclick='submitData()'>Submit</button>";
 				buttonon = true;
 			}
 		}
 		else
 		{
-			document.getElementById('buttonRegister').innerHTML="<button class=\"buttonFake\" disabled>daftar</button>";
+			document.getElementById('buttonSubmit').innerHTML="<button id='editableButton' class='buttonFake' onclick='submitData()' disabled>Submit</button>";
 			buttonon = false;
 		}
 	}
 	
 	function editProfile() {
 		var s = "<h1>Profile</h1><form id='dataForm'>";
-		s+="<h2>Password: <BR><input type='password' name='pass' class='textInput'></input><div id='vp'></h2>";
-		s+="<h2>Confirm Password: <BR><input type='password' name='cpass' class='textInput'></input> <div id='vcp'></div></h2>";
-		s+="<h2>Nama Lengkap: <BR><input type='text' name='nl' class='textInput'></input><div id='vnl'></div></h2>";
-		s+="<h2>Email: <BR><input type='text' name='ema' class='textInput'></input><div id='vemail'></div><div id='vemail2'></div></h2>";
+		s+="<h2>Password: <BR><input type='password' name='pass' class='textInput' id='txt_pass'></input><div id='vp'></h2>";
+		s+="<h2>Confirm Password: <BR><input type='password' name='cpass' class='textInput' id='txt_cpass'></input> <div id='vcp'></div></h2>";
+		s+="<h2>Nama Lengkap: <BR><input type='text' name='nl' class='textInput' id='txt_nl'></input><div id='vnl'></div></h2>";
+		s+="<h2>Email: <BR><input type='text' name='ema' class='textInput' id='txt_email' onkeyup='valemail2(this.value)'></input><div id='vemail'></div><div id='vemail2'></div></h2>";
 		s+="<h2>Alamat: <BR><input type='text' name='al' class='textInput'></input></h2>";
 		s+="<h2>Provinsi: <BR><input type='text' name='prov' class='textInput'></input></h2>";
 		s+="<h2>Kota: <BR><input type='text' name='kab' class='textInput'></input></h2>";
 		s+="<h2>Kode Pos: <BR><input type='text' name='kp' class='textInput'></input></h2>";
 		s+="<h2>No Hp: <BR><input type='text' name='nh' class='textInput'></input></h2>";
-		s+="</form><button id='editableButton' class=' button' onclick='submitData()'>Submit</button>";
+		s+="</form><div id='buttonSubmit'><button id='editableButton' class='buttonFake' onclick='submitData()' disabled>Submit</button></div>";
 		s+="<button class='button' onclick='cancelEdit()'>Cancel</button>";		
 		document.getElementById("profileView").innerHTML = s;
 		
@@ -82,7 +81,6 @@
 		postForm("editProfile.jsp?username="+localStorage.getItem('activeUser'), function()
 			{
 				if (xmlhttp.readyState==4) {
-					alert(xmlhttp.responseText);
 					alert("profil berhasil diedit!");
 					document.location.href = "profile.jsp?username="+localStorage.getItem('activeUser');
 				}
@@ -91,6 +89,7 @@
 	}
 	
 	function cancelEdit() {
+		alert("Field tidak diubah");
 		document.location.href = "profile.jsp?username="+localStorage.getItem('activeUser');
 	}
 	

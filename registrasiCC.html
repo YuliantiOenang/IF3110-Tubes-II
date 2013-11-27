@@ -13,7 +13,7 @@
 				if (xmlhttp.readyState==4) {
 					if (xmlhttp.responseText == 1) {
 						alert("Berhasil");
-						document.location.href = "index.jsp";
+						document.location.href = "index.jsp?kategori=0";
 					} else alert("Gagal");
 				}
 				else document.getElementById("validationResponse").innerHTML = "Processing..."},
@@ -35,7 +35,7 @@
 					<h2>Nama</h2> <input class='textInput'type="text" name="nama"><br><br>
 					<h2>Tanggal Kadaluarsa ("YYYY-MM-DD")</h2> <input class='textInput'type="text" name="tanggal"><br><br>
 					<input class='button' type='button' onclick="validateCC()" value='Submit'></input>
-					<a href = 'index.html'><input class='button' type='button' value='Skip'></input></a>
+					<a href = 'index.jsp'><input class='button' type='button' value='Skip'></input></a>
 				</form></li>
 				<li><h2 id="validationResponse"></h2></li>
 			</ul>
@@ -47,21 +47,7 @@
 	</div>
 
 	<div id='header' >
-		<a href="index.html"> <img src="resource\logo.png" id='logo'> </a>
-		<form>
-		<input class="textInput" id='searchBar' type="text" name="searchItem">
-		<input class="button" id='searchButton' type="submit" value="">
-		<select class="dropDown" id='kategoriDropDown' name="category">
-			<option value="default" selected>kategori...</option>
-			<option value="aksesoris">aksesoris</option>
-			<option value="pakaian">pakaian</option>
-			<option value="makanan">makanan</option>
-			<option value="mainan">mainan</option>
-			<option value="furnitur">furnitur</option>
-		</select>
-		</form>
 		<script> drawHeaderContent(); </script>
-		<a href="shoppingChart.html"><button class="buttonHeader" id='shoppingChart' type="button">tas belanja</button></a>	
 	</div>
 
 </body>

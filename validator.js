@@ -64,6 +64,25 @@ function valp(s){
 		}
 	}
 }
+
+function valpEdit(s){
+	if (s.length<8) {
+		document.getElementById("vp").innerHTML="password minimal terdiri dari 8 huruf</br>";
+		vp = false;
+	} else  {
+		var un = localStorage.getItem('activeUser');
+		var email = document.getElementById('txt_email').value;
+		if ((s == un) || (s == email)) {
+			document.getElementById("vp").innerHTML="password tidak boleh sama dengan username/email</br>";
+			vp = false;
+		}
+		else {
+			document.getElementById("vp").innerHTML="";
+			vp = true;
+		}
+	}
+}
+
 function valcp(s){
 	var p = document.getElementById('txt_pass').value;
 	if (s == p) {

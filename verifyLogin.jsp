@@ -23,6 +23,7 @@
 		
 		if (rs.next())
 			response.getWriter().print(rs.getString(1));
+		else response.getWriter().print(0);
 		
 		st.clearParameters();
 		con.close();
