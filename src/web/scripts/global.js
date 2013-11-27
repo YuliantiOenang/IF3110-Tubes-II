@@ -109,6 +109,16 @@ window.addEventListener("load", function()	{
 	document.getElementById("headerloginbutton").onclick = showLogin;
 	document.getElementById("headerlogoutbutton").onclick = requestLogout;
 	updateHeaderLogin();
+	document.getElementById("p3_button").onclick = function()	{
+		var jml_stok = document.getElementById("p3_stock").value;
+		var jml_beli = document.getElementById("p3_quantity").value;
+		var msg = document.getElementById("p3_message");
+		if (jml_beli > jml_stok) msg.innerHTML = getErrorSmall("Stok tidak mencukupi.");
+		else	{
+			setProductQuantity(3, jml_beli);
+			msg.innerHTML = getOkSmall("Barang berhasil ditambahkan ke shopping bag.");
+		}
+	};
 });
 
 // Insialisasi komponen login dari header.

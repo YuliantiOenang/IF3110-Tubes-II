@@ -10,6 +10,12 @@
 <% request.setAttribute("js_file", "scripts/register.js"); %>
 <jsp:include page="/WEB-INF/jsp/begin.jsp" />
 
+<%
+	if (WebUtil.isLoggedIn(application, request))	{
+		response.sendRedirect("index.jsp"); return;
+	}
+%>
+
 <p>
 Silakan registrasi. bagian yang berlabel bintang (*) wajib diisi.
 <button id="register" onclick="cobaRegister()">Register Me!</button>
