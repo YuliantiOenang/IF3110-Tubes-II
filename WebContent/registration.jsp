@@ -63,14 +63,13 @@
 					//Handle SESSION & LOCAL STORAGE
 				}
 			}
-		}
+		};
 		xmlhttp.open("POST", "verregist.php", true);
 		xmlhttp.setRequestHeader("Content-type",
 				"application/x-www-form-urlencoded");
 		xmlhttp.send(data);
 	}
 	function checkUsername(fld) {
-		var button = document.getElementById("daftar");
 		var err_username = document.getElementById("err_username");
 		confirmAll();
 		if (fld.value.length < 5) {
@@ -134,28 +133,28 @@
 		}
 	}
 </script>
-	<form name="register" action="Registration" method="post"
-		onsubmit="return checkUsername();">
-			 Username: <input type="text" name="username"
-			onkeyup="checkUsername(this);">
-		<div id="err_username"></div>
-		<br> Password: <input type="password" name="password"
-			onkeyup="checkPass(this)">
-		<div id="err_pass"></div>
-		<br> Re-type Password: <input type="password" name="repassword"
-			onkeyup="confirmPassword(this)">
-		<div id="err_repass"></div>
-		<br> Nama Lengkap: <input type="text" name="fullname"
-			onkeyup="checkFullName(this)">
-		<div id="err_fullname"></div>
-		<br> Nomor Hand Phone: <input type="text" name="hpnum">
-		<br> Alamat : <input type="text" name="address">
-		<br> Provinsi : <input type="text" name="province">
-		<br> Kecamatan : <input	type="text" name="kecamatan">
-		<br> Kode Pos : <input type="text" name="postalcode">
-		<br> Email : <input	type="text" name="Email" onkeyup="checkEmail(this)">
-		<div id="err_email"></div>
-		<br> <input type="submit" id="daftar" value="Register" disabled>
-		<div id="reg_error"></div>
-	</form>
+<form name="register" action="Registration" method="post"
+	onsubmit="return checkUsername();">
+	Username: <input type="text" name="username"
+		onkeyup="checkUsername(this);">
+	<div id="err_username"></div>
+	<br> Password: <input type="password" name="password"
+		onkeyup="checkPass(this)">
+	<div id="err_pass"></div>
+	<br> Re-type Password: <input type="password" name="repassword"
+		onkeyup="confirmPassword(this)">
+	<div id="err_repass"></div>
+	<br> Nama Lengkap: <input type="text" name="fullname"
+		onkeyup="checkFullName(this)">
+	<div id="err_fullname"></div>
+	<br> Nomor Hand Phone: <input type="text" name="hpnum"> <br>
+	Alamat : <input type="text" name="address"> <br> Provinsi
+	: <input type="text" name="province"> <br> Kecamatan : <input
+		type="text" name="kecamatan"> <br> Kode Pos : <input
+		type="text" name="postalcode"> <br> Email : <input
+		type="text" name="Email" onkeyup="checkEmail(this)">
+	<div id="err_email"></div>
+	<br> <input type="submit" id="daftar" value="Register" disabled>
+	<div id="reg_error"></div>
+</form>
 <jsp:include page="footer.jsp" />

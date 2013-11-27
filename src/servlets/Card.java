@@ -81,7 +81,7 @@ public class Card extends HttpServlet {
 		}
 
 		RequestDispatcher view = request
-				.getRequestDispatcher("/listbarang.jsp");
+				.getRequestDispatcher("registration.jsp");
 		view.forward(request, response);
 	}
 

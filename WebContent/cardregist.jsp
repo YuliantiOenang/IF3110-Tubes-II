@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <!-- TODO : read SESSION -->
 
@@ -43,16 +43,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% if (session.getAttribute("username") != null) { %>
 	<p>Welcome <% out.println(request.getParameter("username")); %></p>
-		<form name="login" action="Card" method="post">
+	<form name="login" action="Card" method="post">
 		Card Number: <input type="text" name="cardnum" onkeyup="checkCard(this)"><br>
 		Name on Card: <input type="text" name="namecard"><br>
-		Expired Date: <input type="text" name="expdate"><br>
+		Expired Date: <input type="date" name="expdate"><br>
 		<input type="hidden" name="owner" value="<% out.println(request.getParameter("username")); %>">
 		<div id="credit_error"></div>
 		<a href="index.jsp">Skip card registration</a> Or 
 		<input type="submit" id="regcard" value="Register Card" disabled>
 	</form>
+<%
+} else {
+	out.println("<h3>Login dulu bos</h3>");
+}
+%>
 </body>
 </html>
 <jsp:include page="footer.jsp" />
