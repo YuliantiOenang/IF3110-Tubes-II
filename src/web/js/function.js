@@ -122,45 +122,7 @@ function remove(id)
 {
     return (elem=document.getElementById(id)).parentNode.removeChild(elem);
 }
-function cekJumlah(no)
-{
-	//mengambil semua variable dalam form login
-	var id = document.getElementById('idBarang'+no).value;	
-	
 
-	var jumlah = document.getElementById('jumlahBarang'+no).value;
-	if(jumlah=="")
-	{
-		alert("maaf anda harus mengisi jumlah barang terlebih dahulu");
-	}
-	else
-	{
-		//request ke file php
-		http.open('get', 'addCart2.jsp?id='+id+'&jumlah='+jumlah+"&permintaan=standart",true);
-		//cek hasil request 4 jika berhasil
-		http.onreadystatechange = function()
-		  {
-			
-			if (http.readyState==4 && http.status==200)
-			{
-				try
-				{
-				
-				var decodeJSON = JSON.parse(http.responseText);
-				
-				alert("Maaf barang yang ada di stok tidak cukup.\n jumlah stok "+http.responseText);
-				}
-				catch(e)
-				{
-                                   
-                                alert("Berhasil daftar ke keranjang.");
-				}
-			}
-		  }
-		http.send(); 
-		
-	}	
-}
 
 function toEditProfile(){
 	window.location = "edit_profile.jsp";
@@ -235,6 +197,14 @@ function checkSubmit(){
 				//document.getElementById("pesan").innerHTML = "sadf"
 			}else{
 				document.getElementById("submit").disabled = true;
+                                if(!boolUser)
+				{
+					show = "ERROR PADA NAMA"; 
+				}
+				else
+				{
+					show = "";
+				}
 				var errorMessage = "";
 				if(!boolNama){
 					document.getElementById("user_error").innerHTML = "ERROR PADA USERNAME";
@@ -482,35 +452,42 @@ function buy()
 		http.send(); 
 		}
 }
-function cekJumlah()
+function cekJumlah(no)
 {
 	//mengambil semua variable dalam form login
-	var id = document.getElementById('idBarang').value;	
+	var id = document.getElementById('idBarang'+no).value;	
 	
 
-	var jumlah = document.getElementById('jumlahBarang').value;
-	//request ke file php
-	http.open('get', 'changeJumlah.jsp?id='+id+'&jumlah='+jumlah+"",true);
-	//cek hasil request 4 jika berhasil
-	http.onreadystatechange = function()
-	  {
+	var jumlah = document.getElementById('jumlahBarang'+no).value;
+	if(jumlah=="")
+	{
+		alert("maaf anda harus mengisi jumlah barang terlebih dahulu");
+	}
+	else
+	{
+		//request ke file php
+		http.open('get', 'addCart2.jsp?id='+id+'&jumlah='+jumlah+"&permintaan=standart",true);
+		//cek hasil request 4 jika berhasil
+		http.onreadystatechange = function()
+		  {
+			
+			if (http.readyState==4 && http.status==200)
+			{
+				try
+				{
+				
+				var decodeJSON = JSON.parse(http.responseText);
+				
+				alert("Maaf barang yang ada di stok tidak cukup.\n jumlah stok "+http.responseText);
+				}
+				catch(e)
+				{
+                                   
+                                alert("Berhasil daftar ke keranjang.");
+				}
+			}
+		  }
+		http.send(); 
 		
-		if (http.readyState==4 && http.status==200)
-		{
-			try
-			{
-			
-			var decodeJSON = JSON.parse(http.responseText);
-			
-			alert("Maaf barang yang ada di stok tidak cukup.\n jumlah stok "+http.responseText);
-			}
-			catch(e)
-			{
-			alert("Berhasil mengganti transaksi.");
-			}
-		}
-	  }
-	http.send(); 
-	
-	
+	}	
 }

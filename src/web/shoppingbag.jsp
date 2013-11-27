@@ -8,6 +8,7 @@
 
 <script src="js/AjaxCreateObject.js" language="javascript"></script>
 <script src="js/function.js" language="javascript"></script>
+<script src="js/function1.js" language="javascript"></script>
 
 </head>
 
@@ -63,7 +64,7 @@ if(!found)
                     try
                     {
                         db.dbopen();
-                        ResultSet rs=db.stat.executeQuery("SELECT peralatan.no_alat, peralatan.foto, peralatan.nama, peralatan.harga, keranjang.jumlah,keranjang.pesan FROM keranjang,peralatan where id_customer='"+nama+"' and peralatan.no_alat=keranjang.id_alat");
+                        ResultSet rs=db.stat.executeQuery("SELECT peralatan.no_alat, peralatan.foto, peralatan.nama, peralatan.harga, keranjang.jumlah,keranjang.pesan,keranjang.id_keranjang FROM keranjang,peralatan where id_customer='"+nama+"' and peralatan.no_alat=keranjang.id_alat");
                         while(rs.next())
                         {
                             out.print("<div class = 'toppreview'>"
@@ -72,6 +73,7 @@ if(!found)
                                      + "</div>"
                                      + "<p class = 'copyrightext'> "+rs.getString(3) +" </br>"
                                      + "Rp"+rs.getString(4) +" </label> </br> Pesan : "+rs.getString(6) +" </br>"
+                                     + "<input type='text' id='idKeranjang' value='"+rs.getString(7) +"' hidden/>"
                                      + "<input type='text' id='idBarang' value='"+rs.getString(1) +"' hidden/>"
                                      + "Jumlah: <input type='text' size=4 id='jumlahBarang' value='"+rs.getString(5) +"'/></br>"
                                      + "<input type='submit' value='change' onclick='cekJumlah()'></p>"

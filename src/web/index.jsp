@@ -34,7 +34,7 @@
                            {
                               out.print("<div class='toppreview'>"
                               + "<div class = 'previmage'>"
-                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<a href='detailbarang.jsp?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
                               + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
                               + "RP "+rs2.getString(3)+"</br></p>"
                               + "</div>");
@@ -63,7 +63,7 @@
                            {
                               out.print("<div class='toppreview'>"
                               + "<div class = 'previmage'>"
-                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<a href='detailbarang.jsp?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
                               + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
                               + "RP "+rs2.getString(3)+"</br></p>"
                               + "</div>");
@@ -92,7 +92,7 @@
                            {
                               out.print("<div class='toppreview'>"
                               + "<div class = 'previmage'>"
-                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<a href='detailbarang.jsp?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
                               + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
                               + "RP "+rs2.getString(3)+"</br></p>"
                               + "</div>");
@@ -121,7 +121,7 @@
                            {
                               out.print("<div class='toppreview'>"
                               + "<div class = 'previmage'>"
-                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<a href='detailbarang.jsp?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
                               + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
                               + "RP "+rs2.getString(3)+"</br></p>"
                               + "</div>");
@@ -150,7 +150,7 @@
                            {
                               out.print("<div class='toppreview'>"
                               + "<div class = 'previmage'>"
-                              + "<a href='detailbarang.php?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
+                              + "<a href='detailbarang.jsp?id="+rs2.getString(1) +"'><img src='"+rs2.getString(5) +"' class='resizeimage'></a></div>"
                               + "<p class = 'copyrightext'> "+rs2.getString(2) +" </br>"
                               + "RP "+rs2.getString(3)+"</br></p>"
                               + "</div>");

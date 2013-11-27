@@ -84,7 +84,7 @@
                         {
                                 query="select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='"+request.getParameter("kategori") +"' and harga>150000 and nama like '%"+request.getParameter("key") +"%'";
                         }
-                        out.print(query);
+                        //out.print(query);
                         ResultSet rs=db.stat.executeQuery(query);
                         while(rs.next())
                         {
@@ -143,123 +143,7 @@
                 
             }
             %>
- <%--           <?php
-		
-		include "config/connect.php";
-		$counter=0;
-		
-		if(isset($_GET['key']))
-		{
-			session_unset();
-			if($_GET['kategori'] == "all")
-			{
-				if($_GET['range']==1)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where harga<50000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where harga<50000 and nama like '%".$_GET['key']."%'";
-				}
-				if($_GET['range']==2)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where harga>50000 and harga<100000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where harga>50000 and harga<100000 and nama like '%".$_GET['key']."%'";
-				}
-				if($_GET['range']==3)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where harga>100000 and harga<150000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where harga>100000 and harga<150000 and nama like '%".$_GET['key']."%'";
-				}
-				if($_GET['range']==4)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where harga>150000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where harga>150000 and nama like '%".$_GET['key']."%'";
-				}
-				$_SESSION['hasil']=$hasil_temp;
-					while(($baris=mysql_fetch_row($hasil)))
-					{
-						$_SESSION['nama'.$counter]=$baris[0];
-						$_SESSION['harga'.$counter]=$baris[2];
-						$_SESSION['foto'.$counter]=$baris[4];
-						$_SESSION['id'.$counter]=$baris[5];
-						$counter++;
-					}
-			}
-			else
-			{
-				session_unset();
-				if($_GET['range']==1)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='".$_GET['kategori']."' and harga<50000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where kategori='".$_GET['kategori']."' and harga<50000 and nama like '%".$_GET['key']."%'";
-				}
-				if($_GET['range']==2)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='".$_GET['kategori']."' and harga>50000 and harga<100000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='".$_GET['kategori']."' and harga>50000 and harga<100000 and nama like '%".$_GET['key']."%'";
-				}
-				if($_GET['range']==3)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='".$_GET['kategori']."' and harga>100000 and harga<150000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where kategori='".$_GET['kategori']."' and harga>100000 and harga<150000 and nama like '%".$_GET['key']."%'";
-				}
-				if($_GET['range']==4)
-				{
-				$hasil = mysql_query("select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='".$_GET['kategori']."' and harga>150000 and nama like '%".$_GET['key']."%'");	
-				$hasil_temp="select nama, kategori,harga,deskripsi,foto from peralatan where kategori='".$_GET['kategori']."' and harga>150000 and nama like '%".$_GET['key']."%'";
-				}
-				$_SESSION['hasil']=$hasil_temp;
-					while(($baris=mysql_fetch_row($hasil)))
-					{
-						$_SESSION['nama'.$counter]=$baris[0];
-						$_SESSION['harga'.$counter]=$baris[2];
-						$_SESSION['foto'.$counter]=$baris[4];
-						$_SESSION['id'.$counter]=$baris[5];
-						$counter++;
-					}
-			}
-			//$_SESSION['hasil']=$hasil;
-		}
-		
-		else
-		{
-		$hasil=$_SESSION['hasil'];
-		
-		$_SESSION['hasil']=$hasil;
-		}
-		if(!isset($_GET['page']))
-		{
-			$i=0;
-			while($i<$counter && $i<10 && isset($_SESSION['nama'.$i]))
-			{
-			
-			echo '<div class = "searchres">
-					<div class = "previmage">
-						<a href="detailbarang.php?id='.$_SESSION['id'.$i].'"><img src= "'.$_SESSION["foto".$i].'" class="resizeimage"><img></a>
-					</div>
-					<p class = "copyrightext"> '.$_SESSION["nama".$i].' </br>
-						  Rp'.$_SESSION["harga".$i].' </label> </br> </p>
-				</div>';
-			$i++;
-			}
-		}
-		else
-		{
-			
-			$counter=0;
-			$batas=($_GET['page']*10)+10;
-			$counter=$_GET['page']*10;
-			while($counter<$batas && isset($_SESSION['nama'.$counter]))
-			{
-			echo '<div class = "searchres">
-					<div class = "previmage">
-						<a href="detailbarang.php?id='.$_SESSION['id'.$counter].'"><img src= "'.$_SESSION["foto".$counter].'" class="resizeimage"><img></a>
-					</div>
-					<p class = "copyrightext"> '.$_SESSION["nama".$counter].' </br>
-						  Rp'.$_SESSION["harga".$counter].' </label> </br> </p>
-				</div>';
-			$counter++;
-			}
-		}
-		?>--%>
+ <%--           
 			 <div class = "searchnext">
                              <%
                          int tambah=0;

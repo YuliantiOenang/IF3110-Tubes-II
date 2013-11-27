@@ -34,7 +34,7 @@
     try
     {
         db.dbopen();
-        ResultSet rs=db.stat.executeQuery("select jumlah from peralatan where no_alat='"+request.getParameter("id") +"'");
+        ResultSet rs=db.stat.executeQuery("select jumlah from peralatan where no_alat='"+request.getParameter("idBarang") +"'");
         while(rs.next())
         {
             jumlah=Integer.parseInt(rs.getString(1));
@@ -45,7 +45,7 @@
         }
         else
         {
-            db.stat.executeUpdate("UPDATE `keranjang` SET `jumlah`='"+request.getParameter("jumlah") +"' WHERE id_customer='"+nama+"'");
+            db.stat.executeUpdate("UPDATE `keranjang` SET `jumlah`='"+request.getParameter("jumlah") +"' WHERE id_keranjang='"+request.getParameter("id") +"'");
         }
     }
     catch(Exception e)
