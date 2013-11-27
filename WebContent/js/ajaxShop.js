@@ -7,7 +7,6 @@ function get(elem) { return parseFloat($(elem).innerHTML) || 0; }
 
 function onAddToCart(strUrl, id) {
         var self = this;
-            
         if (window.XMLHttpRequest) { // jika menggunakan browser selain IE
             self.xmlHttpRequest = new XMLHttpRequest();
         } else if (window.ActiveXObject) { // jika menggunakan browser IE
