@@ -18,7 +18,7 @@
 	Barang modelb = new Barang();
 	modelb = (Barang)request.getAttribute("model");
 	HashMap<String,String> query = new HashMap<String,String>();
-	query.put("q",q); query.put("sort",sort); query.put("hal",hal); query.put("kat",kat); query.put("h1",h1); query.put("h2",h2);
+	query.put("q","q="+q); query.put("sort","sort"+sort); query.put("hal","hal"+hal); query.put("kat","kat"+kat); query.put("h1","h1"+h1); query.put("h2","h2"+h2);
 	%>
 
 	<%!
@@ -27,13 +27,14 @@
 	    if (array == null || array.size() == 0) {
 	        return "";
 	    }
+	    //else
 	    String sb ="";
-	    Iterator it = array.entrySet().iterator();
-	    while(it.hasNext())
-		{
-	    	sb+=glue+
-		}
-	 
+	    int i=0;
+	    for (Object value : array.values()) {
+	    	if (i==0) sb+=value;
+	    	else sb += glue+value;
+	    	i++;
+	    }
 	    // return the result
 	    return sb;
 	}
@@ -121,7 +122,7 @@
 				query.put("sort", "sort=nama desc");
 			}
 		%> 
-		<a href="?<%= <HashMap>implode("&", query) %>" class="btn small">Nama</a> 
+		<a href="?<%= implode("&", query) %>" class="btn small">Nama</a> 
 		<%
 			query.put("sort", "sort=harga asc");
 			if(!query.get("sort").equals(null) && query.get("sort").equals("harga asc"))
@@ -129,7 +130,7 @@
 				query.put("sort", "sort=harga desc");
 			}
 		%>
-		<a href="?<%= StringUtils.join(query,"&") %>" class="btn small">Harga</a>
+		<a href="?<%= implode("&", query) %>" class="btn small">Harga</a>
 	</div>
 	<div class="pagination"><%request.getAttribute("paging"); %></div>
 </div>
