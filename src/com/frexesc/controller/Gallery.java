@@ -90,11 +90,13 @@ public class Gallery extends HttpServlet {
 				}
 				
 				if (request.getParameter("category") != null) {
-					partial4 = " AND barang.id_kategori=" + Integer.parseInt(request.getParameter("category")) +" ";
+					if (Integer.parseInt(request.getParameter("category")) != 0)
+						partial4 = " AND barang.id_kategori=" + Integer.parseInt(request.getParameter("category")) +" ";
 				}
 				
 				if (request.getParameter("price") != null) {
-					partial5 = " AND barang.harga_barang=" + Integer.parseInt(request.getParameter("price")) + " ";
+					if (Integer.parseInt(request.getParameter("price")) != 0)
+						partial5 = " AND barang.harga_barang=" + Integer.parseInt(request.getParameter("price")) + " ";
 				}
 
 				if (page != 0) {
@@ -130,10 +132,12 @@ public class Gallery extends HttpServlet {
 				rs2.next();
 				
 				if (request.getParameter("category") != null) {
-					String query3 = "SELECT * FROM kategori WHERE id=" + Integer.parseInt(request.getParameter("category"));
-					ResultSet rs3 = connection.createStatement().executeQuery(query3);
-					rs3.next();
-					request.setAttribute("category_name", rs3.getString("nama"));
+					if (Integer.parseInt(request.getParameter("category")) != 0) {
+						String query3 = "SELECT * FROM kategori WHERE id=" + Integer.parseInt(request.getParameter("category"));
+						ResultSet rs3 = connection.createStatement().executeQuery(query3);
+						rs3.next();
+						request.setAttribute("category_name", rs3.getString("nama"));	
+					}
 				}
 
 				request.setAttribute("items", allResults);

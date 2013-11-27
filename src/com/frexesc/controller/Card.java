@@ -48,7 +48,7 @@ public class Card extends HttpServlet {
 
 		String num = request.getParameter("num");
 		String name = request.getParameter("name");
-		String date = request.getParameter("date");
+		String date = request.getParameter("expired_date");
 		String updateQuery = "UPDATE user SET nama_kartu='" + name + "', nomor_kartu='" + num + "', expire_kartu='" + date + "' WHERE id='" + request.getSession(true).getAttribute("user_id") + "'";
 		try {
 			Statement statement = connection.createStatement();
@@ -56,7 +56,8 @@ public class Card extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("index");
+		if (request.getParameter("from") == null || request.getParameter("from") == "") response.sendRedirect("index");
+		else response.sendRedirect("./barang/payment");
 	}
 
 }

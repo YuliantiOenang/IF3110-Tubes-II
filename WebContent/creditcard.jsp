@@ -34,12 +34,11 @@
 			<span class='error' id="error-expired_date"></span>
 		</div>
 		<input type="hidden" name="return">
+		<input type="hidden" name="from" value="<%= request.getAttribute("from") %>">
 		<button type="submit" id="btn" class="btn">Register</button>
-
-<!--  		<?php if (!$sudahSet): ?>
-			<a href="<?php echo $this->makeUrl('index/home') ?>" class="btn">Skip</a>
-		<?php endif; ?> -->
-		
+  	
+		<a href="index" class="btn">Skip</a>
+			
 	</div>
 </form>
 
