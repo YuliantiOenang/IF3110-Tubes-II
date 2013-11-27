@@ -107,8 +107,12 @@
     transition-delay: 0.2s;
 }
 
-.sort {
+.sort, #adminbutton {
 	width: 100%;
+}
+
+#adminbutton .button {
+	float: left;
 }
 
 p#sort-text {
