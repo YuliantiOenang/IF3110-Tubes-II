@@ -115,7 +115,7 @@ public class IndexBarang extends HttpServlet {
 					str += "<div class=\"itembox\">";
 					str += "	<div class=\"pict\" id=\"item"+B.id.get(i)+"\">";
 					str += "		<div title=\"Ready Stock\" class=\"itembox_img\">";
-					str += "			<img onload=\"fitbarang(this)\" src=\"/ruserba/img/barang/"+B.gambar.get(i)+"\" height=\"230\" width=\"226\">";
+					str += "			<img onload=\"fitbarang(this)\" src=\"/ruserba/img/barang/"+B.gambar.get(i)+"\">";
 					str += "		</div>";
 					str += "		<div class=\"minicart_icon\">";
 					str += "			<a href=\"#\" onclick=\"goToCart("+B.id.get(i)+"); return false;\"><img src=\"/ruserba/img/site/cart_black.png\"></a>";
