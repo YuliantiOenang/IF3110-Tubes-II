@@ -242,4 +242,16 @@ public class Proses {
         
         con.close();
     }
+    
+    public String getBannerShoppingBag(String shoppinBagString) throws Exception
+    {
+        String tag = "";
+        if(shoppinBagString == null) {
+            JSONObject json_result = new JSONObject(shoppinBagString);
+            JSONArray json_array = json_result.getJSONArray("data");
+            tag = String.valueOf(json_array.length());
+        }
+        
+        return tag;
+    }
 }

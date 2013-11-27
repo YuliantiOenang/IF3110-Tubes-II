@@ -1,5 +1,5 @@
 <%!
-   String url = "http://localhost:8080/tugas_web2/"; 
+   String url = "http://localhost:8080/tugas_web2/";
 %>
 <%-- 
     Document   : header
@@ -26,7 +26,7 @@
                 <input type="text" name="search_input" placeholder="Cari disini">
                 <input type="submit" name="submit" value="Cari">
             </form>
-            <a id="keranjang_belanja" class="menu_cell hyperlink" href="<%=url %>keranjang/">Keranjang Belanja <?php if(isset($_SESSION['shopping_bag'])) { $result = json_decode($_SESSION['shopping_bag'], true); print '<span id="total_keranjang">'.count($result['data']).'</span>'; } ?></a>
+            <a id="keranjang_belanja" class="menu_cell hyperlink" href="<%=url %>keranjang/">Keranjang Belanja</a>
             </div>
         </nav>
         <div class="container">
@@ -46,7 +46,6 @@
             <a href="<%=url %>kat/4/"><img src="<%=url %>assets/img_style/klik.gif" alt="Klik"/></a>
             <a href="<%=url %>kat/5/"><img src="<%=url %>assets/img_style/klik.gif" alt="Klik"/></a>
         </div>
-        welcome <%= session.getAttribute("nama") %>, password lu adalah <%= session.getAttribute("sandi") %>
     </header>
     
     <article class="container">
