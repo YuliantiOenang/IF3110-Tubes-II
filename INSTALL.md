@@ -1,0 +1,1 @@
+Gunakan localhost dan buka index.php
