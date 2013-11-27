@@ -13,7 +13,10 @@
 	<%@ include file="template/template.jsp" %>
 	<link rel="stylesheet" href="css/index.css" type="text/css">
 	
+	<h2 class="mekanisme">Untuk membeli barang, buat akun dan login terlebih dahulu. Masukkan barang ke cart dari halaman detail atau halaman search. Lakukan pembelian dari halaman cart (jangan lupa registrasi kartu kredit).</h2>
+	
 	<%
+	
 		out.println("<h1>BARANG POPULER</h1>");
 		int no = 1;
 		for(int i=0;i<5;i++){

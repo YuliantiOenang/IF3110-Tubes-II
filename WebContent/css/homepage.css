@@ -11,6 +11,11 @@
 	-webkit-animation:myfirst 5s forwards; /* Safari and Chrome */
 }
 
+.mekanisme{
+	position: relative;
+	left: 10px;
+}
+
 .sort_by{
 	position: relative;
 	top: 5px;
