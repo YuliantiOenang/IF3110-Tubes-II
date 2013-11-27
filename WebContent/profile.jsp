@@ -8,15 +8,43 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${user.getUsername()}</h1>
-	<span id="haha"></span>
-	${user.getAddress()}
-	<br /> ${user.getCity()}
-	<br /> ${user.getProvince()}
-	<br /> ${user.getTelephone()}
-	<br /> ${user.getPostal()}
-	<br />
-	<button type="button" onclick="location.href='editprofile.jsp'">Edit Profile</button>
-	<button onclick="location.href='creditcard.jsp'">CC</button>
+	<jsp:include page="layout.jsp" />
+		<div id='content_frame' name='page' onLoad="RefreshCartandShow()">
+			<div class="center">
+				<div class="register_div">
+				<h1 class='header'>Profil</h1>
+					<div class="per_form">
+						<label>Nama Lengkap:</label><p>${user.getName()}</p>
+					</div>
+					<div class="per_form">
+						<label>Username:</label><p>${user.getUsername()}</p>
+					</div>
+					<div class="per_form">
+						<label>Email:</label><p>${user.getEmail()}</p>
+					</div>
+					<div class="per_form">
+						<label>Alamat:</label><p>${user.getAddress()}</p>
+					</div>
+					<div class="per_form">
+						<label>Provinsi:</label><p>${user.getProvince()}</p>
+					</div>
+					<div class="per_form">
+						<label>Kota:</label><p>${user.getCity()}</p>
+					</div>
+					<div class="per_form">
+						<label>Kode Pos:</label><p>${user.getPostal()}</p>
+					</div>
+					<div class="per_form">
+						<label>Telepon:</label><p>${user.getTelephone()}</p>
+					</div>
+					<div class="per_form">
+						<label>Transaksi:</label><p>3</p>
+					</div>
+					<a href="editprofile.jsp" class="btn">Edit Profile</a>
+				</div>
+			</div>
+		</div>
+	<jsp:include page="footer.jsp" />
+	<!--  <button onclick="location.href='creditcard.jsp'">CC</button> -->
 </body>
 </html>

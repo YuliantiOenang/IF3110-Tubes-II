@@ -10,6 +10,10 @@ public class UserBean {
 	private String province;
 	private String city;
 	private String postal;
+	private int role;
+	private String nocard;
+	private String nacard;
+	private String excard;
 	
 	public UserBean() {
 		this.username = null;
@@ -21,9 +25,13 @@ public class UserBean {
 		this.province = null;
 		this.city = null;
 		this.postal = null;
+		this.role = 0;
+		this.nocard = null;
+		this.nacard = null;
+		this.excard = null;
 	}
 
-	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal) {
+	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal, int role, String nocard, String nacard, String excard) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -34,6 +42,42 @@ public class UserBean {
 		this.province = province;
 		this.city = city;
 		this.postal = postal;
+		this.role = role;
+		this.nocard = nocard;
+		this.nacard = nacard;
+		this.excard = excard;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
+
+	public String getNocard() {
+		return nocard;
+	}
+
+	public void setNocard(String nocard) {
+		this.nocard = nocard;
+	}
+
+	public String getNacard() {
+		return nacard;
+	}
+
+	public void setNacard(String nacard) {
+		this.nacard = nacard;
+	}
+
+	public String getExcard() {
+		return excard;
+	}
+
+	public void setExcard(String excard) {
+		this.excard = excard;
 	}
 
 	public String getUsername() {
