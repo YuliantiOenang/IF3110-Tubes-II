@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script src="js/validate.js"></script>
 
+<jsp:include page="header.jsp" />
 <link rel='stylesheet' type='text/css' href="${pageContext.request.contextPath}/css/date.css" />
 
 </head>

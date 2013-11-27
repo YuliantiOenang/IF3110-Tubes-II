@@ -83,16 +83,13 @@ public class User extends HttpServlet {
 			try {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate(insertQuery);
-				statement = connection.createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE username='" + username + "' and password='" + password + "' LIMIT 1");
-				if (rs.next()) {
-					session.setAttribute("user_id", rs.getInt("id"));
-					session.setAttribute("username", rs.getString("username"));
-				}
+				request.setAttribute("username", username);
+				request.setAttribute("password", password);
+				request.setAttribute("register", "y");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("card");
+			getServletContext().getRequestDispatcher("/login").forward(request, response);
 		} else if (action.equals("edit")) {
 			String updateQuery = "UPDATE user SET nama='" + name + "', password='" + password + "', email='" + email + "', handphone='" + telephone + "', alamat='" + address + "', kota='" + city + "', provinsi='" + province + "', kodepos='" + postal + "' WHERE id='" + request.getSession(true).getAttribute("user_id") + "'";
 			System.out.println(updateQuery);

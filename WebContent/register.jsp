@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <link rel='stylesheet' type='text/css' href="${pageContext.request.contextPath}/css/style.css" />
+<jsp:include page="header.jsp" />
 <script src="js/validate.js"></script>
 <title>Insert title here</title>
 </head>
@@ -86,8 +88,7 @@
 			<div class='per_form small'>
 				<label class='uncheck'>Kodepos</label><input type="text"
 					name="postal" id="postal"
-					value=""
-					onkeyup="Register.cekKodepos()" required> <span
+					onkeyup="validateEmpty(this.value, 'valpostal')"  required> <span
 					id="valpostal"></span>
 			</div>
 
@@ -95,14 +96,15 @@
 				<label class='uncheck'>Telepon</label><input type="text"
 					name="telephone" id="telephone"
 					value=""
-					onkeyup="Register.cekTelepon()" required> <span
+					onkeyup="validateEmpty(this.value, 'valtelephone')" required> <span
 					id="valtelephone"></span>
 			</div>
 			<p class='keterangan'>Lorem ipsum dolor sit amet lorem ipsum
 				dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
 				lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
 				dolor sit amet lorem ipsum dolor sit amet</p>
-			<button type="submit" id="btn" disabled="disabled" class="btn">Daftar</button>
+			<input type="hidden" name="action" value="register"></input>
+			<button type="submit" id="btn" class="btn">Daftar</button>
 		</div>
 		<br />
 	</form>
@@ -111,5 +113,7 @@
 		var server = "<?php echo Template::getBaseUrl() ?>";
 	</script>
 	<!-- new code -->	
+	
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

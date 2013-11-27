@@ -150,4 +150,57 @@
 			document.getElementById('content_frame').src = link;
 		}, 2000);
 	}
+	
+	<!-- JS for search box-->
+	function _opensearchbox(margin) {
+		if (margin<=0) {
+			document.getElementById('search-popup-content').style.marginLeft = margin.toString()+"px";
+			setTimeout(function(){
+				_opensearchbox(margin+2);
+			}, 5);
+		}
+	}
+	function _closesearchbox(margin) {
+		if (margin>=-200) {
+			document.getElementById('search-popup-content').style.marginLeft = margin.toString()+"px";
+			setTimeout(function(){
+				_closesearchbox(margin-2);
+			}, 5);
+		}
+		else {
+			setTimeout(function(){
+				_showicon(-75);
+			}, 100);
+		}
+	}
+	function _hideicon(margin) {
+		if (margin>=-70) {
+			document.getElementById('search-popup').style.marginLeft = margin.toString()+"px";
+			setTimeout(function(){
+				_hideicon(margin-2);
+			}, 5);
+		}
+		else {
+			setTimeout(function(){
+				_opensearchbox(-200);
+			}, 100);
+		}
+	}
+	function _showicon(margin) {
+		if (margin<=0) {
+			document.getElementById('search-popup').style.marginLeft = margin.toString()+"px";
+			setTimeout(function(){
+				_showicon(margin+2);
+			}, 5);
+		}
+	}
+	function opensearch() {
+		_hideicon(0);
+	}
+	function closesearch() {
+		_closesearchbox(0);
+	}
+	
+	
+	
 </script>
