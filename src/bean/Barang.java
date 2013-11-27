@@ -35,7 +35,7 @@ public class Barang {
 		kategori_barang = Integer.parseInt(rs.getObject(5).toString());
 		n_beli = Integer.parseInt(rs.getObject(6).toString());
 		keterangan = rs.getObject(7).toString();
-		stok = Integer.parseInt(rs.getObject(8).toString());
+		stok = Integer.parseInt(rs.getObject(8).toString());		
 	}
 
 	public String getId_barang() {

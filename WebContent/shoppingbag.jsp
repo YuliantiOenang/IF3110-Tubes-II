@@ -14,14 +14,14 @@
 		
 		if (shopList != null) {
 			int totalPengeluaran = 0;
-			for (int i = 0; i < shopList.size(); i++) {
+			for (int i = 0; i < shopList.size(); i++) {			
 				totalPengeluaran += (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQt());
 				out.print("<h4><b>" + (i + 1) + ". "+ shopList.get(i).getBarang().getNama_barang()+ "</b></h4>");
 				out.print("<p>Quantity : "+ shopList.get(i).getQt() + "</p>");
 				out.print("<p>__Total Harga ____: "+ (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQt()) + "</p>");
-				out.print("<p>Request Tambahan = "+ shopList.get(i).getRequest_tambahan()+ "</p><br></br>");
+				out.print("<p>Request Tambahan = "+ shopList.get(i).getRequest_tambahan()+ "</p>");
 			}  
-			out.print("<p>Total harga barang yang Anda pesan adalah ==================================> "+ totalPengeluaran);
+			out.print("<p>Total harga barang yang Anda pesan adalah ==================================> "+ totalPengeluaran);	
 			out.print("<h4>Silahkan pilih kartu kredit Anda : </h4>");
 			out.print("<form method=\"post\" action=\"beli.jsp\"> <select name=\"kartuTerpilih\">");
 			boolean klik;
@@ -39,7 +39,7 @@
 				out.print("</select> <input id=\"BuatBeli\" type=\"submit\" value=\"BELI\" disabled></form>");
 				out.print("Silahkan mendaftarkan kartu kredit Anda dahulu");
 			}else{
-				out.print("</select> <input id=\"BuatBeli\" type=\"submit\" value=\"BELI\"></form>");
+				out.print("</select> <input id=\"BuatBeli\" type=\"submit\" value=\"BELI\"> </form>");
 			}
 
 		} else {
