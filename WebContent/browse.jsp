@@ -1,5 +1,3 @@
-<%@page import="model.Barang"%>
-<%@page import="model.Model"%>
 <%@page import="org.apache.catalina.connector.Request"%>
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -15,10 +13,10 @@
 	String kat = (String)request.getAttribute("kat");
 	String h1 = (String)request.getAttribute("h1");
 	String h2 = (String)request.getAttribute("h2");
-	Barang modelb = new Barang();
-	modelb = (Barang)request.getAttribute("model");
+	Vector<HashMap<String,String>> modelb = new Vector<HashMap<String,String>>();
+	modelb = (Vector<HashMap<String,String>>)request.getAttribute("model");
 	HashMap<String,String> query = new HashMap<String,String>();
-	query.put("q","q="+q); query.put("sort","sort"+sort); query.put("hal","hal"+hal); query.put("kat","kat"+kat); query.put("h1","h1"+h1); query.put("h2","h2"+h2);
+	query.put("q","q="+q); query.put("sort","sort="+sort); query.put("hal","hal="+hal); query.put("kat","kat="+kat); query.put("h1","h1="+h1); query.put("h2","h2="+h2);
 	%>
 
 	<%!
@@ -137,10 +135,8 @@
 
 	<%
 		
-		modelb.formatAllCurrency();
 		int i=0;
-		for (HashMap<String, String> value : modelb.getDataVector())
-		{
+		for (HashMap<String, String> value : modelb) {
 			
 			if (i==0 || i%2==0){
 				out.print("<div class='vertdiv'>");
@@ -168,7 +164,7 @@
 			out.print("</div>");
 			out.print("</div>");
 			// VERTICAL DIV CLOSER
-			if ((i%2)==1||(i==modelb.getDataCount()-1)||(i==9)) out.print("</div>");
+			if ((i%2)==1||(i==modelb.size()-1)||(i==9)) out.print("</div>");
 			i++;
 		}
 	%>
