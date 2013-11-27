@@ -9,7 +9,6 @@ function showForm(x) {
     else if (x === 2)
         document.getElementById("loginformid").style.display = "block"; /*To Show*/
     document.getElementById("showFormButton").hidden = "true";
-
 }
 
 function checkLogin() {
@@ -57,43 +56,38 @@ function checkUsername() {
 }
 
 function checkPassword() {
-<<<<<<< HEAD
     if (document.getElementByName("password").value === document.getElementByName('username').value ||
             document.getElementByName("password").value === document.getElementByName('email').value) {
         document.getElementByName('register').setAttribute('disabled', 'true');
     } else {
         document.getElementByName('register').removeAttribute('disabled');
-=======
-    alert('a');
-    if (document.getElementByName("regpassword").value === document.getElementByName("regusername").value ||
-            document.getElementByName("regpassword").value === document.getElementByName("regemail").value) {
-        document.getElementById("registerButton").setAttribute("disabled", "true");
-        alert('passgood');
-    } else {
-        document.getElementById("registerButton").removeAttribute("disabled");
-        alert('passbad');
->>>>>>> profile
+        alert('a');
+        if (document.getElementByName("regpassword").value === document.getElementByName("regusername").value ||
+                document.getElementByName("regpassword").value === document.getElementByName("regemail").value) {
+            document.getElementById("registerButton").setAttribute("disabled", "true");
+            alert('passgood');
+        } else {
+            document.getElementById("registerButton").removeAttribute("disabled");
+            alert('passbad');
+        }
     }
 }
 
 function checkConfirmPassword() {
-<<<<<<< HEAD
     if (document.getElementByName("password").value !== document.getElementById("confirmpassword").value) {
         document.getElementByName("register").setAttribute('disabled', 'true');
     } else {
         document.getElementByName("register").removeAttribute('disabled');
-=======
-    if (document.getElementByName("regpassword").value !== document.getElementById("regconfirmpassword").value) {
-        document.getElementById("registerButton").setAttribute("disabled", true);
-        alert('confgood');
-    } else {
-        document.getElementById("registerButton").removeAttribute("disabled");
-        alert('confbad');
->>>>>>> profile
+        if (document.getElementByName("regpassword").value !== document.getElementById("regconfirmpassword").value) {
+            document.getElementById("registerButton").setAttribute("disabled", true);
+            alert('confgood');
+        } else {
+            document.getElementById("registerButton").removeAttribute("disabled");
+            alert('confbad');
+        }
     }
 }
 
-
-function remover(){
+function remover() {
     document.getElementById("registerButton").removeAttribute("disabled");
 }
