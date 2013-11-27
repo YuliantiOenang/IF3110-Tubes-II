@@ -1,5 +1,6 @@
 
 
+import java.awt.Point;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -37,7 +38,7 @@ public class ViewCart extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String db = "toko_imba";
 		java.sql.Connection con = null;
-		ArrayList<Integer> cart = null;
+		ArrayList<Point> cart = null;
 		int total = 0;
 		ArrayList<Barang> barangs = new ArrayList<Barang>();
 		if(session.getAttribute("cart") != null){
@@ -45,11 +46,10 @@ public class ViewCart extends HttpServlet {
 				Class.forName("org.gjt.mm.mysql.Driver");
 				con = DriverManager.getConnection("jdbc:mysql://localhost/"+db, Database.getUser(), Database.getPass());
 				
-				cart = (ArrayList<Integer>) session.getAttribute("cart");
-				
-				for(Integer barangIndex: cart){
+				cart = (ArrayList<Point>) session.getAttribute("cart");
+				for(Point barangIndex: cart){
 					Statement state = con.createStatement();
-					ResultSet rs = state.executeQuery("SELECT * FROM inventori JOIN kategori ON inventori.id_kategori = kategori.id_kategori AND inventori.id_inventori = \"" + barangIndex + "\"");
+					ResultSet rs = state.executeQuery("SELECT * FROM inventori JOIN kategori ON inventori.id_kategori = kategori.id_kategori AND inventori.id_inventori = \"" + barangIndex.x + "\"");
 					
 					while(rs.next()){
 						String name = rs.getString("nama_inventori");
@@ -60,7 +60,7 @@ public class ViewCart extends HttpServlet {
 						brg.setHarga(rs.getInt("harga"));
 						total += brg.getHarga();
 						brg.setGambar(rs.getString("gambar"));
-						brg.setJumlah(rs.getInt("jumlah"));
+						brg.setJumlah(barangIndex.y);
 						barangs.add(brg);
 					}
 				}

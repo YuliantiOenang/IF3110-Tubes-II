@@ -23,20 +23,7 @@
 					continue;
 				}
 				%>
-				<div class="list_barang">
-					<div class="gambar">
-						<img src="res/<%= b.getGambar() %>" width="150px" height="150px">
-					</div>
-					<div class="list_desc">
-						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
-						<strong>Harga:</strong> <%= b.getHarga() %><br/><br/>
-						<form class="cart_buy">
-							<input type='text' id='quant<%= no %>' value='0' size=7 >
-							<img class="cart_button" src="res/addtocart.png" width=125 onclick="validate(<%= b.getId_inven() %>, <%= no %>)">
-						</form>
-						<div class="notif" id='notif<%=no%>'></div>
-					</div>
-				</div>
+				
 				<%
 				if(no - awal == 9){
 					break;

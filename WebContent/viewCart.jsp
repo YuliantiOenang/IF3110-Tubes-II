@@ -32,7 +32,8 @@
 					</div>
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
-						<strong>Harga:</strong> <%= b.getHarga() %><br/><br/>
+						<strong>Harga:</strong> <%= b.getHarga() %><br/>
+						<strong>Jumlah Dibeli:</strong> <%= b.getJumlah() %><br/><br/>
 					</div>
 				</div>
 			<% 
