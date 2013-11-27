@@ -1,11 +1,18 @@
 
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,9 +55,7 @@ public class InventoriAdmin extends HttpServlet {
 			barangId = Integer.parseInt(request.getParameter("gid"));						
 			request.setAttribute("gid", Integer.toString(barangId));
 			
-		} catch(Exception e){
-			e.printStackTrace();
-		}
+		} catch(Exception e){}
 		
 		Barang barang = null;
 		
@@ -95,12 +100,12 @@ public class InventoriAdmin extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		int id = Integer.parseInt(request.getParameter("gid"));
+		
 		Barang barang = new Barang(request.getParameter("nama"));
 		barang.setHarga(Integer.parseInt(request.getParameter("harga")));
 		barang.setJumlah(Integer.parseInt(request.getParameter("jumlah")));
 		barang.setId_cat(Integer.parseInt(request.getParameter("kategori")));
 		barang.setDesc(request.getParameter("desc"));
-		barang.setGambar(request.getParameter("gambar"));
 		
 		try{
 			java.sql.Connection con = null;
@@ -111,25 +116,47 @@ public class InventoriAdmin extends HttpServlet {
 			Statement statement = con.createStatement();
 			
 			if(action.equals("add")){
-				add(statement, barang);
+				id = add(request, statement, barang);
 			}else if(action.equals("edit")){
 				edit(statement, id, barang);
 			}else if(action.equals("delete")){
 				delete(statement, id);
 			}
 			
-			response.getWriter().write("ok");
 		}catch(Exception e){
 			e.printStackTrace();
-			response.getWriter().write("error: " + e.toString());
 		}
+		
+		if(action.equals("delete"))
+			response.sendRedirect("");
+		else
+			response.sendRedirect("inventori?action=edit&gid=" + Integer.toString(id));
 	}
 	
 	private static String quote(String str){
 		return new StringBuilder().append('"').append(str).append('"').toString();
 	}
 	
-	private void add(Statement statement, Barang barang) throws SQLException{
+	private void copyDefault(int id){
+		/*try{
+				
+			System.out.println("copy def");
+			System.out.println(getServletContext().getRealPath("/res/barang/" + id + ".jpg"));
+			
+			Scanner src = new Scanner(getServletContext().getResourceAsStream("res/barang/default.jpg"));
+			
+			InputStream is = getServletContext().getResourceAsStream("res/barang/default.jpg");			
+			BufferedOutputStream dest = new BufferedOutputStream(new FileOutputStream(new File(getServletContext().getRealPath("/res/barang/" + id + ".jpg"))));
+			
+				
+			src.close(); dest.close();		
+			System.out.println("copy def end");
+		}catch(Exception e){
+			e.printStackTrace();
+		}*/
+	}
+	
+	private int add(HttpServletRequest request, Statement statement, Barang barang) throws SQLException{
 		StringBuilder query = new StringBuilder();
 				
 		query.append("INSERT INTO inventori(id_kategori, nama_inventori, jumlah, gambar, description, harga) VALUES (");
@@ -140,9 +167,27 @@ public class InventoriAdmin extends HttpServlet {
 		query.append(quote(barang.getDesc())).append(",");
 		query.append(barang.getHarga()).append(")");
 		
-		System.out.println(query.toString());
-		
 		statement.executeUpdate(query.toString());
+		
+		// get id
+		
+		ResultSet rs = statement.executeQuery("SELECT * FROM inventori ORDER BY id_inventori DESC LIMIT 0, 1");
+		
+		while(rs.next()){
+			barang.setId_inven(rs.getInt("id_inventori"));
+		}
+		
+		System.out.println("id :" + barang.getId_inven());
+		
+		
+		if(request.getParameter("gambar").equals("")){
+			//copyDefault(barang.getId_inven());
+		}else{
+			
+		}
+		
+		
+		return barang.getId_inven();
 	}
 	
 	private void edit(Statement statement, int id, Barang barang) throws SQLException{
@@ -155,8 +200,7 @@ public class InventoriAdmin extends HttpServlet {
 		query.append("description = ").append(quote(barang.getDesc())).append(",");
 		query.append("harga = ").append(barang.getHarga());
 		query.append(" WHERE id_inventori = ").append(id);
-		
-		System.out.println(query.toString());
+
 		statement.executeUpdate(query.toString());
 	}
 	
