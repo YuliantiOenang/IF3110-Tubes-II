@@ -23,4 +23,12 @@ public class Helper {
 		}
 		return "";
 	}
+	public static Integer getUserRole(HttpSession session) {
+		if (session.getAttribute("isLogin")!=null) {
+			if (Boolean.parseBoolean(session.getAttribute("isLogin").toString())) {
+				return Integer.parseInt(session.getAttribute("role").toString());
+			}
+		}
+		return 0;
+	}
 }

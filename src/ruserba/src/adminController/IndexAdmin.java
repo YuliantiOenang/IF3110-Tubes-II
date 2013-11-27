@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 
 import javaModel.Barang;
+import javaModel.Helper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,12 +38,8 @@ public class IndexAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		
-		boolean isLogin;
-		if (session.getAttribute("isLogin")!=null)
-			isLogin = (boolean)session.getAttribute("isLogin");
-		else
-			isLogin = false;
+		Integer userRole = Helper.getUserRole(session);
+		boolean isLogin = (userRole == 2);
 		
 		if (isLogin)
 		{
@@ -65,7 +62,7 @@ public class IndexAdmin extends HttpServlet {
 			request.setAttribute("includeJspContent", "/view/adminIndex.jsp");
 			request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 		}
-		else response.sendRedirect("/ruserba/admin/login");
+		else response.sendRedirect("/ruserba/home");
 	}
 
 	/**

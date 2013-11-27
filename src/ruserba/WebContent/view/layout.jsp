@@ -118,8 +118,10 @@
 				<div class='status'>
 					<% 
 					String userlogged = Helper.getUserLogged(session);
+					Integer userRole = Helper.getUserRole(session);
 					if (!userlogged.isEmpty()) { %>
 						<p class="left"> welcome, <a href='/ruserba/profile/index'><%= userlogged %></a>! (<a href='/ruserba/logout'>Logout</a>)
+						<% if (userRole == 2) { %> (<a href='/ruserba/admin'>Admin</a>)<% } %>
 						</p>
 						<p class="right">
 							<a href="cart">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>

@@ -66,9 +66,11 @@ public class LoginController extends HttpServlet {
 						json.put("success", false);
 						out.write(json.toString());
 					} else {
+						RS.next();
 						HttpSession session = request.getSession();
 						session.setAttribute("isLogin", true);
 						session.setAttribute("username", username);
+						session.setAttribute("role",Integer.parseInt(RS.getObject(12).toString()));
 						session.setMaxInactiveInterval(0);
 						JSONObject json = new JSONObject();
 						json.put("success", true);
