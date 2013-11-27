@@ -11,11 +11,18 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
+		<%
+		connection = DriverManager.getConnection(db_url, "root", "");
+		assert(connection != null);
+		statement = connection.createStatement();
+		String query = "SELECT * FROM anggota";
+		ResultSet goods = statement.executeQuery(query);
+		%>
 		
 		<article id="contentfull" class="body">
 			<h2 id="judul">Pendaftaran Anggota Baru RAN's Shop</h2>
 			
-			<form id="registerform" name="regform" class="rounded" method="post" action="">
+			<form id="registerform" name="regform" class="rounded" method="post" action="register.jsp">
 			<p id="text">(*) Harus diisi.</p>
 			
 			<div class="field">
@@ -98,7 +105,7 @@
 				<p class="hint">Masukkan email Anda.</p>
 			</div>
 			
-			<input type="submit" class="button" value="Daftar"/>
+			<input type="submit" id="register" value="Daftar" disabled>
 			</form>
 		</article>
 		
@@ -119,11 +126,11 @@
 				var regex = /^.+$/;
 				var validhp = hp.match(regex);
 				if (validhp == null) {
-					document.getElementById("hp").innerHTML = " Tidak boleh kosong";
+					document.getElementById("hp").innerHTML = "Tidak boleh kosong";
 					validHP = false;
 				}
 				else {
-					document.getElementById("hp").innerHTML = " Valid";
+					document.getElementById("hp").innerHTML = "Valid";
 					validHP = true;
 				}
 			}
@@ -132,11 +139,11 @@
 				var regex = /^.+$/;
 				var validalamat = alamat.match(regex);
 				if (validalamat == null) {
-					document.getElementById("alamat").innerHTML = " Tidak boleh kosong";
+					document.getElementById("alamat").innerHTML = "Tidak boleh kosong";
 					validAlamat = false;
 				}
 				else {
-					document.getElementById("alamat").innerHTML = " Valid";
+					document.getElementById("alamat").innerHTML = "Valid";
 					validAlamat = true;
 				}
 			}
@@ -145,11 +152,11 @@
 				var regex = /^.+$/;
 				var validprovinsi = provinsi.match(regex);
 				if (validprovinsi == null) {
-					document.getElementById("provinsi").innerHTML = " Tidak boleh kosong";
+					document.getElementById("provinsi").innerHTML = "Tidak boleh kosong";
 					validProvinsi = false;
 				}
 				else {
-					document.getElementById("provinsi").innerHTML = " Valid";
+					document.getElementById("provinsi").innerHTML = "Valid";
 					validProvinsi = true;
 				}
 			}
@@ -158,11 +165,11 @@
 				var regex = /^.+$/;
 				var validkota = kota.match(regex);
 				if (validkota == null) {
-					document.getElementById("kota").innerHTML = " Tidak boleh kosong";
+					document.getElementById("kota").innerHTML = "Tidak boleh kosong";
 					validKota = false;
 				}
 				else {
-					document.getElementById("kota").innerHTML = " Valid";
+					document.getElementById("kota").innerHTML = "Valid";
 					validKota = true;
 				}
 			}
@@ -171,11 +178,11 @@
 				var regex = /^.+$/;
 				var validkodepos = kodepos.match(regex);
 				if (validkodepos == null){
-					document.getElementById("kodepos").innerHTML = " Tidak boleh kosong";
+					document.getElementById("kodepos").innerHTML = "Tidak boleh kosong";
 					validKodepos = false;
 				}
 				else {
-					document.getElementById("kodepos").innerHTML = " Valid";
+					document.getElementById("kodepos").innerHTML = "Valid";
 					validKodepos = true;
 				}
 			}
@@ -196,23 +203,23 @@
 				var email = document.forms["regform"]["email"].value;
 
 				if ((password.length < 8) && (password.length > 0)) {
-					document.getElementById("pass").innerHTML = " Password minimal 8 karakter";
+					document.getElementById("pass").innerHTML = "Password minimal 8 karakter";
 					validPassword = false;
 				}
 				else if ((password == username) && (password.length > 0)) {
-					document.getElementById("pass").innerHTML = " Password tidak boleh sama dengan username";
+					document.getElementById("pass").innerHTML = "Password tidak boleh sama dengan username";
 					validPassword = false;
 				}
 				else if ((password == email) && (password.length > 0)) {
-					document.getElementById("pass").innerHTML = " Password tidak boleh sama dengan email";
+					document.getElementById("pass").innerHTML = "Password tidak boleh sama dengan email";
 					validPassword = false;
 				}
 				else if (password.length == 0) {
-					document.getElementById("pass").innerHTML = " Tidak boleh kosong";
+					document.getElementById("pass").innerHTML = "Tidak boleh kosong";
 					validPassword = false;
 				}
 				else {
-					document.getElementById("pass").innerHTML = " Valid";
+					document.getElementById("pass").innerHTML = "Valid";
 					validPassword = true;
 				}
 			}
@@ -222,33 +229,33 @@
 				var password = document.forms["regform"]["password"].value;
 
 				if ((confirm != password) && (confirm.length > 0)) {
-					document.getElementById("conf").innerHTML = " Password tidak sama";
+					document.getElementById("conf").innerHTML = "Password tidak sama";
 					validConfirm = false;
 				}
 				else if (confirm.length == 0) {
-					document.getElementById("conf").innerHTML = " Tidak boleh kosong";
+					document.getElementById("conf").innerHTML = "Tidak boleh kosong";
 					validConfirm = false;
 				}
 				else {
-					document.getElementById("conf").innerHTML = " Valid";
+					document.getElementById("conf").innerHTML = "Valid";
 					validConfirm = true;
 				}
 			}
 
 			function valNama() {
 				var nama = document.forms["regform"]["nama"].value;
-				var regex = /^[\S.]+ [\S.]+$/;
+				var regex = /^[\S.]+ [\S.]+( [\S.]+)*$/;
 				var validnama = nama.match(regex);
 				if ((validnama == null) && (nama.length > 0)) {
-					document.getElementById("nama").innerHTML = " Harus terdiri dari minimal 2 kata";
+					document.getElementById("nama").innerHTML = "Harus terdiri dari minimal 2 kata";
 					validNama = false;
 				}
 				else if (validnama == null) {
-					document.getElementById("nama").innerHTML = " Tidak boleh kosong";
+					document.getElementById("nama").innerHTML = "Tidak boleh kosong";
 					validNama = false;
 				}
 				else {
-					document.getElementById("nama").innerHTML = " Valid";
+					document.getElementById("nama").innerHTML = "Valid";
 					validNama = true;
 				}
 			}
@@ -259,18 +266,22 @@
 				var regex = /^[a-zA-Z0-9\_]+@[a-zA-Z0-9]+\.[a-zA-Z0-9.]{2,}$/;
 				var validemail = email.match(regex);
 				if ((validemail == null) && (email.length > 0)) {
-					document.getElementById("email").innerHTML = " Bukan Email yang valid";
+					document.getElementById("email").innerHTML = "Bukan Email yang valid";
+					validEmail = false;
 				}
 				else if ((password == email) && (email.length > 0)) {
-					document.getElementById("email").innerHTML = " Email tidak boleh sama dengan Password";
+					document.getElementById("email").innerHTML = "Email tidak boleh sama dengan Password";
+					validEmail = false;
 				}
 				else if (validemail == null) {
-					document.getElementById("email").innerHTML = " Tidak boleh kosong";
+					document.getElementById("email").innerHTML = "Tidak boleh kosong";
+					validEmail = false;
 				}
 				else {
-					document.getElementById("email").innerHTML = " Valid";
+					document.getElementById("email").innerHTML = "Valid";
+					validEmail = true;
 
-					if (email.length > 0) {
+					/*if (email.length > 0) {
 					validEmail = true;
 					var xmlhttp; 
 					if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -290,7 +301,7 @@
 					}
 					xmlhttp.open("GET","Validate-Register.php?type=2&value="+email,true);
 					xmlhttp.send();
-					}
+					}*/
 				}
 
 				
@@ -302,21 +313,22 @@
 				var password = document.forms["regform"]["password"].value;
 
 				if ((username.length < 5) && (username.length > 0)) {
-					document.getElementById("user").innerHTML = " Username minimal 5 karakter";
+					document.getElementById("user").innerHTML = "Username minimal 5 karakter";
 					validUsername = false;
 				}
 				else if ((username == password) && (username.length > 0)) {
-					document.getElementById("user").innerHTML = " Username tidak boleh sama dengan password";
+					document.getElementById("user").innerHTML = "Username tidak boleh sama dengan password";
 					validUsername = false;
 				}
 				else if (username.length == 0) {
-					document.getElementById("user").innerHTML = " Tidak boleh kosong";
+					document.getElementById("user").innerHTML = "Tidak boleh kosong";
 					validUsername = false;
 				}
 				else {
-					document.getElementById("user").innerHTML = " Valid";
+					document.getElementById("user").innerHTML = "Valid";
+					validUsername = true;
 
-					if (username.length > 0) {
+					/*if (username.length > 0) {
 					validUsername = true;
 
 					var xmlhttp; 
@@ -337,7 +349,7 @@
 					}
 					xmlhttp.open("GET","Validate-Register.php?type=1&value="+username,true);
 					xmlhttp.send();
-					}
+					}*/
 
 				}
 				

@@ -20,12 +20,12 @@
 				<pre id="nama">Nama Lengkap		: <%= user.getObject("nama") %></pre>
 				<pre id="usernamep">Username			: <%= user.getObject("username") %></pre>
 				<pre id="nomorhp">Nomor Hp			: <%= user.getObject("password") %></pre>
-				<pre id="alamat">Alamat				: <%= user.getObject("alamat") %></pre>
-				<pre id="provinsi">Provinsi				: <%= user.getObject("provinsi") %></pre>
-				<pre id="kota">Kota					: <%= user.getObject("kota") %></pre>
-				<pre id="kodepos">Kode Pos				: <%= user.getObject("kodepos") %></pre>
-				<pre id="email">Email				: <%= user.getObject("email") %></pre>
-				<pre id="trans">Jumlah Transaksi		: <%= user.getObject("jmlhtransaksi") %></pre>
+				<pre id="alamat">Alamat			: <%= user.getObject("alamat") %></pre>
+				<pre id="provinsi">Provinsi			: <%= user.getObject("provinsi") %></pre>
+				<pre id="kota">Kota				: <%= user.getObject("kota") %></pre>
+				<pre id="kodepos">Kode Pos			: <%= user.getObject("kodepos") %></pre>
+				<pre id="email">Email			: <%= user.getObject("email") %></pre>
+				<pre id="trans">Jumlah Transaksi	: <%= user.getObject("jmlhtransaksi") %></pre>
 				<form method="post" action="editprofile.jsp">
 				<input type="submit" class="button" value="Edit Profile">
 				</form>
