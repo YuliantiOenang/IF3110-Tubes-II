@@ -47,6 +47,44 @@ public class Model
 		execute(sql);
 		return getDataVector();
 	}
+	
+	public Vector<HashMap<String,String>> updateSQL(String sql)
+	{
+		update(sql);
+		return getDataVector();
+	}
+	
+	protected void update(String sql){
+		java.sql.Connection con;
+		java.sql.Statement stmt;
+		ResultSet rs;
+		ResultSetMetaData rsmd;
+		try{
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			 // Open a connection
+			con = DriverManager.getConnection(DB_URL, USER, PASS);
+			 
+			// Execute a query
+			stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+			
+			System.out.println("Data updated");
+			
+			// Clean-up environment
+			stmt.close();
+			con.close();
+			
+		} catch(SQLException e) {
+			System.out.println("SQL Error.");
+			e.printStackTrace();
+		} catch (ClassNotFoundException cnfex) {
+			System.out.println("com.mysql.Driver class not found.");
+			cnfex.printStackTrace();
+		}
+	}
+	
 	protected void execute(String sql)
 	{
 		java.sql.Connection con;
