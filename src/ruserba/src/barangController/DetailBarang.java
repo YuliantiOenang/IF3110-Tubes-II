@@ -18,6 +18,7 @@ import databaseLib.DatabaseAdapter;
  */
 @WebServlet("/barang/detail")
 public class DetailBarang extends HttpServlet {
+	//Debug agar ridho punya library
 	private static final long serialVersionUID = 1L;
     private DatabaseAdapter DBA;
     /**

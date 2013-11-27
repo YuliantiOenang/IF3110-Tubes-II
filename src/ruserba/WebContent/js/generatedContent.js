@@ -33,7 +33,6 @@ xmlhttpEA.onreadystatechange=function()
 		//document.getElementById('ISI').innerHTML=str;
 		document.getElementById('konten').innerHTML = str;
 		document.getElementById("loader").classList.add("hidden");
-		
 	}
 };
 
