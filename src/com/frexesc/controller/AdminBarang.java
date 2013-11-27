@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,6 +82,9 @@ public class AdminBarang extends HttpServlet {
 				dispatcher = getServletContext().getRequestDispatcher("/adminadd.jsp");
 			} else if (request.getParameter("action").equals("main")) {
 				dispatcher = getServletContext().getRequestDispatcher("/adminmain.jsp");
+			} else if (request.getParameter("action").equals("pic")) {
+				request.setAttribute("id", request.getParameter("id"));
+				dispatcher = getServletContext().getRequestDispatcher("/adminpic.jsp");
 			}
 			dispatcher.forward(request, response);
 		} else if (session.getAttribute("role").equals("0")) {
@@ -111,6 +115,7 @@ public class AdminBarang extends HttpServlet {
 			BarangBean barang = new BarangBean(0, Integer.parseInt(request.getParameter("category")), request.getParameter("name"), null, Integer.parseInt(request.getParameter("price")), request.getParameter("description"), Integer.parseInt(request.getParameter("amount")));
 			String insertQuery = "INSERT INTO barang (id_kategori, nama_barang, gambar, harga_barang, keterangan, jumlah_barang) VALUES ('" + barang.getId_category() + "','" + barang.getName() + "','" + barang.getPicture() + "','" + barang.getPrice() + "','" + barang.getDescription() + "','" + barang.getTotal_item() + "')";
 			int id = 0;
+			URL filename = null;
 			try {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate(insertQuery);
@@ -119,13 +124,16 @@ public class AdminBarang extends HttpServlet {
 				ResultSet rs = stmt2.executeQuery(selectQuery);
 				if (rs.next()) {
 					id = rs.getInt("id");
+					filename = getServletContext().getResource("/img/barang/1.jpg");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			/* upload */
+			System.out.println(filename.toString());
 			Part filePart = request.getPart("photo");
 			String fileName = getFileName(filePart);
+			
 			String[] sp = fileName.toString().split("\\.");
 			sp[1] = sp[1].toLowerCase();
 			OutputStream out = new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + id + "." + sp[1]));
@@ -163,7 +171,7 @@ public class AdminBarang extends HttpServlet {
 		} else if (request.getParameter("action").equals("update")) {
 			System.out.println(request.getParameter("description"));
 			BarangBean barang = new BarangBean(Integer.parseInt(request.getParameter("id")), Integer.parseInt(request.getParameter("category")), request.getParameter("name"), null, Integer.parseInt(request.getParameter("price")), request.getParameter("description"), Integer.parseInt(request.getParameter("amount")));
-			String updateQuery = "UPDATE barang SET id_kategori='" + barang.getId_category() + "', nama_barang='" + barang.getName() + "', gambar='" + barang.getPicture() + "', harga_barang='" + barang.getPrice() + "', keterangan='" + barang.getDescription() + "', jumlah_barang='" + barang.getTotal_item() + "' WHERE id='" + barang.getId() + "'";
+			String updateQuery = "UPDATE barang SET id_kategori='" + barang.getId_category() + "', nama_barang='" + barang.getName() + "', harga_barang='" + barang.getPrice() + "', keterangan='" + barang.getDescription() + "', jumlah_barang='" + barang.getTotal_item() + "' WHERE id='" + barang.getId() + "'";
 			try {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate(updateQuery);
@@ -180,7 +188,62 @@ public class AdminBarang extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		} else if (request.getParameter("action").equals("pic")) {
+			String id = request.getParameter("id");
+			String old = null;
+			try {
+				ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM barang WHERE id='" + id + "'");
+				if (rs.next()) {
+					old = rs.getString("gambar");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			System.out.println(old);
+			Part filePart = request.getPart("photo");
+			String fileName = getFileName(filePart);
+			String[] sp = fileName.toString().split("\\.");
+			sp[1] = sp[1].toLowerCase();
+			if (old != "null") {
+				old = request.getRealPath("") + "\\img\\barang\\" + old;
+			} else {
+				old = request.getRealPath("") + "\\img\\barang\\" + id + "." + sp[1];
+			}
+			OutputStream out = new FileOutputStream(new File(UPLOAD_DIRECTORY + File.separator + id + "." + sp[1]));
+			OutputStream out2 = new FileOutputStream(new File(old));
+			InputStream filecontent = filePart.getInputStream();
+
+			int read = 0;
+			final byte[] bytes = new byte[1024];
+
+			while ((read = filecontent.read(bytes)) != -1) {
+				out.write(bytes, 0, read);
+				out2.write(bytes, 0, read);
+			}
+			if (out != null) {
+				out.close();
+			}
+			if (out2 != null) {
+				out2.close();
+			}
+			if (filecontent != null) {
+				filecontent.close();
+			}
+			/* end of upload */
+			boolean success = true;
+			try {
+				Statement s = connection.createStatement();
+				String updateQuery = "UPDATE barang SET gambar='" + id + "." + sp[1] + "' WHERE id='" + id + "'";
+				if (s.executeUpdate(updateQuery) < 1) {
+					success = false;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				success = false;
+			}
+			response.sendRedirect("close.jsp");
 		}
 	}
-
 }

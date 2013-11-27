@@ -8,9 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<jsp:include page="layout.jsp" />
-
 	<form method="post" onsubmit="return validateAll()" action="user"
 		name="regform">
 		<div class='register_div'>

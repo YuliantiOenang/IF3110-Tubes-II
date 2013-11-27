@@ -62,21 +62,6 @@ function feditbarang(id) {
 					pri = null;
 					desc = null;
 					total = null;
-					/*
-					if (method == "username") {
-						usernamevalid = true;
-						document.getElementById(id).style.color = "#00ff00";
-					} else if (method == "email") {
-						emailvalid = true;
-						document.getElementById(id).style.color = "#00ff00";
-					} else if (method == "number") {
-						numbervalid = true;
-						document.getElementById(id).style.color = "#00ff00";
-					} else if (method == "name") {
-						namevalid = true;
-						document.getElementById(id).style.color = "#00ff00";
-					}
-					*/
 				}
 			}
 		};
