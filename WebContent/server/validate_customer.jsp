@@ -20,13 +20,13 @@
 		out.print("0"); // user not found
 	} else {
 		user.next();
-		session.setAttribute("USR", username);
-		if (user.getObject("tipe") == "User") {
+		session.setAttribute("Username", username);
+		if (user.getObject("tipe").toString().equals("User")) {
 			out.print("1"); // normal user
-			session.setAttribute("PRI", "User");
+			session.setAttribute("Privilege", "User");
 		} else {
 			out.print("2"); // admin euy
-			session.setAttribute("PRI", "Admin");
+			session.setAttribute("Privilege", "Admin");
 		}
 	}
 	

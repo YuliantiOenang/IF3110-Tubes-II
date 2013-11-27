@@ -31,20 +31,16 @@ function validateUser()
 				if (xmlhttp.responseText == 1) {
 					alert("Selamat datang, " + x + "!\nSenang melihatmu lagi.");
 					setCookie("Privilege", "User", 30);
-					session.setAtrribute("Privilege", "User");
 				} else {
 					alert("Selamat datang, Admin " + x + "!\nSenang melihatmu lagi.");
 					setCookie("Privilege", "Admin", 30);
-					session.setAtrribute("Privilege", "Admin");
 				}
 				
 				// store username into cookie :3
 				setCookie("Username", x, 30);
 				
-				// store needed data in session
-				session.setAtrribute("Username", x);
-				
 				// change layout
+				
 			}
 		}
 	};
