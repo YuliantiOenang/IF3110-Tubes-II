@@ -55,7 +55,9 @@ public class search extends HttpServlet {
 			sort = null;
 		}
 		barang = new Barang();
-		data = barang.findByCondition("nama LIKE "+q+" and id_kategori="+kat+" and harga BETWEEN "+h1+" and "+h2);
+		barang.findByCondition("nama LIKE "+q+" and id_kategori="+kat+" and harga BETWEEN "+h1+" and "+h2);
+		barang.formatAllCurrency();
+		data = barang.getDataVector();
 		total = data.size();
 		paging = barang.paginasi(total,hal,10, query);
 		request.setAttribute("title", "Search");
