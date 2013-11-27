@@ -35,13 +35,6 @@
 		
 		<div id="contentcontainer">
 		<article id="contentfull" class="body">
-			
-			<div id="adminbutton">
-				<button type="button" class="button" id="tambah">Tambah Barang</button>
-				<button type="button" class="button" id="hapus">Hapus Barang</button>
-				<button type="button" class="button" id="edit">Edit Barang</button>
-			</div>
-			
 			<script>
 				document.getElementById("adminbutton").style.visibility='hidden';
 				var userType = getCookie("Privilege");
@@ -72,6 +65,9 @@
 				</div>
 			</div>
 			<% } connection.close(); %>
+			<div id="adminbutton">
+				<button type="button" class="button" id="tambah">Tambah Barang</button>
+			</div>
 		</article>
 		</div>
 		
