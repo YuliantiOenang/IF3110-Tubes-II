@@ -40,7 +40,7 @@ function validateForm()
 				alert("Usernama atau password Anda tidak cocok.\nSilakan ulangi lagi.");
 			} else { // success
 				alert("Selamat datang, " + x + "!\nSenang melihatmu lagi.");
-				newwindow2 = window.open('profile.jsp', '_HOME');
+				newwindow2 = window.open('index.jsp', '_HOME');
 				close();
 			}
 		}

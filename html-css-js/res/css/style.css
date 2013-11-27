@@ -47,6 +47,34 @@ body {
 	top:1px;
 }
 
+.btn-admin {
+    background-color: #2980b9;
+    -moz-box-shadow:inset 0px 1px 0px 0px #2980b9;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #2980b9;
+    box-shadow:inset 0px 1px 0px 0px #2980b9;
+}
+
+.btn-admin:hover {
+    background-color: #2980b9;
+}
+
+.btn-delete {
+    color: #fff;
+    background-color: #c0392b;
+    -moz-box-shadow:inset 0px 1px 0px 0px #c0392b;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #c0392b;
+    box-shadow:inset 0px 1px 0px 0px #c0392b;    
+}
+
+.btn-delete:link,
+.btn-delete:visited {
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
 #user-control {
 	padding-bottom: 10px;
 }
@@ -201,7 +229,7 @@ body {
 
 .product a:link, 
 .product a:visited {
-	color: #333;
+	/*color: #333;*/
 	text-decoration: none;
 }
 
@@ -424,4 +452,17 @@ body {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;	
+}
+
+.forbidden {
+    font-size: 3em;
+    color: #ff0000;
+}
+
+.welcome-text {
+    font-size: 2em;
+}
+
+.product-desc {
+    text-align: left;
 }

@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
@@ -9,38 +11,9 @@
 	</head>
 	<body>
 		<div id="container">
-			<!-- Header Section -->
-			<div id="header" class="frame">
-				<div class="kolom-7">
-					<img src="res/img/logo.png" alt="" id="logo"/>
-				</div>
-				<div class="kolom-4">
-					<div id="user-panel">
-						
-						<div id="user" class="frame">
-							<img id="user-pict" class="kolom-5" src="res/img/userpict_h.png" alt=""/>
-							<div id="user-text" class="kolom-7">
-								<h3>Welcome, <span class="user-name">Riandy</span>!</h3>
-								<p id="user-control">
-									<span class="edit-logout"><a href="">Edit Profile</a></span>
-									&nbsp;or&nbsp;
-									<span class="edit-logout"><a href="">Logout</a></span>
-								</p>
-								
-								<a href="#" class="btn">Check Your Cart</a>
-							</div>
-						</div>
-						
-						<div id="search-bar" class="frame">
-							<form action="search.php">
-								<input id="search-box" class="kolom-9" type="text" name="src" value="Ketikkan barang yang dicari...">
-								<input id="search-button" class="kolom-1" type="submit" value="">
-							</form>					
-						</div>
-					</div>
-				</div>			
-			</div>
-			<!-- End of Header -->
+			<jsp:include page="Header.jsp"/>
+                <jsp:include page="Navbar.jsp"/>
+				
 		<div id="form-registrasi" class="frame">
 			<p id="registration-title">Registration</p>
 		
