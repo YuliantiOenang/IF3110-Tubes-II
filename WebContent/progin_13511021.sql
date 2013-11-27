@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2013 at 03:26 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Generation Time: Nov 27, 2013 at 10:16 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `progin_13511021`
 --
+CREATE DATABASE IF NOT EXISTS `progin_13511021` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `progin_13511021`;
 
 -- --------------------------------------------------------
 
@@ -213,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `creditcard` (
 --
 
 INSERT INTO `creditcard` (`card_id`, `card_nameon`, `card_expdate`, `card_owner`) VALUES
+(91, 'dasa', '2013-11-13 00:00:00', 'fathan'),
 (123111, 'Yogi Salomo Mangontang Pratama', '2013-10-23 00:00:00', 'codename'),
 (123355, 'pya pya', '2014-01-01 00:00:00', 'codename');
 
@@ -232,6 +235,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `province` text NOT NULL,
   `state` text NOT NULL,
   `postcode` int(10) NOT NULL,
+  `role` varchar(50) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabel Anggota Website';
 
@@ -239,11 +243,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `nama_lengkap`, `password`, `email`, `handphone`, `address`, `province`, `state`, `postcode`) VALUES
-('banggapardana', 'Gerangga Anggaparaldi', 'tangga', 'tangga@bangga.com', 0, '', '', '', 0),
-('codename', 'Yogi Salomo Mangontang Pratama', '12345678', 'itu@gimal.com', 12, 'sana', 'sini', 'situ', 12345),
-('fathan', 'Fathan Adi', '123', 'fathan@gmail.com', 12345, 'beke', 'keke', 'okok', 1111),
-('pya', 'pya pya', 'pya', '1@2.com', 987, 'sana', 'sini', 'keca', 0);
+INSERT INTO `user` (`username`, `nama_lengkap`, `password`, `email`, `handphone`, `address`, `province`, `state`, `postcode`, `role`) VALUES
+('admin', 'fathan pranaya', 'admin', 'fathan.pranaya@yahoo.com', 0, '', '', '', 0, 'admin'),
+('banggapardana', 'Gerangga Anggaparaldi', 'tangga', 'tangga@bangga.com', 0, '', '', '', 0, 'user'),
+('codename', 'Yogi Salomo Mangontang Pratama', '12345678', 'itu@gimal.com', 12, 'sana', 'sini', 'situ', 12345, 'user'),
+('fathan', 'Fathan Adi', '123', 'fathan@gmail.com', 12345, 'beke', 'keke', 'okok', 1111, 'user'),
+('pya', 'pya pya', 'pya', '1@2.com', 987, 'sana', 'sini', 'keca', 0, 'user');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

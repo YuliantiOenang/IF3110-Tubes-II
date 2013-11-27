@@ -54,7 +54,7 @@ public class kategori extends HttpServlet {
 		
 		ResultSet rs_barang = null;
 		
-		String q = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = "+id+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
+		String q = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = "+id+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 		
 		try {
 			stmt = conn.createStatement();

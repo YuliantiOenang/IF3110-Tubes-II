@@ -38,7 +38,7 @@
 	Name on Card: <input type="text" name="namecard"><br> 
 	Expired Date: <input type="date" name="expdate"><br>		
 	<div id="credit_error"></div>
-	<a href="index.jsp">Skip card registration</a> Or <input type="submit"
+	<a href="">Skip card registration</a> Or <input type="submit"
 		id="regcard" value="Register Card" disabled>
 </form>
 <%

@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 
 /**
  * Servlet implementation class Registration
@@ -95,8 +98,9 @@ public class Registration extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher view = request
-				.getRequestDispatcher("/cardregist.jsp");
+		HttpSession session = request.getSession();
+		session.setAttribute("username",username);
+		RequestDispatcher view = request.getRequestDispatcher("cardregist.jsp");
 		view.forward(request, response);
 	}
 

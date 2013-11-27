@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 import bean.Barang;
 
@@ -47,10 +48,12 @@ public class barang extends HttpServlet {
 		
 		Connection conn = null;
 		Statement stmt = null;
-		/*String query = "INSERT INTO `progin_13511021`.`barang` (`id_barang`, `nama_barang`, `gambar_barang`, `harga_barang`, `kategori_barang`, `n_beli`, `keterangan`, `stok`)"+ 
-				       "VALUES ('"+id_barang+"', '"+nama_barang+"', '', '"+harga_barang+"', '"+kategori_barang+"', '"+n_beli+"', '"+keterangan+"', '"+stok+"')";
-		*/
-		String query = "INSERT INTO barang (id_barang, nama_barang, gambar_barang, harga_barang, kategori_barang, n_beli, keterangan, stok) VALUES ('"
+		Statement stmt1 = null;
+		ResultSet rs = null;
+		System.out.println("select nama_barang from barang where nama_barang = '" + nama_barang +"'");
+		String validation = "select nama_barang from barang where nama_barang = '" + nama_barang +"'";
+		
+		String query = "insert into barang (id_barang, nama_barang, gambar_barang, harga_barang, kategori_barang, n_beli, keterangan, stok) VALUES ('"
 				+ id_barang
 				+ "','"
 				+ nama_barang
@@ -66,7 +69,9 @@ public class barang extends HttpServlet {
 				+ keterangan
 				+ "','"
 				+ stok + "')";
+		
 		System.out.print(query);
+		System.out.print(validation);
 		
 		try {
 			String userName = "root";
@@ -80,8 +85,13 @@ public class barang extends HttpServlet {
 		
 		try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate(query);
+			stmt1 = conn.createStatement();
+			rs = stmt1.executeQuery(validation);
+			if (rs == null) {
+				stmt.executeUpdate(query);
+			}
 			stmt.close();
+			stmt1.close();
 			conn.close();
 			System.out.println("SUkses");
 		} catch (SQLException e) {

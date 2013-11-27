@@ -23,7 +23,7 @@
 				<input type="hidden" name="id_barang"
 					value="<% out.print(pangan.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
-					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="number" min="1" max="10" value=1 name="qt" style="width: 60px; text-align: right" > 
 					<input type="submit" value="Add to cart">
 			</form>
 			</p>
@@ -42,7 +42,7 @@
 				<input type="hidden" name="id_barang"
 					value="<% out.print(pakaian.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
-					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="number" min="1" max="10" value=1 name="qt" style="width: 60px; text-align: right" /> 
 					<input type="submit" value="Add to cart">
 			</form>
 			</p>
@@ -61,7 +61,7 @@
 				<input type="hidden" name="id_barang"
 					value="<% out.print(elektronik.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
-					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="number" min="1" max="10" value=1 name="qt" style="width: 60px; text-align: right" /> 
 					<input type="submit" value="Add to cart">
 			</form>
 			</p>
@@ -81,7 +81,7 @@
 				<input type="hidden" name="id_barang"
 					value="<% out.print(rumahtangga.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
-					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="number" min="1" max="10" value=1 name="qt" style="width: 60px; text-align: right" /> 
 					<input type="submit" value="Add to cart">
 			</form>
 			</p>
@@ -100,7 +100,7 @@
 				<input type="hidden" name="id_barang"
 					value="<% out.print(olahraga.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
-					<input type="text" name="qt" style="width: 20px; text-align: right" /> 
+					<input type="number" min="1" max="10" value=1 name="qt" style="width: 60px; text-align: right" /> 
 					<input type="submit" value="Add to cart">
 			</form>
 			</p>
