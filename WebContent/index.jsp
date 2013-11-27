@@ -9,7 +9,7 @@
 
 
 <% ArrayList<String> list_kategori = (ArrayList<String>)request.getAttribute("list_kategori"); %>
-<% ArrayList<ArrayList<String>> list_nama = (ArrayList<ArrayList<String>> )request.getAttribute("list_nama"); %>
+<% ArrayList<ArrayList<String>> list_nama = (ArrayList<ArrayList<String>>)request.getAttribute("list_nama"); %>
 <% ArrayList<ArrayList<String>> list_gambar = (ArrayList<ArrayList<String>> )request.getAttribute("list_gambar"); %>
 
 <script>
