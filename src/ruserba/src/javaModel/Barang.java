@@ -14,6 +14,7 @@ public class Barang {
 	public ArrayList<String> counter = new ArrayList<String>();
 	public ArrayList<String> keterangan = new ArrayList<String>();
 	public ArrayList<String> id = new ArrayList<String>();
+	public ArrayList<String> id_kat = new ArrayList<String>();
 	
 	public Barang(DatabaseAdapter _DBA)
 	{
@@ -29,6 +30,7 @@ public class Barang {
 			while (RS.next())
 			{
 				id.add(RS.getObject(1).toString());
+				id_kat.add(RS.getObject(2).toString());
 				nama.add(RS.getObject(3).toString());
 				harga.add(RS.getObject(4).toString());
 				gambar.add(RS.getObject(5).toString());

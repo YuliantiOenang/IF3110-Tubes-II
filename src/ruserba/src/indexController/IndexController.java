@@ -21,13 +21,13 @@ import databaseLib.DatabaseAdapter;
  * Servlet implementation class Home
  */
 @WebServlet("/index")
-public class Index extends HttpServlet {
+public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseAdapter DBA = new DatabaseAdapter();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public IndexController() {
         super();
         // TODO Auto-generated constructor stub
     }

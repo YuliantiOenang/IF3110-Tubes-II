@@ -1,5 +1,7 @@
 package javaModel;
 
+import javax.servlet.http.HttpSession;
+
 import databaseLib.DatabaseAdapter;
 
 public class Helper {
@@ -12,5 +14,13 @@ public class Helper {
 		Kategori K = new Kategori(DBA);
 		K.executeQuery(Query);
 		return K;
+	}
+	public static String getUserLogged(HttpSession session) {
+		if (session.getAttribute("isLogin")!=null) {
+			if (Boolean.parseBoolean(session.getAttribute("isLogin").toString())) {
+				return (String)session.getAttribute("username");
+			}
+		}
+		return "";
 	}
 }

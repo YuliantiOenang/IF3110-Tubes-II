@@ -1,16 +1,39 @@
 <%@ page import="javaModel.Barang" %>
-<strong>Detail : </strong><br>
 <%
 	Barang B = (Barang) request.getAttribute("barang");
 %>
-<img src="/ruserba/images/barang/<%=B.gambar.get(0)%>" width=200 height=200><br>
-<b>Nama Barang </b> : <%=B.nama.get(0)%><br>
-<b>Keterangan </b>: <%=B.keterangan.get(0)%><br>
-<b>Harga Barang </b>: <%=B.harga.get(0)%><br>
-<b>Stok </b>: <%=B.stok.get(0)%><br>
-<hr>
+<script type="text/javascript">
+	function fitpict(obj) {
+		fitimg(obj,340,340,true,true,false);
+	}
+</script>
+<h1 class='small-header'><%= B.nama.get(0) %></h1>
+<div class='item_pict'>
+	<img src='/ruserba/img/barang/<%= B.gambar.get(0) %>' onload='fitpict(this)' ></img>
+</div>
 
-Jumlah Barang : <input type="text" id="beliBarangOKE<%=B.id.get(0)%>"><br>
-<button onclick='pertanyaan(<%=B.id.get(0)%>,<%=B.stok.get(0)%>)'> Beli </button>
+<div class='item_detail'>
+	<h4>product description</h4>
+	<p><%= B.keterangan.get(0) %></p>
+</div>
 
+<div class='item_price'>
+		<p>get it for :</p>
+		<h4>IDR <%= B.harga.get(0) %></h4>
+		<p>stok : <%= B.stok.get(0)%></p>
+	<!-- <form method="post" onSubmit="Stok(); return false;" >  -->
+	 <form method="post" onsubmit="cekQuantity(); return false;"  action = "/ruserba/barang/update" id="form-shop"> 
+		<label class='qty'>Quantity</label>
+		<input type='number' name="quantity" id="quantity" class='qty' value=1></input>
+		<input type="hidden" name="id_barang" id="id_barang" value="<%= B.id.get(0) %>">
+		<p>Request Message :</p>
+		<textarea class='req_msg' name='req_msg'></textarea>
+		<input type='submit' class='cart' value = 'Add to Cart'></input>
+	 </form>
+</div>
+
+<script src="/ruserba/js/validasiBarang.js"></script>
+<script>
+	var server = "";
+</script>
 

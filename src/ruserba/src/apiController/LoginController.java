@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,14 +21,14 @@ import databaseLib.DatabaseAdapter;
  * Servlet implementation class Login
  */
 @WebServlet("/api/login")
-public class Login extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseAdapter DBA = new DatabaseAdapter();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Login() {
+	public LoginController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -62,25 +63,23 @@ public class Login extends HttpServlet {
 				try {
 					if (!RS.isBeforeFirst()) {
 						JSONObject json = new JSONObject();
-						System.out.println("testing2");
 						json.put("success", false);
 						out.write(json.toString());
 					} else {
+						HttpSession session = request.getSession();
+						session.setAttribute("isLogin", true);
+						session.setAttribute("username", username);
+						session.setMaxInactiveInterval(0);
 						JSONObject json = new JSONObject();
 						json.put("success", true);
-						System.out.println("testing1");
 						out.write(json.toString());
 					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
+				} catch (SQLException | JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
 				JSONObject json = new JSONObject();
-				System.out.println("testing3");
 				try {
 					json.put("success", false);
 				} catch (JSONException e) {
@@ -91,7 +90,6 @@ public class Login extends HttpServlet {
 			}
 		} catch (Exception e) {
 			JSONObject json = new JSONObject();
-			System.out.println("testing4");
 			try {
 				json.put("success", false);
 			} catch (JSONException e1) {
