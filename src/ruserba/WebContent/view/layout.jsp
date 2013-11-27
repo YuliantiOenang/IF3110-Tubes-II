@@ -244,8 +244,10 @@
 		<form action="/ruserba/barang" method="get">
 			<h4>Search</h4>
 			<p onclick='closesearch()'>x</p>
-			<input type="text" id="suggestName" name="nama_barang" value="" placeholder="Nama Barang" autocomplete="off" onkeyup="searchSuggestions(this);">
-			<div id="suggestions">
+			<div onclick="document.getElementById('suggestions').classList.add('hidden')">
+				<input type="text" id="suggestName" name="nama_barang" value="" placeholder="Nama Barang" autocomplete="off" onkeyup="searchSuggestions(this);">
+				<div id="suggestions" class="hidden">
+				</div>
 			</div>
 			<select name="kategori">
 				<option value="">All Categories</option>

@@ -81,7 +81,7 @@ public class TambahBarang extends HttpServlet {
 		if (isLogin)
 		{
 		    // Create path components to save the file
-		    String path = "/home/habibie/workspace/ruserba/WebContent/images/barang";
+		    String path = "WebContent/images/barang";
 		    Part filePart = request.getPart("file");
 		    System.out.println(request.getParameter("nama_barang")+request.getParameter("stok"));
 		    
