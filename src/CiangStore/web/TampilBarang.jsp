@@ -26,18 +26,6 @@
 
                     <div id="dagangan">
 
-                            <div id="sort-bar" class="frame">
-                                    <div class="kolom-4">&nbsp;</div>
-                                        <select name="sort-combo-box" id="sort-box" class="kolom-5" onChange="document.location = this.value" value="GO">
-                                                <option value="">Urutkan berdasarkan...</option>
-                                                <option value="TampilBarang.jsp?kategori=<%=request.getParameter("kategori")%>&sortby=nama&mode=ASC">Sort By Nama ASC</option>
-                                                <option value="TampilBarang.jsp?kategori=<%=request.getParameter("kategori")%>&sortby=harga&mode=ASC">Sort By Harga ASC</option>
-                                                <option value="TampilBarang.jsp?kategori=<%=request.getParameter("kategori")%>&sortby=nama&mode=DESC">Sort By Nama DESC</option>
-                                                <option value="TampilBarang.jsp?kategori=<%=request.getParameter("kategori")%>&sortby=harga&mode=DESC">Sort By Harga DESC</option>
-                                        </select>  
-                            </div>
-        
-                            
                             <!-- Dagangan Baris 1 -->
                             <div class="frame">
                                 <%                      
@@ -50,20 +38,14 @@
 
                                     con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
 
-                                    PreparedStatement st = null;
+                                    PreparedStatement st;
                                     ResultSet rs;
                                     
                                     String kategori =  request.getParameter("kategori");
                                     
-                                    if(request.getParameter("sortby")==null) {
-                                        st = con.prepareStatement("SELECT * FROM produk WHERE kategori=?");
-                                        st.setString(1,kategori);
-                                    } else {
-                                 
-                                        st = con.prepareStatement("SELECT * FROM produk WHERE kategori=? ORDER BY " + request.getParameter("sortby") + " " + request.getParameter("mode"));
-                                        st.setString(1,kategori);
-          
-                                    }
+
+                                    st = con.prepareStatement("SELECT * FROM produk WHERE kategori=?");
+                                    st.setString(1,kategori);
                                     
                                     rs = st.executeQuery();
                                     st.clearParameters();
@@ -80,12 +62,17 @@
                                                     <div class="kolom-6">
                                                             <p class="nama-produk-b"><a href="DetailBarang.jsp?operation=passing&id=<%=rs.getString(1) %>"><%=rs.getString(3) %></a></p>
                                                             <p class="harga">Harga: Rp<%=rs.getString(4) %>,00 /kg</p>
+                                                            <p class="harga">Stok: <%=rs.getString(7) %> pcs</p> 
                                                             <div class="frame buy-bar">
-                                                                    <form name="buy-form" action="buy.php" onsubmit="return validateForm('buy-form', 'buy', 'Banyaknya barang..')">
-                                                                            <input class="kolom-9 buy-box" type="text" name="buy" value="Banyaknya barang.." onfocus="checkclear(this)" onblur="checkempty(this, 'Banyaknya barang..')"> 
+								<form name="buy-form" action="cart.jsp" onsubmit="return validateForm('buy-form', 'buy', 'Banyaknya barang..')">
+									<input class="kolom-9 buy-box" type="text" name="buy" value="Banyaknya barang.." onfocus="checkclear(this)" onblur="checkempty(this, 'Banyaknya barang..')"> 
+									<% if(session.getAttribute("login_user")!=null) { %>
                                                                             <input class="kolom-1 buy-button" type="submit" value="">
-                                                                            <input type="hidden" name="jenis-dagangan" value="Daging Sapi">
-                                                                    </form>					
+                                                                        <% } %>
+									<input type="hidden" name="nama" value="<%=rs.getString(3) %>">
+									<input type="hidden" name="id" value="<%=rs.getString(1) %>">
+									<input type="hidden" name="harga" value="<%=rs.getString(4) %>">
+								</form>						
                                                             </div>
                                                     </div>
                                             </div>

@@ -22,7 +22,7 @@
 		
             <% 
 
-                if (session.getAttribute("Role").equals(1)) { 
+                if (session.getAttribute("user_role").equals(1)) { 
                     
                     if(request.getParameter("operation")!=null) {
                         

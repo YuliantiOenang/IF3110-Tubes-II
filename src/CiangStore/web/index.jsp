@@ -4,12 +4,12 @@
     Author     : RiandyRN
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%  
-    if(session.getAttribute("Role")==null) {
-        session.setAttribute("Role", 0);
-    }
-%>
+
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
@@ -52,39 +52,184 @@
 			<div class="kolom-8">
 				<div class="frame">
 					<div class="kolom-4 product">
-						<a href="">
-							<img class="gambar" src="res/img/product/prdct-daging-sapi.jpg" alt=""/>
-							<p class="nama-produk">Daging Sapi</p>
-							<p class="asal-produk">from Daging</p>
-						</a>
+						<%                      
+                                                    Connection con = null;
+
+                                                    try {
+                                                            try { 
+                                                            Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+                                                            }catch(ClassNotFoundException ce){out.println(ce);} 
+
+                                                    con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
+
+                                                    PreparedStatement st;
+                                                    ResultSet rs;
+                                                    
+                                                    String kategori = "Daging";
+                                                    st = con.prepareStatement("SELECT * FROM produk WHERE kategori=? ORDER BY jumlah_beli DESC LIMIT 0,1");
+                                                    st.setString(1, kategori);
+                                                    
+                                                    rs = st.executeQuery();
+                                                    st.clearParameters();
+
+                                                    while(rs.next()){ 
+
+
+                                                %>
+                                                    <a href="DetailBarang.jsp?operation=passing&id=<%= rs.getString(1) %>">
+                                                            <img class="gambar" src="res/img/product/<%= rs.getString(6) %>" alt=""/>
+                                                            <p class="nama-produk"><%= rs.getString(3) %></p>
+                                                            <p class="asal-produk">from <%= rs.getString(2) %></p>
+                                                    </a>
+                                                <% }
+                                                    } catch(Exception e) {
+                                                        out.println(e.toString());
+                                                    }
+                                                %>
 					</div>
 					<div class="kolom-4 product">
-						<a href="">
-							<img class="gambar" src="res/img/product/prdct-bayam-itali.jpg" alt=""/>
-							<p class="nama-produk">Bayam Itali</p>
-							<p class="asal-produk">from Sayuran</p>	
-						</a>						
+						<%                      
+                                                    con = null;
+
+                                                    try {
+                                                            try { 
+                                                            Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+                                                            }catch(ClassNotFoundException ce){out.println(ce);} 
+
+                                                    con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
+
+                                                    PreparedStatement st;
+                                                    ResultSet rs;
+                                                    
+                                                    String kategori = "Sayuran";
+                                                    st = con.prepareStatement("SELECT * FROM produk WHERE kategori=? ORDER BY jumlah_beli DESC LIMIT 0,1");
+                                                    st.setString(1, kategori);
+                                                    
+                                                    rs = st.executeQuery();
+                                                    st.clearParameters();
+
+                                                    while(rs.next()){ 
+
+
+                                                %>                                            
+                                                    <a href="DetailBarang.jsp?operation=passing&id=<%= rs.getString(1) %>">
+                                                            <img class="gambar" src="res/img/product/<%= rs.getString(6) %>" alt=""/>
+                                                            <p class="nama-produk"><%= rs.getString(3) %></p>
+                                                            <p class="asal-produk">from <%= rs.getString(2) %></p>
+                                                    </a>
+                                                <% }
+                                                    } catch(Exception e) {
+                                                        out.println(e.toString());
+                                                    }
+                                                %>                                                
 					</div>
 					<div class="kolom-4 product">
-						<a href="#">
-							<img class="gambar" src="res/img/product/prdct-beras-carrefour.jpg" alt=""/>
-							<p class="nama-produk">Beras Carrefour</p>
-							<p class="asal-produk">from Beras</p>
-						</a>							
+                                                <%                      
+                                                    con = null;
+
+                                                    try {
+                                                            try { 
+                                                            Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+                                                            }catch(ClassNotFoundException ce){out.println(ce);} 
+
+                                                    con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
+
+                                                    PreparedStatement st;
+                                                    ResultSet rs;
+                                                    
+                                                    String kategori = "Beras";
+                                                    st = con.prepareStatement("SELECT * FROM produk WHERE kategori=? ORDER BY jumlah_beli DESC LIMIT 0,1");
+                                                    st.setString(1, kategori);
+                                                    
+                                                    rs = st.executeQuery();
+                                                    st.clearParameters();
+
+                                                    while(rs.next()){ 
+
+
+                                                %> 
+                                                    <a href="DetailBarang.jsp?operation=passing&id=<%= rs.getString(1) %>">
+                                                            <img class="gambar" src="res/img/product/<%= rs.getString(6) %>" alt=""/>
+                                                            <p class="nama-produk"><%= rs.getString(3) %></p>
+                                                            <p class="asal-produk">from <%= rs.getString(2) %></p>
+                                                    </a>
+                                                <% }
+                                                    } catch(Exception e) {
+                                                        out.println(e.toString());
+                                                    }
+                                                %>
 					</div>
 					<div class="kolom-4 product">
-						<a href="">
-							<img class="gambar" src="res/img/product/prdct-nugget-fiesta.jpg" alt=""/>
-							<p class="nama-produk">Chicken Nugget</p>
-							<p class="asal-produk">from Frozen Food</p>		
-						</a>						
+                                                <%                      
+                                                    con = null;
+
+                                                    try {
+                                                            try { 
+                                                            Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+                                                            }catch(ClassNotFoundException ce){out.println(ce);} 
+
+                                                    con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
+
+                                                    PreparedStatement st;
+                                                    ResultSet rs;
+                                                    
+                                                    String kategori = "FrozenFood";
+                                                    st = con.prepareStatement("SELECT * FROM produk WHERE kategori=? ORDER BY jumlah_beli DESC LIMIT 0,1");
+                                                    st.setString(1, kategori);
+                                                    
+                                                    rs = st.executeQuery();
+                                                    st.clearParameters();
+
+                                                    while(rs.next()){ 
+
+
+                                                %>
+                                                    <a href="DetailBarang.jsp?operation=passing&id=<%= rs.getString(1) %>">
+                                                            <img class="gambar" src="res/img/product/<%= rs.getString(6) %>" alt=""/>
+                                                            <p class="nama-produk"><%= rs.getString(3) %></p>
+                                                            <p class="asal-produk">from <%= rs.getString(2) %></p>
+                                                    </a>	
+                                                <% }
+                                                    } catch(Exception e) {
+                                                        out.println(e.toString());
+                                                    }
+                                                %>   
 					</div>
 					<div class="kolom-4 product">
-						<a href="">
-							<img class="gambar" src="res/img/product/prdct-icecream-magnum.png" alt=""/>
-							<p class="nama-produk">Ice Cream</p>
-							<p class="asal-produk">from Snack</p>
-						</a>						
+                                                <%                      
+                                                    con = null;
+
+                                                    try {
+                                                            try { 
+                                                            Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+                                                            }catch(ClassNotFoundException ce){out.println(ce);} 
+
+                                                    con = DriverManager.getConnection("jdbc:mysql://localhost/wbd_ciangstore","root","");
+
+                                                    PreparedStatement st;
+                                                    ResultSet rs;
+                                                    
+                                                    String kategori = "Snack";
+                                                    st = con.prepareStatement("SELECT * FROM produk WHERE kategori=? ORDER BY jumlah_beli DESC LIMIT 0,1");
+                                                    st.setString(1, kategori);
+                                                    
+                                                    rs = st.executeQuery();
+                                                    st.clearParameters();
+
+                                                    while(rs.next()){ 
+
+
+                                                %>                                            
+                                                    <a href="DetailBarang.jsp?operation=passing&id=<%= rs.getString(1) %>">
+                                                            <img class="gambar" src="res/img/product/<%= rs.getString(6) %>" alt=""/>
+                                                            <p class="nama-produk"><%= rs.getString(3) %></p>
+                                                            <p class="asal-produk">from <%= rs.getString(2) %></p>
+                                                    </a>
+                                                <% }
+                                                    } catch(Exception e) {
+                                                        out.println(e.toString());
+                                                    }
+                                                %>                                                     
 					</div>					
 				</div>
 			</div>

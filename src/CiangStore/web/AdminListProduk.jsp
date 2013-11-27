@@ -21,7 +21,7 @@
 
 	<div id="container">
 		
-            <% if (session.getAttribute("Role").equals(1)) { %>
+            <% if (session.getAttribute("user_role").equals(1)) { %>
                 
                 <jsp:include page="Header.jsp"/>
                 <jsp:include page="AdminNavbar.jsp"/>

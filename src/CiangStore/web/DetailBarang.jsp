@@ -62,14 +62,19 @@
 						<div class="kolom-6">
 							<p class="nama-produk-b"><a href="#"><%=rs.getString(3)%></a></p>
 							<p class="harga">Harga: Rp<%=rs.getString(4) %>,00 /kg</p>
+                                                        <p class="harga">Stok: <%=rs.getString(7) %> pcs</p>
 							<div class="frame buy-bar">
-								<form name="buy-form" action="buy.php" onsubmit="return validateForm('buy-form', 'buy', 'Banyaknya barang..')">
-									Deskripsi: <br/><textarea name="desc"></textarea>
+								<form name="buy-form" action="cart.jsp" onsubmit="return validateForm('buy-form', 'buy', 'Banyaknya barang..')">
+                                                                        Deskripsi: <br/> <textarea name="desc"></textarea>
                                                                         <input class="kolom-9 buy-box" type="text" name="buy" value="Banyaknya barang.." onfocus="checkclear(this)" onblur="checkempty(this, 'Banyaknya barang..')"> 
-									<input class="kolom-1 buy-button" type="submit" value="">
-                                                        
-                                                                        <input type="hidden" name="jenis-dagangan" value="Daging Sapi">
-								</form>					
+									<% if(session.getAttribute("login_user")!=null) { %>
+                                                                            <input class="kolom-1 buy-button" type="submit" value="">
+                                                                        <% } %>
+									<input type="hidden" name="nama" value="<%=rs.getString(3) %>">
+									<input type="hidden" name="id" value="<%=rs.getString(1) %>">
+									<input type="hidden" name="harga" value="<%=rs.getString(4) %>">
+								</form>	
+                                                            
 							</div>
 						</div>
 					</div>

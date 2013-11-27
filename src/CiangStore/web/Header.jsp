@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- Header Section -->
+<script src="js/login.js"></script>
 <div id="header" class="frame">
         <div class="kolom-7">
             <a href="index.jsp"><img src="res/img/logo.png" alt="" id="logo"/></a>
@@ -17,18 +18,38 @@
                         <div id="user" class="frame">
                                 <img id="user-pict" class="kolom-5" src="res/img/userpict_h.png" alt=""/>
                                 <div id="user-text" class="kolom-7">
-                                        <h3>Welcome, <span class="user-name">Riandy</span>!</h3>
-                                        <p id="user-control">
-                                                <span class="edit-logout"><a href="">Edit Profile</a></span>
-                                                &nbsp;or&nbsp;
-                                                <span class="edit-logout"><a href="">Logout</a></span>
-                                        </p>
+                                        <% if (session.getAttribute("login_user") != null){ %>
+										
+											<h3>Welcome, <span class="user-name"><%= session.getAttribute("login_user")%></span>!</h3>
+											<p id="user-control">
+													<span class="edit-logout"><a href="profile.jsp">Edit Profile</a></span>
+													&nbsp;or&nbsp;
+													<span class="edit-logout"><a href="logout.jsp">Logout</a></span>
+											</p>
 
-                                        <% if (session.getAttribute("Role").equals(1)) { %>
-                                            <a href="AdminPanel.jsp" class="btn btn-admin">Admin Panel</a>
-                                        <% } else { %>                                   
-                                            <a href="#" class="btn">Check Your Cart</a>
-                                        <% } %>
+											<% if (session.getAttribute("user_role").equals(1)) { %>
+												<a href="AdminPanel.jsp" class="btn btn-admin">Admin Panel</a>
+											<% } else { %>
+                                                                                                
+                                                                                        <% 
+                                                                                            if(session.getAttribute("cc_validated")!=null) {
+                                                                                             if(session.getAttribute("cc_validated").equals(1)) { %>
+												<a href="cart.jsp" class="btn">Check Your Cart</a>
+											<% } else { %>
+                                                                                                <a href="register_card.jsp" class="btn">Check Your Cart</a>
+                                                                                        <% }
+                                                                                        }
+                                                                                           }
+											} else { %>
+											<p id="user-control">
+													<span class="edit-logout"><a href="login.jsp" onclick="return login()"> Login</a></span>
+													&nbsp;or&nbsp;
+													<span class="edit-logout"><a href="register.jsp">Register</a></span>
+											</p>	
+											
+											<%} %>
+											
+										
                                 </div>
                         </div>
 
