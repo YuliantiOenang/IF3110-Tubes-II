@@ -14,8 +14,10 @@ function login() {
 					document.getElementById('loading').innerHTML = "Anda berhasil login sebagai admin";
 					window.location = "http://localhost/phpmyadmin";
 				}
-				document.getElementById('loading').innerHTML = "Anda berhasil login";
-				window.location = server+"/home";
+				else {
+					document.getElementById('loading').innerHTML = "Anda berhasil login";
+					window.location = server+"/home";
+				}
 			} else {
 				document.getElementById('loading').innerHTML = "Username atau password salah";
 				// alert('Username atau password salah');
