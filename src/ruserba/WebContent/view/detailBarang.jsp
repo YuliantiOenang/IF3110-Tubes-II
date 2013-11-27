@@ -9,7 +9,7 @@
 </script>
 <h1 class='small-header'><%= B.nama.get(0) %></h1>
 <div class='item_pict'>
-	<img src='/ruserba/img/barang/<%= B.gambar.get(0) %>' onload='fitpict(this)' ></img>
+	<img src='/ruserba/images/barang/<%= B.gambar.get(0) %>' onload='fitpict(this)' ></img>
 </div>
 
 <div class='item_detail'>
