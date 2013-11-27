@@ -5,8 +5,8 @@
 <head><script src="UserAJAX.js"></script></head>
 
 <!-- Body -->
-<body>
-
+<body onload="LoginRedirection()">
+<%@ include file="LoginBar.jsp" %>
 <!-- JSP Script -->
 
 <!-- Form Pendaftaran -->	

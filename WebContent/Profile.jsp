@@ -6,6 +6,8 @@
 <script src="UserAJAX.js"></script>
 </head>
 
+<%@ include file="LoginBar.jsp" %>
+
 <!-- Body -->
 <body onload="LoginRedirection(); InitializeValue()">
 

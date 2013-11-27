@@ -1,7 +1,11 @@
 .panel {
     background-color: #444;
-    height: 34px;
-    padding: 10px;
+    padding: 5px;
+    text-align: right;
+}
+
+.panel #regislink{
+	color: white;
 }
 .overlay {
     background-color: rgba(0, 0, 0, 0.6);
