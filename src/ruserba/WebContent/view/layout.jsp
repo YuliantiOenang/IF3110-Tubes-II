@@ -90,7 +90,7 @@
 <script src="/ruserba/js/suggest.js" type="text/javascript"></script>
 <script src="/ruserba/js/shop.js" type="text/javascript"></script>
 </head>
-<body onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
+<body>
 	<%
 		Kategori K = Helper.findAllKategori();
 	%>
@@ -141,7 +141,7 @@
 						adalah segalanya.
 					</h2>
 					<a href='https://twitter.com/darksta5'><img alt=''
-						title='@calvinsalvy' src='img/site/twitter.png' id='footer_img' /></a>
+						title='@calvinsalvy' src='/ruserba/img/site/twitter.png' id='footer_img' /></a>
 				</div>
 			</div>
 			<div id='content_frame' onLoad="RefreshCartandShow()">
@@ -162,7 +162,7 @@
 						class='btn right'>Login</button>
 				</form>
 			</div>
-			<script src="js/login.js"></script>
+			<script src="/ruserba/js/login.js"></script>
 			<script>
 				var server = "";
 			</script>

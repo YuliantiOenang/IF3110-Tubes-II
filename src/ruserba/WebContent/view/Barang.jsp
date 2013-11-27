@@ -6,4 +6,4 @@ Kategori (<a href="#" onclick="init('/ruserba/barang','kategori','ASC','<%=reque
 
 <table id="ISI">
 </table>
-<center><img src="/ruserba/images/loader.gif"></center>
+<center><img src="/ruserba/images/loader.gif" onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')"></center>
