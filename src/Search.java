@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kelas.Barang;
+import kelas.Database;
 
 /**
  * Servlet implementation class Search
@@ -45,7 +46,7 @@ public class Search extends HttpServlet {
 		
 		try {
 			Class.forName("org.gjt.mm.mysql.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/"+db, "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/"+db, Database.getUser(), Database.getPass());
 			System.out.println (db+ "database successfully opened.");
 			
 			Statement state = con.createStatement();

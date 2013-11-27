@@ -14,12 +14,14 @@
 	<link rel="stylesheet" href="css/index.css" type="text/css">
 	<%
 		out.println("<h1>BARANG POPULER</h1>");
+		int no = 1;
 		for(int i=0;i<5;i++){
 			out.println("<h1>Kategori: " + request.getAttribute("namaKategori" + i) + "<br/></h1>");
 			ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangKategori" + i);
 			%>
 			<div class="pull_left">
 			<%
+			
 			for(Barang b: barangs){
 				%>
 				<div class="list_barang">
@@ -29,9 +31,15 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
+						<form class="cart_buy">
+							<input type='text' id='quant<%= no %>' value='0' size=7 >
+							<img class="cart_button" src="res/addtocart.png" width=125 onclick="validate(<%= b.getId_inven() %>, <%= no %>)">
+						</form>
+						<div class="notif" id='notif<%=no%>'></div>
 					</div>
 				</div>
 				<%
+				no++;
 			}
 			
 			%>
@@ -42,4 +50,5 @@
 	%>
 	</div>
 </body>
+<script src="transaction.js"></script>
 </html>

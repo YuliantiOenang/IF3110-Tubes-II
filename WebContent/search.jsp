@@ -10,22 +10,6 @@
 <body>
 	<div class="page_container">
 		<%@ include file="template/template.jsp" %> 
-		<br/><br/><br/>
-		<form action="search" method="get">
-			<div class='sbox'>
-				<div id='sb_name'>Nama:</div><div class='sb_value'><input type="text" name="query_name" size="20" onkeyup="showResult(this.value)"></div>
-				<div id='sb_name'>Harga:</div><div class='sb_value'><input type="text" name="query_price" size="20"></div>
-				<div id='sb_name'>Kategori:</div><div class='sb_value2'><select name="query_category">	
-				  <option value="roti">Roti</option>
-				  <option value="minuman">Minuman</option>
-				  <option value="kalengan">Makanan Kalengan</option>
-				  <option value="segar">Makanan Segar</option>
-				  <option value="peralatan">Peralatan Rumah</option>
-				</select></div>
-				<input class="search_image" type="image" src="res/search.png" width="30px">
-			</div>
-			<div id="livesearch"></div>
-		</form>
 		<%
 		
 		String query_name = request.getParameter("query_name");
@@ -61,7 +45,7 @@
 		
 		if(barangs.size() == 0){
 			%>
-				<p>Tidak ada barang yang sesuai dengan kriteria tersebut.</p>
+				<p class="search_none">Tidak ada barang yang sesuai dengan kriteria tersebut.</p>
 			<%
 		} else {
 		
@@ -80,12 +64,12 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/><br/>
-						<form>
+						<form class="cart_buy">
 							<input type='text' id='quant<%= no %>' value='0' size=7 >
 							<img class="cart_button" src="res/addtocart.png" width=125 onclick="validate(<%= b.getId_inven() %>, <%= no %>)">
 						</form>
 						
-						<div id='notif<%=no%>'></div>
+						<div class="notif" id='notif<%=no%>'></div>
 					</div>
 				</div>
 				<%
@@ -111,5 +95,5 @@
 		</div>
 		</div>
 </body>
-<script src="transaction.js"></script>
+	<script src="transaction.js"></script>
 </html>
