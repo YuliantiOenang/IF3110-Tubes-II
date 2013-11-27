@@ -50,8 +50,13 @@ function validate(id_barang, id_div){
 	xmlhttp.send(data);
 }
 
-function checkCreditCard(){
-	//alert("Checking if credit card is exist on js");
+function checkUser(){
+	//cek udah login?
+	if(localStorage.user_id == undefined){
+		window.location = "home";
+	}
+	
+	//cek credit card != 0?
 	if(localStorage.cardnum == 0){
 		window.location = "CreditCard.jsp";
 	}
