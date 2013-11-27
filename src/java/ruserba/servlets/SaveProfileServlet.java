@@ -6,10 +6,14 @@ package ruserba.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import ruserba.beans.User;
+import ruserba.database.DatabaseHelper;
 
 /**
  *
@@ -31,20 +35,43 @@ public class SaveProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SaveProfileServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SaveProfileServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+        
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String confirm = request.getParameter("confirm");
+        String alamat = request.getParameter("alamat");
+        String kotakabupaten = request.getParameter("kotakabupaten");
+        String kodepos = request.getParameter("kodepos");
+        String provinsi = request.getParameter("provinsi");
+        String nohp = request.getParameter("nohp");
+        
+        
+        if(name != null && user != null) {
+            String query = "update user set password='"+ password +"' where username='" + user.getUsername() + "'";
+            DatabaseHelper.Connect();
+            DatabaseHelper.execute(query);
+            query = "update user_profile set nama='"+ name +
+                    "', alamat='"+ alamat 
+                    +"', kota='" + kotakabupaten + 
+                    "', kode_pos='"+ kodepos +
+                    "', provinsi='"+provinsi+
+                    "', nomor_ponsel='"+ nohp +"' where username='" + user.getUsername() + "'";
+            user.setName(name);
+            user.setAlamat(alamat);
+            user.setKota(kotakabupaten);
+            user.setKodepos(kodepos);
+            user.setProvinsi(provinsi);
+            user.setPonsel(nohp);
+            
+            DatabaseHelper.execute(query);
+            DatabaseHelper.Disconnect();
         }
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

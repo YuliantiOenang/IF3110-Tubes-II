@@ -17,6 +17,7 @@ public class User {
     String kodepos = "";
     String provinsi = "";
     String ponsel = "";
+    String password = "";
 
     public String getUsername() {
         return username;
@@ -81,6 +82,13 @@ public class User {
     public void setPonsel(String ponsel) {
         this.ponsel = ponsel;
     }
-    
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
     
 }

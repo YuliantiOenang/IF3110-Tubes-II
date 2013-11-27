@@ -22,12 +22,12 @@
                 <span class='formlabel'>Nama lengkap</span><input type='text' name='name'value = '<jsp:getProperty name="user" property="name"/>'><br />
                 <span id='errorname' class='formerrortext'>Nama lengkap harus terdiri dari paling sedikit 2 kata</span><br />
 
-                <span class='formlabel'>Kata sandi</span><input type='password' name='password' value=''><br />
+                <span class='formlabel'>Kata sandi</span><input type='password' name='password' value='<jsp:getProperty name="user" property="password"/>'><br />
                 <span id='errorpass' class='formerrortext'>Kata sandi paling sedikit 8 karakter</span>
                 <span id='errorpassuser' class='formerrortext'>Kata sandi tidak boleh sama dengan username</span>
                 <span id='errorpassemail' class='formerrortext'>Kata sandi tidak boleh sama dengan alamat email</span><br />
 
-                <span class='formlabel'>Konfirmasi kata sandi</span><input type='password' name='confirm'><br />
+                <span class='formlabel'>Konfirmasi kata sandi</span><input type='password' name='confirm' value='<jsp:getProperty name="user" property="password"/>'><br />
                 <span id='errorcpass' class='formerrortext'>Kata sandi tidak cocok</span><br />
 
                 <span class='formlabel'>Alamat</span><input type='text' name='alamat' value="<jsp:getProperty name="user" property="alamat"/>"><br />

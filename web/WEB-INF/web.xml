@@ -19,6 +19,10 @@
         <servlet-class>ruserba.servlets.RegisterKartuServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SaveProfileServlet</servlet-name>
+        <servlet-class>ruserba.servlets.SaveProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RequestServlet</servlet-name>
         <servlet-class>ruserba.servlets.RequestServlet</servlet-class>
     </servlet>
@@ -37,6 +41,10 @@
     <servlet-mapping>
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveProfileServlet</servlet-name>
+        <url-pattern>/SaveProfileServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditItemServlet</servlet-name>
