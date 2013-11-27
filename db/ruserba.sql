@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 3.4.11.1deb1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 27, 2013 at 06:54 AM
+-- Host: localhost
+-- Generation Time: Nov 27, 2013 at 03:04 PM
 -- Server version: 5.5.32
--- PHP Version: 5.4.16
+-- PHP Version: 5.4.6-1ubuntu1.4
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ruserba`
 --
-CREATE DATABASE IF NOT EXISTS `ruserba` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ruserba`;
 
 -- --------------------------------------------------------
 
@@ -39,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `kota` varchar(128) NOT NULL,
   `kodepos` varchar(128) NOT NULL,
   `telepon` varchar(128) NOT NULL,
-  `auth_key` varchar(128) DEFAULT NULL,
+  `auth_key` varchar(128) NOT NULL DEFAULT '0',
   `role` int(5) NOT NULL,
   `transaksi` int(5) NOT NULL,
   PRIMARY KEY (`id`)
@@ -64,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `barang` (
   `id_kategori` int(11) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `harga` int(11) NOT NULL,
-  `gambar` varchar(128) DEFAULT NULL,
+  `gambar` varchar(128) NOT NULL DEFAULT '0',
   `stok` int(11) NOT NULL,
   `counter` int(11) NOT NULL DEFAULT '0',
   `keterangan` text NOT NULL,
