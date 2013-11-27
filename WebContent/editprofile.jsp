@@ -134,12 +134,15 @@ function validate(text,num,pas)
 	    		break;
 	    		case 5:
     			switch(xmlhttp.responseText){
-	    				case '0':
-	    					document.getElementById("validasiEmail").innerHTML=validpic;
-							break;
-	    				case '1':
-		    				document.getElementById("validasiEmail").innerHTML=invalidpic+" (Invalid Email)";
-	    				break;
+						case '0':
+							document.getElementById("validasiEmail").innerHTML=validpic;
+						break;
+						case '1':
+							document.getElementById("validasiEmail").innerHTML=validpic;
+						break;
+						case '2':
+							document.getElementById("validasiEmail").innerHTML=invalidpic+" (Invalid Email!)";
+						break;
 	    			}
 	    		break;
 	    	}

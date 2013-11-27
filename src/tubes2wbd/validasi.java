@@ -87,13 +87,23 @@ public class validasi extends HttpServlet {
 			else out.print(1);
 			break;
 		case "5": // email validator
-			regex = "^[a-zA-Z0-9\\_]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9.]{2,}$";
-			if (data.matches(regex)) {
-				out.print(0);
-			}
-			else {
-				out.print(1);
-			}
+			try{
+			    Class.forName("com.mysql.jdbc.Driver");
+			    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		        Statement stmt = conn.createStatement();
+		        String sql = "SELECT * FROM anggota WHERE email = '"+data+"'";
+				regex = "^[a-zA-Z0-9\\_\\.]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9.]{2,}$";
+		        ResultSet rs = stmt.executeQuery(sql);
+		        boolean rsb = rs.next();
+		        if (data.matches(regex) && !rsb) {
+					out.print(0);
+				}
+				else if (rsb) {
+					out.print(1);
+				}
+				else out.print(2);
+	      	}catch(SQLException se){}catch(Exception e){}//end try
+			
 			break;
 		default:
 			break;
