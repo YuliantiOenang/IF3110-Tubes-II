@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -36,6 +37,7 @@ public class VerLoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String username;
 		String password;
+		PrintWriter out = response.getWriter();
 		username = request.getParameter("username");
 		password = request.getParameter("password");
 

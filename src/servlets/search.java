@@ -67,25 +67,25 @@ PrintWriter out = response.getWriter();
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "+
 							       "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga+
 							       "AND kategori_barang = "+kategori;
-					search_query = "SELECT * FROM `progin_13511021`.barang "+
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "+
 							       "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga+
 							       "AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}else { //kategori kosong
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga;
-					search_query = "SELECT * FROM `progin_13511021`.barang "
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
 								 + "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}
 			}else{ //harga kosong
 				if(!kategori.isEmpty()) {
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE nama_barang like '%"+nama_barang+"%' AND kategori_barang = "+kategori;
-					search_query = "SELECT * FROM `progin_13511021`.barang "
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
 							     + "WHERE nama_barang like '%"+nama_barang+"%' AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				} else {
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE nama_barang like '%"+nama_barang+"%'";
-					search_query = "SELECT * FROM `progin_13511021`.barang "
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
 							     + "WHERE nama_barang like '%"+nama_barang+"%' ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}
 			}
@@ -94,19 +94,19 @@ PrintWriter out = response.getWriter();
 				if(!kategori.isEmpty()){ //ada kategori
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE harga_barang BETWEEN 0 AND "+harga+"AND kategori_barang = "+kategori;
-					search_query = "SELECT * FROM `progin_13511021`.barang "
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
 							     + "WHERE harga_barang BETWEEN 0 AND "+harga+"AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}else { //kategori kosong
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE harga_barang BETWEEN 0 AND "+harga;
-					search_query = "SELECT * FROM `progin_13511021`.barang "
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
 							     + "WHERE harga_barang BETWEEN 0 AND "+harga+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}
 			} else { //gak ada harga
 				if(!kategori.isEmpty()) {
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE kategori_barang="+kategori;
-					search_query = "SELECT * FROM `progin_13511021`.barang "
+					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
 							     + "WHERE kategori_barang="+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}
 			}

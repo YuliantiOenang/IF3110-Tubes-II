@@ -55,11 +55,11 @@ public class index extends HttpServlet {
 		ResultSet rs_olahraga = null;
 		ResultSet rs = null;
 
-		String q_pangan = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 1 ORDER BY n_beli DESC LIMIT 0,3";
-		String q_pakaian = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 2 ORDER BY n_beli DESC LIMIT 0,3";
-		String q_elektronik = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 3 ORDER BY n_beli DESC LIMIT 0,3";
-		String q_rumahtangga = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 4 ORDER BY n_beli DESC LIMIT 0,3";
-		String q_olahraga = "SELECT * FROM `progin_13511021`.barang WHERE kategori_barang = 5 ORDER BY n_beli DESC LIMIT 0,3";
+		String q_pangan = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = 1 ORDER BY n_beli DESC LIMIT 0,3";
+		String q_pakaian = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = 2 ORDER BY n_beli DESC LIMIT 0,3";
+		String q_elektronik = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = 3 ORDER BY n_beli DESC LIMIT 0,3";
+		String q_rumahtangga = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = 4 ORDER BY n_beli DESC LIMIT 0,3";
+		String q_olahraga = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = 5 ORDER BY n_beli DESC LIMIT 0,3";
 		String q = "SELECT COUNT(nama_barang) from `barang`";
 		
 		try {
@@ -122,7 +122,7 @@ public class index extends HttpServlet {
 		request.setAttribute("olahraga", olahraga);
 		session.setAttribute("n_barang", n_barang+1000);
 		System.out.println("n_barang : "+n_barang);
-		RequestDispatcher view = request.getRequestDispatcher("/index.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request,
