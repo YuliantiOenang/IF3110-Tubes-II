@@ -12,42 +12,43 @@
 
 <p>
 Silakan registrasi. bagian yang berlabel bintang (*) wajib diisi.
-<button id="button_right">Register Me!</button>
+<button id="register" onclick="cobaRegister()">Register Me!</button>
+<div id=responseRegister> </div>
 </p>
 <div id="register_form">
 	<label>Username *</label>
-	<input type="text" id="username" onblur="cekUsername()" required>
+	<input type="text" id="username" name="username" onblur="cekUsername()" required>
 	<div id=responseUsername> </div>
 	<br>
 	<label>Email *</label>
-	<input type="email" id="email" onblur="cekEmail()" required>
+	<input type="email" id="email" name="email" onblur="cekEmail()" required>
 	<div id=responseEmail> </div>
 	<br>
 	<label>Password *</label>
-	<input type="password" id="password" required>
+	<input type="password" id="password" name="password" required>
 	<br>
 	<label>Confirm Password *</label>
-	<input type="password" id="confirm_pwd" onblur="cekPasswordMatch()" required>
+	<input type="password" id="confirm_pwd" onblur="cekPassword()" required>
 	<div id=responsePassword> </div>
 	<br>
 	<label>Full Name *</label>
-	<input type="text" id="fullname" onblur="cekFullname()" required>
+	<input type="text" id="nama_lengkap" name="nama_lengkap" onblur="cekFullname()" required>
 	<div id=responseFullname> </div>
 	<br>
 	<label>Provinsi</label>
-	<input type="text" id="provinsi">
+	<input type="text" id="provinsi" name="provinsi">
 	<br>
 	<label>Kota/Kabupaten</label>
-	<input type="text" id="kota">
+	<input type="text" id="kota" name="kota">
 	<br>
 	<label>Alamat</label>
-	<input type="text" id="alamat">
+	<input type="text" id="alamat" name="alamat">
 	<br>
 	<label>Kode Pos</label>
-	<input type="text" id="kodepos" onblur="cekAngka(document.getElementById('kodepos').value)">
+	<input type="text" id="kode_pos" name="kode_pos">
 	<div id=responseAngka> </div>
 	<br>
 	<label>Telepon</label>
-	<input type="text" id="telepon" onblur="cekAngka(document.getElementById('telepon').value)">
+	<input type="text" id="telepon" name="kontak">
 	<div id=responseAngka> </div>
 </div>

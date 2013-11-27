@@ -38,6 +38,24 @@
 	<url-pattern>/cobaservlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>CheckUsername</servlet-name>
+	<servlet-class>com.ruserba.web.CheckUsernameService</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>CheckUsername</servlet-name>
+	<url-pattern>/checkusername</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>RegisterUser</servlet-name>
+	<servlet-class>com.ruserba.web.RegisterUserService</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>RegisterUser</servlet-name>
+	<url-pattern>/registeruser</url-pattern>
+</servlet-mapping>
+
 <listener>
 <listener-class>com.ruserba.web.DatabaseInit</listener-class>
 </listener>

@@ -202,6 +202,7 @@ public class Database {
 		else sort_method = "asc";
 		query_end_lst.add(sort_method);
 
+		if (attr.getJumlah() < 0) attr.setJumlah(2147483647);
 		query_end_lst.add("limit " + attr.getIndeks() + ", " + attr.getJumlah());
 
 		// Buat query end.

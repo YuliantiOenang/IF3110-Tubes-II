@@ -31,7 +31,7 @@
 				<div class="headertabcontent">
 					<%
 						for (Category cat : cat_list)
-							out.write("<a href=\"category?category_id=" + cat.getIdKategori() + "\">" + cat.getNamaKategori() + "</a>");
+							out.write("<a href=\"category.jsp?category_id=" + cat.getIdKategori() + "\">" + cat.getNamaKategori() + "</a>");
 					%>
 				</div> 
 			</div>
@@ -40,7 +40,7 @@
 				<input type="radio" id="headertab-2" name="headertab-group-1" />
 				<label for="headertab-2">Pencarian</label>
 				<div class="headertabcontent">
-					<form action="search" method="GET">
+					<form action="search.jsp" method="GET">
 						<label for="headersearchname">Nama barang</label><input type="text" id="headersearchname" name="product_name" />
 						<label for="headersearchcategory">Kategori</label>
 						<select id="headersearchcategory" name="category_id">

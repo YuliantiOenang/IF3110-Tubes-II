@@ -47,5 +47,4 @@
 	
 %>
 
-<% request.removeAttribute("msg"); %>
 <jsp:include page="/WEB-INF/jsp/end.jsp" />
