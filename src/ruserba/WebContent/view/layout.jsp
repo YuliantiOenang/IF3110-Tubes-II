@@ -122,7 +122,7 @@
 						<p class="left"> welcome, <a href='/ruserba/profile/index'><%= userlogged %></a>! (<a href='/ruserba/logout'>Logout</a>)
 						</p>
 						<p class="right">
-							<a href="cart/index') ?>">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
+							<a href="cart">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
 						</p>
 					<% } else { %>
 						<p>
