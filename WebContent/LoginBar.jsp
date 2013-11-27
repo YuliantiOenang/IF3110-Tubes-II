@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" >
     <head>
-        <link href="css/modal.css" rel="stylesheet" type="text/css" />
+    <script src ="UserAJAX.js"></script>
     </head>
-    <body>
-        <!-- Tombol Login -->
+    <body onload="InitializeBar()">
+        <!-- Tombol Login/Logout -->
         <div class="main">
             <div class="panel">
-          		<input type="button" value ="Log In" onclick = 'location.href="#login_form"'></input>
+          		<input type="button" id = "logbutton" value ="Log In" onclick = 'location.href="#login_form"'></input>
+          		<a href = "Registration.jsp" id = "regislink">Register</a>
             </div>
-
         </div>
 
         <!-- Pop Up -->
@@ -24,7 +24,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" value="" />
             </div>
-            <input type="button" value="Log In" />
+            <input type="button" value="Log In" onclick="Login()" />
 
             <a class="close" href="#close"></a>
         </div>

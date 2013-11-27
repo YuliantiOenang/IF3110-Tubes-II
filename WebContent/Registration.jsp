@@ -7,7 +7,7 @@
 </head>
 
 <!-- Body -->
-<body>
+<body onload = "LogoutRedirection()">
 
 <!-- JSP Script -->
 
