@@ -2,6 +2,12 @@
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="header.jsp" />
 <%
+	if(request.getAttribute("fullname")==null){		
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context
+				.getRequestDispatcher("/Profile");
+		dispatcher.forward(request, response);
+	}
 	out.print("<h3>"+request.getAttribute("fullname")+"</h3>");
 	out.print("<p>Nama :"+request.getAttribute("username")+"</p>");
 	out.print("<p>No.HP :"+request.getAttribute("mobile")+"</p>");

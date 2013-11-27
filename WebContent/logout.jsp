@@ -5,6 +5,5 @@
 		System.out.println("emang udah login nih");
 		session.invalidate();		
 	}
-
 	response.sendRedirect("/ruko/");
 %>

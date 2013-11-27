@@ -1,17 +1,20 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
+
+import bean.DatabaseAccess;
 
 /**
  * Servlet implementation class Card
@@ -44,45 +47,35 @@ public class Card extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO : cek user aktif
-		Connection conn = null;
-		Statement statement;
+		HttpSession session = request.getSession();
+		if (session.getAttribute("username") != null) {
+			String cardnumber = (String) request.getParameter("cardnum");
+			String nameoncard = (String) request.getParameter("namecard");
+			String expdate = (String) request.getParameter("expdate");
+			String cardowner = (String) session.getAttribute("username");
 
-		try {
-			String userName = "root";
-			String password = "";
-			String url = "jdbc:mysql://localhost/progin_13511021";
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection(url, userName, password);
-		} catch (Exception e) {
-			System.out.println("Cannot connect to database server");
+			String query = "INSERT INTO creditcard (card_id, card_nameon, card_expdate, card_owner) VALUES ('"
+					+ cardnumber
+					+ "','"
+					+ nameoncard
+					+ "','"
+					+ expdate
+					+ "','"
+					+ cardowner + "')";
+
+			System.out.println("woii -> " + query);
+
+			// Run the query
+			DatabaseAccess dbAccess = new DatabaseAccess();
+			System.out.print("UPDATE : " + dbAccess.doQueryUpdate(query));
+			
+
+		} else {
+			System.out.print("Gag Ada Session [Card.java : 69]");
 		}
-
-		String cardnumber = (String) request.getParameter("cardnum");
-		String nameoncard = (String) request.getParameter("username");
-		String expdate = (String) request.getParameter("expcard");
-		String cardowner = (String) request.getParameter("username");
-
-		String query = "INSERT INTO creditcard (card_id, card_nameon, card_expdate, card_owner) VALUES ('"
-				+ cardnumber
-				+ "','"
-				+ nameoncard
-				+ "','"
-				+ expdate
-				+ "','"
-				+ cardowner + "')";
-
-		// Run the query
-		try {
-			statement = conn.createStatement();
-			statement.executeUpdate(query);
-			System.out.println("Insert data succesfull");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		RequestDispatcher view = request
-				.getRequestDispatcher("/listbarang.jsp");
+		
+		RequestDispatcher view = request.getRequestDispatcher("");
 		view.forward(request, response);
+		System.out.print("PINDAH WOIII");
 	}
-
 }
