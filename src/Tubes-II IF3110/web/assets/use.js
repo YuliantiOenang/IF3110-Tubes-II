@@ -1,4 +1,4 @@
-var loginformhtml = "<div id=\"loginbox\" class=\"overlay\"><form class=\"popup\" method=\"post\" onSubmit=\"return submitlogin(this)\">" +
+var loginformhtml = "<div id=\"loginbox\" class=\"overlay\"><form class=\"popup\" method=\"post\" action=\"http://localhost:8080/tugas_web2/login.jsp\">" +
             "<h2>Login</h2>" +
             "<p><input name=\"nama_pengguna\" type=\"text\" placeholder=\"Nama Pengguna\">" +
             "<input name=\"kata_sandi\" type=\"password\" placeholder=\"Kata Sandi\">" +
@@ -369,3 +369,4 @@ var url = document.location.href;
 if(url.indexOf('profil') >= 0) {
 	getMoreIdentity();
 }
+

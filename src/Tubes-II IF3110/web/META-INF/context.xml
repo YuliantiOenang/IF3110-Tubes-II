@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/tugas_web2">
     <Resource name="jdbc/DB" auth="Container"
-        type="javax.sql.DataSource" username="wbd_user2" password="wbd@if3110"
+        type="javax.sql.DataSource" username="root"
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/tugas_wbd2"
         maxActive="20" maxIdle="10"

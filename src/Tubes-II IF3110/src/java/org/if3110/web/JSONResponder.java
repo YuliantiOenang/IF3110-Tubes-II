@@ -112,9 +112,38 @@ public class JSONResponder extends HttpServlet {
         if(res.next()) {
             status = new JSONObject().put("status", "success");
             do {
-                data.add(res.getString("nama"));
+                data.add(res.getString("kategori_nama"));
             } while(res.next());
             status.put("data", data);
+        } else {
+            status = new JSONObject().put("status", "failed");
+            status.put("data", "Tidak ada kategori didalam basis data.");
+        }
+        
+        con.close();
+        return status.toString();
+    }
+    
+    public String tabelbarang(int cat) throws Exception
+    {
+        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> img = new ArrayList<String>();
+        ArrayList<String> price = new ArrayList<String>();
+        JSONObject status;
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        ResultSet res = st.executeQuery("SELECT * FROM barang_data WHERE kategori_id="+cat+";");
+        if(res.next()) {
+            status = new JSONObject().put("status", "success");
+            do {
+                data.add(res.getString("nama"));
+                img.add(res.getString("image_url"));
+                price.add(res.getString("harga"));
+            } while(res.next());
+            status.put("data", data);
+            status.put("img", img);
+            status.put("price", price);
         } else {
             status = new JSONObject().put("status", "failed");
             status.put("data", "Tidak ada kategori didalam basis data.");
