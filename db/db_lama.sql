@@ -2,10 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Inang: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2013 pada 10.51
--- Versi Server: 5.5.32
--- Versi PHP: 5.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2013 at 07:42 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `alat_pesta`
+-- Database: `alat_pesta`
 --
 CREATE DATABASE IF NOT EXISTS `alat_pesta` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `alat_pesta`;
@@ -25,7 +25,7 @@ USE `alat_pesta`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE IF NOT EXISTS `customer` (
@@ -44,15 +44,15 @@ CREATE TABLE IF NOT EXISTS `customer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
--- Dumping data untuk tabel `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`no_customer`, `nama`, `kota`, `kodepos`, `email`, `hp`, `password`, `username`, `provinsi`, `alamat`, `card_number`) VALUES
-(4, 'Andrian Octavianus', 'Kudus', 59319, 'andrian.octo@gmail.com', 0, '31023102', 'gtsquadron', '', '', '1231312312'),
+(4, 'Andrian', 'Kudus', 0, 'andrian.octo@gmail.com', 0, 'asdfasdf', 'gtsquadron', 'jawawab', 'aaa', '1231312312'),
 (13, 'hhh', '', 0, 'krisdayanto@t.cd', 0, '312312312', 'andrian', 'brasdasd', 'asdasd', ''),
 (14, 'adasdasdasdasd afasdasd', 'asdasdasd', 123123, 'asdasd@das.dsf', 1213123123, '123123123', 'aasdasdasd', 'asdasdasd', '1312asdasdasd', ''),
 (15, 'tukul aja', '', 0, 'qwe@kj.mp', 0, '123123123', 'tukulArwana', '', '', ''),
-(16, 'Raden Fajar Hadria Putra', 'bandung', 14045, 'f@f.com', 2147483647, '1234', 'Fazkool', 'jaabra', 'kajaa', '1234567891234567'),
+(16, 'Raden Fajar Hadria Putra', 'bandung', 14045, 'f@f.com', 2147483647, '1234', 'Fazkool', 'jaabra', 'kajaa', ''),
 (24, 'asu wbd', 'bandung', 14045, 'asdf@yahoo.com', 898989, 'asdfasdf', 'asuwbd', 'jawa barat', 'jalannan', NULL),
 (25, 'asu wbd', 'bandung', 14045, 'asdf@yahoo.com', 898989, 'asdfasdf', 'asuwbd', 'jawa barat', 'jalannan', NULL),
 (26, 'asu wbd', 'bandung', 14045, 'asdf@yahoo.com', 898989, 'asdfasdf', 'asuwbd', 'jawa barat', 'jalannan', NULL),
@@ -73,7 +73,7 @@ INSERT INTO `customer` (`no_customer`, `nama`, `kota`, `kodepos`, `email`, `hp`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kartu_kredit`
+-- Table structure for table `kartu_kredit`
 --
 
 CREATE TABLE IF NOT EXISTS `kartu_kredit` (
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `kartu_kredit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kartu_kredit`
+-- Dumping data for table `kartu_kredit`
 --
 
 INSERT INTO `kartu_kredit` (`card_number`, `card_name`) VALUES
@@ -92,42 +92,32 @@ INSERT INTO `kartu_kredit` (`card_number`, `card_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keranjang`
+-- Table structure for table `keranjang`
 --
 
 CREATE TABLE IF NOT EXISTS `keranjang` (
-  `id_cart` int(11) NOT NULL AUTO_INCREMENT,
   `id_customer` int(10) NOT NULL,
   `id_alat` int(10) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `pesan` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_cart`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `pesan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `keranjang`
+-- Dumping data for table `keranjang`
 --
 
-INSERT INTO `keranjang` (`id_cart`, `id_customer`, `id_alat`, `jumlah`, `pesan`) VALUES
-(1, 0, 25, 11, 'standart'),
-(2, 0, 25, 11, 'standart'),
-(3, 0, 25, 11, 'standart'),
-(4, 0, 25, 11, 'standart'),
-(5, 0, 25, 11, 'standart'),
-(6, 0, 25, 11, 'standart'),
-(7, 16, 8, 6, 'null'),
-(8, 16, 8, 5, 'null'),
-(9, 16, 8, 8, 'null'),
-(10, 16, 8, 3, 'null'),
-(11, 16, 21, 9, 'null'),
-(12, 16, 21, 40, 'null'),
-(13, 16, 29, 45, 'null'),
-(14, 16, 13, 2, 'null');
+INSERT INTO `keranjang` (`id_customer`, `id_alat`, `jumlah`, `pesan`) VALUES
+(0, 25, 0, 'standart'),
+(0, 25, 0, 'standart'),
+(0, 25, 0, 'standart'),
+(0, 25, 0, 'standart'),
+(0, 25, 0, 'standart'),
+(0, 25, 4, 'standart');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `peralatan`
+-- Table structure for table `peralatan`
 --
 
 CREATE TABLE IF NOT EXISTS `peralatan` (
@@ -143,11 +133,11 @@ CREATE TABLE IF NOT EXISTS `peralatan` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
--- Dumping data untuk tabel `peralatan`
+-- Dumping data for table `peralatan`
 --
 
 INSERT INTO `peralatan` (`no_alat`, `nama`, `kategori`, `jumlah`, `harga`, `deskripsi`, `foto`, `status`) VALUES
-(1, 'Browny', 'Sweater', 1984, 400000, 'You like brown? THIS is brown! The silk is out of this world!', 'images/Sweater1.jpg', 'Tersedia'),
+(1, 'Browny', 'Sweater', 2000, 400000, 'You like brown? THIS is brown! The silk is out of this world!', 'images/Sweater1.jpg', 'Tersedia'),
 (2, 'Coldplay 1', 'TShirt', 2000, 75000, 'For Coldplay Fans out there!', 'images/TShirt1.jpg', 'Tersedia'),
 (3, 'Coldplay Mugs', 'Misc', 2000, 60000, 'A sleek black mug for your drinking pleasure', 'images/Misc1.jpg', 'Tersedia'),
 (4, 'Devil''s Jacket', 'Jaket', 1965, 150000, 'Jacket for Daredevils, I mean YOU!', 'images/Jaket1.jpg', 'tersedia'),
@@ -156,7 +146,7 @@ INSERT INTO `peralatan` (`no_alat`, `nama`, `kategori`, `jumlah`, `harga`, `desk
 (7, 'Coldplay 2', 'TShirt', 2000, 75000, 'For Coldplay Fans out there!', 'images/TShirt2.jpg', 'tersedia'),
 (8, 'Coldplay Pins', 'Misc', 2000, 30000, 'Pins for your Coldplay-ish stationary', 'images/Misc2.jpg', 'tersedia'),
 (9, 'Ghost Jacket', 'Jaket', 2000, 200000, 'Your choice for eerie fashion', 'images/Jaket2.jpg', 'tersedia'),
-(10, 'Pokemon Ruby Version', 'Pokemon', 1890, 300000, 'Experience the beautiful Hoenn Region!', 'images/Pokemon2.jpg', 'tersedia'),
+(10, 'Pokemon Ruby Version', 'Pokemon', 2000, 300000, 'Experience the beautiful Hoenn Region!', 'images/Pokemon2.jpg', 'tersedia'),
 (11, 'Live2012', 'Sweater', 2000, 200000, 'You''ve seen Coldplay Live 2012? Tell everyone you''ve seen it with this sweater!', 'images/Sweater3.jpg', 'tersedia'),
 (12, 'Coldplay 3', 'TShirt', 2000, 75000, 'For Coldplay Fans out there!', 'images/TShirt3.jpg', 'tersedia'),
 (13, 'Coldplay Hat', 'Misc', 2000, 80000, 'Wear your hat to proclaim yourself as a Coldplayer!', 'images/Misc3.jpg', 'tersedia'),
@@ -167,11 +157,11 @@ INSERT INTO `peralatan` (`no_alat`, `nama`, `kategori`, `jumlah`, `harga`, `desk
 (18, 'Mr. Jacket', 'Jaket', 700, 100000, 'Jacket for big guys and brave young men', 'images/Jaket5.jpg', 'aasdasd'),
 (19, 'Jajaccket', 'Jaket', 80, 40000, 'Weird name, cool style!', 'images/Jaket6.jpg', 'tersedia'),
 (20, 'Jacketron', 'Jaket', 909, 180000, 'Welcome to the future with this futuristic wear!', 'images/Jaket8.jpg', ''),
-(21, 'Lady Jacketine', 'Jaket', 78, 150000, 'Just for Ladies and Pinky Men', 'images/Jaket9.jpg', ''),
+(21, 'Lady Jacketine', 'Jaket', 80, 150000, 'Just for Ladies and Pinky Men', 'images/Jaket9.jpg', ''),
 (22, 'JJJ Jacket', 'Jaket', 7070, 70000, 'For the frugals', 'images/Jaket10.jpg', ''),
 (23, 'Sub-Lime', 'Jaket', 80, 120000, 'Sooo Limy!! For you who likes brightness', 'images/Jaket11.jpg', ''),
 (24, 'Orange', 'Jaket', 80, 200000, 'For fruity people, we mean like eating fruit!', 'images/Jaket12.jpg', ''),
-(25, 'Racer''s Armor', 'Jaket', 0, 500000, 'Wear your armor, racers!', 'images/Jaket13.jpg', ''),
+(25, 'Racer''s Armor', 'Jaket', 5, 500000, 'Wear your armor, racers!', 'images/Jaket13.jpg', ''),
 (26, 'Mylo Xyloto', 'Sweater', 200, 150000, 'Share your favorite Coldplay concept album with this sweater!!', 'images/Sweater4.jpg', NULL),
 (27, 'Northlane', 'Sweater', 200, 90000, 'For Northlane fans out there', 'images/Sweater5.jpg', NULL),
 (28, 'Marceline', 'Sweater', 200, 100000, 'For Marceline fans out there', 'images/Sweater6.jpg', NULL),
@@ -208,7 +198,7 @@ INSERT INTO `peralatan` (`no_alat`, `nama`, `kategori`, `jumlah`, `harga`, `desk
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `terbayar`
+-- Table structure for table `terbayar`
 --
 
 CREATE TABLE IF NOT EXISTS `terbayar` (
@@ -219,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `terbayar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `terbayar`
+-- Dumping data for table `terbayar`
 --
 
 INSERT INTO `terbayar` (`id_barang`, `jumlah`, `id_costumer`, `pesan`) VALUES
@@ -238,17 +228,10 @@ INSERT INTO `terbayar` (`id_barang`, `jumlah`, `id_costumer`, `pesan`) VALUES
 (25, 10, 4, ''),
 (25, 10, 4, ''),
 (25, 10, 4, ''),
-(10, 5, 16, ''),
-(10, 5, 16, ''),
-(10, 100, 16, ''),
-(21, 1, 16, 'null'),
-(21, 1, 16, 'null'),
-(25, 1, 16, 'null'),
-(25, 4, 16, 'null'),
-(1, 4, 16, 'null'),
-(1, 4, 16, 'null'),
-(1, 4, 16, 'null'),
-(1, 4, 16, 'null');
+(1, 20, 4, ''),
+(7, 10, 4, ''),
+(9, 10, 4, ''),
+(14, 500, 4, '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

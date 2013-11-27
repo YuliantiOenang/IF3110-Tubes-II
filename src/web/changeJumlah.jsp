@@ -20,7 +20,7 @@
                         if(rs.next())
 			{
                             jumlah= Integer.parseInt(rs.getString(1));
-                            System.out.println(""+jumlah+" "+Integer.parseInt(request.getParameter("jumlah")));
+                            System.out.println("jumlah barang di db"+jumlah+" jumlah barang di req "+Integer.parseInt(request.getParameter("jumlah")));
                             if(jumlah<Integer.parseInt(request.getParameter("jumlah")))
                             {
                                 //System.out.println(id.getValue());
@@ -29,10 +29,10 @@
                             else
                             { //System.out.println(id.getValue());
                              try{
-                                 System.out.println(id.getValue());
-                                 System.out.println(id_alat);
-                                System.out.println("UPDATE `keranjang` SET `jumlah`='"+request.getParameter("jumlah")+"' WHERE id_customer='"+id.getValue()+"'and id_alat='"+id_alat+"'");
-                                koneksion.stat.executeUpdate("UPDATE `keranjang` SET `jumlah`='"+request.getParameter("jumlah")+"' WHERE id_customer='"+id.getValue()+"'and id_alat='"+id_alat+"'");
+                                 System.out.println("id customer"+id.getValue());
+                                 System.out.println("id dari alat"+id_alat);
+                                System.out.println("UPDATE `keranjang` SET `jumlah`='"+request.getParameter("jumlah")+"' WHERE id_customer='"+id.getValue()+"'and id_alat='"+id_alat+"'and id_cart='"+request.getParameter("idcart") +"'");
+                                koneksion.stat.executeUpdate("UPDATE `keranjang` SET `jumlah`='"+request.getParameter("jumlah")+"' WHERE id_customer='"+id.getValue()+"'and id_alat='"+id_alat+"'and id_cart='"+request.getParameter("idcart") +"'");
                                 }
                              catch (Exception e){
                                  System.out.println("error :"+ e);
