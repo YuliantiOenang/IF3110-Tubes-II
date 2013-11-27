@@ -39,7 +39,7 @@
 						<label>Telepon:</label><p>${user.getTelephone()}</p>
 					</div>
 					<div class="per_form">
-						<label>Transaksi:</label><p>3</p>
+						<label>Transaksi:</label><p>${user.getTransaction()}</p>
 					</div>
 					<a href="user?action=edit&id=<%=request.getAttribute("id")%>" class="btn">Edit Profile</a>
 				</div>

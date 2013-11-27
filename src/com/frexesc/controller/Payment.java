@@ -59,11 +59,25 @@ public class Payment extends HttpServlet {
 						String query2 = "UPDATE barang_user SET status=1 WHERE id_user="
 								+ session.getAttribute("user_id");
 						connection.createStatement().executeUpdate(query2);
-						
+
+						// Update number of transaction
+						String query3 = "SELECT * FROM user WHERE id="
+								+ session.getAttribute("user_id");
+						ResultSet rs3 = connection.createStatement()
+								.executeQuery(query3);
+						rs3.next();
+
+						String query4 = "UPDATE user SET transaksi="
+								+ (Integer.parseInt(rs3.getString("transaksi")) + 1)
+								+ " WHERE id="
+								+ session.getAttribute("user_id");
+						connection.createStatement().executeUpdate(query4);
+
 						request.setAttribute("response", "Transaksi berhasil!");
-						
+
 						RequestDispatcher dispatcher;
-						dispatcher = getServletContext().getRequestDispatcher("/barang/payment.jsp");
+						dispatcher = getServletContext().getRequestDispatcher(
+								"/barang/payment.jsp");
 						dispatcher.forward(request, response);
 
 						// redirect to gallery

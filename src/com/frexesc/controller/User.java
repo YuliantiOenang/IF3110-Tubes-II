@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.frexesc.model.UserBean;
 
@@ -48,7 +47,7 @@ public class User extends HttpServlet {
 					Statement statement = connection.createStatement();
 					ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
 					if (rs.next()) {
-						UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
+						UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"), Integer.parseInt(rs.getString("transaksi")));
 						request.setAttribute("user", user);
 						request.setAttribute("id", id);
 					}
@@ -65,7 +64,7 @@ public class User extends HttpServlet {
 					Statement statement = connection.createStatement();
 					ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
 					if (rs.next()) {
-						UserBean user = new UserBean(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
+						UserBean user = new UserBean(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"), Integer.parseInt(rs.getString("transaksi")));
 						request.setAttribute("user", user);
 					}
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/editprofile.jsp");
@@ -97,7 +96,7 @@ public class User extends HttpServlet {
 		String postal = request.getParameter("postal");
 		if (action.equals("register")) {
 			String username = request.getParameter("username");
-			HttpSession session = request.getSession(true);
+			// HttpSession session = request.getSession(true);
 			String insertQuery = "INSERT INTO user (nama, username, password, email, handphone, alamat, kota, provinsi, kodepos) VALUES ('" + name + "','" + username + "','" + password + "','" + email + "','" + telephone + "','" + address + "','" + city + "','" + province + "','" + postal + "')";
 			try {
 				Statement statement = connection.createStatement();

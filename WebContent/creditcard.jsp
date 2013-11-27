@@ -37,7 +37,9 @@
 		<input type="hidden" name="from" value="<%= request.getAttribute("from") %>">
 		<button type="submit" id="btn" class="btn">Register</button>
   	
+  		<% if (request.getParameter("from") == null) { %>
 		<a href="index" class="btn">Skip</a>
+		<% } %>
 			
 	</div>
 </form>
