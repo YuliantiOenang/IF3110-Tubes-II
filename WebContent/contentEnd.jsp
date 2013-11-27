@@ -140,9 +140,12 @@ if (request.getAttribute("effect")!=null) {
 			<input type="text" name="q" value="" placeholder="Nama Barang">
 			<select name="kat" value="" required>
 				<option value="0">All Categories</option>
-				<option value="1">Kategori 1</option>
-				<option value="2">Kategori 2</option>
-				<option value="3">Kategori 3</option>
+				<%
+					for (int i = 0; i < kategoricount; i++)
+					{
+						out.print("<option value='" + (String)request.getAttribute("_cat_" + i + "_id" ) + "'>" + (String)request.getAttribute("_cat_" + i + "_nama" ) + "</option>");
+					}				
+				%>
 			</select>
 			<input type="number" name="h1" value="" placeholder="Harga Bawah">
 			<input type="number" name="h2" value="" placeholder="Harga Atas">
