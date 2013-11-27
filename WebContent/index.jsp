@@ -12,7 +12,6 @@
 	<div class="page_container">
 	<%@ include file="template/template.jsp" %>
 	<link rel="stylesheet" href="css/index.css" type="text/css">
-	<br/><br/><br/> 
 	<%
 		out.println("<h1>BARANG POPULER</h1>");
 		for(int i=0;i<5;i++){

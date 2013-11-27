@@ -40,19 +40,18 @@ public class addToCart extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String db = "toko_imba";
 		java.sql.Connection con = null;
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id_barang"));
+		
 		HttpSession session = request.getSession(true);
-		if(session.getAttribute("id") == null){
-			response.getWriter().write("Maaf, tapi Anda harus login terlebih dahulu.");
+		if(session.getAttribute("cart") == null){
+			ArrayList<Integer> cart = new ArrayList<Integer>();
+			cart.add(id);
+			session.setAttribute("cart", cart);
 		} else {
-			if(session.getAttribute("cart") == null){
-				ArrayList<Integer> cart = new ArrayList<Integer>();
-				cart.add(id);
-			} else {
-				ArrayList<Integer> cart = (ArrayList<Integer>) session.getAttribute("cart");
-				cart.add(id);
-			}
-			response.getWriter().write("Sukses!");
+			ArrayList<Integer> cart = (ArrayList<Integer>) session.getAttribute("cart");
+			cart.add(id);
+			session.setAttribute("cart", cart);
 		}
+		response.getWriter().write("Sukses!");
 	}
 }

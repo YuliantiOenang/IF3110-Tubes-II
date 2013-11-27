@@ -26,10 +26,12 @@
 				</form>
 					<div id='numinput'>
 					Quantity : 
-					<input id="jumlah" value =0 type="number" name="quantity"></div> 
-					<div id='cart'><img onclick="addToCart2(document.getElementById('jumlah').value, '<?php echo $_GET['gid']; ?>', document.getElementById('textinput').value)" src="res/addtocart.png" /></div>
+					<input id="quant1" value="0" type="number"></div> 
+					<div id='cart'><img onclick='validate(<%= b.getId_inven() %>, 1)' src="res/addtocart.png" /></div>
+					<div id='notif1'></div>
 			</div>
 		</div>
 	</div>
 </body>
+	<script src="transaction.js"></script>
 </html>
