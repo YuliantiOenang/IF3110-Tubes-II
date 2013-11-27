@@ -3,128 +3,90 @@
     Created on : Nov 27, 2013, 6:49:16 PM
     Author     : compaq
 --%>
+<div id="centerColumn">
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <body>
-        <div id="main">
-            <div id="header">
-                <div id="widgetBar">
+    <p>Your shopping cart contains x items.</p>
 
-                    <div class="headerWidget">
-                        [ language toggle ]
-                    </div>
+    <div id="actionBar">
+        <a href="#" class="bubble hMargin">clear cart</a>
+        <a href="#" class="bubble hMargin">continue shopping</a>
+        <a href="#" class="bubble hMargin">proceed to checkout</a>
+    </div>
 
-                    <div class="headerWidget">
-                        [ checkout button ]
-                    </div>
+    <h4 id="subtotal">[ subtotal: xxx ]</h4>
 
-                    <div class="headerWidget">
-                        [ shopping cart widget ]
-                    </div>
+    <table id="cartTable">
 
-                </div>
+        <tr class="header">
+            <th>product</th>
+            <th>name</th>
+            <th>price</th>
+            <th>quantity</th>
+        </tr>
 
-                <a href="../../WEB-INF/">
-                    <img src="res/sirup.jpg" id="logo" alt="Ruserba Logo">
-                </a>
+        <tr>
+            <td class="lightBlue">
+                <img src="#" alt="product image">
+            </td>
+            <td class="lightBlue">[ product name ]</td>
+            <td class="lightBlue">[ price ]</td>
+            <td class="lightBlue">
 
-                <img src="res/logo.png" id="logoText" alt="Ruserba: Apa Apa Ada Semua Serba Ada">
-            </div>
+                <form action="updateCart" method="post">
+                    <input type="text"
+                           maxlength="2"
+                           size="2"
+                           value="1"
+                           name="quantity">
+                    <input type="submit"
+                           name="submit"
+                           value="update button">
+                </form>
+            </td>
+        </tr>
 
-            <div id="centerColumn">
+         <tr>
+            <td class="white">
+                <img src="#" alt="product image">
+            </td>
+            <td class="white">[ product name ]</td>
+            <td class="white">[ price ]</td>
+            <td class="white">
 
-                <p>Your shopping cart contains x items.</p>
+                <form action="updateCart" method="post">
+                    <input type="text"
+                           maxlength="2"
+                           size="2"
+                           value="1"
+                           name="quantity">
+                    <input type="submit"
+                           name="submit"
+                           value="update button">
+                </form>
+            </td>
+        </tr>
 
-                <div id="actionBar">
-                    <a href="#" class="bubble hMargin">clear cart</a>
-                    <a href="#" class="bubble hMargin">continue shopping</a>
-                    <a href="#" class="bubble hMargin">proceed to checkout</a>
-                </div>
+        <tr>
+            <td class="lightBlue">
+                <img src="#" alt="product image">
+            </td>
+            <td class="lightBlue">[ product name ]</td>
+            <td class="lightBlue">[ price ]</td>
+            <td class="lightBlue">
 
-                <h4 id="subtotal">[ subtotal: xxx ]</h4>
+                <form action="updateCart" method="post">
+                    <input type="text"
+                           maxlength="2"
+                           size="2"
+                           value="1"
+                           name="quantity">
+                    <input type="submit"
+                           name="submit"
+                           value="update button">
+                </form>
+            </td>
+        </tr>
 
-                <table id="cartTable">
+    </table>
 
-                    <tr class="header">
-                        <th>product</th>
-                        <th>name</th>
-                        <th>price</th>
-                        <th>quantity</th>
-                    </tr>
-
-                    <tr>
-                        <td class="lightBlue">
-                            <img src="#" alt="product image">
-                        </td>
-                        <td class="lightBlue">[ product name ]</td>
-                        <td class="lightBlue">[ price ]</td>
-                        <td class="lightBlue">
-
-                            <form action="updateCart" method="post">
-                                <input type="text"
-                                       maxlength="2"
-                                       size="2"
-                                       value="1"
-                                       name="quantity">
-                                <input type="submit"
-                                       name="submit"
-                                       value="update button">
-                            </form>
-                        </td>
-                    </tr>
-
-                     <tr>
-                        <td class="white">
-                            <img src="#" alt="product image">
-                        </td>
-                        <td class="white">[ product name ]</td>
-                        <td class="white">[ price ]</td>
-                        <td class="white">
-
-                            <form action="updateCart" method="post">
-                                <input type="text"
-                                       maxlength="2"
-                                       size="2"
-                                       value="1"
-                                       name="quantity">
-                                <input type="submit"
-                                       name="submit"
-                                       value="update button">
-                            </form>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="lightBlue">
-                            <img src="#" alt="product image">
-                        </td>
-                        <td class="lightBlue">[ product name ]</td>
-                        <td class="lightBlue">[ price ]</td>
-                        <td class="lightBlue">
-
-                            <form action="updateCart" method="post">
-                                <input type="text"
-                                       maxlength="2"
-                                       size="2"
-                                       value="1"
-                                       name="quantity">
-                                <input type="submit"
-                                       name="submit"
-                                       value="update button">
-                            </form>
-                        </td>
-                    </tr>
-
-                </table>
-
-            </div>
-<div id="footer">
-                <hr>
-                <p id="footerText">[ footer text ]</p>
-            </div>
-            
-        </div>
-    </body>
-</html>
+</div>

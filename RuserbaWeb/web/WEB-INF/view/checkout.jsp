@@ -4,76 +4,38 @@
     Author     : compaq
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <body>
-        <div id="main">
-            
-            <div id="header">
-                <div id="widgetBar">
+<div id="centerColumn">
 
-                    <div class="headerWidget">
-                        [ language toggle ]
-                    </div>
+    <h2>checkout</h2>
 
-                    <div class="headerWidget">
-                        [ checkout button ]
-                    </div>
+    <p>[ text ]</p>
 
-                    <div class="headerWidget">
-                        [ shopping cart widget ]
-                    </div>
+    <form action="purchase" method="post">
 
-                </div>
+        <table id="checkoutTable">
+            <tr>
+                <td>[ form containing fields to
+                    <br>capture customer details ]</td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="submit button"></td>
+            </tr>
 
-                <a href="../../WEB-INF/">
-                    <img src="res/sirup.jpg" id="logo" alt="Ruserba Logo">
-                </a>
+        </table>
 
-                <img src="res/logo.png" id="logoText" alt="Ruserba: Apa Apa Ada Semua Serba Ada">
-            </div>
+    </form>
 
-            <div id="centerColumn">
+    <div id="infoBox">
 
-                <h2>checkout</h2>
-
-                <p>[ text ]</p>
-
-                <form action="purchase" method="post">
-
-                    <table id="checkoutTable">
-                        <tr>
-                            <td>[ form containing fields to
-                                <br>capture customer details ]</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="submit button"></td>
-                        </tr>
-
-                    </table>
-
-                </form>
-
-                <div id="infoBox">
-
-                    <div style="border: black solid 1px; height:100px; padding: 10px">
-                        [ purchase conditions ]
-                    </div>
-
-                    <div id="priceBox">
-                        [ purchase calculations:<br>subtotal + delivery charge ]
-                    </div>
-                </div>
-            </div>
-
-            <div id="footer">
-                <hr>
-                <p id="footerText">[ footer text ]</p>
-            </div>
+        <div style="border: black solid 1px; height:100px; padding: 10px">
+            [ purchase conditions ]
         </div>
-    </body>
-</html>
+
+        <div id="priceBox">
+            [ purchase calculations:<br>subtotal + delivery charge ]
+        </div>
+    </div>
+</div>
