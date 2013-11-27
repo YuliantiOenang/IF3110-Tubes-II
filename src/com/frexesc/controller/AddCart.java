@@ -36,7 +36,7 @@ public class AddCart extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") == null) {
-			response.getWriter().write("Redirect: ../register.jsp");
+			response.getWriter().write("Redirect: ../register");
 		}
 	}
 
@@ -52,7 +52,7 @@ public class AddCart extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		if (session.getAttribute("username") == null) {
-			response.getWriter().write("Redirect: ../register.jsp");
+			response.getWriter().write("Redirect: ../register");
 		} else {
 			response.setContentType("text/html"); // set Content Type for AJAX
 

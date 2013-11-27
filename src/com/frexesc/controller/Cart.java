@@ -42,7 +42,7 @@ public class Cart extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (session.getAttribute("username") == null) {
-			response.sendRedirect("../register.jsp");
+			response.sendRedirect("../register");
 		} else {
 			DbConnection dbConnection = new DbConnection();
 			Connection connection = dbConnection.mySqlConnection();
