@@ -61,7 +61,6 @@ public class buyprocess extends HttpServlet {
 		
 		Connection conn = null;
 	    Statement stmt = null;
-	    PrintWriter out = response.getWriter();
 	    try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
@@ -73,12 +72,12 @@ public class buyprocess extends HttpServlet {
 				if (Integer.parseInt((String)tabel.get(""+i)) > 0) {
 					int jumlah = Integer.parseInt((String)tabel.get(""+i));
 					sql = "UPDATE barang SET jumlah = jumlah - "+jumlah+",terjual = terjual +"+jumlah+" WHERE id = "+i;
-					ResultSet rs = stmt.executeQuery(sql);
+					stmt.executeQuery(sql);
 				}
 			}
 			
 			sql = "UPDATE anggota SET jmlhtransaksi = jmlhtransaksi+1 WHERE username = "+username;
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.executeQuery(sql);
 			
 		} catch (ClassNotFoundException e) {	
 			e.printStackTrace();

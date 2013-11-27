@@ -109,4 +109,24 @@
     <servlet-name>editprofilesave</servlet-name>
     <url-pattern>/editprofilesave</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ajaxregistercard</display-name>
+    <servlet-name>ajaxregistercard</servlet-name>
+    <servlet-class>tubes2wbd.ajaxregistercard</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ajaxregistercard</servlet-name>
+    <url-pattern>/ajaxregistercard</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>validasi</display-name>
+    <servlet-name>validasi</servlet-name>
+    <servlet-class>tubes2wbd.validasi</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>validasi</servlet-name>
+    <url-pattern>/validasi</url-pattern>
+  </servlet-mapping>
 </web-app>

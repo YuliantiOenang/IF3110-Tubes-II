@@ -38,6 +38,7 @@ public class editprofilesave extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -73,19 +74,19 @@ public class editprofilesave extends HttpServlet {
 			stmt = conn.createStatement();
 			
 			String sql;
-			sql = "update anggota set password="+password+",nama="+nama+",nomorhp="+nomorhp+",alamat="+alamat+",provinsi="+provinsi+",kota="+kota+",kodepos="+kodepos+",email="+email+",foto="+file_name+" where username="+username;
-			if (!username.equals("") && !password.equals("")) {
+			sql = "update anggota set password='"+password+"',nama='"+nama+"',nomorhp='"+nomorhp+"',alamat='"+alamat+"',provinsi='"+provinsi+"',kota='"+kota+"',kodepos='"+kodepos+"',email='"+email+"' where username='"+username+"'";
+			if (username != null && password != null) {
 				//ResultSet rs = stmt.executeQuery(sql);
 				int r = stmt.executeUpdate(sql);
 				if (r > 0) {
-					out.print("<html><body>Profile berhasil diedit!<br><a href='profile.php'>Kembali ke halaman profile</a></body></html>");
+					out.print("<html><body>Profile berhasil diedit!<br><a href='profile.jsp'>Kembali ke halaman profile</a></body></html>");
 				}
 				else {
-					out.print("<html><body>Edit profile gagal.<br><a href='editprofile.php'>Edit ulang</a> atau <a href='index.php'>Kembali ke halaman utama</a></body></html>");
+					out.print("<html><body>Edit profile gagal.<br><a href='editprofile.jsp'>Edit ulang</a> atau <a href='index.jsp'>Kembali ke halaman utama</a></body></html>");
 					}
 			}
 			else {
-				out.print("<html><body>Your username or password is incorrect!<br><a href='editprofile.php'>Edit ulang</a> atau <a href='index.php'>Kembali ke halaman utama</a></body></html>");
+				out.print("<html><body>Your username or password is incorrect!<br><a href='editprofile.jsp'>Edit ulang</a> atau <a href='index.jsp'>Kembali ke halaman utama</a></body></html>");
 			}
 			
 			

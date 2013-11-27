@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>RuSerBa</title>
+<link rel="stylesheet" href="css/halamanbarang.css" type="text/css" />
+<link rel="stylesheet" href="css/imageslider.css" type="text/css" />
+</head>
+<body id="index" class="home">
+	<div style="width:1100px; margin-left:auto; margin-right:auto">
 <%@ include file="header.jsp" %>
 <script>
 var str;
