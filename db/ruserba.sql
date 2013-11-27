@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.27, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.5.32, for Win32 (x86)
 --
 -- Host: localhost    Database: ruserba
 -- ------------------------------------------------------
--- Server version	5.5.27
+-- Server version	5.5.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -94,10 +94,11 @@ CREATE TABLE `user` (
   `nomor_kartu` varchar(256) DEFAULT NULL,
   `nama_kartu` varchar(256) DEFAULT NULL,
   `ekspirasi_kartu` date DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +107,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'john','john@yahoo.com','0d107d09f5bbe40cade3de5c71e9e9b7','John Smith','Jawa Barat','Bandung','Jl. Ganeca No.42A','14562','081347556202','3141-5156-1425-5421','John Smith','2016-09-01');
+INSERT INTO `user` VALUES (1,'johnny','john@yahoo.com','0d107d09f5bbe40cade3de5c71e9e9b7','John Smith','Jawa Barat','Bandung','Jl. Ganeca No.42A','14562','081347556202','3141-5156-1425-5421','John Smith','2016-09-01',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -119,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-29 21:51:21
+-- Dump completed on 2013-11-27 18:47:08
