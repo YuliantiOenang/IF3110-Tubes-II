@@ -40,20 +40,12 @@ public class BarangBeli extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String id_barang = request.getParameter("id_barang");
-		String id_order = request.getParameter("id_order");
 		String jumlah = request.getParameter("jumlah");
 		String keterangan = request.getParameter("keterangan");
+		System.out.println(id_barang+jumlah+keterangan);
 //		System.out.println(id_barang);
 		try
 		{
-			/*
-			String Query = "INSERT INTO order_item (id_order,id_barang,jumlah,tambahan) " +
-					"VALUES ('"+id_barang+"','"+
-					id_order+"','"+jumlah+"','"+keterangan+"')";
-			DBA.insertQuery(Query);
-			System.out.println(Query);
-			*/
-//			session.removeAttribute("dibeli");
 			if (session.getAttribute("dibeli")==null) {
 				ArrayList<String> dibeli = new ArrayList<>();
 				dibeli.add(id_barang);

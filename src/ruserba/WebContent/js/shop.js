@@ -2,7 +2,6 @@ var xmlhttpShop;
 var jumlah; 
 var keterangan;
 var id_barang;
-var id_order;
 
 if (window.XMLHttpRequest)
 {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -27,7 +26,7 @@ xmlhttpShop.onreadystatechange=function()
 
 function beliBarang()
 {
-	xmlhttpShop.open("GET","/ruserba/barang/beli?id_barang="+id_barang+"&id_order="+id_order+"&jumlah="+jumlah+"&keterangan="+keterangan,true);
+	xmlhttpShop.open("GET","/ruserba/barang/beli?id_barang="+id_barang+"&jumlah="+jumlah+"&keterangan="+keterangan,true);
 	xmlhttpShop.send();
 	jumlah = "";
 	keterangan = "";
@@ -35,17 +34,16 @@ function beliBarang()
 
 function pertanyaan(id_b,stok)
 {
-	id_order = 5;
 	id_barang = id_b;
 	
-	var jumlah = document.getElementById("beliBarangOKE"+id_b).value;
-//	System.out.println("beliBarangOKE"+id_b);
+	jumlah = document.getElementById("quantity_"+id_b).value;
+	keterangan = document.getElementById("keterangan_"+id_b).value;
+
 	if ((jumlah == null) || (jumlah == ""))
 		alert("jumlah barang harus diisi");
 	else if (jumlah > stok) alert("Pemesanan barang melebihi stok, hanya tersisa "+stok+" barang");
 	else
 	{
-		keterangan = prompt("Tambahkan keterangan order (jika ada)","");
 		beliBarang();
 	}
 	

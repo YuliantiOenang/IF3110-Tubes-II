@@ -33,14 +33,6 @@ xmlhttpEA.onreadystatechange=function()
 		//document.getElementById('ISI').innerHTML=str;
 		document.getElementById('konten').innerHTML = str;
 		document.getElementById("loader").classList.add("hidden");
-		
-		if (FirstTime)
-		{
-			xmlhttpEA.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true); //URL samain
-			CurPage++;
-			xmlhttpEA.send();
-			FirstTime = false;
-		}
 	}
 };
 
