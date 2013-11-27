@@ -1,0 +1,15 @@
+#pembayaranView {
+	display:inline-block;
+	width:100%;
+	float:left;
+	background:#FFFFFF;
+}
+
+#pembayaranView ul  {
+	text-align:left;
+	list-style-type:none;
+}
+
+#pembayaranView ul li {
+	padding-bottom:4px;
+}

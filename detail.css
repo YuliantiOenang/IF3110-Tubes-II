@@ -1,0 +1,41 @@
+.division{
+	display:inline-block;
+	width:100%;
+}
+
+#textPermintaan{
+	text-align:left;
+}
+
+#description{
+	text-align:left;
+	text-justify: inter-word;
+	display:block;
+	position:relative;
+	float:left;
+	left:20px;
+	width:500px;
+	text-indent:50px;
+}
+
+#request{
+	text-align:left;
+	display:block;
+	position:relative;
+	float:left;
+	height:160px;
+	width:300px;
+}
+
+#statistic{
+	text-align:left;
+	display:block;
+	position:relative;
+	float:left;
+	left:20px;
+	width:400px;
+}
+
+#quantity{
+	width:40px;
+}	

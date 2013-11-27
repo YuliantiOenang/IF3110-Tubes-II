@@ -1,0 +1,273 @@
+a:link {color:#c7f200; text-decoration:none;}  
+a:visited {color:#c7f200; text-decoration:none;}  
+a:hover {color:#c7f200; text-decoration:none; cursor:pointer}  
+a:active {color:#5c9d00; text-decoration:none;}
+
+h1{
+	font-family: "Hobo Std";
+	color: #47ca86;
+	font-size: 1.5em;
+	margin:0px;
+}
+
+h2{
+	font-family: "Hobo Std";
+	color: #47ca86;
+	font-size: 1em;
+	margin:0px;
+}
+
+h3{
+	font-family: "Hobo Std";
+	color: #000000;
+	font-size: 1em;
+	margin:0px;
+}
+
+p{
+	font-family: "Hobo Std";
+	color: #000000;
+	font-size: 0.8em;
+	margin:0px;
+}
+
+body
+{
+background-color:#e0f4ff;
+background-image:url('resource/bg.jpg');
+background-repeat:repeat;
+text-align:center;
+}
+
+.image{
+	display:block;
+	float:left;
+	position:relative;
+	width:160px;
+	height:160px;
+	background:#333333;
+}
+
+#topBorder{
+	display:block;
+	position:relative;
+	top:0px;
+	padding:0px;
+	width: 100%;
+	height: 40px;
+}
+
+#footer{
+	display:block;
+	position:relative;
+	margin-top: 30px;
+	padding:0px;
+	width: 100%;
+	height: 40px;
+	font-family: "Hobo Std";
+	color: #47ca86;
+	font-size: 0.6em;
+	text-align: center;
+}
+
+#contentArea{
+	display:inline-block;
+	position:relative;
+	padding:10px;
+	width: 800px;
+	background: #ffffff;
+}
+
+#header{ 
+	font-family: "Hobo Std";
+	font-size: 1em;
+	color: #ffffff;
+    display:block;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	padding:0px;
+	width: 100%;
+	height: 34px;
+	background: #47ca86;
+}
+
+.textInput{
+	font-family: "Hobo Std";
+	color: #000000;
+	font-size: 0.8em;
+	border: 0px;
+	background: #dddddd;
+}
+
+#searchBar {
+	width: 120px;
+    height: 20px;
+	position:fixed;
+	top:5px;
+	left:120px;
+}
+
+.button {
+	border:0px;
+	font-family: "Hobo Std";
+	font-size: 1em;
+	color: #ffffff;
+	background:#c7f200;
+	background-repeat:no-repeat;
+	background-position:center center;
+	transition:color 0.2s,background 0.2s;
+}
+.button:hover {
+	color: #000000;
+	background:#f2dd00;
+	cursor:pointer;
+}
+
+.buttonFake {
+	border:0px;
+	font-family: "Hobo Std";
+	font-size: 1em;
+	color: #444444;
+	background:#666666;
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+
+#searchButton {
+    background-image:url('resource/searchButton.png');
+    width: 22px;
+    height: 22px;
+	position:fixed;
+	top:5px;
+	left:240px;
+}
+#searchButton:hover{
+    background-image:url('resource/searchButtonHover.png');
+}
+
+#cancelButton {
+	position:relative;
+	float:right;
+}
+
+.buttonHeader {
+	border:0px;
+	font-family: "Hobo Std";
+	font-size: 1em;
+	background: #47ca86;
+	color: #c7f200;
+	position:fixed;
+	top:0px;
+	height:34px;
+	transition: color 0.2s, font-size 0.2s;
+}
+.buttonHeader:hover{
+	color: #ffffff;
+	font-size: 1.2em;
+	cursor:pointer;
+}
+
+#register{
+	right:30px;
+}
+
+#login{
+	right:105px;
+}
+
+#logout{
+	right:30px;
+}
+
+#shoppingChart{
+	left:430px;
+}
+
+#profile{
+	right:105px;
+}
+
+
+.dropDown {
+	background: #47ca86;
+	font-family: "Hobo Std";
+	font-size: 0.8em;
+	color: #ffffff;
+}
+.dropdown:hover{
+	cursor:pointer;
+}
+
+#kategoriDropDown {
+	width: 120px;
+    height: 20px;
+	position:fixed;
+	top:6px;
+	left:285px;
+}
+
+#logo{
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+
+@keyframes myfirst
+{
+0%   {left:0px; top:0px;}
+50%  {left:300px; top:200px;}
+100% {left:0px; top:0px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {left:0px; top:0px;}
+50%  {left:300px; top:200px;}
+100% {left:0px; top:0px;}
+}
+
+#popupLoginBubble{
+	background-image:url('resource/bubbleLogin.png');
+    width: 190px;
+    height: 190px;
+	display:block;
+	position:fixed;
+	top:35px;
+	right:20px;
+}
+#popupLoginContent{
+	margin: 30px 10px 10px;
+}
+
+.errorMsg{
+	font-family: "Hobo Std";
+	font-size: 0.8em;
+	color: #ff0000;
+}
+
+.fullLine{
+	display:inline-block;
+	margin:0px;
+	width:800px;
+}
+
+.halfLineToR{
+	display:inline-block;
+	float:left;
+	text-align:right;
+	margin:0px;
+	width:200px;
+}
+.halfLineToL{
+	display:inline-block;
+	text-align:left;
+	float:left;
+	margin:0px;
+	width:500px;
+}
+
+#hilang {
+	visibility:hidden;
+}

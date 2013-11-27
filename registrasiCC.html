@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="letoy.css">
+	<link rel="stylesheet" type="text/css" href="registrasiCC.css">
+	<script src="header.js"></script>
+	<script src="ajaxLoader.js"></script>
+	<script>
+		function validateCC() {
+			postForm("validateCC.jsp?username="+localStorage.getItem('activeUser'), 
+			function() {
+				if (xmlhttp.readyState==4) {
+					if (xmlhttp.responseText == 1) {
+						alert("Berhasil");
+						document.location.href = "index.jsp?kategori=0";
+					} else alert("Gagal");
+				}
+				else document.getElementById("validationResponse").innerHTML = "Processing..."},
+			document.forms["CCform"]);
+			
+		}
+	</script>
+</head>
+
+<body>
+	<div id='topBorder'></div>
+
+	<div id='contentArea'>
+		<div id='pembayaranView'>
+			<ul>
+				<li><h1>Registrasi Kartu Kredit!</h1></li>
+				<li><form id="CCform">
+					<br><h2>Nomor Kartu</h2> <input class='textInput' type="text" name="nomor_kartu"><br><br>
+					<h2>Nama</h2> <input class='textInput'type="text" name="nama"><br><br>
+					<h2>Tanggal Kadaluarsa ("YYYY-MM-DD")</h2> <input class='textInput'type="text" name="tanggal"><br><br>
+					<input class='button' type='button' onclick="validateCC()" value='Submit'></input>
+					<a href = 'index.jsp?kategori=0'><input class='button' type='button' value='Skip'></input></a>
+				</form></li>
+				<li><h2 id="validationResponse"></h2></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id='footer'>
+		Yanuar Aristya . Aldy Wirawan . Yodi Pramudito
+	</div>
+
+	<div id='header' >
+		<script> drawHeaderContent(); </script>
+	</div>
+
+</body>
+</html>

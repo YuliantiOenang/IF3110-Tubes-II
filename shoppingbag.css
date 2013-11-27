@@ -1,0 +1,70 @@
+.shoppedItem{
+	display:inline-block;
+	width:600px;
+	font-family: "Hobo Std";
+	color: #47ca86;
+	font-size: 1em;
+	transition:color 0.2s,background 0.2s;
+}
+.shoppedItem:hover{
+	background:#c7f200;
+	color: #000000;
+}
+
+.shoppedItemName{
+	text-align:left;
+	display:block;
+	float:left;
+	width:200px;
+}
+
+.shoppedItemNumber{
+	text-align:right;
+	display:block;
+	float:left;
+	width:70px;
+}
+
+.shoppedItemPrice{
+	text-align:right;
+	display:block;
+	float:left;
+	width:165px;
+}
+
+#titleLine{
+	display:inline-block;
+	width:600px;
+	font-family: "Hobo Std";
+	color: #ffffff;
+	font-size: 1.2em;
+	background: #47ca86;
+}
+
+#bottomLine{
+	display:inline-block;
+	width:600px;
+	font-family: "Hobo Std";
+	color: #ffffff;
+	font-size: 1.4em;
+	background: #47ca86;
+}
+
+#payButton{
+	font-size: 1.4em;
+	margin-left: 20px;
+	display:inline-block;
+	width:100px;
+}
+
+.eraseItem{
+	font-family: "Hobo Std";
+	margin-left: 20px;
+	color: #c7f200;
+	display:inline-block;
+	width:100px;
+}
+.eraseItem:hover{
+	color: #ff0000;
+	cursor:pointer;
+}
