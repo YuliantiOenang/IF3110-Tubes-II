@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,18 +61,25 @@ public class LoginController extends HttpServlet {
 				DBA.executeQuery(query);
 				System.out.println(query);
 				ResultSet RS = DBA.getQueryResult();
+				
 				try {
 					if (!RS.isBeforeFirst()) {
 						JSONObject json = new JSONObject();
 						json.put("success", false);
 						out.write(json.toString());
-					} else {
-						RS.next();
+					} else {			
+						RS.next();			
 						HttpSession session = request.getSession();
 						session.setAttribute("isLogin", true);
 						session.setAttribute("username", username);
 						session.setAttribute("role",Integer.parseInt(RS.getObject(12).toString()));
 						session.setMaxInactiveInterval(0);
+						
+						Cookie C = new Cookie("isLogin",username);
+						C.setMaxAge(60*60*24*30); //30 Hari
+						C.setPath("/");
+						response.addCookie(C);
+						
 						JSONObject json = new JSONObject();
 						json.put("success", true);
 						out.write(json.toString());

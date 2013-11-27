@@ -1,6 +1,7 @@
 package indexController;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +12,11 @@ import javaModel.Kategori;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import databaseLib.DatabaseAdapter;
 
@@ -24,7 +27,9 @@ import databaseLib.DatabaseAdapter;
 public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseAdapter DBA = new DatabaseAdapter();
-    /**
+    private Cookie[] cookies;
+    
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public IndexController() {
@@ -32,10 +37,12 @@ public class IndexController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+ 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Config.GlobalConfig.cekLogin(request, response);
 		Kategori K = Helper.findAllKategori();
 		request.setAttribute("kategoris", K);
 		request.setAttribute("effect", !(Boolean.parseBoolean(request.getParameter("e"))));
