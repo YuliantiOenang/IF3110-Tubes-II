@@ -38,7 +38,7 @@ public class Barang {
 	}
 
 	public String getGambar() {
-		return gambar;
+		return new StringBuilder().append("barang/").append(id_inven).append(".jpg").toString();
 	}
 
 	public void setGambar(String gambar) {
