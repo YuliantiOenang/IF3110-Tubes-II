@@ -7,7 +7,7 @@
 <body id="index" class="home">
 	<div id="container">
 		<%@include file="header.jsp" %>
-		<%@include file="sidebar.jsp" %>
+<%-- 		<%@include file="sidebar.jsp" %> --%>
 		
 		<article id="content" class="body">
 			<p>Ini ceritanya Content</p>

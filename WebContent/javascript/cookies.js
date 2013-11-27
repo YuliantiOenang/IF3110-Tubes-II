@@ -27,5 +27,5 @@ function getCookie(c_name) {
 }
 
 function eraseCookie(c_name) {
-    createCookie(c_name, "", -1);
+    setCookie(c_name, "", -1);
 }
