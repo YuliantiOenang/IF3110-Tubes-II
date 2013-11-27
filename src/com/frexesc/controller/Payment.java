@@ -38,7 +38,7 @@ public class Payment extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (session.getAttribute("username") == null) {
-			response.sendRedirect("../register.jsp");
+			response.sendRedirect("../register");
 		} else {
 			DbConnection dbConnection = new DbConnection();
 			Connection connection = dbConnection.mySqlConnection();
@@ -52,7 +52,7 @@ public class Payment extends HttpServlet {
 				while (rs.next()) {
 					if (rs.getString("nomor_kartu") == null) {
 						/** Redirect to Credit Card page */
-						response.sendRedirect("../creditcard.jsp");
+						response.sendRedirect("../creditcard");
 					} else {
 
 						// Update status

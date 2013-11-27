@@ -7,10 +7,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link rel='stylesheet' type='text/css'
+	href="${pageContext.request.contextPath}/css/style.css" />
+
+<script type="text/javascript">
+	function fitpict(obj) {
+		fitimg(obj, 340, 340, true, true, false);
+	}
+</script>
+
 <script src="../js/ajaxShop.js"></script>
 <title>Detail Barang</title>
 </head>
 <body>
+	<jsp:include page="../layout.jsp" />
 	<%
 		@SuppressWarnings("unchecked")
 		ArrayList<BarangBean> barangBean = (ArrayList<BarangBean>) request
@@ -37,65 +48,51 @@
 	<%
 		BarangBean b = barangBean.get(i);
 	%>
-	<img src="../img/barang/<%=b.getPicture()%>" width="20%" height="20%">
-	<br />
-	<b>Nama Barang:</b>
-	<%=b.getName()%>
-	<br />
-	<b>Keterangan:</b>
-	<%=b.getDescription()%>
-	<br />
-	<b>Harga Barang:</b>
-	<%=b.getPrice()%>
-	<br />
-	<%
-		for (int j = 0; j < kategoriBean.size(); j++) {
-	%>
-	<%
-		if (kategoriBean.get(j).getId() == b.getId_category()) {
-	%>
-	<b>Kategori:</b>
-	<%=kategoriBean.get(j).getName()%>
-	<br />
-	<%
-		}
-	%>
-	<%
-		}
-	%>
+	<div id='content_frame' name='page'>
+		<h1 class='small-header'><%=b.getName()%></h1>
+		<div class='item_pict'>
+			<img
+				src='${pageContext.request.contextPath}/img/barang/<%=b.getPicture()%>'
+				onload='fitpict(this)'></img>
+		</div>
 
-	<%
-		if (b.getTotal_item() > 0) {
-	%>
-	<b>Stok :</b>
-	<div id="jumlah_barang_<%=b.getId()%>">
-		<%=b.getTotal_item()%>
+		<div class='item_detail'>
+			<h4>product description</h4>
+			<p>
+				<%=b.getDescription()%>
+			</p>
+		</div>
+
+		<div class='item_price'>
+			<p>get it for :</p>
+			<h4>
+				IDR (<%=b.getPrice()%>)
+			</h4>
+
+			<label class='qty'>Quantity</label> <input type='number' name='qty'
+				id='qty_<%=b.getId()%>' class='qty' value=0></input> <label
+				class='qty'>Stok:&nbsp;&nbsp;<span id="jumlah_barang_<%=b.getId()%>"><%=b.getTotal_item()%></span>
+			</label>
+			<p>Request Message :</p>
+			<textarea class='req_msg' name='deskripsi_tambahan'
+				id='deskripsi_tambahan'></textarea>
+			<input type='button' class='cart' id='beli' value='Add to Cart'
+				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;"></input>
+
+		</div>
+
 	</div>
-	<br />
-	<b>Jumlah Barang:</b>
-	<input type="text" name="qty" size="8" id="qty_<%=b.getId()%>"
-		value="0">
-	<br />
-	<b>Deskripsi Tambahan:</b>
-	<textarea name="deskripsi_tambahan" id="deskripsi_tambahan"></textarea>
-	<br />
-	<%
-		} else {
-	%>
-	<b>Stok :</b> Habis
-	<br />
 	<%
 		}
 	%>
-
-	<input type="button" value="Tambah ke Cart" id="beli"
-		onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;">
-
-	<%
-		}
-	%>
+	<p>
+	<br /> Klik
+	<a href="./cart">disini</a> untuk masuk ke shopping cart
+	<br /> Klik
+	<a href="./">disini</a> untuk ke halaman utama daftar belanja
 	<br />
-	Klik <a href="./cart">disini</a> untuk masuk ke shopping cart <br />
-	Klik <a href="./">disini</a> untuk kembali <br />
+	</p>
+	
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>
