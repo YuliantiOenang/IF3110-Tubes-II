@@ -10,13 +10,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" media="all" href="css/main.css"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Halaman Barang </title>
-    </head>
-    <body>
         <%
             Connection koneksi = null;
+            int kategori = Integer.valueOf(request.getParameter("kategori"));
+            String query = "SELECT * FROM barang WHERE id_kategori="+kategori+" ORDER BY ";
         %>
         <%
             try {
@@ -27,52 +24,120 @@
             catch(Exception ex){
                 out.println("Unable to connect to database."+ex);
             }
-            Statement stm = koneksi.createStatement();
-                    
-            ResultSet hasil = stm.executeQuery("SELECT * FROM barang WHERE id_kategori=1");
+            Statement stm1 = koneksi.createStatement();                   
+            ResultSet hasil1 = stm1.executeQuery("SELECT * FROM barang WHERE id_kategori="+kategori);
+            Statement stm2 = koneksi.createStatement();                    
+            ResultSet hasil2 = stm2.executeQuery("SELECT * FROM kategori WHERE id_kategori="+kategori);
+            hasil2.next();
         %>
-        <h3 class="judul_halaman">
+        <link rel="stylesheet" type="text/css" media="all" href="css/main.css"/>
+        <script type="text/javascript" src="js/sort.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>
             <%
-                out.println("Barang Kategori 1");
+                out.println(hasil2.getString("nama_kategori"));
             %>
-        </h3>
-        <%
-        while(hasil.next()){
-            %>
-            <div class="halaman_category_container">
-               <div class="barang_container">
-                   <div class="barang">
-                        <% 
-                        out.print("<a href='index.jsp'>");
-                        out.print("<img src='assets/barang/"+hasil.getString("gambar")+"' heigth=100%/");
-                        out.print("</a>");
+        </title>
+    </head>
+    <body>
+        <div id='wrapper'>
+            <div id='header'></div>
+            <div class='divider'></div>
+            <div id="content">
+                <h3 class="judul_halaman">
+                    <%
+                    out.println("Kategori : "+hasil2.getString("nama_kategori"));
+                    %>
+                </h3>
+                <div id="dropdownsort">
+                    Urutkan berdasarkan : 
+                    <select id="selectorder">
+                        <%
+                        if (request.getParameter("order")==null || request.getParameter("order").equals("nama")){ 
                         %>
-                   </div>
-                   <div class="barang">
-                        <% 
-                             out.print("Nama Barang : ");
+                            <option selected=true>Nama</option>
+                            <option>Harga</option>
+                        <%
+                            query = query + "nama_barang ";
+                        } else if (request.getParameter("order").equals("harga")) {
                         %>
-                        <span class="barang_nama">
-                            <%
-                             out.print("<a href='index.jsp'>");
-                             out.print(hasil.getString("nama_barang"));
-                             out.print("</a>");
-                             %>
-                        </span>
-                        </br>
-                         <% 
-                             out.print("Harga Barang : ");
+                            <option>Nama</option>
+                            <option selected=true>Harga</option>
+                        <%
+                            query = query + "harga_barang ";
+                        }
                         %>
-                        <span class="barang_harga">
-                             <% 
-                             out.print("Rp "+hasil.getString("harga_barang")+",00");
-                             %>
-                        </span>
-                   </div>
-               </div>
+                   </select>
+                   <select id="selectsort">
+                       <%
+                        if (request.getParameter("sort")==null || request.getParameter("sort").equals("asc")){ 
+                        %>
+                            <option selected=true>Membesar</option>
+                            <option>Mengecil</option>
+                        <%
+                            query = query + "asc";
+                        } else if (request.getParameter("sort").equals("desc")) {
+                        %>
+                            <option>Membesar</option>
+                            <option selected=true>Mengecil</option>
+                        <%
+                            query = query + "desc";
+                        }
+                        %>
+                   </select>
+                </div>
+                <br/>
+                <br/>
+                <%
+                hasil1 = stm1.executeQuery(query);
+                while(hasil1.next()){
+                    %>
+                    <div class="halaman_category_container">
+                       <div class="barang_container">
+                           <div class="barang">
+                                <% 
+                                out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
+                                out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' height=100%");
+                                out.print("</a>");
+                                %>
+                           </div>
+                           <div class="barang">
+                                <span class="barang_nama">
+                                    <%
+                                     out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
+                                     out.print(hasil1.getString("nama_barang"));
+                                     out.print("</a>");
+                                     %>
+                                </span>
+                                <br/>
+                                <span class="barang_tersedia"></span>
+                                <span class="barang_harga">
+                                     <% 
+                                     out.print("Rp "+hasil1.getString("harga_barang")+",00");
+                                     %>
+                                </span>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <%
+                                out.print("Jumlah : ");
+                                out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10>");
+                                %>
+                                <br/>
+                                <%
+                                out.print("<a class='button beli' name='"+hasil1.getString("id_barang")+"' href='javascript:void(0)'><div>Pesan Barang</div></a>");
+                                %>  
+                           </div>
+                       </div>
+                    </div>
+                    <hr>
+                <% 
+                }
+                %>
             </div>
-            <% 
-        }
-        %>
+            <div class='divider'></div>
+            <div id='footer'></div>
+            <br /><br /><br /><br /><br /><br />
+        </div>
     </body>
 </html>

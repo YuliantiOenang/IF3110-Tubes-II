@@ -38,54 +38,63 @@
         </title>
     </head>
     <body>
-        <h3 class="judul_halaman">
-            <%
-                out.println(hasil1.getString("nama_barang"));
-            %>
-        </h3>
-        </br>
-        </br>
-        </br>
-        <div class="barang_container">
-            <div class="barang_gambar_detail">
-                <%
-                out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' width=100%/");
-                %>
-            </div>
-            <div class="barang_detail">
-                <%
-                out.print("Kategori : ");
-                %>
-                <span class="barang_nama">
+        <div id='wrapper'>
+            <div id='header'></div>
+            <div class='divider'></div>
+            <div id="content">
+                <h3 class="judul_halaman">
                     <%
-                    out.print("<a href='barang.jsp?kategori="+hasil1.getString("id_kategori")+"'>");
-                    out.print(hasil2.getString("nama_kategori"));
-                    out.print("</a>");
+                    out.println(hasil1.getString("nama_barang"));
                     %>
-                </span>
-                <span class="barang_nama">
-                </span>
-                </br>
-                <%
-                out.print("Harga : ");
-                %>
-                <span class="barang_harga">
-                    <% 
-                    out.print("Rp "+hasil1.getString("harga_barang")+",00");
-                    %>
-                </span>
-                </br>
-                </br>
-                </br>
-                <%
-                out.print("Jumlah : ");
-                out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10>");
-                %>
-                </br>
-                <%
-                out.print("<a class='button beli' name='"+hasil1.getString("id_barang")+"' href='javascript:void(0)'><div>Pesan Barang</div></a>");
-                %>                
+                </h3>
+                <br/>
+                <br/>
+                <br/>
+                <div class="barang_container">
+                    <div class="barang_gambar_detail">
+                        <%
+                        out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' width=100%/");
+                        
+                        %>
+                    </div>
+                    <div class="barang_detail">
+                        <%
+                        out.print("Kategori : ");
+                        %>
+                        <span class="barang_nama">
+                            <%
+                            out.print("<a href='barang.jsp?kategori="+hasil1.getString("id_kategori")+"'>");
+                            out.print(hasil2.getString("nama_kategori"));
+                            out.print("</a>");
+                            %>
+                        </span>
+                        <span class="barang_tersedia"></span>
+                        <br/>
+                        <%
+                        out.print("Harga : ");
+                        %>
+                        <span class="barang_harga">
+                            <% 
+                            out.print("Rp "+hasil1.getString("harga_barang")+",00");
+                            %>
+                        </span>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <%
+                        out.print("Jumlah : ");
+                        out.print("<input type='number' class='inputjumlah' name='jumlah' value=1 min=1 max=10>");
+                        %>
+                        <br/>
+                        <%
+                        out.print("<a class='button beli' name='"+hasil1.getString("id_barang")+"' href='javascript:void(0)'><div>Pesan Barang</div></a>");
+                        %>                
+                    </div>
+                </div>
             </div>
+            <div class='divider'></div>
+            <div id='footer'></div>
+            <br /><br /><br /><br /><br /><br />
         </div>
     </body>
 </html>
