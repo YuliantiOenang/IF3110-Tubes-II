@@ -7,9 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<link rel='stylesheet' type='text/css'
-	href="${pageContext.request.contextPath}/css/style.css" />
+<jsp:include page="../header.jsp" />
 
 <script type="text/javascript">
 	function fitpict(obj) {
@@ -66,7 +64,7 @@
 		<div class='item_price'>
 			<p>get it for :</p>
 			<h4>
-				IDR (<%=b.getPrice()%>)
+				IDR <%=b.getPrice()%>
 			</h4>
 
 			<label class='qty'>Quantity</label> <input type='number' name='qty'
