@@ -64,12 +64,12 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/><br/>
-						<form>
+						<form class="cart_buy">
 							<input type='text' id='quant<%= no %>' value='0' size=7 >
 							<img class="cart_button" src="res/addtocart.png" width=125 onclick="validate(<%= b.getId_inven() %>, <%= no %>)">
 						</form>
 						
-						<div id='notif<%=no%>'></div>
+						<div class="notif" id='notif<%=no%>'></div>
 					</div>
 				</div>
 				<%
@@ -95,5 +95,5 @@
 		</div>
 		</div>
 </body>
-<script src="transaction.js"></script>
+	<script src="transaction.js"></script>
 </html>

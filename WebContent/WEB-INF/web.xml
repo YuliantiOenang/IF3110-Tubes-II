@@ -98,6 +98,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewCart</servlet-name>
-    <url-pattern>/ViewCart</url-pattern>
+    <url-pattern>/viewCart</url-pattern>
   </servlet-mapping>
 </web-app>

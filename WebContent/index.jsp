@@ -14,13 +14,14 @@
 	<link rel="stylesheet" href="css/index.css" type="text/css">
 	<%
 		out.println("<h1>BARANG POPULER</h1>");
+		int no = 1;
 		for(int i=0;i<5;i++){
 			out.println("<h1>Kategori: " + request.getAttribute("namaKategori" + i) + "<br/></h1>");
 			ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangKategori" + i);
 			%>
 			<div class="pull_left">
 			<%
-			int no = 1;
+			
 			for(Barang b: barangs){
 				%>
 				<div class="list_barang">

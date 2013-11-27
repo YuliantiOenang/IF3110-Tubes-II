@@ -1,10 +1,7 @@
 
 
+import java.awt.Point;
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -41,15 +38,16 @@ public class addToCart extends HttpServlet {
 		String db = "toko_imba";
 		java.sql.Connection con = null;
 		int id = Integer.parseInt(request.getParameter("id_barang"));
+		int jml = Integer.parseInt(request.getParameter("jumlah"));
 		
 		HttpSession session = request.getSession(true);
 		if(session.getAttribute("cart") == null){
-			ArrayList<Integer> cart = new ArrayList<Integer>();
-			cart.add(id);
+			ArrayList<Point> cart = new ArrayList<Point>();
+			cart.add(new Point(id, jml));
 			session.setAttribute("cart", cart);
 		} else {
-			ArrayList<Integer> cart = (ArrayList<Integer>) session.getAttribute("cart");
-			cart.add(id);
+			ArrayList<Point> cart = (ArrayList<Point>) session.getAttribute("cart");
+			cart.add(new Point(id, jml));
 			session.setAttribute("cart", cart);
 		}
 		response.getWriter().write("Sukses!");

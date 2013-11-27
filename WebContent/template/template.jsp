@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="kelas.*"%>
 
 <a href=""><img src="res/header.png" height="258px" width="915px"></a><br/>
 <link href='http://fonts.googleapis.com/css?family=Gorditas' rel='stylesheet' type='text/css'>
@@ -28,5 +29,5 @@
 			</div>
 			<div id="livesearch"></div>
 		</form>
-		<img class="view_cart" src="res/viewcart.png" width="200px">
+		<a href="viewCart"><img class="view_cart" src="res/viewcart.png" width="200px"></a>
 	</div>

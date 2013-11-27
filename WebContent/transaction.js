@@ -53,7 +53,10 @@ function validate(id_barang, id_div){
 function addToCart(id_barang, id_div){
 	//alert("notif" + id_div);
 	var notif_bar = document.getElementById("notif" + id_div);
+	var jml_beli = document.getElementById("quant" + id_div).value;
+	
 	data = "id_barang=" + id_barang;
+	data += "&jumlah=" + jml_beli;
 	
 	/*
 	if(localStorage.id_user == undefined){
