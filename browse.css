@@ -1,0 +1,42 @@
+.itemView{
+	display:block;
+	float:left;
+	width:390px;
+	height:180px;
+	margin:0;
+}
+
+.itemDetail{
+	display:block;
+	position:relative;
+	float:left;
+	top:0;
+	left:10px;
+	height:160px;
+	width:220px;
+}
+
+.itemImage{
+	display:block;
+	float:left;
+	position:relative;
+	width:160px;
+	height:160px;
+	background:#333333;
+}
+
+.browseOption{
+	display:block;
+	width:100%;
+	height: 30px;
+	float:left;
+}
+
+#quantity{
+	width:40px;
+	right:20px;
+}
+
+.pagination{
+	color: #47ca86;
+}

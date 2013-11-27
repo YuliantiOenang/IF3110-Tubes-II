@@ -25,10 +25,10 @@ function getUsername() {
 
 function drawHeaderContent(){
 	document.getElementById('header').innerHTML="";
-	document.getElementById('header').innerHTML+="<a href=\"index.jsp?kategori=0\"> <img src=\"resource\\logo.png\" id='logo'> </a>";
-	document.getElementById('header').innerHTML+="<form id='searchform' method='get' action='browse.php'><input id='hilang' name='sortBy' value=popularitas><input id='hilang' name='currentPage' value =1><input class=\"textInput\" id='searchBar' type=\"text\" name=\"keyword\">";
+	document.getElementById('header').innerHTML+="<a href=\"index.jsp?kategori=0\"> <img src=\"resource/logo.png\" id='logo'> </a>";
+	document.getElementById('header').innerHTML+="<form id='searchform' method='get' action='browse.jsp'><input id='hilang' name='sortBy' value=popularitas><input id='hilang' name='currentPage' value =1><input class=\"textInput\" id='searchBar' type=\"text\" name=\"keyword\">";
 	document.getElementById('searchform').innerHTML+="<input class=\"button\" id='searchButton' type=\"submit\" value=\"\">";
-	document.getElementById('searchform').innerHTML+="<select class=\"dropDown\" id='kategoriDropDown' name='category'>";
+	document.getElementById('searchform').innerHTML+="<select class=\"dropDown\" id='kategoriDropDown' name='kategori'>";
 	document.getElementById('kategoriDropDown').innerHTML+="<option value=\"default\">kategori...</option>";
 	for (var i=0;i<5;i++){
 		var opt = document.createElement("option");

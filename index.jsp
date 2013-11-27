@@ -61,7 +61,7 @@
 		<h1> <%= kategori[currentIndex]%></h1>
 		<%
 			while (sets[currentIndex].next() && i < 3) {
-				out.println("<img src='resource\\"+sets[currentIndex].getString(1)+".jpg' class='homeImage'>");
+				out.println("<img src='resource/"+sets[currentIndex].getString(1)+".jpg' class='homeImage'>");
 				i++;
 			}
 		%>
@@ -71,7 +71,7 @@
 		
 		<div id='Mekanisme'>
 			<h1>Mekanisme</h1>
-			<img src='resource\\mekanisme.png'>
+			<img src='resource/mekanisme.png'>
 		</div>
 	</div>
 	
