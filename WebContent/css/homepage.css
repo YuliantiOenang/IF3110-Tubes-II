@@ -80,8 +80,11 @@ html *{
 	width: 900px;
 	margin: auto;
 	border-radius: 10px;
-	padding-bottom: 15px;
 	background-color: white;
+}
+
+.contents{
+	padding:15px;
 }
 
 #item_status {
@@ -145,9 +148,6 @@ a {
 	text-decoration: none;
 }
 
-.cool_text{
-	font-family: 'Gorditas', cursive;
-}
 
 .categories{
 	width-max:900px;

@@ -11,11 +11,11 @@
 <a href=""><img src="res/header.png" height="258px" width="900px"></a><br/>
 
 <div class = "categories">
-	<div class = "text_navigation"><a class="cool_text" href="showList?cat=roti">Roti</a></div>
-	<div class = "text_navigation"><a class="cool_text" href="showList?cat=minuman">Minuman</a></div>
-	<div class = "text_navigation"><a class="cool_text" href="showList?cat=kalengan">Makanan Kalengan</a></div>
-	<div class = "text_navigation"><a class="cool_text" href="showList?cat=segar">Makanan Segar</a></div>
-	<div class = "text_navigation"><a class="cool_text" href="showList?cat=peralatan">Peralatan Rumah</a></div>
+	<div class = "text_navigation"><a href="showList?cat=roti">Roti</a></div>
+	<div class = "text_navigation"><a href="showList?cat=minuman">Minuman</a></div>
+	<div class = "text_navigation"><a href="showList?cat=kalengan">Makanan Kalengan</a></div>
+	<div class = "text_navigation"><a href="showList?cat=segar">Makanan Segar</a></div>
+	<div class = "text_navigation"><a href="showList?cat=peralatan">Peralatan Rumah</a></div>
 </div>
 
 <div class="main_navigation">

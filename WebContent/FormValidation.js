@@ -29,13 +29,13 @@
 		}else if(type == "password"){ // Password
 			var pattern = /........+/; // Regex
 			var x = document.forms["registration"]["password"].value; // Ambil Value
-			var y = document.getElementById("password"); // Ambil elemen tulisan di sebelah form
+			var y = document.getElementById("password2"); // Ambil elemen tulisan di sebelah form
 			var z = document.forms["registration"]["username"].value; // Ambil Value
 			var a = document.forms["registration"]["email"].value; // Ambil Value
 			
 			// Cek value dengan regex
 			if(!pattern.test(x)){
-				y.innerHTML=" *password minimal 8 karakter";
+				y.innerHTML="*password minimal 8 karakter";				
 				passwordflag = false;
 			}else{
 				y.innerHTML="";
@@ -118,8 +118,8 @@
 		if(type == "password"){ // Password
 			var pattern = /........+/; // Regex
 			var x = document.forms["registration"]["password"].value; // Ambil Value
-			var y = document.getElementById("password"); // Ambil elemen tulisan di sebelah form
-			var z = document.getElementById("username").innerHTML; // Ambil Value
+			var y = document.getElementById("password2"); // Ambil elemen tulisan di sebelah form
+			var z = document.getElementById("username2").innerHTML; // Ambil Value
 			var a = document.getElementById("email").innerHTML; // Ambil Value
 			
 			// Cek value dengan regex
