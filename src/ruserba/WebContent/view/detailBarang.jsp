@@ -22,10 +22,10 @@
 		<h4>IDR <%= B.harga.get(0) %></h4>
 		<p>stok : <%= B.stok.get(0)%></p>
 	<!-- <form method="post" onSubmit="Stok(); return false;" >  -->
-	 <form method="post" onsubmit="cekQuantity(); return false;"  action = "/ruserba/barang/update" id="form-shop"> 
+	 <form method="post" onsubmit="pertanyaan(<%=B.id.get(0)%>,<%=B.stok.get(0)%>); return false;"  action = "/ruserba/barang/update" id="form-shop"> 
 		<label class='qty'>Quantity</label>
-		<input type='number' name="quantity" id="quantity" class='qty' value=1></input>
-		<input type="hidden" name="id_barang" id="id_barang" value="<%= B.id.get(0) %>">
+		<input type='number' name="quantity" id="quantity_<%=B.id.get(0)%>" class='qty' value=1></input>
+		<input type="hidden" name="id_barang" id="keterangan_<%=B.id.get(0)%>">
 		<p>Request Message :</p>
 		<textarea class='req_msg' name='req_msg'></textarea>
 		<input type='submit' class='cart' value = 'Add to Cart'></input>
