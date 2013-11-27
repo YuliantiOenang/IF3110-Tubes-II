@@ -72,7 +72,7 @@
 			<p class="left">
 				welcome, <a
 					href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>!
-				(<a href="admin?action=main">Admin</a> | <a href="logout">Logout</a>)
+				(<a href="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/admin?action=main">Admin</a> | <a href="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/logout">Logout</a>)
 			</p>
 			<p class="right">
 				<a href="${pageContext.request.contextPath}/barang/cart">Shopping
