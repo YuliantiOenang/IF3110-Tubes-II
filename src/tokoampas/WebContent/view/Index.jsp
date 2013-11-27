@@ -30,7 +30,8 @@
 						<p>BARANG TERPOPULER</p>
 					</div>
 				<ul>
-					<li>															
+					<li>	
+						<% /*														
 						<?php
 							$result = mysqli_query($con,"SELECT * FROM product where (sold = (SELECT Max(sold) from product where category='elektronik')) AND category='elektronik'");					
 							while($row = mysqli_fetch_array($result))
@@ -40,10 +41,16 @@
 								echo '<img src=' . SITEURL . '/include/' . $row['image_link'] . '>';
 								echo '</a>';
 							}						
-						?>										
+						?>	
+						*/ %>
+							Kategori <b>Elektronik</b><br>
+							<a href=''>
+								<img src=''>
+							</a>
 					</li>						
 					
 					<li>
+						<% /*
 						<?php
 							$result = mysqli_query($con,"SELECT * FROM product where (sold = (SELECT Max(sold) from product where category='otomotif')) AND category='otomotif'");							
 							while($row = mysqli_fetch_array($result))
@@ -53,10 +60,16 @@
 								echo '<img src=' . SITEURL . '/include/' . $row['image_link'] . '>';
 								echo '</a>';
 							}						
-						?>				
+						?>	
+						*/ %>
+						Kategori <b>Otomotif</b><br>
+							<a href=''>
+								<img src=''>
+							</a>
 					</li>
 					
-					<li> 				
+					<li> 	
+						<% /*
 						<?php
 							$result = mysqli_query($con,"SELECT * FROM product where (sold = (SELECT Max(sold) from product where category='fashion')) AND category='fashion'");							
 							while($row = mysqli_fetch_array($result))
@@ -66,10 +79,16 @@
 								echo '<img src=' . SITEURL . '/include/' . $row['image_link'] . '>';
 								echo '</a>';
 							}						
-						?>				
+						?>
+						*/ %>
+						Kategori <b>Fashion</b><br>
+							<a href=''>
+								<img src=''>
+							</a>
 					</li>
 					
-					<li> 				
+					<li> 	
+						<% /*
 						<?php
 							$result = mysqli_query($con,"SELECT * FROM product where (sold = (SELECT Max(sold) from product where category='properti')) AND category='properti'");							
 							while($row = mysqli_fetch_array($result))
@@ -79,10 +98,16 @@
 								echo '<img src=' . SITEURL . '/include/' . $row['image_link'] . '>';
 								echo '</a>';
 							}						
-						?>				
+						?>
+						*/ %>
+						Kategori <b>Properti</b><br>
+							<a href=''>
+								<img src=''>
+							</a>
 					</li>
 					
 					<li>
+						<% /*
 						<?php
 							$result = mysqli_query($con,"SELECT * FROM product where (sold = (SELECT Max(sold) from product where category='musik')) AND category='musik'");							
 							while($row = mysqli_fetch_array($result))
@@ -92,16 +117,15 @@
 								echo '<img src=' . SITEURL . '/include/' . $row['image_link'] . '>';
 								echo '</a>';
 							}						
-						?>									
+						?>
+						*/ %>
+						Kategori <b>Musik</b><br>
+							<a href=''>
+								<img src=''>
+							</a>							
 					</li>
 				</ul>
 		</div>
 		<!--end content-->		
 	</body>	
-	<!--
-	<footer>
-		<div id="footer">
-			INI FOOTER
-		</div>		
-	</footer>-->
 </html>
