@@ -1462,3 +1462,7 @@ div.hide {
 div.show {
 	display: block;
 }
+
+.img_layout {
+	margin-right: 5px;
+}
