@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="css/header.css" type="text/css"/>
+<script src="javascript/cookies.js"></script>
+<script src="javascript/login.js"></script>
+
 <header id="banner" class="body">
 	<%@ page import="java.sql.*, java.util.*" %>
 	<%
@@ -11,6 +14,19 @@
 	Statement statement = connection.createStatement();
 	ResultSet categories = statement.executeQuery("SELECT DISTINCT kategori FROM barang");
 	%>
+	
+	<script>
+		var username = "<% out.print(session.getAttribute("Username")); %>";
+		if (username == null)
+		{
+			loggedoutlayout();
+		}
+		else
+		{
+			loggedinlayout(username);
+		}
+	</script>
+	
 	<div id="headerlogo">
 		<a href="index.jsp"><img src="images/logo.png" alt="Logo"/></a>
 	</div>
@@ -25,9 +41,19 @@
 					<% } connection.close();%>
 				</ul>
 			</li>
-			<!--div id="log"></div-->
-			<li><a href="#login_form">Log In</a></li>
-			<li><a href="registerform.jsp">Daftar</a></li>
+			<%
+				if (session.getAttribute("Username") == null) {
+					%>
+						<li><a href="#login_form">Log In</a></li>
+						<li><a href="registerform.jsp">Daftar</a></li>
+					<%
+				} else {
+					%>
+						<li><a href="profile.jsp">Welcome, <%= session.getAttribute("Username") %>!</a></li>
+						<li><a href="server/invalidate_customer.jsp" onclick="invalidateUser()">Log Out</a></li>
+					<%
+				}
+			%>
 			<li><a href="cart.jsp">Shopping Bag</a></li>
 			<li id="searchbar">
 				<form method="get" action="search.jsp">

@@ -4,6 +4,7 @@
 	<title>RAN's Shop - Home</title>
 	<link rel="stylesheet" href="css/main.css" type="text/css"/> 
 	<link rel="stylesheet" href="css/halamanbarang.css" type="text/css"/>
+	<script src="javascript/cookies.js"></script>
 	<script src="login.js"></script>
 </head>
 <body id="index" class="home">
@@ -52,6 +53,6 @@
 			</aside>
 		</div>
 		<%@include file="footer.jsp" %>
-	</div>	
+	</div>
 </body>
 </html>

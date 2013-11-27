@@ -38,13 +38,18 @@ function validateUser()
 				
 				// store username into cookie :3
 				setCookie("Username", x, 30);
-				
-				// change layout
-				
 			}
 		}
 	};
 
 	xmlhttp.open("GET", "server/validate_customer.jsp?usr="+x+"&pass="+y, true);
 	xmlhttp.send();
+}
+
+function invalidateUser()
+{
+	eraseCookie("Username");
+	eraseCookie("Privilege");
+	
+	alert("Terima kasih telah menggunakan jasa kami.");
 }

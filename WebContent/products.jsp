@@ -6,7 +6,6 @@
 </head>
 <body id="index" class="home">
 	<div id="container">
-		
 		<article id="contentfull" class="body">
 			<p>Ini ceritanya Content</p>
 		</article>
