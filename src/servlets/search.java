@@ -66,10 +66,10 @@ PrintWriter out = response.getWriter();
 				if(!kategori.isEmpty()){
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "+
 							       "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga+
-							       "AND kategori_barang = "+kategori;
+							       " AND kategori_barang = "+kategori;
 					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "+
 							       "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga+
-							       "AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
+							       " AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}else { //kategori kosong
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE nama_barang like '%"+nama_barang+"%' AND harga_barang BETWEEN 0 AND "+harga;
@@ -93,9 +93,9 @@ PrintWriter out = response.getWriter();
 			if(!harga.isEmpty()){ //ada harga
 				if(!kategori.isEmpty()){ //ada kategori
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
-							     + "WHERE harga_barang BETWEEN 0 AND "+harga+"AND kategori_barang = "+kategori;
+							     + "WHERE harga_barang BETWEEN 0 AND "+harga+" AND kategori_barang = "+kategori;
 					search_query = "SELECT Distinct * FROM `progin_13511021`.barang "
-							     + "WHERE harga_barang BETWEEN 0 AND "+harga+"AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
+							     + "WHERE harga_barang BETWEEN 0 AND "+harga+" AND kategori_barang = "+kategori+" ORDER BY "+order+" ASC LIMIT "+limit+", 10";
 				}else { //kategori kosong
 					n_item_query = "SELECT COUNT(nama_barang) AS n_item FROM `progin_13511021`.barang "
 							     + "WHERE harga_barang BETWEEN 0 AND "+harga;
@@ -144,7 +144,7 @@ PrintWriter out = response.getWriter();
 		}
 		request.setAttribute("search_result", search_result);
 		request.setAttribute("n_item", n_item);
-		RequestDispatcher view = request.getRequestDispatcher("/search.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("search.jsp");
 		view.forward(request, response);
 	}
 

@@ -23,6 +23,7 @@
 		}
 		if (!isValid) {
 			credit_error.innerHTML = 'The Credit Card Number is not valid';
+			button.disabled = true;
 		} else {
 			credit_error.innerHTML = '';
 			button.disabled = false;

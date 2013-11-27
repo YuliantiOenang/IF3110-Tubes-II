@@ -65,7 +65,7 @@ public class EditBarang extends HttpServlet {
 				+ "'";
 		
 		dbAccess.doQueryUpdate(query);
-		RequestDispatcher view = request.getRequestDispatcher("editbarang.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("sukses.jsp");
 		view.forward(request, response);
 	}
 }
