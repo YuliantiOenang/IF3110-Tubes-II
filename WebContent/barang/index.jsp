@@ -202,8 +202,20 @@
 			</div>
 			
 			<div class='minicart hidden' id='cart<%= b.getId() %>'>
-			
-			<p class='back' href=$ onclick('backToPic(<%= b.getId() %>)')>back</p>
+			<label class='qty small'>Quantity</label>
+			<input type='number' name='qty'
+				id='qty_<%=b.getId()%>' class='qty' value=0></input>
+			<label class='qty small'>Stock:
+			&nbsp;&nbsp;<span id="jumlah_barang_<%=b.getId()%>"><%=b.getTotal_item()%></span>
+			</label><br />
+			<p><label class='rqmessage'>Request Message :</label></p>
+			<textarea class='req_msg small' name='deskripsi_tambahan'
+				id='deskripsi_tambahan'></textarea>
+			<input type='button' class='cart small' id='beli' value='Add to Cart'
+				onClick="onAddToCart('http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/barang/addCart', <%=b.getId()%> ); return false;"></input>
+			<p class='back' href=$ onclick('backToPic(<%= b.getId() %>)')>
+			<label class='qty small'>back</label>
+			</p>
 			</div>
 		</div>
 		
