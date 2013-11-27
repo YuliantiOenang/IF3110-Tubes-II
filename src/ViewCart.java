@@ -78,6 +78,7 @@ public class ViewCart extends HttpServlet {
     }
     
     public void clearCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	System.out.println("Clearing...");
     	HttpSession session = request.getSession(true);
     	ArrayList<Barang> barangs = new ArrayList<Barang>();
     	    	
@@ -91,7 +92,9 @@ public class ViewCart extends HttpServlet {
     }
     
     public void buyCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	String id_user = request.getParameter("id_user");
+    	System.out.println("Buying...");
+    	String id_user = request.getParameter("user_id");
+    	System.out.println("ID user: " + id_user);
     	
     	HttpSession session = request.getSession(true);
 		String db = "toko_imba";
@@ -107,6 +110,8 @@ public class ViewCart extends HttpServlet {
 				cart = (ArrayList<Point>) session.getAttribute("cart");
 				for(Point barangIndex: cart){
 					Statement state = con.createStatement();
+					
+					System.out.println("Executing query...");
 					
 					//Update jumlah transaksi yang di user
 					String localStorageId = "Hafizh"; //temporary gaaaaaan

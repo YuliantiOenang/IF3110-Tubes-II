@@ -6,12 +6,14 @@
 <link href='http://fonts.googleapis.com/css?family=Gorditas' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/list.css" type="text/css">
 <link rel="stylesheet" href="css/homepage.css" type="text/css">   
+<link rel="stylesheet" href="css/modal.css" type="text/css">
 
 <div class = "text_navigation"><a class="cool_text" href="showList?cat=roti">Roti</a></div>
 <div class = "text_navigation"><a class="cool_text" href="showList?cat=minuman">Minuman</a></div>
 <div class = "text_navigation"><a class="cool_text" href="showList?cat=kalengan">Makanan Kalengan</a></div>
 <div class = "text_navigation"><a class="cool_text" href="showList?cat=segar">Makanan Segar</a></div>
 <div class = "text_navigation"><a class="cool_text" href="showList?cat=peralatan">Peralatan Rumah</a></div>
+<%@ include file="../LoginBar.jsp" %>
 <br/><br/><br/>
 	<div class="main_navigation">
 		<form action="search" method="get">

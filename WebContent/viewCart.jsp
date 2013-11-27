@@ -68,4 +68,8 @@
 	</div>
 </body>
 	<script src="transaction.js"></script>
+	<script type="text/javascript">
+	   //alert("Checking if credit card is exist on jsp");
+	   checkCreditCard();
+	</script>
 </html>

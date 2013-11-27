@@ -50,13 +50,20 @@ function validate(id_barang, id_div){
 	xmlhttp.send(data);
 }
 
+function checkCreditCard(){
+	//alert("Checking if credit card is exist on js");
+	if(localStorage.cardnum == 0){
+		window.location = "CreditCard.jsp";
+	}
+}
+
 function buyCart(){
 	data = "mode=buy";
-	if(localStorage.id_user == undefined){
+	if(localStorage.user_id == undefined){
 		alert("Maaf, Anda harus login terlebih dahulu.");
 		return;
 	} else {
-		data=data+"&id_user="+localStorage.id_user;
+		data=data+"&user_id="+localStorage.user_id;
 	}
 	
 	var xmlhttp;
@@ -73,7 +80,7 @@ function buyCart(){
 		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var responsecode = xmlhttp.responseText;
-			notif_bar.innerHTML = responsecode;
+			window.location.reload();
 			//alert(responsecode);
 		}
 	};
@@ -84,7 +91,7 @@ function buyCart(){
 
 function clearCart(){
 	data = "mode=clear";
-	if(localStorage.id_user == undefined){
+	if(localStorage.user_id == undefined){
 		alert("Maaf, Anda harus login terlebih dahulu.");
 		return;
 	}
@@ -103,7 +110,7 @@ function clearCart(){
 		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var responsecode = xmlhttp.responseText;
-			notif_bar.innerHTML = responsecode;
+			window.location.reload();
 			//alert(responsecode);
 		}
 	};
@@ -121,7 +128,7 @@ function addToCart(id_barang, id_div){
 	data += "&jumlah=" + jml_beli;
 	
 	
-	if(localStorage.id_user == undefined){
+	if(localStorage.user_id == undefined){
 		notif_bar.innerHTML = "Maaf, Anda harus login terlebih dahulu.";
 		return;
 	}
