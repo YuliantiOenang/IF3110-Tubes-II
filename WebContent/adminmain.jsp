@@ -28,9 +28,10 @@
 
 	<jsp:include page="layout.jsp"></jsp:include>
 	<h1 class="header">Admin</h1>
-	<hr />
-	<a href="admin?action=add">Tambah barang</a>
-	<a href="admin?action=edit">Edit barang</a>
+	<hr/>
+	<br/>
+	<a href="admin?action=add" class="btn small">Tambah barang</a>
+	<a href="admin?action=edit" class="btn small">Edit barang</a>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

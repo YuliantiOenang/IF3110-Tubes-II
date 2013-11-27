@@ -56,7 +56,7 @@
 			%>
 			<p class="left">
 				welcome, <a
-					href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>!
+					href="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>!
 				(<a href="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/logout">Logout</a>)
 			</p>
 			<p class="right">
