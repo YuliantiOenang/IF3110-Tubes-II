@@ -10,14 +10,7 @@
 		ArrayList<String> kartu = new ArrayList<String>();		
 		kartu=(ArrayList<String>) request.getAttribute("card");
 		
-		ArrayList<Transaksi> shopList;
-		Barang B = new Barang("101", "Tahu Sumedang",
-				"./images/Tahu.png", 1000, 1, 10,
-				"tahu dari sumedang. wuenak", 10);
-		Transaksi trans = new Transaksi(B, 2,
-				"Dibungkus yaah, pake daun pisang kalo bisa");
-		shopList = new ArrayList<Transaksi>();
-		shopList.add(trans);
+		ArrayList<Transaksi> shopList = request.getAttribute(arg0);
 		session.setAttribute("shopping_cart", shopList);
 
 		if ((shopList = (ArrayList<Transaksi>) session
@@ -25,9 +18,7 @@
 			int totalPengeluaran = 0;
 
 			for (int i = 0; i < shopList.size(); i++) {
-				totalPengeluaran += (shopList.get(i).getBarang()
-						.getHarga_barang() * shopList.get(i)
-						.getQuantity());
+				totalPengeluaran += (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQuantity());
 				out.print("<h4><b>" + (i + 1) + ". "
 						+ shopList.get(i).getBarang().getNama_barang()
 						+ "</b></h4>");

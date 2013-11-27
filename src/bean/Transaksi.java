@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Transaksi {
 	private Barang barang;
-	private Integer quantity;
-	private String reqTambahan;	
+	private Integer qt;
+	private String request_tambahan;
 
-	public Transaksi(Barang barang, Integer quantity, String reqTambahan) {
+	public Transaksi(Barang barang, Integer qt, String request_tambahan) {
 		super();
 		this.barang = barang;
-		this.quantity = quantity;
-		this.reqTambahan = reqTambahan;		
+		this.qt = qt;
+		this.request_tambahan = request_tambahan;
 	}
 
 	public Barang getBarang() {
@@ -22,19 +22,20 @@ public class Transaksi {
 		this.barang = barang;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
+	public Integer getQt() {
+		return qt;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setQt(Integer qt) {
+		this.qt = qt;
 	}
 
-	public String getReqTambahan() {
-		return reqTambahan;
+	public String getRequest_tambahan() {
+		return request_tambahan;
 	}
 
-	public void setReqTambahan(String reqTambahan) {
-		this.reqTambahan = reqTambahan;
+	public void setRequest_tambahan(String request_tambahan) {
+		this.request_tambahan = request_tambahan;
 	}
+
 }

@@ -46,10 +46,14 @@ public class Shoppingbag extends HttpServlet {
 		if (session.getAttribute("username") != null) {
 			ArrayList<String> card = new ArrayList<String>();
 			DatabaseAccess dbAccess = new DatabaseAccess();
+			
+			
+			
 			String SQL = "SELECT * FROM `creditcard` WHERE card_owner=\""
 					+ session.getAttribute("username") + "\"";
 			System.out.println("INI SQL [SHOPPINGBAG] ->" + SQL);
 			ResultSet rs = dbAccess.doQuery(SQL);
+			
 			try {
 				while (rs.next()) {
 					card.add(rs.getString("card_id"));
