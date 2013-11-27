@@ -826,6 +826,13 @@ label.qty {
 label.qty.small {
 	width: 80px;
 	display: inline-block;
+	color: #fff;
+}
+
+label.rqmessage {
+	width: 120px;
+	display: inline-block;
+	color: #fff;
 }
 
 textarea.req_msg {
