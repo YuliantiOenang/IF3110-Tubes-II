@@ -2,18 +2,13 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@page import="java.util.ArrayList"%>
-
 <%@include file="header.jsp" %>
-
-
-
 
 <% ArrayList<String> list_kategori = (ArrayList<String>)request.getAttribute("list_kategori"); %>
 <% ArrayList<ArrayList<String>> list_nama = (ArrayList<ArrayList<String>>)request.getAttribute("list_nama"); %>
 <% ArrayList<ArrayList<String>> list_gambar = (ArrayList<ArrayList<String>> )request.getAttribute("list_gambar"); %>
 
 <script>
-
 var it = 0;
 var last = new Date().getSeconds();
 var check = 0;
@@ -105,9 +100,7 @@ window.onscroll = function scroll()
 		onPaginasi();                             	
     }
 };
-
-
-</script>   
+</script>  
 
 <html>
     <body>
@@ -120,19 +113,13 @@ window.onscroll = function scroll()
                 <article class="blogPost">
                   	<img width="200" align="right" src = "img/buy.gif"/>	
                     <h2> Most Wanted Items! </h2>
-                       
-                     <ul id="list_barang">
-                     </ul>
-                     
-                     <p id = "loading"></p> 
-					    
+                    <ul id="list_barang">
+                	</ul>  
+			        <p id="loading"> </p>					     
             	</article> <!-- END OF BLOG POST -->
             </div> <!-- END OF MAIN CONTENT -->
         </div> <!-- END OF CONTENT -->
-        
-        <!-- FOOTER -->
-        <footer>
-        	<p> by Azalea Fisitania 13511028 Dikra Prasetya 13511030 Lukman Hakim </p>
-        </footer> 
     </body>  
 </html>  
+
+<%@include file="footer.jsp" %>

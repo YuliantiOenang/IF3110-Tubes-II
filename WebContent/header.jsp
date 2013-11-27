@@ -1,4 +1,4 @@
-<%@page import="java.io.*" import="java.sql.*;" %>
+<%@page import="java.io.*" import="java.sql.*" %>
 
 <!-- PREPARING SQL DATABASE -->
 <%
@@ -20,19 +20,20 @@ response.setContentType("text/html");
     <head>
     	<link type="text/css" rel="stylesheet" href="style.css"/>
     	<title>Ruko Serba Ada</title>     
-    	
-    	<!-- SCRIPT -->
+    </head>
+    
+    <!-- SCRIPT -->
     <script>
     
     function daydiff(first, second) {
-        return (second-first)/(1000*60*60*24)
+        return (second-first)/(1000*60*60*24);
     }
     
     if (typeof(Storage) !== "undefined") {
         var d = new Date();
         var curtime = d.getTime();
         
-        if (daydiff(localStorage.wbddate, curtime) >= 30)
+        if (daydiff(localStorage.wbddate, curTime) >= 30)
         {
         	localStorage.removeItem("wbdusername");
             localStorage.removeItem("wbddate");
@@ -69,7 +70,7 @@ response.setContentType("text/html");
                         alert("Login failed");
                     }
                 }
-            }
+            };
             xmlhttp.open("GET","CheckLogin?username="+person+"&pass="+password,true);
             xmlhttp.send();
         }
@@ -82,9 +83,6 @@ response.setContentType("text/html");
             location.reload(true);
         }
     </script> <!-- END OF SCRIPT -->
-    </head>
-    
-    
 
 	<!-- BODY -->
     <body>
@@ -95,12 +93,11 @@ response.setContentType("text/html");
 	           
 	        <div align="right" id="welcome">
 				<script>
-	 				if (typeof(Storage) !== "undefined") {
-	 					
+	 				if (typeof(Storage) !== "undefined") {		
 	                	if(!localStorage.wbdusername) {
 	                    	document.getElementById("welcome").innerHTML = "<button onclick='login()'>Login</button> &nbsp; Belum punya akun? &nbsp; <a href='registrasi.jsp'>Daftar</a>";
 						} else {
-	                    	document.getElementById("welcome").innerHTML = "Welcome, <a href='Profile?username="+ localStorage.wbdusername + "'>"+localStorage.wbdusername+"</a>! <button onclick='logout()'>Logout</button>";
+	                    	document.getElementById("welcome").innerHTML = "Welcome, <a href='profile.php'>"+localStorage.wbdusername+"</a>! <button onclick='logout()'>Logout</button>";
 	                    }
 	                }
 	            </script>
@@ -110,7 +107,7 @@ response.setContentType("text/html");
     	<!-- NAVIGATION -->
         <nav>
             <ul>
-                <li> <a href="#">All Categories</a>
+                <li> <a href="products.jsp?">All Categories</a>
                 	<ul>
                 		<!-- SQL QUERY FOR CATEGORY -->
                     	<% try {
@@ -135,7 +132,7 @@ response.setContentType("text/html");
 			        			
 			        		//Display category
 			        		%> 
-			        		<a href=products.php?category=<% out.print(category); %>> <% out.print(category); %> </a>
+			        		<a href="products.jsp?category=<% out.print(category); %>&sort=id"> <% out.print(category); %> </a>
 			        	</li>
 			       		<%	}
 		
@@ -179,14 +176,12 @@ response.setContentType("text/html");
 		
 	        			// Extract data from result set
 	        			while(rs.next()){ 
-	       			
-	       			 String category = rs.getString("category"); %>
+	        				//Retrieve by column name
+			        		String category = rs.getString("category");
+	       			%>
 					<option value= <%= category %>>	        			
 		        		<%
-		        		//Retrieve by column name
-		        		
-		        			
-			        	//Display values
+		        		//Display values
 			        	out.print(category); %>
 			        </option>
 			       		<%	}

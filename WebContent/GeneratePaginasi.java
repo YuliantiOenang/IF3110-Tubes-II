@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class GeneratePaginasi
  */
-@WebServlet("/GeneratePaginasi")
+//@WebServlet("/GeneratePaginasi")
 public class GeneratePaginasi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,7 +53,7 @@ public class GeneratePaginasi extends HttpServlet {
 	      
 	      int id = Integer.parseInt(request.getParameter("id"));
 	      
-
+	      ArrayList<ArrayList<Integer>> list_id = new ArrayList<ArrayList<Integer>>();
 	      ArrayList<String> list_kategori = new ArrayList<String>();
 	      ArrayList<ArrayList<String>> list_nama = new ArrayList<ArrayList<String>>();
 	      ArrayList<ArrayList<String>> list_gambar = new ArrayList<ArrayList<String>>();
@@ -83,17 +83,20 @@ public class GeneratePaginasi extends HttpServlet {
 	        	 Statement stmt2 = null;
 	        	 stmt2 = conn.createStatement();
 	        	 String sql2;
-	        	 sql2 = "SELECT DISTINCT name, picture FROM product WHERE category='" + category + "' ORDER BY sold DESC";
+	        	 sql2 = "SELECT DISTINCT id, name, picture FROM product WHERE category='" + category + "' ORDER BY sold DESC";
 		        
 	        	 ResultSet rs2 = stmt2.executeQuery(sql2);
 	        	 
+	        	 list_id.add(new ArrayList<Integer>());
 	        	 list_nama.add(new ArrayList<String>());
 	        	 list_gambar.add(new ArrayList<String>());
 	        	 while (rs2.next())
 	        	 {
+	        		 int idd = rs2.getInt("id"); 
 	        		 String name = rs2.getString("name");
 	        		 String picture = "img/" + rs2.getString("picture");
 	        		 
+	        		 list_id.get(i).add(idd);
 	        		 list_nama.get(i).add(name);
 	        		 list_gambar.get(i).add(picture);
 	        	 }
@@ -135,7 +138,7 @@ public class GeneratePaginasi extends HttpServlet {
 	      for (int i = 0; i < list_nama.get(id).size(); ++i)
 	      {
 		      out.println("<li>");
-		      out.println("<a href=detail_product.jsp?name=" + list_nama.get(id).get(i) + "> " + list_nama.get(id).get(i) + " </a>;");
+		      out.println("<a href=detail_product.jsp?id=" + list_id.get(id).get(i) + "> " + list_nama.get(id).get(i) + " </a>;");
 		      out.println("<br>");
 		      out.println("<img src="+ list_gambar.get(id).get(i) +">");
 		      out.println("</li>");

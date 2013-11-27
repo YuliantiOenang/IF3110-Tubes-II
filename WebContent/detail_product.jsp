@@ -2,41 +2,35 @@
 <%@page import="java.io.*" import="java.sql.*" %>
 
 <!-- GET PARAMETER -->
-<% String category = (String)request.getParameter("category"); %>
-<% String sort = (String)request.getParameter("sort"); %>
-	
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script >
-		function addtocart(pid){
-			document.form1.productid.value=pid;
-			document.form1.command.value='add';
-			document.form1.submit();
-		}				
-		</script>
-	</head>
+<% String id = (String)request.getParameter("id"); %>
 
-	<body>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script language="javascript">
+			function addtocart(pid){
+				document.form1.productid.value=pid;
+				document.form1.command.value='add';
+				document.form1.submit();
+			}
+		</script>
+    </head>
+    <body>
     	<!-- CONTENT -->
-    		<form action="products.jsp" method="get">
-				Urut berdasarkan : <a href="products.jsp?category=<% out.print(category); %>&sort=price"> Price </a>| <a href="products.jsp?category=<% out.print(category); %>&sort=sold"> Sold </a>| <a href="products.jsp?category=<% out.print(category); %>&sort=quantity"> Stock </a>
-            </form>
         <div id="content">
-        	
+        
             <!-- MAIN CONTENT -->
             <div id="products">
 				<!-- BLOG POST --> 
                 <article class="blogPost">	
-                    <h2> Products </h2>
+                    <h2> Product Detail </h2>
                     <ol>
-	                    <!-- SQL QUERY FOR ID, NAME, PICTURE, PRICE -->
+	                    <!-- SQL QUERY FOR ID, NAME, PICTURE, DESCRIPTION, PRICE -->
 						<%
 						Connection conn2 = DriverManager.getConnection(DB_URL,USER,PASS);
 					    Statement stmt2 = conn2.createStatement();
 					    String sql2;
-					    sql2 = "SELECT DISTINCT id, name, picture, price FROM product WHERE category='" + category + "' ORDER BY '" + sort + "' DESC";
-					    //out.println(sql2);
+					    sql2 = "SELECT DISTINCT id, name, picture, description, price, quantity FROM product WHERE id='" + id + "'";
 					    ResultSet rs2 = stmt2.executeQuery(sql2);
 			
 				       	// Extract data from result set
@@ -44,24 +38,31 @@
 				        %>
 				        <li> 	        			
 					    	<% //Retrieve by column name
-					    	int id = rs2.getInt("id");
-					        String name = rs2.getString("name");
+					    	String name = rs2.getString("name");
 					        String picture = "img/" + rs2.getString("picture");
+					        String description = rs2.getString("description");
 					        int price = rs2.getInt("price");
+					        int available = rs2.getInt("quantity");
 					        %>
 							<a href=detail_product.jsp?id=<% out.print(id); %>> <% out.print(name); %> </a>
 					        <br>
 					        <img src=<% out.print(picture); %>>
+					        <h3> Product Description: </h3> <% out.println(description); %>
 					        <br> Price: <price> Rp<% out.println(price); %>,00 </price>
-					        <br> <h2> I want to buy it! </h2>
-					        <form>
-					        	Quantity:
-					        	<br> <input type="text" name="quantity"/> 
+					        <br> Quantity available: <% out.println(available); %> item
+					        <br> <h2> </>I want to buy it! </h2>
+					        <form form action="schoppingcart.jsp" method="get">
+					        	Quantity: 
+					        	<select name="quantity">
+					        		<% for (int i=1;i<available;i++) { %>
+						        		<option> <% out.println(i); %></option>
+						        	<% } %>
+						        </select>
 					        	<br> Any Request?
 					        	<br> <textarea name="comment"></textarea> 
-								<br> <input type="button" value="Add to Cart" onclick="addtocart(.<% out.print(id); %>.)" />
+					        	<br> <input type="submit" />
 							</form>
-							<hr>
+					        <hr>
 						</li> 
 					    <%	
 				        }
@@ -70,7 +71,7 @@
 				</article> <!-- END OF BLOG POST -->
             </div> <!-- END OF MAIN CONTENT -->
         </div> <!-- END OF CONTENT -->
-</body>
+	</body>
 </html>
 
 <%@include file="footer.jsp" %>

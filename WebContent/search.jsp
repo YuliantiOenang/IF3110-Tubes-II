@@ -5,6 +5,7 @@
 
 <%@include file="header.jsp" %>
 
+<% ArrayList<Integer> list_id = (ArrayList<Integer>)request.getAttribute("list_id"); %>
 <% ArrayList<String> list_nama = (ArrayList<String>)request.getAttribute("list_nama"); %>
 <% ArrayList<String> list_gambar = (ArrayList<String>)request.getAttribute("list_gambar"); %>
     
@@ -30,7 +31,7 @@
 						<li>
 							<% //Retrieve by column name
 			        		String category = request.getParameter("kategori"); %>
-			        		<h1> <a href=products.php?category=<% out.print(category); %>> <% out.print(category); %> </a> </h3>
+			        		<h1> <a href=products.jsp?category=<% out.print(category); %>> <% out.print(category); %> </a> </h3>
 				        	<h3> <ol>
 					        	<!-- SQL QUERY FOR NAME, PICTURE -->
 					        	<%
@@ -38,7 +39,7 @@
 					        	if (list_nama.size() == 0)
 					        	{
 					        		%>
-					        		<h1><pre><span><strong> TIDAK DITEMUKAN! </strong></span></pre></h1>
+					        		<h1><pre><span><strong> 0 hasil pencarian </strong></span></pre></h1>
 					        		<%
 					        	}
 					        	else
@@ -47,10 +48,11 @@
 					        	%>
 			        				<li> 	        			
 				        				<% //Retrieve by column name
+				        				int id = list_id.get(i);
 				        				String name = list_nama.get(i);
 				        				String picture = "img/" + list_gambar.get(i);
 				        				%> 
-				        				<a href=products.jsp?name=<% out.print(name); %>> <% out.print(name); %> </a>
+				        				<a href=detail_product.jsp?id=<% out.print(id); %>> <% out.print(name); %> </a>
 				        				<br>
 				        				<img src=<% out.print(picture); %>>
 				        			</li> <%	
@@ -60,44 +62,6 @@
 				        </li>
 				       	 <!-- END OF SQL QUERY -->
 			        </ul>  
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                       
-                    <div style="display: table;">
-				        <div style="display: table-row;">
-				            <div style="display: table-cell;">Name:</div>
-					            <div style="display: table-cell;">test1</div>
-					        </div>
-					        <div style="display: table-row;">
-					            <div style="display: table-cell;">Address:</div>
-					            <div style="display: table-cell;">test2</div>
-					        </div>
-					    </div>
-					    
-					    
-					    
-					    
             	</article> <!-- END OF BLOG POST -->
             </div> <!-- END OF MAIN CONTENT -->
         </div> <!-- END OF CONTENT -->
