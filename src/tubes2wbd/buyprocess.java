@@ -1,10 +1,8 @@
 package tubes2wbd;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.*;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * Servlet implementation class buyprocess
@@ -26,7 +26,7 @@ public class buyprocess extends HttpServlet {
 	final String USER = "root";
 	final String PASS = "";  
     
-	private JSONObject tabel;
+	private JSONArray tabel;
 	private String username;
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,12 +48,17 @@ public class buyprocess extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("data") != null) {
+			tabel = new JSONArray();
+			JSONParser parser = new JSONParser();
+			Object obj = null;
 			try {
-				tabel = new JSONObject(request.getParameter("data"));
-			} catch (JSONException e) {
+				obj = parser.parse(request.getParameter("data"));
+			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			tabel = (JSONArray)obj;
+			
 		}
 		if (request.getParameter("username") != null) {
 			username = request.getParameter("username");
@@ -68,9 +73,9 @@ public class buyprocess extends HttpServlet {
 			
 			String sql;
 			
-			for (int i = 0; i < tabel.length(); i++) {
-				if (Integer.parseInt((String)tabel.get(""+i)) > 0) {
-					int jumlah = Integer.parseInt((String)tabel.get(""+i));
+			for (int i = 0; i < tabel.size(); i++) {
+				if ((Integer)tabel.get(i) > 0) {
+					int jumlah = (Integer)tabel.get(i);
 					sql = "UPDATE barang SET jumlah = jumlah - "+jumlah+",terjual = terjual +"+jumlah+" WHERE id = "+i;
 					stmt.executeQuery(sql);
 				}
@@ -84,9 +89,6 @@ public class buyprocess extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
