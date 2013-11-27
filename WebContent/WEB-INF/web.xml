@@ -9,6 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param> 
+    <description>Location to store uploaded file</description> 
+    <param-name>images</param-name> 
+    <param-value>
+         C:\Users\akbar\Documents\GitHub\IF3110-Tubes-II\WebContent\images
+     </param-value> 
+</context-param>
   <servlet>
     <description></description>
     <display-name>test</display-name>
