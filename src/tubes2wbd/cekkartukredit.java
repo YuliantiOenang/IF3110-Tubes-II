@@ -56,8 +56,17 @@ public class cekkartukredit extends HttpServlet {
 		        Statement stmt = conn.createStatement();
 		        String sql = "SELECT * FROM kartu_kredit where owner='"+username+"'";
 		        ResultSet rs = stmt.executeQuery(sql);
+		        int c = 0;
+		        String cn = "";
 		        while(rs.next()){
-		        	out.print(rs.getString("card_number"));		        }
+		        	c++;	
+		        	cn = rs.getString("card_number");
+		        }
+		        if(c==0){
+		        	out.print("notregistered");
+		        }else{
+		        	out.print(cn);
+		        }
 		        // Clean-up environment
 		        rs.close();
 		        stmt.close();
