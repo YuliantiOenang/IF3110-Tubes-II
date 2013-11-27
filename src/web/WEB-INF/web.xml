@@ -24,6 +24,18 @@
         <servlet-name>register</servlet-name>
         <servlet-class>register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editprofile</servlet-name>
+        <servlet-class>editprofile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>delete</servlet-name>
+        <servlet-class>delete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>UploadImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validateLogin</servlet-name>
         <url-pattern>/validateLogin</url-pattern>
@@ -35,6 +47,18 @@
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editprofile</servlet-name>
+        <url-pattern>/editprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>delete</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -68,18 +68,23 @@ public class validateLogin extends HttpServlet {
             if(!rset.next()) {
                 out.print("register");
             } else {
-                String password = rset.getString("password");
-                if (password.equals(request.getParameter("password"))) {
+                String password1 = rset.getString("password");
+                String role = rset.getString("role");
+                if (password1.equals(request.getParameter("password"))) {
                     // Create a new HTTPSession and save the username and roles
                     // First, invalidate the session. if any
-                    HttpSession session = request.getSession(false);
-                    if (session != null) {
-                        session.invalidate();
-                    }
-                    session = request.getSession(true);
-                    synchronized (session) {
-                        session.setAttribute("username", request.getParameter("username"));
-                    }
+                    HttpSession session = request.getSession();
+                    
+                    session.setAttribute("user", request.getParameter("username"));
+                    session.setAttribute("role", role);
+                    //setting session to expiry in 30 mins
+                    //session.setMaxInactiveInterval(30 * 60);
+                   Cookie cookie = new Cookie("user", request.getParameter("username"));
+                    cookie.setMaxAge(2592000);
+                    Cookie cookie2 = new Cookie("role", role);
+                    cookie2.setMaxAge(2592000);
+                    response.addCookie(cookie);
+                    response.addCookie(cookie2);
                     
                     out.print("success");
                 } else {
@@ -89,6 +94,7 @@ public class validateLogin extends HttpServlet {
         } catch (SQLException ex) {
             ex.printStackTrace();
             out.println("Unable to connect to database");
+            out.print(ex.toString());
         } finally {
             out.close();
             try {

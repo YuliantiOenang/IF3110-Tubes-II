@@ -82,7 +82,7 @@ public class register extends HttpServlet {
             stmt = conn.createStatement();
 
             // Step 3: Execute a SQL SELECT query
-            String sqlStr = "INSERT INTO user (username, nama, nohp, alamat, provinsi, kota, kodepos, email, password) VALUES ("
+            String sqlStr = "INSERT INTO user(username, nama, nohp, alamat, provinsi, kota, kodepos, email, password) VALUES ("
                     + "'" + username2 + "'" + ","
                     + "'" + nama + "'" + ","
                     + "'" + noHP + "'" + ","
@@ -92,20 +92,24 @@ public class register extends HttpServlet {
                     + "'" + kodepos + "'" + ","
                     + "'" + email + "'" + ","
                     + "'" + password2 + "'" + ")";
-out.print(sqlStr);
-            ResultSet rset = stmt.executeQuery(sqlStr); // Send the query to the server
-            out.print("sdjhsk");
-            if(!rset.next()) {
-                out.print("register");
+            
+            try {
+            stmt.executeUpdate(sqlStr); // Send the query to the server
+            }catch (SQLException ex) {
+                out.print(ex.toString());
             }
             // Step 4: Set cookie and session
-            HttpSession session = request.getSession();
+           HttpSession session = request.getSession();
             session.setAttribute("user", username2);
+            session.setAttribute("role", "user");
             //setting session to expiry in 30 mins
             //session.setMaxInactiveInterval(30 * 60);
             Cookie cookie = new Cookie("user", username2);
             cookie.setMaxAge(2592000);
             response.addCookie(cookie);
+            Cookie cookie2 = new Cookie("role", "user");
+            cookie2.setMaxAge(2592000);
+            response.addCookie(cookie2);
             response.sendRedirect("index.jsp");
             
         } catch (SQLException ex) {

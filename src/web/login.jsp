@@ -20,15 +20,15 @@
 		<div class="section page">
 			<h1>Login</h1>
 			<div class="wrapper">
-				<form name="login" method="post" action="login.php">
-					<label>Username</label>
-					<input type="text" name="username" id="username">
+				<form class="formreg" name="login" method="post" action="login.php">
+					<label class="labelreg" Username</label>
+					<input class="inputreg" type="text" name="username" id="username">
 					<span id="unameInfo"></span>
-					<label>Password</label>
-					<input type="password" name="password" id="password">
+					<label class="labelreg" Password</label>
+					<input class="inputreg" type="password" name="password" id="password">
 					<span id="passInfo"></span><br />
 					<span id="loginInfo"></span><br />
-					<input type="button" value="Login" id="submit" name="submit" onclick="validateLogin()">
+					<input class="inputreg2" type="button" value="Login" id="submit" name="submit" onclick="validateLogin()">
 				</form>
 			</div>
 		</div>

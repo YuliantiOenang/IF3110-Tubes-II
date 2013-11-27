@@ -3,6 +3,10 @@ var namastate = false;
 var emailstate = false;
 var pass1state = false;
 var pass2state = false;
+var namastate2 = false;
+var emailstate2 = false;
+var pass1state2 = false;
+var pass2state2 = false;
 
 function validateUsername() {
 	// holds the remote server address
@@ -320,4 +324,160 @@ function validateLogin() {
 function login() {
 	openlogin = window.open("login.jsp", "loginWindow", "width=800, height=400, status=no, toolbar=no, menubar=no");
 	if (window.focus) {newwindow.focus()}
+}
+
+
+function validatePassword12() {
+	var password1 = document.register.password1.value;
+	var username = document.register.username.value;
+	var email = document.register.email.value;
+	var info = document.getElementById("password1Info");
+	if (password1.length < 8) {
+		info.removeAttribute("class");
+		info.setAttribute("class","error");
+		info.innerHTML = 'Jumlah karakter password minimal 8';
+		pass1state2 = false;
+		
+	} else {
+		if (password1 == username) {
+			info.removeAttribute("class");
+			info.setAttribute("class","error");
+			info.innerHTML = 'Password tidak boleh sama dengan username';
+			pass1state2 = false;
+			
+		} else if (password1 == email) {
+			info.removeAttribute("class");
+			info.setAttribute("class","error");
+			info.innerHTML = 'Password tidak bole sama dengan email';
+			pass1state2 = false;
+			
+		} else {
+			//valid
+
+			info.removeAttribute("class");
+			info.setAttribute("class","valid");
+			info.innerHTML = "";
+			pass1state2 = true;
+			
+			// validatePassword2();
+		}
+	}
+}
+
+function validatePassword22() {
+	var password1 = document.register.password1.value;
+	var password2 = document.register.password2.value;
+	var info = document.getElementById("password2Info");
+	if (password1 != password2) {
+		info.removeAttribute("class");
+		info.setAttribute("class","error");
+		info.innerHTML = 'Password harus sama';
+		pass2state2 = false;
+		
+	} else {
+			//valid
+			info.removeAttribute("class");
+			info.setAttribute("class","valid");
+			info.innerHTML = "";
+			pass2state2 = true;
+			
+	}
+}
+
+function validateEmail2(){
+	var filter = /^[a-zA-Z0-9]+(\[a-zA-Z0-9_.-]+)*(\[a-zA-Z0-9_-]+)*@[a-zA-Z0-9]+.[a-z]{2,4}$/;
+	// holds the remote server address
+	var serverAddress = "validateRegister";
+	// when set to true, display detailed error messages
+	var showErrors = true;
+	var email = document.register.email.value;
+	var password1 = document.register.password1.value;
+	var info = document.getElementById("emailInfo");
+	if (!filter.test(email)) {
+		info.removeAttribute("class");
+		info.setAttribute("class","error");
+		info.innerHTML = 'Format email tidak valid';
+		emailstate2 = false;
+		
+	} else {
+		if (email == password1) {
+			info.removeAttribute("class");
+			info.setAttribute("class","error");
+			info.innerHTML = 'email tidak boleh sama dengan password';
+			emailstate2 = false;
+			
+		} else {
+			// the data to be sent to the server through POST
+			var data = "emails=" + email;
+			// build the settings object for the XmlHttp object
+			var settings =
+				{
+				url: serverAddress,
+				type: "POST",
+				async: true,
+				complete: function (xhr, response, status)
+					{
+					if (xhr.responseText.indexOf("ERRNO") >= 0
+					|| xhr.responseText.indexOf("error:") >= 0
+					|| xhr.responseText.length == 0)
+					{
+					alert(xhr.responseText.length == 0 ?
+					"Server error." : response);
+					}
+
+					if (response == "yes") {
+						info.removeAttribute("class");
+						info.setAttribute("class","valid");
+						info.innerHTML = "";
+						emailstate2 = true;
+						
+					} else {
+						info.removeAttribute("class");
+						info.setAttribute("class","error");
+						info.innerHTML = 'email sudah dipakai';
+						emailstate2 = false;
+						
+					}
+					},
+				data: data,
+				showErrors: showErrors
+				};
+			// make a server request to validate the input data
+			var xmlHttp = new XmlHttp(settings);
+			
+		}
+	}
+	
+} 
+
+function validateNamaLengkap2() {
+	var filter = /^[a-zA-Z]+ [a-zA-Z]+([a-zA-Z ])*$/;
+	var nama = document.register.namalengkap.value;
+	var info = document.getElementById("namaInfo");
+	if (filter.test(nama)) {
+		info.removeAttribute("class");
+		info.setAttribute("class","valid");
+		info.innerHTML = "";
+		namastate2 = true;
+		
+	} else {
+		info.removeAttribute("class");
+		info.setAttribute("class","error");
+		info.innerHTML = 'Nama harus terdiri nama depan dan belakang';
+		namastate2 = false;
+		
+	}
+
+}
+
+function enableSubmit2() {
+	var submit = document.register.submit;
+	if (namastate2 && pass1state2 && pass2state2 && emailstate2) {
+		submit.disabled = false;
+	}
+}
+
+function disableSubmit2() {
+	var submit = document.register.submit;
+		submit.disabled = true;
 }
