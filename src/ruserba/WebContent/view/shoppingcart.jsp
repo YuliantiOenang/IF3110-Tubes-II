@@ -27,7 +27,7 @@
 							<div class='list_body' id='no'><p><%= i + 1 %></p></div>
 							<div class='list_body' id='item'><p><b><%= arrayc.get(i) %> :</b><br/> &nbsp &nbsp &nbsp<%= arrayn.get(i) %></p></div>
 							<div class='list_body' id='price'><p>IDR <%= arrayp.get(i) %></p></div>
-							<div class='list_body' id='qty'><input id='quantity_<%= arrayn.get(i) %>' type='number' onkeyup='cekCart(<%= arrayn.get(i) %>, <%= arrayq.get(i) %>)' value='<%= arrayq.get(i) %>'></input></div>
+							<div class='list_body' id='qty'><input id='quantity_<%= arrayid.get(i) %>' type='number' onchange='updateCart(<%= arrayid.get(i) %>)' value='<%= arrayq.get(i) %>'></input></div>
 							<input type='hidden' id='id_barang_<%= arrayn.get(i) %>' value='<%= arrayn.get(i) %>'>
 							<div class='list_body' id='subtotal'><p>IDR <%= arrayst.get(i) %></p></div>
 							<div class='list_body' id='remove'><a href='cart/delete?id=<%= arrayid.get(i) %>' title='Remove <%= arrayn.get(i) %> from your Shopping Cart'>x</a></div>
@@ -56,4 +56,4 @@
 				</div>
 			</div>
 		</div>
-<script src="js/validasiBarang.js"></script>
+<script src="js/updatecart.js"></script>

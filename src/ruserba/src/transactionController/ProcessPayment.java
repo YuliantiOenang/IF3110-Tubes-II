@@ -53,15 +53,19 @@ public class ProcessPayment extends HttpServlet {
 				Barang B = new Barang (DBA);
 				B.executeQuery("select * from barang where id = " + id_b);
 				Integer stok = Integer.parseInt(B.stok.get(0));
-				stok -= Integer.parseInt((String)session.getAttribute(id_b));
-				String q = "update barang set stok = " + stok + " where id = " + id_b;
-				DBA.insertQuery(q);
-				
-				session.removeAttribute(id_b);				
+				if (stok >= Integer.parseInt((String)session.getAttribute(id_b)))
+				{
+					System.out.println("Stok : "+stok+" pilih : "+Integer.parseInt((String)session.getAttribute(id_b)));
+					stok = stok - Integer.parseInt((String)session.getAttribute(id_b));
+					String q = "update barang set stok = " + stok + " where id = " + id_b;
+					DBA.insertQuery(q);
+					
+				}else System.out.println("DEBUG, barang melebihi stok");
+				session.removeAttribute(id_b);
 			}
 			String id_u = Helper.getUserId(session).toString();
 			DBA.insertQuery("update account set transaksi = transaksi + 1 where id = " + id_u);
-			session.removeAttribute ("dibeli");
+			session.removeAttribute("dibeli");
 			response.sendRedirect("/ruserba/cart");
 		} else {
 			response.sendRedirect("home");
