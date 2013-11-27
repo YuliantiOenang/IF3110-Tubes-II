@@ -2,10 +2,10 @@
 -- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Inang: 127.0.0.1
--- Waktu pembuatan: 26 Nov 2013 pada 08.22
--- Versi Server: 5.5.27
--- Versi PHP: 5.4.7
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2013 at 03:29 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `datauser`
+-- Database: `datauser`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE IF NOT EXISTS `barang` (
@@ -36,40 +36,40 @@ CREATE TABLE IF NOT EXISTS `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`IdBarang`, `NamaBarang`, `Harga`, `Kategori`, `Jumlah`, `Deskripsi`) VALUES
-(1, 'DagingSapi', 80000, 'Daging', 10, NULL),
-(2, 'IceCream', 10000, 'Snack', 14, NULL),
-(3, 'ChickenNugget', 30000, 'Frozen Food', 13, NULL),
-(4, 'BayamItali', 5000, 'Sayuran', 7, NULL),
-(5, 'BerasCarrefour', 11000, 'Beras', 10, NULL),
-(6, 'DagingYak', 85000, 'Daging', 11, NULL),
-(7, 'BerasTajMahal', 25000, 'Beras', 9, NULL),
-(8, 'BerasHCSR04', 22000, 'Beras', 7, NULL),
-(9, 'BerasRaskin', 20000, 'Beras', 12, NULL),
-(10, 'DagingAyam', 122000, 'Daging', 2, NULL),
-(11, 'DagingDomba', 92000, 'Daging', 8, NULL),
-(12, 'PetaiCHINA', 2500, 'Sayuran', 6, NULL),
+(1, 'DagingSapi', 80000, 'Daging', 4, NULL),
+(2, 'IceCream', 10000, 'Snack', 8, NULL),
+(3, 'ChickenNugget', 30000, 'Frozen Food', 8, NULL),
+(4, 'BayamItali', 5000, 'Sayuran', 1, 'null'),
+(5, 'BerasCarrefour', 11000, 'Beras', 0, 'ini beras carrefour'),
+(6, 'DagingYak', 85000, 'Daging', 1, NULL),
+(7, 'BerasTajMahal', 25000, 'Beras', 5, 'ini beras tajmahal'),
+(8, 'BerasHCSR04', 22000, 'Beras', 1, NULL),
+(9, 'BerasRaskin', 7000, 'Beras', 5, 'ini beras raskin'),
+(10, 'DagingAyam', 122000, 'Daging', 1, NULL),
+(11, 'DagingDomba', 92000, 'Daging', 5, NULL),
+(12, 'PetaiCHINA', 2500, 'Sayuran', 1, NULL),
 (13, 'SeledriHongkong', 4500, 'Sayuran', 12, NULL),
 (14, 'TimunAustralia', 14500, 'Sayuran', 5, NULL),
-(15, 'SOZZZZZZIS', 32000, 'Frozen Food', 25, NULL),
-(16, 'FIESTANIGGA', 22000, 'Frozen Food', 15, NULL),
-(17, 'BAKSOSOGOOD', 28000, 'Frozen Food', 42, NULL),
-(18, 'BerasA-KING', 200, 'Beras', 19, NULL),
-(19, 'DagingBebek', 15000, 'Daging', 10, NULL),
+(15, 'SOZZZZZZIS', 32000, 'Frozen Food', 24, NULL),
+(16, 'FIESTANIGGA', 22000, 'Frozen Food', 9, NULL),
+(17, 'BAKSOSOGOOD', 28000, 'Frozen Food', 40, NULL),
+(18, 'BerasA-KING', 3000, 'Beras', 19, 'null'),
+(19, 'DagingBebek', 15000, 'Daging', 8, NULL),
 (20, 'SiomayMantap', 20500, 'Frozen Food', 10, NULL),
-(21, 'Kangkung', 5300, 'Sayuran', 10, NULL),
-(22, 'ToKaeNoi', 5400, 'Snack', 10, NULL),
-(23, 'LeoKripikKentang', 3100, 'Snack', 10, NULL),
-(24, 'MiGemez', 1200, 'Snack', 24, NULL),
-(25, 'Bengbeng', 2050, 'Snack', 10, NULL);
+(21, 'Kangkung', 5300, 'Sayuran', 9, NULL),
+(22, 'ToKaeNoi', 5400, 'Snack', 7, NULL),
+(23, 'LeoKripikKentang', 3100, 'Snack', 8, NULL),
+(24, 'MiGemez', 1200, 'Snack', 19, NULL),
+(25, 'Bengbeng', 2050, 'Snack', 9, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `creditcard`
+-- Table structure for table `creditcard`
 --
 
 CREATE TABLE IF NOT EXISTS `creditcard` (
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `creditcard` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `creditcard`
+-- Dumping data for table `creditcard`
 --
 
 INSERT INTO `creditcard` (`number`, `name`, `expiredate`) VALUES
@@ -88,7 +88,7 @@ INSERT INTO `creditcard` (`number`, `name`, `expiredate`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transactionlog`
+-- Table structure for table `transactionlog`
 --
 
 CREATE TABLE IF NOT EXISTS `transactionlog` (
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `transactionlog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transactionlog`
+-- Dumping data for table `transactionlog`
 --
 
 INSERT INTO `transactionlog` (`NamaBarang`, `Harga`, `Jumlah`, `Username`, `Kategori`, `DetailPesanan`) VALUES
@@ -148,12 +148,67 @@ INSERT INTO `transactionlog` (`NamaBarang`, `Harga`, `Jumlah`, `Username`, `Kate
 ('IceCream', 10000, 1, 'Budie', 'Snack', NULL),
 ('Bengbeng', 2050, 2, 'Budie', 'Snack', NULL),
 ('SiomayMantap', 20500, 1, 'Budie', 'Frozen Food', NULL),
-('BAKSOSOGOOD', 28000, 1, 'Budie', 'Frozen Food', NULL);
+('BAKSOSOGOOD', 28000, 1, 'Budie', 'Frozen Food', NULL),
+('DagingHiu', 50000, 1, 'bebek', 'Daging', ''),
+('DagingDomba', 92000, 1, 'bebek', 'Daging', ''),
+('LeoKripikKentang', 3100, 1, 'bebek', 'Snack', ''),
+('BerasHCSR04', 22000, 1, 'bebek', 'Beras', ''),
+('BerasCarrefour', 11000, 20, 'bebek', 'Beras', ''),
+('BerasCarrefour', 11000, 23, 'bebek', 'Beras', ''),
+('BerasCarrefour', 11000, 1, 'bebek', 'Beras', ''),
+('BerasCarrefour', 11000, 20, 'bebek', 'Beras', ''),
+('BerasCarrefour', 11000, 30, 'bebek', 'Beras', ''),
+('BerasTajMahal', 25000, 50, 'bebek', 'Beras', ''),
+('BerasRaskin', 7000, 10, 'bebek', 'Beras', ''),
+('BerasHCSR04', 22000, 10, 'bebek', 'Beras', ''),
+('BerasHCSR04', 22000, 50, 'bebek', 'Beras', ''),
+('BerasHCSR04', 22000, 50, 'bebek', 'Beras', ''),
+('BerasHCSR04', 22000, 5, 'bebek', 'Beras', ''),
+('BerasCarrefour', 11000, 4, 'bebek', 'Beras', ''),
+('IceCream', 10000, 4, 'budie', 'Snack', ''),
+('DagingSapi', 80000, 4, 'budie', 'Daging', ''),
+('DagingDomba', 92000, 2, 'budie', 'Daging', ''),
+('DagingYak', 85000, 1, 'budie', 'Daging', ''),
+('DagingYak', 85000, 5, 'budie', 'Daging', ''),
+('DagingSapi', 80000, 1, 'budie', 'Daging', ''),
+('ChickenNugget', 30000, 1, 'budie', 'Frozen Food', ''),
+('SOZZZZZZIS', 32000, 1, 'budie', 'Frozen Food', ''),
+('ChickenNugget', 30000, 1, 'budie', 'Frozen Food', ''),
+('BAKSOSOGOOD', 28000, 2, 'budie', 'Frozen Food', ''),
+('FIESTANIGGA', 22000, 6, 'budie', 'Frozen Food', ''),
+('BayamItali', 5000, 1, 'budie', 'Sayuran', ''),
+('PetaiCHINA', 2500, 1, 'budie', 'Sayuran', ''),
+('DagingBebek', 15000, 1, 'budie', 'Daging', ''),
+('ToKaeNoi', 5400, 1, 'budie', 'Snack', ''),
+('IceCream', 10000, 1, 'budie', 'Snack', ''),
+('ChickenNugget', 30000, 1, 'budie', 'Frozen Food', ''),
+('DagingSapi', 80000, 1, 'budie', 'Daging', ''),
+('DagingYak', 85000, 3, 'budie', 'Daging', ''),
+('DagingAyam', 122000, 1, 'budie', 'Daging', ''),
+('DagingBebek', 15000, 1, 'budie', 'Daging', ''),
+('BayamItali', 5000, 1, 'budie', 'Sayuran', ''),
+('PetaiCHINA', 2500, 3, 'budie', 'Sayuran', ''),
+('IceCream', 10000, 1, 'budie', 'Snack', ''),
+('DagingYak', 85000, 1, 'budie', 'Daging', ''),
+('ToKaeNoi', 5400, 1, 'budie', 'Snack', ''),
+('BerasCarrefour', 11000, 1, 'budie', 'Beras', ''),
+('BerasHCSR04', 22000, 1, 'budie', 'Beras', ''),
+('BerasCarrefour', 11000, 5, 'budie', 'Beras', ''),
+('ChickenNugget', 30000, 1, 'budie', 'Frozen Food', ''),
+('MiGemez', 1200, 4, 'budie', 'Snack', ''),
+('Bengbeng', 2050, 1, 'yuhustore', 'Snack', ''),
+('LeoKripikKentang', 3100, 1, 'yuhustore', 'Snack', ''),
+('Kangkung', 5300, 1, 'yuhustore', 'Sayuran', ''),
+('BayamItali', 5000, 4, 'yuhustore', 'Sayuran', ''),
+('ChickenNugget', 30000, 1, 'yuhustore', 'Frozen Food', ''),
+('PetaiCHINA', 2500, 1, 'yuhustore', 'Sayuran', ''),
+('ToKaeNoi', 5400, 1, 'yuhustore', 'Snack', ''),
+('MiGemez', 1200, 1, 'yuhustore', 'Snack', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -171,23 +226,26 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `email`, `namalengkap`, `nohp`, `provinsi`, `kotakabupaten`, `alamat`, `kodepos`, `nocredit`) VALUES
 ('aditya', '12345678', 'adt@adit.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
 ('aditya2', '12345678', 'aditya@yahoo.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
 ('aditya3', '12345678', 'aditya3@yahoo.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
-('admin', 'admin123', 'admin@admin.com', 'admin admin', '0', '-', '-', '-', '0', NULL),
+('admin', 'admin123', 'admin@admin.com', 'admin admin', '0000', '-', '-', '-', '0000', NULL),
 ('bebek', '12345678', 'bebek@bebek.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
-('budie', '12341234', 'budie@gmail.com', 'ebudi ebudi', '087899', 'Jawa Timur', 'Surabaya', 'Surabaya', '5000', '12341234'),
+('budibro', '12341234', 'budi@budi.com', 'budi bro', '0000', 'prov', '-', '-', '0000', NULL),
+('budie', '12341234', 'budie@gmail.com', 'budi budi', '0', '-', '-', '-', '0', '12341234'),
 ('budih', '12345678', 'budie@budi.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
+('coba2', '12341234', 'coba2@coba2.com', 'coba dua', '0', '-', '-', '-', '0', '12341234'),
+('coba3', '12345678', 'coba3@coba.com', 'coba 3', '0', '-', '-', '-', '0', '12341234'),
 ('cobabaru', '123123123', 'coba@baru.com', 'coba baru', '0', '-', '-', '-', '0', '12341234'),
 ('cobabro', '12345678', 'coba@bro.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
 ('cobadulu', '12345678', 'coba@dulu.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
 ('cobalagi', '12345678', 'cobalagi@lagi.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
 ('heybro', '12345678', 'hey@bro.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
-('kucing', '12345678', 'kucing@kucing.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
+('kucing', '12345678', 'kucing@kucing.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
 ('lalaye', '12345678', 'lalaye@lalaye.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
 ('lalayeye', '12345678', 'lala@yeye.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
 ('popop', '12345678', 'pop@pop.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
@@ -198,7 +256,7 @@ INSERT INTO `user` (`username`, `password`, `email`, `namalengkap`, `nohp`, `pro
 ('username4', '12345678', 'username4@com.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
 ('yanti', '12345678', 'yanti@yanti.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234'),
 ('yoibro', '12345678', 'yoi@bro.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', NULL),
-('yuhustore', '12345678', 'yuhu@store.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4001', '12341234');
+('yuhustore', '12345678', 'yuhu@store.com', 'budi doang', '2134', 'Jawa Barat', 'Bandung', 'Bandung', '4000', '12341234');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
