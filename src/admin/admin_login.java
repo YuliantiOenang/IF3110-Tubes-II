@@ -22,8 +22,11 @@ public class admin_login extends HttpServlet{
 	 
       // Actual logic goes here.
 		PrintWriter out = response.getWriter();
-		out.println("<h1>" + "admin form" + "</h1>");
-		out.println("Test");
+		
+		
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		
 		List ids=null,namas=null,hargas=null,solds=null,stoks=null,images=null,kategoris=null;
 		try{
@@ -37,19 +40,27 @@ public class admin_login extends HttpServlet{
 	         // Execute SQL query
 	         Statement stmt = conn.createStatement();
 	         String sql;
-	         sql = "SELECT * FROM produk";
+	         sql = "SELECT username,password FROM user WHERE username=\'"+username+"\' AND password=\'"+password+"\'";
 	         ResultSet rs = stmt.executeQuery(sql);
 	         
-	         out.println("Test");
+	         //out.println("Test");
 	         // Extract data from result set
-	         out.println("<h1>NAMA BARANG INI BOR #Hmif48<br></h1><ul>");
+	         //out.println("<h1>NAMA BARANG INI BOR #Hmif48<br></h1><ul>");
+	         if(rs.next()){ // kalau false berarti nextnya kosong
+	        	 response.setStatus(response.SC_MOVED_TEMPORARILY);
+	             response.setHeader("Location", "/warung/list_barang?username="+username); 
+	         }else{
+	        	 response.setStatus(response.SC_MOVED_TEMPORARILY);
+	             response.setHeader("Location", "login.jsp"); 
+	         }
+	         out.print("TEST");
 	         while(rs.next()){
 	            //Retrieve by column name
 	        	
 	        	out.print("<li> id : "+rs.getObject(1).toString()+"</li>");
 	        	out.print("<li> nama :"+rs.getObject(2).toString()+"</li>");
-	        	out.print("<li> harga :"+rs.getObject(3).toString()+"</li>");
-	        	out.print("<img src=\""+rs.getString("image")+"\">");
+	        	//out.print("<li> harga :"+rs.getObject(3).toString()+"</li>");
+	        	//out.print("<img src=\""+rs.getString("image")+"\">");
 	        	//out.print("<li> sold :"+rs.getInt("sold")+"</li>");
 	        	//out.print("<li> stok :"+rs.getInt("stok")+"</li>");
 	        	//out.print("<li> image :"+rs.getString("image")+"</li>");

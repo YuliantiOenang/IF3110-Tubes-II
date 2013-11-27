@@ -8,16 +8,45 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% String username = (String) request.getAttribute("username"); %>
+<h1>Selamat datang, <% out.print(username); %> !</h1>
 <ul>
 <%
-out.print("test");
 
- List ids = (List) request.getAttribute("listid");
+ArrayList<String> ids = (ArrayList<String>) request.getAttribute("listid");
+ArrayList<String> namas = (ArrayList<String>) request.getAttribute("listnama");
+ArrayList<String> hargas = (ArrayList<String>) request.getAttribute("listharga");
+ArrayList<String> solds = (ArrayList<String>) request.getAttribute("listsold");
+ArrayList<String> stoks = (ArrayList<String>) request.getAttribute("liststok");
+ArrayList<String> images = (ArrayList<String>) request.getAttribute("listimage");
+ArrayList<String> kategoris = (ArrayList<String>) request.getAttribute("listkategori");
 
- Iterator i = ids.iterator();
- while(i.hasNext()){
+Iterator iid = ids.iterator();
+Iterator inama = namas.iterator();
+Iterator iharga = hargas.iterator();
+Iterator isold = solds.iterator();
+Iterator istok = stoks.iterator();
+Iterator iimage = images.iterator();
+Iterator ikategori = kategoris.iterator();
+// List ids = (List) request.getAttribute("listid");
+
+
+ 
+ while(iid.hasNext()){
 %>
-	<li><% out.print(i.next()); %></li>
+
+	<li>	
+		<ul>
+			<li> Id : <% out.print(iid.next()); %></li>
+			<li> Nama : <% out.print(inama.next()); %></li>
+			<li> Harga : <% out.print(iharga.next()); %></li>
+			<li> Sold : <% out.print(isold.next()); %></li>
+			<li> Stok : <% out.print(istok.next()); %></li>
+			<li> Image : <% out.print(ikategori.next()); %></li>
+			<li> <a href=""><h3>Edit</h3></a></li>
+			<li> <img src="<% out.print(iimage.next()); %>" width="20%"></li>
+		</ul>
+	</li>
 <% } %>
 </ul>
 </body>

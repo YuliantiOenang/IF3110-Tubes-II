@@ -42,4 +42,14 @@ version="2.4">
         <servlet-name>Login Action</servlet-name>
         <url-pattern>/Login.do</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+		<servlet-name>delta</servlet-name>
+		<servlet-class>admin.list_view_barang</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>delta</servlet-name>
+		<url-pattern>/list_barang</url-pattern>
+	</servlet-mapping>
 </web-app>
