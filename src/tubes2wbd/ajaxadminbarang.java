@@ -79,7 +79,7 @@ public class ajaxadminbarang extends HttpServlet {
 					out.println("</div>");
 					out.println("<div class='tools'>");
 						out.println("<input type='checkbox' name='"+rs.getString("id")+"'>"+"<br>"); 
-						out.println("<input type='image' src=images/Edit.jpg id='edit' onClick=''>"+"<br>");
+						out.println("<a href='editbarang.jsp?id="+rs.getString("id")+"'><img src=images/Edit.jpg id='edit'></a>"+"<br>");
 						out.println("<input type='image' src=images/Delete.png id='delete' onClick=''>");
 						out.println("</div>");
 					out.println("<div class='description'>");

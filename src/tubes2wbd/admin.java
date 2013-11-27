@@ -71,29 +71,27 @@ public class admin extends HttpServlet {
 			        	 CheckedBox.add(paramName);
 			         }
 			     }
-			    
-			    for (int i=0; i< CheckedBox.size();i++){
-			    	System.out.println(CheckedBox.get(i));
-			    }
 			  
 		    	Connection conn = null;
 			    Statement stmt = null;
 			    PrintWriter out = response.getWriter();
-			    try {
-					Class.forName("com.mysql.jdbc.Driver");
-					conn = DriverManager.getConnection(DB_URL,USER,PASS);
-					stmt = conn.createStatement();
-					String sql;
-					for (int i=0;i<CheckedBox.size();i++){
-						sql = "delete from barang where id='"+CheckedBox.get(i)+"'";
-						stmt.executeUpdate(sql);
+			    if (request.getParameter("admincode").equals("0")){//delete
+			    	try {
+						Class.forName("com.mysql.jdbc.Driver");
+						conn = DriverManager.getConnection(DB_URL,USER,PASS);
+						stmt = conn.createStatement();
+						String sql;
+						for (int i=0;i<CheckedBox.size();i++){
+							sql = "delete from barang where id='"+CheckedBox.get(i)+"'";
+							stmt.executeUpdate(sql);
+						}
+						CheckedBox.clear();
+					} catch (ClassNotFoundException e) {	
+						e.printStackTrace();
+					} catch (SQLException e) {
+						e.printStackTrace();
 					}
-					CheckedBox.clear();
-				} catch (ClassNotFoundException e) {	
-					e.printStackTrace();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			    } 
 	}
 
 }
