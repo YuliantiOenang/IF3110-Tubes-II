@@ -56,7 +56,8 @@ public class Card extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("index");
+		if (request.getParameter("from") == null || request.getParameter("from") == "") response.sendRedirect("index");
+		else response.sendRedirect("./barang/payment");
 	}
 
 }

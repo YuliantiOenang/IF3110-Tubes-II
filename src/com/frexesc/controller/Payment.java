@@ -52,7 +52,7 @@ public class Payment extends HttpServlet {
 				while (rs.next()) {
 					if (rs.getString("nomor_kartu") == null) {
 						/** Redirect to Credit Card page */
-						response.sendRedirect("../card");
+						response.sendRedirect("../card?from=payment");
 					} else {
 
 						// Update status

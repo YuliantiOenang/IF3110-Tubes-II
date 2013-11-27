@@ -34,6 +34,7 @@
 			<span class='error' id="error-expired_date"></span>
 		</div>
 		<input type="hidden" name="return">
+		<input type="hidden" name="from" value="<%= request.getAttribute("from") %>">
 		<button type="submit" id="btn" class="btn">Register</button>
   	
 		<a href="index" class="btn">Skip</a>
