@@ -260,7 +260,7 @@ public class InventoriAdmin extends HttpServlet {
 		query.append(" WHERE id_inventori = ").append(id);
 		
 		if(!barang.getFieldGambar().equals("")){
-			uploadImg(multiparts, barang.getId_inven());
+			uploadImg(multiparts, id);
 		}
 
 		statement.executeUpdate(query.toString());

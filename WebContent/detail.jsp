@@ -29,6 +29,14 @@
 					<div id='cart'><img onclick='validate(<%= b.getId_inven() %>, 1)' src="res/addtocart.png" /></div>
 					<br/>
 					<div id='notif1'></div>
+					<span id='editspan'></span>
+					<script>
+					
+					if (localStorage.privilege === "Admin"){
+						var id = <%=b.getId_inven() %>;
+						document.getElementById("editspan").innerHTML = "<input type='button' value='edit' onclick='editbarang("+id+")' />";
+					}
+					</script>
 			</div>
 		</div>
 	</div>

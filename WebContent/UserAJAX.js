@@ -11,11 +11,25 @@ function LogoutRedirection(){ // Redirection untuk user yang sudah login (gabisa
 		window.location.assign("home");
 }
 
-if(localStorage.IsLogin == 1){
-	document.getElementById("logbutton").value = "Log Out";
-	document.getElementById("logbutton").onclick = function(){Logout();};
-	document.getElementById("regislink").innerHTML = "Welcome, "+ localStorage.user_id;
-	document.getElementById("regislink").setAttribute("href","Profile.jsp");
+function tambahbarang(){
+	window.location.href="inventori?action=add";
+}
+
+function editbarang(id){
+	window.location.href="inventori?gid="+id+"&action=edit";
+}
+
+function InitializeBar(){
+	if(localStorage.IsLogin == 1){
+		document.getElementById("logbutton").value = "Log Out";
+		document.getElementById("logbutton").onclick = function(){Logout();};
+		document.getElementById("regislink").innerHTML = "Welcome, "+ localStorage.user_id;
+		document.getElementById("regislink").setAttribute("href","Profile.jsp");
+		
+		if (localStorage.privilege === "Admin"){
+			document.getElementById("special").innerHTML = "<input type='button' onclick='tambahbarang()' value='Tambah Barang' />";
+		}
+	}
 }
 
 
