@@ -265,7 +265,7 @@
 			<option value="E">Equal </option>
 			<option value="G">Greater </option> 
 			</select>
-			<button type="submit" class="btn">Search</button>
+			<button type="submit" class="btn small">Search</button>
 		</form>
 	</div>
 </body>

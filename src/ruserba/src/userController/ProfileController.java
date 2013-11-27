@@ -37,6 +37,11 @@ public class ProfileController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if (request.getParameter("ignore")==null)
+			if (!Helper.isCreditCard(request.getSession())) {
+				response.sendRedirect("/ruserba/profile/credit");
+				return;
+			}
 		String username = Helper.getUserLogged(request.getSession());
 		if (username.isEmpty()) {
 			response.sendRedirect("/ruserba/register");

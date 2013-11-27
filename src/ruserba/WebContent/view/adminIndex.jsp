@@ -27,7 +27,7 @@ Kategori :
 		<div class="itembox">
 			<div class="pict" id="item<%= B.id.get(i) %>">
 				<div title="Ready Stock" class="itembox_img">
-					<img onload="fitbarang(this)" src="/ruserba/img/barang/<%= B.gambar.get(i) %>">
+					<img onload="fitbarang(this)" src="/ruserba/images/barang/<%= B.gambar.get(i) %>">
 				</div>
 				<div class="minicart_menu">
 					<a href="/ruserba/admin/editbarang?id=<%=B.id.get(i)%>" class="btn small" >Edit</a> 

@@ -42,6 +42,10 @@ public class ProcessPayment extends HttpServlet {
 			isLogin = (boolean)session.getAttribute("isLogin");
 		
 		if (isLogin) {
+			if (!Helper.isCreditCard(session)) {
+				response.sendRedirect("/ruserba/profile/credit?returnUrl=/ruserba/cart/payment");
+				return;
+			}
 			ArrayList<String> s = (ArrayList<String>) session.getAttribute("dibeli");
 			
 			for (int i = 0; i < s.size(); i ++) {
