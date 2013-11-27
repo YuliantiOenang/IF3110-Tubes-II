@@ -37,14 +37,16 @@ public class showList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		String db = "toko_imba";
 		java.sql.Connection con = null;
 		ArrayList<Barang> barangs = new ArrayList<Barang>();
 		String barangCat = null;
+		String sortingMode = null; //harga/nama_inventori?
+		String sortingType = null; //DESC/ASC?
 		try{
 			barangCat = request.getParameter("cat");
+			sortingMode = request.getParameter("mode");
+			sortingType = request.getParameter("type");
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -55,7 +57,15 @@ public class showList extends HttpServlet {
 			System.out.println (db+ "database successfully opened.");
 			
 			Statement state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM inventori JOIN kategori ON inventori.id_kategori = kategori.id_kategori AND kategori.nama_kategori = \"" + barangCat + "\"");
+			String query = "SELECT * FROM inventori JOIN kategori ON inventori.id_kategori = kategori.id_kategori AND kategori.nama_kategori = \"" + barangCat + "\"";
+			
+			if(sortingMode != null && sortingType != null){
+				query += "ORDER BY " + sortingMode + " " + sortingType;
+			}
+			
+			System.out.println("Query: " + query);
+			
+			ResultSet rs = state.executeQuery(query);
 			
 			while(rs.next()){
 				String name = rs.getString("nama_inventori");
