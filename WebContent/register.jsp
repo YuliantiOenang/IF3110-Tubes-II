@@ -20,7 +20,7 @@
 			<div class='per_form'>
 				<label>Nama Lengkap</label><input type="text" name="name"
 					id="name" value=""
-					onkeyup="if(this.value != '') validateName(this.value, 'fullname');" required> 
+					onkeyup="if(this.value != '') validateName(this.value, 'fullname'); validateAll();" required> 
 					<span class='error'
 					id="fullname"></span>
 			</div>
@@ -28,14 +28,14 @@
 			<div class='per_form'>
 				<label>Email</label><input type="text" name="email"
 					id="email" value=""
-					onkeyup="if(this.value != '') validateEmail('email', this.value, 'valemail');" required> <span class='error'
+					onkeyup="if(this.value != '') validateEmail('email', this.value, 'valemail'); validateAll();" required> <span class='error'
 					id="valemail"></span>
 			</div>
 
 			<div class='per_form'>
 				<label>Username</label><input type="text" name="username"
 					id="username" value=""
-					onkeyup="if(this.value != '') validateUsername('username', this.value, 'valusername');" required> <span
+					onkeyup="if(this.value != '') validateUsername('username', this.value, 'valusername'); validateAll();" required> <span
 					class='error' id="valusername"></span>
 			</div>
 
@@ -43,7 +43,7 @@
 				<label>Password</label><input type="password"
 					name="password1" id="password1" placeholderPassword :=""
 					value=""
-					onkeyup="if(this.value != '') validatePassword(this.value, password2.value, username.value, email.value, 'valpasswords');" required> <span
+					onkeyup="if(this.value != '') validatePassword(this.value, password2.value, username.value, email.value, 'valpasswords');  validateAll();" required> <span
 					class='error' id="valpassword"></span>
 			</div>
 
@@ -51,7 +51,7 @@
 				<label>Confirm Pass.</label><input type="password"
 					name="password2" id="password2"
 					value=""
-					onkeyup="if(this.value != '') validatePassword(password1.value, this.value, username.value, email.value, 'valpasswords');" required> <span
+					onkeyup="if(this.value != '') validatePassword(password1.value, this.value, username.value, email.value, 'valpasswords');  validateAll();" required> <span
 					class='error' id="valpasswords"></span>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 			<div class='per_form small'>
 				<label class='uncheck'>Alamat</label><input type="text"
 					name="address" id="address"
-					value="" onkeyup="validateEmpty(this.value, 'valaddress')" required> <span
+					value="" onkeyup="validateEmpty(this.value, 'valaddress')  validateAll();" required> <span
 					id="valaddress"></span>
 			</div>
 
@@ -81,14 +81,14 @@
 
 			<div class='per_form small'>
 				<label class='uncheck'>Kota/Kabupaten</label><input type="text"
-					name="city" id="city" value="" onkeyup="validateEmpty(this.value, 'valcity')"
+					name="city" id="city" value="" onkeyup="validateEmpty(this.value, 'valcity');  validateAll();"
 					required> <span id="valcity"></span>
 			</div>
 
 			<div class='per_form small'>
 				<label class='uncheck'>Kodepos</label><input type="text"
 					name="postal" id="postal"
-					onkeyup="validateEmpty(this.value, 'valpostal')"  required> <span
+					onkeyup="validateEmpty(this.value, 'valpostal');  validateAll();"  required> <span
 					id="valpostal"></span>
 			</div>
 
@@ -96,7 +96,7 @@
 				<label class='uncheck'>Telepon</label><input type="text"
 					name="telephone" id="telephone"
 					value=""
-					onkeyup="validateEmpty(this.value, 'valtelephone')" required> <span
+					onkeyup="validateEmpty(this.value, 'valtelephone');  validateAll();" required> <span
 					id="valtelephone"></span>
 			</div>
 			<p class='keterangan'>Lorem ipsum dolor sit amet lorem ipsum
@@ -104,7 +104,7 @@
 				lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
 				dolor sit amet lorem ipsum dolor sit amet</p>
 			<input type="hidden" name="action" value="register"></input>
-			<button type="submit" id="btn" class="btn">Daftar</button>
+			<button type="submit" id="btn" class="btn" disabled>Daftar</button>
 		</div>
 		<br />
 	</form>

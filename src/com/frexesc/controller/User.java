@@ -40,20 +40,39 @@ public class User extends HttpServlet {
 		if (request.getSession(true).getAttribute("user_id") == null) {
 			response.sendRedirect("register");
 		} else {
-			DbConnection dbConnection = new DbConnection();
-			Connection connection = dbConnection.mySqlConnection();
-			String id = request.getParameter("id");
-			try {
-				Statement statement = connection.createStatement();
-				ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
-				if (rs.next()) {
-					UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
-					request.setAttribute("user", user);
+			if (request.getParameter("action") == null) {
+				DbConnection dbConnection = new DbConnection();
+				Connection connection = dbConnection.mySqlConnection();
+				String id = request.getParameter("id");
+				try {
+					Statement statement = connection.createStatement();
+					ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
+					if (rs.next()) {
+						UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
+						request.setAttribute("user", user);
+						request.setAttribute("id", id);
+					}
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile.jsp");
+					dispatcher.forward(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile.jsp");
-				dispatcher.forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} else {
+				DbConnection dbConnection = new DbConnection();
+				Connection connection = dbConnection.mySqlConnection();
+				String id = request.getParameter("id");
+				try {
+					Statement statement = connection.createStatement();
+					ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
+					if (rs.next()) {
+						UserBean user = new UserBean(rs.getString("username"), rs.getString("password"), rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
+						request.setAttribute("user", user);
+					}
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/editprofile.jsp");
+					dispatcher.forward(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -1466,3 +1466,55 @@ div.show {
 .img_layout {
 	margin-right: 5px;
 }
+
+/***************
+TABEL-TABELAN   
+***************/
+.table, .row, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9 {
+	border:solid thin gray
+}
+.a {
+	display:table
+}
+.b {
+	display:table-row
+}
+.c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9 {
+	display:table-cell
+}
+
+.c1 {
+	width: 4%;
+}
+
+.c2 {
+	width: 10%;
+}
+
+.c3 {
+	width: 23%;
+}
+
+.c4 {
+	width: 8%;
+}
+
+.c5 {
+	width: 30%;
+}
+
+.c6 {
+	width: 8%;
+}
+
+.c7 {
+	width: 5%;
+}
+
+.c8 {
+	width: 5%;
+}
+
+.c9 {
+	width: 7%;
+}

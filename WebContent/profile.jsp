@@ -41,7 +41,7 @@
 					<div class="per_form">
 						<label>Transaksi:</label><p>3</p>
 					</div>
-					<a href="editprofile.jsp" class="btn">Edit Profile</a>
+					<a href="user?action=edit&id=<%=request.getAttribute("id")%>" class="btn">Edit Profile</a>
 				</div>
 			</div>
 		</div>

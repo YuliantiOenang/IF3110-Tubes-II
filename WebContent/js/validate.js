@@ -142,6 +142,7 @@ function validateAll() {
 					.getElementById("username").value, document
 					.getElementById("email").value, "valpasswords");
 	if (satu && dua && tiga && usernamevalid && emailvalid) {
+		document.getElementById("btn").disabled = false;
 		return true;
 	}
 	return false;
