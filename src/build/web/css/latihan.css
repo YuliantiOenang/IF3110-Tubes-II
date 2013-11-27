@@ -10,7 +10,6 @@ height : 100%;
 .main {
 background-color:white;
 border:0px ;
-
  width:100%;
  height:auto;
 	border-radius:25px;
@@ -74,32 +73,32 @@ border:0px ;
 	transform: rotate(5deg);
 	
 	animation:logoanimation 3s;
-	-webkit-animation:logoanimation 3s;
+	
 
 	animation-timing-function:linear;
-	-webkit-animation-timing-function:linear;
+	
 	
 	animation-play-state:running;
-	-webkit-animation-play-state:running;
+
 	
 	animation-iteration-count:infinite;
-	-webkit-animation-iteration-count:infinite;
+
 
 }
 
 .logo:hover {
 
 	animation:logoanimation 3s;
-	-webkit-animation:logoanimation 3s;
+	
 
 	animation-timing-function:linear;
-	-webkit-animation-timing-function:linear;
+	
 	
 	animation-play-state:paused;
-	-webkit-animation-play-state:paused;
+	
 	
 	animation-iteration-count:infinite;
-	-webkit-animation-iteration-count:infinite;
+
 }
 
 @keyframes logoanimation{
@@ -108,11 +107,7 @@ border:0px ;
 		100% {transform : rotate(5deg);}
 	}
 	
-@-webkit-keyframes logoanimation{
-	0%	{transform : rotateZ(5deg);}
-	50% {transform : rotateZ(10deg);}
-	100% {transform : rotateZ(5deg);}
-}
+
 
 .cart {
 
@@ -502,4 +497,84 @@ float: left;
 text-align : center;
 font-weight : bold;
 font-size : 20px;
+}
+
+/* TAMBAHAN DARI WISHNU */
+
+.textperan
+{
+	font-family: "Arial", Times, serif;
+	font-size : 15px;
+	visibility : visible;
+}
+
+.placetextperan
+{
+	text-align : right;
+	float : right;
+	visibility : visible;
+}
+
+.peran 
+{
+	height:125%;
+	width:20%;
+	float: right;
+	visibility : visible;
+}
+
+.space
+{
+	height : 15%;
+}
+
+.textadmin
+{
+	text-align: center;
+	font-family:"Arial", Times, serif;
+	font-size : 20px;
+        text-decoration : underline;
+        font-weight: bold;
+}
+
+.buttontambahbarang
+{
+	float : right;
+}
+
+.placetambahbarang
+{
+	width : 66.66%;
+}
+
+.welcomeadmin
+{
+    font-family : Arial;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#draghere
+{
+  width:300px;
+  height:100px;
+  background-color:rgba(221,214,155,0.4);
+  border:1px dashed black;
+  text-align:center;
+}
+
+#output
+{
+  width:300px;
+  height:300px;
+  overflow:auto;
+  background-color:rgba(221,214,221,0.3);
+  border:1px dashed black;
+}
+
+.InternetPositif
+{
+    width : 1366px;
+    height : 768px;
+    
 }

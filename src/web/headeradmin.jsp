@@ -51,7 +51,7 @@
                                     %>
                                     <script>
                                         window.alert("ANDA BUKAN ADMIN!");
-                                        window.location = "index.jsp";
+                                        window.location = "admintrap.jsp";
                                     </script>
                                     <%
                                 }

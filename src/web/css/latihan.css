@@ -73,32 +73,32 @@ border:0px ;
 	transform: rotate(5deg);
 	
 	animation:logoanimation 3s;
-	-webkit-animation:logoanimation 3s;
+	
 
 	animation-timing-function:linear;
-	-webkit-animation-timing-function:linear;
+	
 	
 	animation-play-state:running;
-	-webkit-animation-play-state:running;
+
 	
 	animation-iteration-count:infinite;
-	-webkit-animation-iteration-count:infinite;
+
 
 }
 
 .logo:hover {
 
 	animation:logoanimation 3s;
-	-webkit-animation:logoanimation 3s;
+	
 
 	animation-timing-function:linear;
-	-webkit-animation-timing-function:linear;
+	
 	
 	animation-play-state:paused;
-	-webkit-animation-play-state:paused;
+	
 	
 	animation-iteration-count:infinite;
-	-webkit-animation-iteration-count:infinite;
+
 }
 
 @keyframes logoanimation{
@@ -107,11 +107,7 @@ border:0px ;
 		100% {transform : rotate(5deg);}
 	}
 	
-@-webkit-keyframes logoanimation{
-	0%	{transform : rotateZ(5deg);}
-	50% {transform : rotateZ(10deg);}
-	100% {transform : rotateZ(5deg);}
-}
+
 
 .cart {
 
@@ -574,4 +570,11 @@ font-size : 20px;
   overflow:auto;
   background-color:rgba(221,214,221,0.3);
   border:1px dashed black;
+}
+
+.InternetPositif
+{
+    width : 1366px;
+    height : 768px;
+    
 }
