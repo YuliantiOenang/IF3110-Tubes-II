@@ -2,7 +2,7 @@
 <div class="kategori">
     <h1><%
         String message = (String) request.getAttribute("nama_kategori");
-        Integer page_no = (Integer) request.getAttribute("nama_kategori");
+        Integer page_no = (Integer) request.getAttribute("page_no");
         out.print(message);
     %></h1>
     <p>
@@ -13,8 +13,9 @@
     </p>
     <p>
         <% for(int i = 1; i <= page_no; i++) {
+            String uri = "?by=nama&amp;sort=desc&amp;page=" + i;
         %>
-        
+        <a class="sorting" href="<%=uri %>"><%=i %></a>
         <% } %>
     </p>
 </div>
