@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kelas.Database;
+
 /**
  * Servlet implementation class UserServlet
  */
@@ -19,8 +21,8 @@ public class UserServlet extends HttpServlet {
 	static final String JDBCDRIVER = "com.mysql.jdbc.DRIVER";
 	static final String DBURL = "jdbc:mysql://localhost/toko_imba";
 
-	static final String USER = "root";
-	static final String PASS = "";
+	static final String USER = Database.getUser();
+	static final String PASS = Database.getPass();
 	
 	private static final long serialVersionUID = 1L;
        
