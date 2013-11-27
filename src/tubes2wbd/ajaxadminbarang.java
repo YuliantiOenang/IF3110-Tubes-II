@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ajaxbarang
+ * Servlet implementation class ajaxadminbarang
  */
-public class ajaxeditbarang extends HttpServlet {
+public class ajaxadminbarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 	final String DB_URL="jdbc:mysql://localhost/wbd1";
@@ -26,7 +26,7 @@ public class ajaxeditbarang extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ajaxeditbarang() {
+    public ajaxadminbarang() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -78,17 +78,14 @@ public class ajaxeditbarang extends HttpServlet {
 							out.println("</div>");
 					out.println("</div>");
 					out.println("<div class='tools'>");
-						out.println("<img src=images/Plus.png width='20' height='20'/>"+"<br>");
-						out.println("<img src=images/Minus.png width='20' height='20'/>");
+						out.println("<input type='checkbox' name="+rs.getString("id")+"'>"+"<br>"); 
+						out.println("<input type='image' src=images/Edit.jpg id='edit' onClick=''>"+"<br>");
+						out.println("<input type='image' src=images/Delete.png id='delete' onClick=''>");
 						out.println("</div>");
 					out.println("<div class='description'>");
 						out.println(rs.getString("keterangan"));
 					out.println("</div>");
-				
-				//out.println("<form action='shoppingbag.jsp' method='GET'>Masukkan jumlah yang akan dibeli: ");
-
 				out.println("</div>");
-
 	        }
 	        // Clean-up environment
 	        rs.close();

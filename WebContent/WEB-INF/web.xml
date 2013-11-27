@@ -41,6 +41,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>admin</display-name>
+    <servlet-name>admin</servlet-name>
+    <servlet-class>tubes2wbd.admin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admin</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>cekkartukredit</display-name>
     <servlet-name>cekkartukredit</servlet-name>
     <servlet-class>tubes2wbd.cekkartukredit</servlet-class>
@@ -68,6 +78,16 @@
   <servlet-mapping>
     <servlet-name>ajaxbarang</servlet-name>
     <url-pattern>/ajaxbarang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ajaxadminbarang</display-name>
+    <servlet-name>ajaxadminbarang</servlet-name>
+    <servlet-class>tubes2wbd.ajaxadminbarang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ajaxadminbarang</servlet-name>
+    <url-pattern>/ajaxadminbarang</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
