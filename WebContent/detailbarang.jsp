@@ -7,10 +7,9 @@
 </head>
 <body id="index" class="home">
 	<div id="container">
-		<%@include file="header.jsp" %>
+		<%@ include file="header.jsp" %>
 		<%
 		connection = DriverManager.getConnection(db_url, "root", "");
-		assert(connection != null);
 		statement = connection.createStatement();
 		String query = "SELECT * FROM barang WHERE nama = " + request.getParameter("barang");
 		ResultSet goods = statement.executeQuery(query);

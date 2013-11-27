@@ -10,18 +10,25 @@
 		
 		<article id="contentfull" class="body">
 			<h2>Edit Profil</h2>
+			<%
+			connection = DriverManager.getConnection(db_url, "root", "");
+			statement = connection.createStatement();
+			String query = "SELECT * FROM anggota WHERE username =\"" + session.getAttribute("Username") + "\"";
+			ResultSet user = statement.executeQuery(query);
+			user.next();
+			%>
 			<form id="registerform" method="post">
 				<pre>(*) Harus diisi.</pre>
-				<pre>Nama Lengkap*		<input type="text" name="nama" id="nama"/></pre>
-				<pre>Username*			<input type="text" name="username" id="usnm"/></pre>
-				<pre>Password*				<input type="password" name="password" id="pwd"/></pre>
-				<pre>Confirm Password*		<input type="password" name="password2" id="pwd2"/></pre>
-				<pre>Nomor HP				<input type="text" name="nomorhp" id="nomorhp"/></pre>
-				<pre>Alamat				<input type="text" name="alamat" id="alamat"/></pre>
-				<pre>Provinsi				<input type="text" name="provinsi" id="provinsi"/></pre>
-				<pre>Kota					<input type="text" name="kota" id="kota"/></pre>
-				<pre>Kode Pos				<input type="text" name="kodepos" id="kodepos"/></pre>
-				<pre>Email*				<input type="text" name="email" id="email"/></pre>
+				<pre>Nama Lengkap*		</pre><input type="text" name="nama" id="nama" value="<%= user.getObject("nama") %>"/>
+				<pre>Username*			</pre><input type="text" name="username" id="usnm" value="<%= user.getObject("username") %>"/>
+				<pre>Password*			</pre><input type="password" name="password" id="pwd" value="<%= user.getObject("password") %>"/>
+				<pre>Confirm Password*	</pre><input type="password" name="password2" id="pwd2"/>
+				<pre>Nomor HP			</pre><input type="text" name="nomorhp" id="nomorhp" value="<%= user.getObject("nomorhp") %>"/>
+				<pre>Alamat				</pre><input type="text" name="alamat" id="alamat" value="<%= user.getObject("alamat") %>"/>
+				<pre>Provinsi			</pre><input type="text" name="provinsi" id="provinsi" value="<%= user.getObject("provinsi") %>"/>
+				<pre>Kota				</pre><input type="text" name="kota" id="kota" value="<%= user.getObject("kota") %>"/>
+				<pre>Kode Pos			</pre><input type="text" name="kodepos" id="kodepos" value="<%= user.getObject("kodepos") %>"/>
+				<pre>Email*				</pre><input type="text" name="email" id="email" value="<%= user.getObject("email") %>"/>
 				<input type="button" value="Save"/> <a href='profile.php'>Kembali</a>
 			</form>
 		</article>
