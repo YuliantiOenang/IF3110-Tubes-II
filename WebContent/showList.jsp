@@ -11,9 +11,25 @@
 <body>
 	<div class="page_container">
 	<%@ include file="template/template.jsp" %> 
-		<% 
+		<% 	
 			out.println("<h1>Kategori: " + request.getAttribute("kategori") + "</h1>");
-		
+		%>
+		<div class="sort_by">
+			Sort by:
+			<form class="inline_form" method="get">
+				<input type='hidden' name="cat" value="<%= request.getAttribute("kategori") %>"/>
+				<select name="mode">
+				  <option value="harga">Harga</option>
+				  <option value="nama_inventori">Nama Inventori</option>
+				</select>
+				<select name="type">
+				  <option value="ASC">Membesar</option>
+				  <option value="DESC">Mengecil</option>
+				</select>
+				<input type="submit" value="Sort"/>
+			</form>
+		</div>
+		<%
 			ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
 			int awal = (request.getParameter("start") == null ? 0 : Integer.parseInt(request.getParameter("start")));
 			int no = 0;

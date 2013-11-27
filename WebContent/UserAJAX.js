@@ -160,7 +160,7 @@ function Logout(){ // Tanpa HTTP Request sih
 
 // FUNGSI HANDLE HTTPRESPONSE
 function ProcessProfileResponse(xmlhttp){
-	alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+	// alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 	if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 		var responsecode = xmlhttp.responseText;
 		if(parseInt(responsecode)==0){
@@ -180,7 +180,7 @@ function ProcessProfileResponse(xmlhttp){
 	}
 }
 function ProcessLoginResponse(xmlhttp){
-	alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+	// alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 	if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 		var responsecode = xmlhttp.responseText;
 		if(parseInt(responsecode)==0){
@@ -221,7 +221,7 @@ function ProcessLoginResponse(xmlhttp){
 	}
 }
 function ProcessCCardResponse(xmlhttp){
-	alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+	// alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 	if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 		var responsecode = xmlhttp.responseText;
 		if(parseInt(responsecode)==0){
@@ -238,7 +238,7 @@ function ProcessCCardResponse(xmlhttp){
 	}
 }
 function ProcessRegistrationResponse(xmlhttp){
-	alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+	// alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 	if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 		var responsecode = xmlhttp.responseText;
 		if(parseInt(responsecode)==0){
@@ -264,7 +264,6 @@ function ProcessRegistrationResponse(xmlhttp){
 			localStorage.privilege= datas[11];
 			localStorage.transaction= datas[12];
 			
-			window.alert('redirecting');
 			window.location.assign("CreditCard.jsp");
 		}
 		else if(parseInt(responsecode)==1){
@@ -281,7 +280,6 @@ function ProcessRegistrationResponse(xmlhttp){
 
 // FUNGSI LAINNYA
 function InitializeValue(){
-	alert("INITIALIZE")
 	document.getElementById("username2").innerHTML = localStorage.user_id;
 	document.getElementById("email").innerHTML = localStorage.email;
 	document.getElementById("transaksi").innerHTML = localStorage.transaction;
