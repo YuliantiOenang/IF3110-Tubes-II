@@ -1,0 +1,127 @@
+#formdetail {
+	background-color: #F29BC7;
+	color: #871650;
+	padding: 3px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	border-radius: 12px;
+
+}
+
+#divdetail {
+	width: 1200px;
+	margin-left: auto; 
+	margin-right: auto;
+	text-align: center;
+}
+
+#formchart {
+	background-color: #BFE1F2;
+	color: #0f5096;
+	padding: 20px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	border-radius: 12px;
+
+}
+
+#divchart{
+	width: 600px;
+	margin-left: 45px; 
+	margin-right: auto;
+	text-align: left;
+}
+
+#formterlaris1 {
+	background-color: #FCBDD3;
+	color: #871650;
+	padding: 20px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	border-radius: 12px;
+
+}
+
+#divterlaris1{
+	width: 830px;
+	margin-left: 5px; 
+	margin-right: auto;
+	text-align: left;
+}
+
+#formterlaris2 {
+	background-color: #F29BC7;
+	color: #871650;
+	padding: 20px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	border-radius: 12px;
+
+}
+
+#divterlaris2{
+	width: 830px;
+	margin-left: 5px; 
+	margin-right: auto;
+	text-align: left;
+}
+
+#formpetunjuk{
+	background-color: #da406a;
+	color: #EBEBED;
+	padding: 30px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	border-radius: 12px;
+
+}
+
+#divpetunjuk {
+	width: 50px;
+	margin-left: 5px; 
+	margin-right: auto;
+	margin-top: 63px;
+	text-align: left;
+}
+
+#formpetunjuk2{
+	background-color: #F29BC7;
+	color: #871650;
+	padding: 30px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	border-radius: 12px;
+
+}
+
+#divpetunjuk2 {
+	width: 500px;
+	margin-left: 40px; 
+	margin-right: auto;
+	margin-top: 63px;
+	text-align: left;
+}
