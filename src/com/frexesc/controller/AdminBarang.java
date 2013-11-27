@@ -14,6 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import sun.rmi.server.Dispatcher;
 
 import com.frexesc.model.BarangBean;
 
@@ -23,48 +26,59 @@ import com.frexesc.model.BarangBean;
 @WebServlet("/AdminBarang")
 public class AdminBarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminBarang() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		DbConnection dbConnection = new DbConnection();
-		Connection connection = dbConnection.mySqlConnection();
-		RequestDispatcher dispatcher = null;
-		if (request.getParameter("action").equals("edit")) {
-			String category = request.getParameter("category");
-			String selectQuery = "SELECT * FROM barang WHERE id_kategori='" + category + "'";
-			try {
-				Statement statement = connection.createStatement();
-				ResultSet rs = statement.executeQuery(selectQuery);
-				ArrayList<BarangBean> barangs = new ArrayList<BarangBean>();
-				while (rs.next()) {
-					barangs.add(new BarangBean(rs.getLong("id"), rs.getLong("id_kategori"), rs.getString("nama_barang"), rs.getString("gambar"), rs.getInt("harga_barang"), rs.getString("keterangan"), rs.getInt("jumlah_barang")));
-				}
-				request.setAttribute("barangs", barangs);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			dispatcher = getServletContext().getRequestDispatcher("/adminedit.jsp");
-		} else if (request.getParameter("action").equals("add")) {
-			dispatcher = getServletContext().getRequestDispatcher("/adminadd.jsp");
-		} else if (request.getParameter("action").equals("main")) {
-			dispatcher = getServletContext().getRequestDispatcher("/adminmain.jsp");
-		}
-		dispatcher.forward(request, response);
+	public AdminBarang() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(true);
+		RequestDispatcher dispatcher = null;
+		if (session.getAttribute("role") == null) {
+			response.sendRedirect("/register");
+		} else if (session.getAttribute("role").equals("1")) {
+			DbConnection dbConnection = new DbConnection();
+			Connection connection = dbConnection.mySqlConnection();
+			if (request.getParameter("action").equals("edit")) {
+				String category = request.getParameter("category");
+				String selectQuery = "SELECT * FROM barang WHERE id_kategori='" + category + "'";
+				try {
+					Statement statement = connection.createStatement();
+					ResultSet rs = statement.executeQuery(selectQuery);
+					ArrayList<BarangBean> barangs = new ArrayList<BarangBean>();
+					while (rs.next()) {
+						barangs.add(new BarangBean(rs.getLong("id"), rs.getLong("id_kategori"), rs.getString("nama_barang"), rs.getString("gambar"), rs.getInt("harga_barang"), rs.getString("keterangan"), rs.getInt("jumlah_barang")));
+					}
+					request.setAttribute("barangs", barangs);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				dispatcher = getServletContext().getRequestDispatcher("/adminedit.jsp");
+			} else if (request.getParameter("action").equals("add")) {
+				dispatcher = getServletContext().getRequestDispatcher("/adminadd.jsp");
+			} else if (request.getParameter("action").equals("main")) {
+				dispatcher = getServletContext().getRequestDispatcher("/adminmain.jsp");
+			}
+			dispatcher.forward(request, response);
+		} else if (session.getAttribute("role").equals("0")) {
+			dispatcher = getServletContext().getRequestDispatcher("/index");
+			dispatcher.forward(request, response);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

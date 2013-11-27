@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.frexesc.model.BarangBean;
 import com.frexesc.model.KategoriBean;
@@ -38,6 +40,38 @@ public class Index extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		/* Login by cookie */
+		Cookie[] cookies = request.getCookies();
+		HttpSession sessions = request.getSession(true);
+		boolean isLogin = false;
+		String userid = null;
+		String username = null;
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie cookie = cookies[i];
+				if (cookie.getName().equals("user_id")) {
+					isLogin = true;
+					userid = cookie.getValue();
+				}
+				if (cookie.getName().equals("username")) {
+					username = cookie.getValue();
+				}
+			}
+		}
+		if (isLogin && sessions.getAttribute("user_id") == null) {
+			try {
+				ResultSet rs = new DbConnection().mySqlConnection().createStatement().executeQuery("SELECT role FROM user WHERE id='" + userid + "'");
+				rs.next();
+				sessions.setAttribute("role", rs.getString("role"));
+				sessions.setAttribute("user_id", userid);
+				sessions.setAttribute("username", username);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		DbConnection dbConnection = new DbConnection();
 		Connection connection = dbConnection.mySqlConnection();
 

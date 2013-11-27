@@ -55,6 +55,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("response", "login successful");
 				session.setAttribute("user_id", rs.getInt("id"));
 				session.setAttribute("username", rs.getString("username"));
+				session.setAttribute("role", rs.getString("role"));
 				
 				/* Creating cookies */
 				Cookie idCookie = new Cookie("user_id", rs.getString("id"));
