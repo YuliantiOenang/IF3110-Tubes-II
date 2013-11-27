@@ -45,7 +45,7 @@ public class WebUtil
 
 	public static String getProductPage(int product_id)
 	{
-		return "product.php?product_id=" + product_id;
+		return "product.jsp?product_id=" + product_id;
 	}
 
 }

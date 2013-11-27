@@ -7,7 +7,7 @@
 		<img src="<%= WebUtil.getProductImagePath(produk.getNamaGambarThumb()) %>" alt="<%= produk.getNamaBarang() %>" />
 	</span>
 	<span class="browseproductspan">
-		<a href="product?product_id=<%= produk.getIdBarang() %>"><%= produk.getNamaBarang() %></a><br />Rp <%= produk.getHarga() %>,00 / <%= produk.getSatuan() %>
+		<a href="<%= WebUtil.getProductPage(produk.getIdBarang()) %>"><%= produk.getNamaBarang() %></a><br />Rp <%= produk.getHarga() %>,00 / <%= produk.getSatuan() %>
 	</span>
 	<span class="browseproductspan">
 		Total penjualan: <%= produk.getJumlahPembelian() %> unit

@@ -11,18 +11,18 @@
 	<div id="headerlogin">
 		<div id="headernotloggedin">
 			<p><a href="javascript:;" id="headerloginbutton">Login</a></p>
-			<p>Pengunjung baru? <a href="register.php">Register</a></p>
+			<p>Pengunjung baru? <a href="register.jsp">Register</a></p>
 		</div>
 		<div id="headerloggedin">
 			<p>Welcome <span id="headerusername"></span>!<a href="javascript:;" id="headerlogoutbutton">Logout</a></p>
 		</div>
 	</div>
 	<div id="headerlogo">
-		<a href="index.php"><img src="images/logo.gif" alt="Ruserba logo" /></a>
+		<a href="index.jsp"><img src="images/logo.gif" alt="Ruserba logo" /></a>
 	</div>
 	<div>
 		<div id="headershoppingbag">
-			<a href="bag.php"><img src="images/bag.jpg" alt="Shopping bag icon" /></a>
+			<a href="bag.jsp"><img src="images/bag.jpg" alt="Shopping bag icon" /></a>
 		</div>
 		<div class="headertabs">
 			<div class="headertab">
@@ -40,7 +40,7 @@
 				<input type="radio" id="headertab-2" name="headertab-group-1" />
 				<label for="headertab-2">Pencarian</label>
 				<div class="headertabcontent">
-					<form action="search.php" method="GET">
+					<form action="search" method="GET">
 						<label for="headersearchname">Nama barang</label><input type="text" id="headersearchname" name="product_name" />
 						<label for="headersearchcategory">Kategori</label>
 						<select id="headersearchcategory" name="category_id">

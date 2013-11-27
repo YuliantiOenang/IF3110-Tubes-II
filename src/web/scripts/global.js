@@ -60,7 +60,7 @@ function getUserId()	{
 }
 
 function isLoggedIn()	{
-	return readCookie("id_user") !== null && getUsername() != null;
+	return readCookie("hash") !== null && getUserId() !== null && getUsername() !== null;
 }
 
 function setShoppingBag(bag)	{
@@ -168,17 +168,16 @@ function requestLogin()	{
 	var req = createXMLHttpRequest();
 	req.onreadystatechange = function()	{
 		if (req.readyState == 4 && req.status == 200)	{
-			var ret = req.responseText.split("\n");
-			if (ret[0] == "1") { hideLogin(); updateHeaderLogin(); }
+			var ret = JSON.parse(req.responseText);
+			if (ret.status == 1) { hideLogin(); updateHeaderLogin(); }
 			else document.getElementById("logindialogmessage").innerHTML = getErrorSmall("Login tidak berhasil dilakukan.");
 		}
 	}
-	req.open("POST","login",true); // Bad...
+	req.open("POST","services/login_service.php",true);
 	req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	req.send(getRequestString(reqobj));
-	document.getElementById("logindialogmessage").innerHTML = getRequestString(reqobj);
 }
 
 function requestLogout()	{
-	eraseCookie("id_user"); eraseCookie("username"); updateHeaderLogin();
+	eraseCookie("hash"); eraseCookie("id"); eraseCookie("username"); updateHeaderLogin();
 }
