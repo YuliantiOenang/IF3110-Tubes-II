@@ -10,8 +10,8 @@
 			<form action="login" method="post">
 				<label>Username</label><input type='text' id="username" name="username"></input><br/>
 				<label>Password</label><input type='password' id="password" name="password"></input><br/>
-				<!--   <button type="submit" onclick="login(); return false;" class="btn right">Login</button> -->
-				<button type="submit" class="btn right"></button>
+				<button type="submit" onclick="login(); return false;" class="btn right">Login</button>
+<!--  				<button type="submit" class="btn right"></button>-->
 			</form>
 		</div>
 	</div>

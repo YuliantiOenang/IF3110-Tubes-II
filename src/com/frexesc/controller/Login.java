@@ -41,10 +41,18 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String username;
+		String password;
+		if (request.getAttribute("register") == null) {
+			username = request.getParameter("username");
+			password = request.getParameter("password");
+		} else {
+			username = (String)request.getAttribute("username");
+			password = (String)request.getAttribute("password");
+		}
 		DbConnection dbConnection = new DbConnection();
 		Connection connection = dbConnection.mySqlConnection();
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		
 		HttpSession session = request.getSession(true);
 		
 		try {
@@ -64,7 +72,11 @@ public class Login extends HttpServlet {
 				/* Adding cookies to response */
 				response.addCookie(idCookie);
 				response.addCookie(usernameCookie);
-				response.sendRedirect("login");
+				if (request.getAttribute("register") == null) {
+					response.sendRedirect("login");
+				} else {
+					response.sendRedirect("card");
+				}
 			} else {
 				response.sendRedirect("index?login=gagal");
 			}
