@@ -10,7 +10,6 @@
 	<div class="page_container">
 		<%@ include file="template/template.jsp" %>
 		<link rel="stylesheet" href="css/details.css" type="text/css"> 
-		<br/><br/><br/>
 		<% 
 			Barang b = (Barang) request.getAttribute("barang");
 		%>

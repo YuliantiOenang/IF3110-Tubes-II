@@ -14,6 +14,10 @@
 		int totalHarga = (Integer) request.getAttribute("total");
 		%>
 			<h1>View Cart</h1>
+			<h1>
+				<a href="viewCart?mode=clear"><button type="button">Clear All</button></a>
+				<a href="viewCart?mode=buy"><button type="button">Buy All</button></a>
+			</h1>
 			<h1>Total Harga: <%= totalHarga %></h1>
 		<%
 		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
