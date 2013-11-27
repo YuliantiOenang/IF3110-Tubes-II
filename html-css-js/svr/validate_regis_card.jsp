@@ -26,19 +26,32 @@
 							response.getWriter().print(0);
 						} else {
 							st.clearParameters();
-							st = con.prepareStatement("INSERT INTO Credit(CardNumber, CardName, ExpiredDate) VALUES(?,?,?)");
-							st.setString(1,number);
-							st.setString(2,name);
-							st.setString(3,tanggal);
-							st.executeUpdate();
 							
-							st.clearParameters();
-							st = con.prepareStatement("INSERT INTO Have(CardNumber, IdName) VALUES (?,?)");
-							st.setString(1,number);
-							st.setString(2,name);
-							st.executeUpdate();
+							st = con.prepareStatement("SELECT * FROM customer WHERE NamaLengkap=?");
+							st.setString(1,name);
+							rs = st.executeQuery();
 							
-							response.getWriter().print(1);
+							if(!rs.next()){
+								response.getWriter().print(0);
+							} else {
+								st.clearParameters();
+								
+								st = con.prepareStatement("INSERT INTO Credit(CardNumber, CardName, ExpiredDate) VALUES(?,?,?)");
+								st.setString(1,number);
+								st.setString(2,name);
+								st.setString(3,tanggal);
+								st.executeUpdate();
+								
+								String idname = rs.getString(1);
+								
+								st.clearParameters();
+								st = con.prepareStatement("INSERT INTO Have(CardNumber, IdName) VALUES (?,?)");
+								st.setString(1,number);
+								st.setString(2,idname);
+								st.executeUpdate();
+								
+								response.getWriter().print(1);
+							}
 						}
 					
 					

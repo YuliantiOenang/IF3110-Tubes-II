@@ -114,7 +114,7 @@ function validatecreditForm()
 	xmlhttp.onreadystatechange = function() {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == 0) { // failed
-			alert("CardNumber sudah dipakai");
+			alert("CardNumber atau NameOnCard tidak sesuai");
 		} else { // success
 			self.location="index.jsp";
 		}
