@@ -110,7 +110,7 @@ public class register extends HttpServlet {
             Cookie cookie2 = new Cookie("role", "user");
             cookie2.setMaxAge(2592000);
             response.addCookie(cookie2);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("registerkredit.jsp");
             
         } catch (SQLException ex) {
             ex.printStackTrace();

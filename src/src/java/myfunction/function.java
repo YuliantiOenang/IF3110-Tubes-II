@@ -15,7 +15,7 @@ public class function {
     String output2 = "";
     public function() {
         
-        String databaseURL = "jdbc:mysql://localhost:3306/tes";
+        String databaseURL = "jdbc:mysql://localhost:3306/ruserba";
         String username = "root";
         String password = "";
         try {
