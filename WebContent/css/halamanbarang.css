@@ -107,6 +107,10 @@
     transition-delay: 0.2s;
 }
 
+.sort {
+	width: 100%;
+}
+
 p#sort-text {
 	text-align: right;
 }

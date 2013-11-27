@@ -19,7 +19,7 @@
 		%>
 		
 		<div id = contentcontainer>
-			<article id="content" class="body">
+			<article id="contentfull" class="body">
 				<h1>Search Result : <%= searchParam %></h1>
 				<%
 				if(searchResult != null) {
@@ -46,15 +46,13 @@
 					<ul id="page">
 					<%for (int i = 1; i <= count/10 + 1; i++) { %>
 						<li id="page2">
-							<a href="search.jsp?idx=<% out.print(i); %>&search=<% out.print(searchParam); %>"><% out.print(i); %></a>
+							<a href="search.jsp?idx=<% out.print(i); %>&search=<% out.print(searchParam); %>"><% out.print("["+i+"]"); %></a>
 						</li>	
 				<%	} %>
 					</ul>
 					</div>
 				<%} %>		
 			</article>
-			
-			<%@include file="sidebar.jsp" %>
 		</div>
 		
 		<%@include file="footer.jsp" %>

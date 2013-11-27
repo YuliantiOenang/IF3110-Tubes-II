@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="css/header.css" type="text/css"/>
 <header id="banner" class="body">
-	<%@ page import="java.sql.*" %>
+	<%@ page import="java.sql.*, java.util.*" %>
+	<%
+	
+	%>
 	<%
 	String db_url = "jdbc:mysql://localhost/ruserba";
 	Class.forName("com.mysql.jdbc.Driver").newInstance();

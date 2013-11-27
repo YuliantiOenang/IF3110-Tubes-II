@@ -242,6 +242,7 @@ pre {
 }
 
 ul#page {
+	clear: both;
 	list-style: none; 
 	margin: 0 auto;
 	
@@ -255,4 +256,8 @@ li#page2 {
 #paginasi {
 	clear: both;
 	width: 100%;
+}
+
+#title {
+	clear: both;
 }
