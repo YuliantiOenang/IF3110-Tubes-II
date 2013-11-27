@@ -1,6 +1,6 @@
-IF3110-Tubes-II
-===============
-Repositori ini adalah repositori dasar yang akan dijadikan basis oleh setiap kelompok peserta kuliah IF3110.
+IF3110-Tubes-I
+==============
+Repositori ini adalah repositori dasar yang akan dijadikan basis oleh setiap kelompok peserta kuliah IF3110. 
 
 Pengumpulan Tugas:
 - Sebutkan URL repositori yang akan dinilai
