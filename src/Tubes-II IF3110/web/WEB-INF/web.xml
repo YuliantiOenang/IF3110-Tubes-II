@@ -13,5 +13,17 @@
     <servlet-name>Coffee</servlet-name>
     <url-pattern>/SelectCoffee.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>ProsesJson</servlet-name>
+      <servlet-class>org.if3110.web.JSONResponder</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ProsesJson</servlet-name>
+    <url-pattern>/proses/json*</url-pattern>
+  </servlet-mapping>
+  
+  <!--  -->
 
 </web-app>

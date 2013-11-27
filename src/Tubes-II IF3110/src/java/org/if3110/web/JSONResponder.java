@@ -7,6 +7,7 @@ package org.if3110.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -64,21 +65,21 @@ public class JSONResponder extends HttpServlet {
             } else if(_do.equalsIgnoreCase("login")) {
                 out.print(login(data));
             } else if(_do.equalsIgnoreCase("pendaftaran")) {
-
+                out.print(pendaftaran(data));
             } else if(_do.equalsIgnoreCase("submitPendaftaran")) {
-
+                out.print(submitPendaftaran(data));
             } else if(_do.equalsIgnoreCase("getIdentity")) {
-
+                out.print(getIdentity(data));
             } else if(_do.equalsIgnoreCase("changeIdentity")) {
-
+                out.print(changeIdentity(data));
             } else if(_do.equalsIgnoreCase("addToShoppingBag")) {
-
+                out.print(addToShoppingBag(data));
             } else if(_do.equalsIgnoreCase("saveToShoppingBag")) {
-
+                out.print(saveToShoppingBag(data));
             } else if(_do.equalsIgnoreCase("checkCreditCardNumber")) {
-
+                out.print(checkCreditCardNumber(data));
             } else if(_do.equalsIgnoreCase("checkCard")) {
-
+                out.print(checkCard(data));
             }
         } catch (Exception ex) {
             Logger.getLogger(JSONResponder.class.getName()).log(Level.SEVERE, null, ex);
@@ -569,5 +570,69 @@ public class JSONResponder extends HttpServlet {
         }
         
         return json_result.toString();
+    }
+    
+    public String checkCreditCardNumber(String param) throws Exception
+    {
+        JSONObject json_result = new JSONObject();
+        String result = param.replace("-", "");
+        if(is_valid_luhn(result))
+        {
+            json_result.put("status", "valid");
+            json_result.put("data", "");
+        } else {
+            json_result.put("status", "invalid");
+            json_result.put("data", "");
+        }
+        return json_result.toString();
+    }
+    
+    public String daftarCreditCard(String param) throws Exception
+    {
+        JSONObject json_result = new JSONObject();
+        Date date = new Date(System.currentTimeMillis());
+        
+        JSONObject temp_param = new JSONObject(param);
+        
+        Date date_param = Date.valueOf(temp_param.getString("tahun")
+                + "-" + temp_param.getString("bulan") + "-01");
+        if(date.before(date_param))
+        {
+            Proses proses = new Proses();
+            proses.daftarKartuKredit(temp_param.getString("user_id"),
+                temp_param.getString("nomor_kartu"),
+                temp_param.getString("nama_pemilik"),
+                temp_param.getString("bulan"), 
+                temp_param.getString("tahun"));
+            json_result.put("status", "success");
+        }
+        else
+        {
+            json_result.put("status", "failed");
+            json_result.put("data", "Date is not volid.");
+        }
+        
+        return json_result.toString();
+    }
+    
+    public String checkCard(String param) throws Exception
+    {   
+        JSONObject param_array = new JSONObject(param);
+        
+        String sql = "SELECT card_number FROM pelanggan_card JOIN pelanggan_id ON "
+            + "pelanggan_id.user_id = pelanggan_card.user_id "
+            + "WHERE pelanggan_id.user_id = " + param_array.getString("user_id")
+            + ";";
+        
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        ResultSet res = st.executeQuery(sql);
+        
+        if(res.next()) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
 }
