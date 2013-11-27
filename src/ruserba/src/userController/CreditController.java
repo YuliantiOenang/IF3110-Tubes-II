@@ -68,10 +68,14 @@ public class CreditController extends HttpServlet {
 		String card_number = request.getParameter("card_number");
 		String name_of_card = request.getParameter("name_of_card");
 		String expired_date = request.getParameter("expired_date");
+		String returnUrl = request.getParameter("returnUrl");
 
 		String q2 = "insert into kredit (id_account, card_number, name_of_card, expired_date) values (\""+userId+"\",\""+card_number+"\",\""+name_of_card+"\",\""+expired_date+"\")";
         DBA.insertQuery(q2);
-        response.sendRedirect("/ruserba/profile");
+        if (returnUrl != null)
+        	response.sendRedirect(returnUrl);
+        else
+        	response.sendRedirect("/ruserba/profile");
 	}
 
 }

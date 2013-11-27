@@ -24,6 +24,9 @@
 			ele.className = ele.className.replace(reg, ' ');
 		}
 	}
+	function fitbarang(obj) {
+		fitimg(obj,230,226,true,true,false);
+	}
 	function fitimg(obj, width, height, xfit, yfit, overlay) {
 		var objheight = obj.offsetHeight;
 		var objwidth = obj.offsetWidth;
@@ -262,7 +265,7 @@
 			<option value="E">Equal </option>
 			<option value="G">Greater </option> 
 			</select>
-			<button type="submit" class="btn">Search</button>
+			<button type="submit" class="btn small">Search</button>
 		</form>
 	</div>
 </body>
