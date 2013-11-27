@@ -93,7 +93,7 @@
 			kategoriBean = new ArrayList<KategoriBean>();
 	%>
 	<jsp:include page="layout.jsp" />
-	<div class='background' id='content'>
+<!--  	<div class='background' id='content'>-->
 	<div id='content_frame' name='page' onLoad="RefreshCartandShow()">
 
 	<%	boolean effect = true; 
