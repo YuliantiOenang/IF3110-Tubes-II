@@ -5,8 +5,7 @@
 
 <% 
 	if (session.getAttribute("role")!= null) {
-	if (session.getAttribute("role").equals("admin")){
-		out.println("OKE");
+		if (session.getAttribute("role").equals("admin")){
 %>
 <div id="content" class="float_l">
 	<h2>Edit Barang</h2>
