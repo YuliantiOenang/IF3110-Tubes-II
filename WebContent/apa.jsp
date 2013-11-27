@@ -34,16 +34,16 @@ Iterator ikategori = kategoris.iterator();
  
  while(iid.hasNext()){
 %>
-
+	<% String a = (String)iid.next(); %>
 	<li>	
 		<ul>
-			<li> Id : <% out.print(iid.next()); %></li>
+			<li> Id : <% out.print(a); %></li>
 			<li> Nama : <% out.print(inama.next()); %></li>
 			<li> Harga : <% out.print(iharga.next()); %></li>
 			<li> Sold : <% out.print(isold.next()); %></li>
 			<li> Stok : <% out.print(istok.next()); %></li>
 			<li> Image : <% out.print(ikategori.next()); %></li>
-			<li> <a href=""><h3>Edit</h3></a></li>
+			<li> <a href="/warung/edit_barang?id=<% out.print(a); %>"><h3>Edit</h3></a></li>
 			<li> <img src="<% out.print(iimage.next()); %>" width="20%"></li>
 		</ul>
 	</li>
