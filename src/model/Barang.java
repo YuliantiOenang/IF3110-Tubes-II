@@ -32,7 +32,7 @@ public class Barang extends Model {
 	
 	public String paginasi(int total, int hal, int count, String query)
 	{
-		int jumhal = total/count;
+		int jumhal = total/count + 1;
 		String str = "<ul class='paginasi'>";
 		for (int i=1; i <= jumhal; i++) { 
             str += "<li>";

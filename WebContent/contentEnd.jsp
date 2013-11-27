@@ -24,7 +24,7 @@
 					int kategoricount = (int)(Integer)request.getAttribute("_cat_count");
 					for (int i = 0; i < kategoricount; i++)
 					{
-						out.print("	<a href='" + request.getContextPath() + "/kategori/view/" + (String)request.getAttribute("_cat_" + i + "_id" ) + "'>");
+						out.print("	<a href='" + request.getContextPath() + "/barang/search?kat=" + (String)request.getAttribute("_cat_" + i + "_id" ) + "'>");
 						out.print("		<div class='permenu per" + kategoricount + "'>");
 						out.print("			<div class='menuborder'></div>");
 						out.print("			<div class='menutxt'><h1 id='txtmenu1' class='menu'>" + (String)request.getAttribute("_cat_" + i + "_nama" ) + "</h1></div>");

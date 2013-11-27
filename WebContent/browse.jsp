@@ -6,37 +6,6 @@
 <%@ page import="org.apache.*" %>
 
 <jsp:include page="contentBegin.jsp"></jsp:include>
-	<% 
-	String q = (String)request.getAttribute("q");
-	String sort = (String)request.getAttribute("sort");
-	String hal = (String)request.getAttribute("hal");
-	String kat = (String)request.getAttribute("kat");
-	String h1 = (String)request.getAttribute("h1");
-	String h2 = (String)request.getAttribute("h2");
-	Vector<HashMap<String,String>> modelb = new Vector<HashMap<String,String>>();
-	modelb = (Vector<HashMap<String,String>>)request.getAttribute("model");
-	HashMap<String,String> query = new HashMap<String,String>();
-	query.put("q","q="+q); query.put("sort","sort="+sort); query.put("hal","hal="+hal); query.put("kat","kat="+kat); query.put("h1","h1="+h1); query.put("h2","h2="+h2);
-	%>
-
-	<%!
-	public  String implode(String glue, HashMap<String,String> array) {
-	    // array is empty, return empty string
-	    if (array == null || array.size() == 0) {
-	        return "";
-	    }
-	    //else
-	    String sb ="";
-	    int i=0;
-	    for (Object value : array.values()) {
-	    	if (i==0) sb+=value;
-	    	else sb += glue+value;
-	    	i++;
-	    }
-	    // return the result
-	    return sb;
-	}
-	%>
 <script type="text/javascript">
 	var run = false;
 	function fitbarang(obj) {
@@ -114,58 +83,66 @@
 	<div class="sorting">
 		Urutan : 
 		<%
-			query.put("sort", "sort=nama asc");
-			if(!query.get("sort").equals(null) && query.get("sort").equals("nama asc"))
-			{
-				query.put("sort", "sort=nama desc");
-			}
+			String query = (String)request.getAttribute("searchquery");
+			String sort = (String)request.getAttribute("sorting");
+			String nowsort = "sort=nama ASC&";
+			if (sort.equals("nama ASC")) nowsort = "sort=nama DESC&";
 		%> 
-		<a href="?<%= implode("&", query) %>" class="btn small">Nama</a> 
+		<a href="?<%= nowsort+query %>" class="btn small">Nama</a> 
 		<%
-			query.put("sort", "sort=harga asc");
-			if(!query.get("sort").equals(null) && query.get("sort").equals("harga asc"))
-			{
-				query.put("sort", "sort=harga desc");
-			}
+			nowsort = "sort=harga ASC&";
+			if (sort.equals("harga ASC")) nowsort = "sort=harga DESC&";
 		%>
-		<a href="?<%= implode("&", query) %>" class="btn small">Harga</a>
+		<a href="?<%= nowsort+query %>" class="btn small">Harga</a>
 	</div>
-	<div class="pagination"><%request.getAttribute("paging"); %></div>
+	<div class="pagination"><%=request.getAttribute("paging") %></div>
 </div>
 
 	<%
 		
-		int i=0;
+		int i = 0;
+		int idx = ((Integer)request.getAttribute("halaman")-1)*10;
+		int idxnow = 0;
+		boolean vertdiv = false;
 		for (HashMap<String, String> value : (Vector<HashMap<String,String>>)request.getAttribute("model")) {
-			if (i==0 || i%2==0){
-				out.print("<div class='vertdiv'>");
+			if ((idxnow>=idx)&&(idxnow<(idx+10)))
+			{
+				if (i==0 || i%2==0){
+					out.print("<div class='vertdiv'>");
+					vertdiv = true;
+				}
+				out.print("<div class='itembox'> <div class='pict' id='item"+value.get("id")+"'> <div title='");
+				if (Integer.parseInt(value.get("stok"))>0) out.print("Ready Stock"); else out.print("Out of Stock");
+				out.print("' class='itembox_img'>");
+				out.print("<img onload='fitbarang(this)' src='"+request.getContextPath()+"/img/barang/"+value.get("gambar")+"'/>");
+				out.print("</div>");
+				out.print("<div class='minicart_icon'>");
+				out.print("<a href=# onclick='goToCart("+value.get("id")+")'><img src='"+request.getContextPath()+"/img/site/cart_black.png'/></a>");
+				out.print("</div>");
+				out.print("<div class='item_name'><a href='"+request.getContextPath()+"/barang/view?id="+value.get("id")+"'>"+value.get("nama")+"</a><br/>IDR "+value.get("harga")+"</div>");
+				out.print("</div>");
+				out.print("<div class='minicart hidden' id='cart"+value.get("id")+"'>");
+				out.print("<form action = "+request.getContextPath()+"/cart/addCart"+" id='form-shop-"+value.get("id")+"' method='post' onsubmit='cekQuantity("+value.get("id")+"); return false;'>");
+				out.print("<label class='qty small'>Quantity</label>");
+				out.print("<input type='number' name='quantity' id='quantity_"+value.get("id")+"' class='qty' value=1></input>");
+				out.print("<input type='hidden' name='id_barang' id='id_barang_"+value.get("id")+"' value='"+value.get("id")+"'>");
+				out.print("<p>Request Message :</p>");
+				out.print("<textarea class='req_msg small' name='req_msg'></textarea>");
+				out.print("<input type='submit' class='cart small' value = 'Add to Cart'></input>");
+				out.print("<p class='back' href=# onclick='backToPict("+value.get("id")+")'>back</p>");
+				out.print("</form>");
+				out.print("</div>");
+				out.print("</div>");
+				// VERTICAL DIV CLOSER
+				if ((i%2)==1){
+					out.print("</div>");
+					vertdiv = false;
+				}
+				i++;
 			}
-			out.print("<div class='itembox'> <div class='pict' id='item"+value.get("id")+"'> <div title='");
-			if (Integer.parseInt(value.get("stok"))>0) out.print("Ready Stock"); else out.print("Out of Stock");
-			out.print("' class='itembox_img'>");
-			out.print("<img onload='fitbarang(this)' src='"+request.getContextPath()+"/img/barang/"+value.get("gambar")+"'/>");
-			out.print("</div>");
-			out.print("<div class='minicart_icon'>");
-			out.print("<a href=# onclick='goToCart("+value.get("id")+")'><img src='"+request.getContextPath()+"/img/site/cart_black.png'/></a>");
-			out.print("</div>");
-			out.print("<div class='item_name'><a href='"+request.getContextPath()+"/barang/"+value.get("id")+"'>"+value.get("nama")+"</a><br/>IDR "+value.get("harga")+"</div>");
-			out.print("</div>");
-			out.print("<div class='minicart hidden' id='cart"+value.get("id")+"'>");
-			out.print("<form action = "+request.getContextPath()+"barang/update"+" id='form-shop-"+value.get("id")+"' method='post' onsubmit='cekQuantity("+value.get("id")+"); return false;'>");
-			out.print("<label class='qty small'>Quantity</label>");
-			out.print("<input type='number' name='quantity' id='quantity_"+value.get("id")+"' class='qty' value=1></input>");
-			out.print("<input type='hidden' name='id_barang' id='id_barang_"+value.get("id")+"' value='"+value.get("id")+"'>");
-			out.print("<p>Request Message :</p>");
-			out.print("<textarea class='req_msg small' name='req_msg'></textarea>");
-			out.print("<input type='submit' class='cart small' value = 'Add to Cart'></input>");
-			out.print("<p class='back' href=# onclick='backToPict("+value.get("id")+")'>back</p>");
-			out.print("</form>");
-			out.print("</div>");
-			out.print("</div>");
-			// VERTICAL DIV CLOSER
-			if ((i%2)==1||(i==modelb.size()-1)||(i==9)) out.print("</div>");
-			i++;
+			idxnow++;
 		}
+		if (vertdiv) out.print("</div>");
 	%>
 
 <script src="${pageContext.request.contextPath}/js/validasiBarang.js"></script>

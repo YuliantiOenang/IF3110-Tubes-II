@@ -40,22 +40,38 @@ public class search extends HttpServlet {
 	String paging;
 	private static final String[] sortby = new String[] {"nama asc", "nama desc", "harga asc", "harga desc"};
 	String query;
-	
+	String searchurl;
+	String searchquery;
+	String sorting;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("q")!=null)
+		searchurl = "";
+		if (request.getParameter("q")!=null) {
 			query = "( (`nama` LIKE '%" + request.getParameter("q") + "%')";
+			searchurl = searchurl + "q="+ request.getParameter("q")+"&";
+		}
 		else
 			query = "( (`nama` LIKE '%%')";
-		if (request.getParameter("kat")!=null)
+		if (request.getParameter("kat")!=null) {
 			query = query + "AND ( `id_kategori` = " + request.getParameter("kat") + " )";
-		if (request.getParameter("h1")!=null)
+			searchurl = searchurl + "kat="+ request.getParameter("kat")+"&";
+		}
+		if (request.getParameter("h1")!=null) {
 			query = query + "AND ( `harga` >= " + request.getParameter("h1") + " )";
-		if (request.getParameter("h2")!=null)
+			searchurl = searchurl + "h1="+ request.getParameter("h1")+"&";
+		}
+		if (request.getParameter("h2")!=null){
 			query = query + "AND ( `harga` <= " + request.getParameter("h2") + " )";
+			searchurl = searchurl + "h2="+ request.getParameter("h2")+"&";
+		}
 		query = query + ") ";
-		if ((request.getParameter("sort")!=null)&&((request.getParameter("sort")=="harga ASC")||(request.getParameter("sort")=="harga DESC")||(request.getParameter("sort")=="nama ASC")||(request.getParameter("sort")=="nama DESC")))
+		sorting = "";
+		searchquery = searchurl;
+		if ((request.getParameter("sort")!=null)&&((request.getParameter("sort").equals("harga ASC"))||(request.getParameter("sort").equals("harga DESC"))||(request.getParameter("sort").equals("nama ASC"))||(request.getParameter("sort").equals("nama DESC")))){
 			query = query + " ORDER BY " + request.getParameter("sort");
+			searchurl = searchurl + "sort="+ request.getParameter("sort");
+			sorting = request.getParameter("sort");
+		}
 		
 		if (request.getParameter("hal")!=null)
 			hal = Integer.parseInt(request.getParameter("hal"));
@@ -70,10 +86,13 @@ public class search extends HttpServlet {
 		
 		total = data.size();
 		
-		paging = barang.paginasi(total,hal,10, query);
+		paging = barang.paginasi(total,hal,10, searchurl);
 		request.setAttribute("title", "Search");
 		request.setAttribute("model", data);
 		request.setAttribute("paging", paging);
+		request.setAttribute("halaman", hal);
+		request.setAttribute("searchquery", searchquery);
+		request.setAttribute("sorting", sorting);
 		Render.Show(request, response, "../browse.jsp");
 
 	}
