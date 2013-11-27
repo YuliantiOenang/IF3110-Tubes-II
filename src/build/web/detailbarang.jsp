@@ -9,14 +9,41 @@
 <script src="js/AjaxCreateObject.js" language="javascript"></script>
 <script src="js/function.js" language="javascript"></script>
 <script type="text/javascript">
+function getCookie(c_name)
+{
+var c_value = document.cookie;
+var c_start = c_value.indexOf(" " + c_name + "=");
+if (c_start == -1)
+  {
+  c_start = c_value.indexOf(c_name + "=");
+  }
+if (c_start == -1)
+  {
+  c_value = null;
+  }
+else
+  {
+  c_start = c_value.indexOf("=", c_start) + 1;
+  var c_end = c_value.indexOf(";", c_start);
+  if (c_end == -1)
+  {
+c_end = c_value.length;
+}
+c_value = unescape(c_value.substring(c_start,c_end));
+}
+return c_value;
+}
 function buy()
 {
 	
 	//mengambil semua variable dalam form login
-	var jumlah = document.getElementById('jumlahBeli').value;	
+	var  jumlah=0;
+        jumlah = parseInt(document.getElementById('jumlahBeli').value);	
 	var permintaan = document.getElementById('permintaan').value;
 	var id=document.getElementById('id').value;
-	
+	var jmlh=0;
+        jmlh = parseInt(getCookie("jumlah"));
+        alert(""+jumlah+"  "+jmlh)
 	if(permintaan=="")
 	{
 		permintaan="standart";
@@ -25,8 +52,10 @@ function buy()
 	{
 		alert("Maaf anda harus mengisi jumlah barang terlebih dahulu");
 	}
-	
-	else
+        else if(jumlah>jmlh){
+            alert("Jumlah Stock Barang Hanya ada : "+getCookie("jumlah"));    
+        }
+        else
 	{
 		//request ke file php
 		http.open('get', 'addCart.jsp?id='+id+'&jumlah='+jumlah+"&permintaan="+permintaan,true);
@@ -44,7 +73,7 @@ function buy()
 				}
 				catch(e)
 				{
-				
+				System.out.println("error : "+e);
 				alert("Barang pada database Kurang");
 
 				

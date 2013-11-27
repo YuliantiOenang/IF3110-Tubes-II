@@ -30,15 +30,20 @@
 <script src="js/function.js" language="javascript"></script>
 <script type="text/javascript">
 
-function cekJumlah()
+function cekJumlah(i)
 {
 	//mengambil semua variable dalam form login
-	var id = document.getElementById('idBarang').value;	
+	var id = document.getElementById('idBarang'+i).value;
+        var idCart = document.getElementById('idCart'+i).value;	
 	
-
-	var jumlah = document.getElementById('jumlahBarang').value;
-	//request ke file php
-	http.open('get', 'changeJumlah.jsp?id='+id+'&jumlah='+jumlah+"",true);
+       // alert("nilai dari i :"+i);
+	var jumlah = document.getElementById('jumlahBarang'+i).value;
+	if(jumlah<0){
+            alert("jumlah yang dibeli harus lebih besar dari 0")
+        }
+        else{
+        //request ke file php
+	http.open('get', 'changeJumlah.jsp?id='+id+'&jumlah='+jumlah+'&idcart='+idCart,true);
 	//cek hasil request 4 jika berhasil
 	http.onreadystatechange = function()
 	  {
@@ -59,7 +64,10 @@ function cekJumlah()
 		}
 	  }
 	http.send(); 
-	
+	    
+            
+        }
+        
 	
 }
 
@@ -85,11 +93,12 @@ function cekJumlah()
                     }
                     connect koneksion = new connect();
                     koneksion.dbopen();
-                    ResultSet rs = koneksion.stat.executeQuery("SELECT peralatan.no_alat, peralatan.foto, peralatan.nama, peralatan.harga, keranjang.jumlah,keranjang.pesan FROM keranjang,peralatan where id_customer="+id.getValue()+" and peralatan.no_alat=keranjang.id_alat");
+                    ResultSet rs = koneksion.stat.executeQuery("SELECT peralatan.no_alat, peralatan.foto, peralatan.nama, peralatan.harga, keranjang.jumlah,keranjang.pesan,keranjang.id_cart FROM keranjang,peralatan where id_customer="+id.getValue()+" and peralatan.no_alat=keranjang.id_alat");
                     
                     
-                    
+                   int i =1; 
                     while(rs.next()){
+                        
                         System.out.println(rs.getString(4));
                 %>
                     <div class = 'toppreview'>
@@ -99,13 +108,13 @@ function cekJumlah()
 				
 				<p class = 'copyrightext'> <%out.print(rs.getString(3));%> </br>
 					  Rp<%out.print(rs.getString(4));%> </label> </br> Pesan : <%out.print(rs.getString(6));%> </br> 
-					  
-                                          <input type='text' id='idBarang' value='<%out.print(rs.getString(1)); %>"' hidden/>
-                                          Jumlah: <input type='text' size=4 id='jumlahBarang' value='<%out.print(rs.getString(5));%>'/></br>
+                                          <input type='text' id='idCart<%=i%>' value='<%out.print(rs.getString(7));%>' hidden/>
+                                          <input type='text' id='idBarang<%=i%>' value='<%out.print(rs.getString(1));%>' hidden/>
+                                          Jumlah: <input type='text' size=4 id='jumlahBarang<%=i%>' value='<%out.print(rs.getString(5));%>'/></br>
 				
-				<input type='submit' value='change' onclick='cekJumlah()'></p>
+                                          <input type='submit' value='change' onclick='<%="cekJumlah("+i+")"%>'></p>
 				</div>
-                <% } %>
+                <%i++; } %>
 		
 			<div class = "checkout">
 			<input type="button" value="Detail Pembayaran" onclick="window.location='pembayaran.jsp'"></input>

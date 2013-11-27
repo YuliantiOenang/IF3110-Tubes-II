@@ -10,7 +10,7 @@
                     }
                         connect koneksion = new connect();
                         try{
-                        System.out.println("INSERT INTO `keranjang`(`id_customer`, `id_alat`, `jumlah`,`pesan`) VALUES ('"+id.getValue()+"','"+request.getParameter("id")+"','"+request.getParameter("jumlah")+"','"+request.getAttribute("permintaan") +"')");
+                        System.out.println("INSERT INTO `keranjang`(`id_customer`, `id_alat`, `jumlah`,`pesan`) VALUES ('"+id.getValue()+"','"+request.getParameter("id")+"','"+request.getParameter("jumlah")+"','"+request.getAttribute("permintaan")+"')");
                         koneksion.dbopen();
                         koneksion.stat.executeUpdate("INSERT INTO `keranjang`(`id_customer`, `id_alat`, `jumlah`,`pesan`) VALUES ('"+id.getValue()+"','"+request.getParameter("id")+"','"+request.getParameter("jumlah")+"','"+request.getAttribute("permintaan")+"')");
                        	String JSONReturn = new String();
