@@ -6,54 +6,55 @@
 <h3>Your Shopping Cart</h3>
 <!-- <form name="shopping_cart" action="edit_shopcart.php" method="post"> -->
 <%
-	ArrayList<String> kartu = new ArrayList<String>();
-		kartu.add("123412341234");
-		kartu.add("54625711");
-		kartu.add("cvbnsamdlasd");
-
+	if (session.getAttribute("username") != null) {
+		ArrayList<String> kartu = new ArrayList<String>();		
+		kartu=(ArrayList<String>) request.getAttribute("card");
+		
 		ArrayList<Transaksi> shopList;
-		Barang B = new Barang("101", "Tahu Sumedang", "./images/Tahu.png",
-		1000, 1, 10, "tahu dari sumedang. wuenak", 10);
+		Barang B = new Barang("101", "Tahu Sumedang",
+				"./images/Tahu.png", 1000, 1, 10,
+				"tahu dari sumedang. wuenak", 10);
 		Transaksi trans = new Transaksi(B, 2,
-		"Dibungkus yaah, pake daun pisang kalo bisa",kartu);
+				"Dibungkus yaah, pake daun pisang kalo bisa");
 		shopList = new ArrayList<Transaksi>();
 		shopList.add(trans);
 		session.setAttribute("shopping_cart", shopList);
 
-	if (session.getAttribute("username") != null) {
-		//ArrayList<Transaksi> shopList;
 		if ((shopList = (ArrayList<Transaksi>) session
-		.getAttribute("shopping_cart")) != null) {
-	int totalPengeluaran = 0;
+				.getAttribute("shopping_cart")) != null) {
+			int totalPengeluaran = 0;
 
-	for (int i = 0; i < shopList.size(); i++) {
-		totalPengeluaran += (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQuantity());
-		out.print("<h4><b>" + (i + 1) + ". "
-				+ shopList.get(i).getBarang().getNama_barang()
-				+ "</b></h4>");
-		out.print("<p>Quantity : "
-				+ shopList.get(i).getQuantity() + "</p>");
-		out.print("<p>__________________________Total Harga _________________________ : "
-				+ (shopList.get(i).getBarang()
+			for (int i = 0; i < shopList.size(); i++) {
+				totalPengeluaran += (shopList.get(i).getBarang()
 						.getHarga_barang() * shopList.get(i)
-						.getQuantity()) + "</p>");
-		out.print("<p>Request Tambahan = "
-				+ shopList.get(i).getReqTambahan() + "</p><br></br>");
-		
-		
-	}
-	out.print("<p>Total harga barang yang Anda pesan adalah ==================================> "
-			+ totalPengeluaran);
-	out.print("<h4>Silahkan pilih kartu kredit Anda : </h4>");
-	out.print("<form method=\"post\" action=\"beli.jsp\"> <select name=\"kartuTerpilih\">");
-	for(int i=0; i<kartu.size();i++){				
-		out.print("<option name=\""+kartu.get(i)+"\">"+kartu.get(i)+"</option>");				
-	}		
-	out.print("</select> <input type=\"submit\" value=\"Submit\"></form>");
-	
+						.getQuantity());
+				out.print("<h4><b>" + (i + 1) + ". "
+						+ shopList.get(i).getBarang().getNama_barang()
+						+ "</b></h4>");
+				out.print("<p>Quantity : "
+						+ shopList.get(i).getQuantity() + "</p>");
+				out.print("<p>__________________________Total Harga _________________________ : "
+						+ (shopList.get(i).getBarang()
+								.getHarga_barang() * shopList.get(i)
+								.getQuantity()) + "</p>");
+				out.print("<p>Request Tambahan = "
+						+ shopList.get(i).getReqTambahan()
+						+ "</p><br></br>");
+
+			}
+			out.print("<p>Total harga barang yang Anda pesan adalah ==================================> "
+					+ totalPengeluaran);
+			out.print("<h4>Silahkan pilih kartu kredit Anda : </h4>");
+			out.print("<form method=\"post\" action=\"beli.jsp\"> <select name=\"kartuTerpilih\">");
+			for (int i = 0; i < kartu.size(); i++) {
+				out.print("<option name=\"" + kartu.get(i) + "\">"
+						+ kartu.get(i) + "</option>");
+			}
+			out.print("</select> <input type=\"submit\" value=\"Submit\"></form>");
+
 		} else {
-	shopList = new ArrayList<Transaksi>();
-	out.print("<h4><b>Maaf, Keranjang Anda Masih Kosong</b></h4>");
+			shopList = new ArrayList<Transaksi>();
+			out.print("<h4><b>Maaf, Keranjang Anda Masih Kosong</b></h4>");
 		}
 	} else {
 		System.out.println("Belum LOGIN WOII!!!");

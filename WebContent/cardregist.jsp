@@ -34,15 +34,16 @@
 		//punya session atau udah login
 %>
 <form name="login" action="Card" method="post">
-	Card Number: <input type="text" name="cardnum"
-		onkeyup="checkCard(this)"><br> Name on Card: <input
-		type="text" name="namecard"><br> Expired Date: <input
-		type="date" name="expdate"><br>		
+	Card Number: <input type="text" name="cardnum" onkeyup="checkCard(this)"><br> 
+	Name on Card: <input type="text" name="namecard"><br> 
+	Expired Date: <input type="date" name="expdate"><br>		
 	<div id="credit_error"></div>
 	<a href="index.jsp">Skip card registration</a> Or <input type="submit"
 		id="regcard" value="Register Card" disabled>
 </form>
 <%
+	}else{
+		out.println("<h3>Login dulu bos</h3>");
 	}
 %>
 	<jsp:include page="footer.jsp" />

@@ -73,9 +73,7 @@ public class Card extends HttpServlet {
 		} else {
 			System.out.print("Gag Ada Session [Card.java : 69]");
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher("");
-		view.forward(request, response);
+		response.sendRedirect("");
 		System.out.print("PINDAH WOIII");
 	}
 }
