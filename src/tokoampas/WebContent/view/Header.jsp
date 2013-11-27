@@ -30,11 +30,11 @@
 					}
 				?>
 				*/ %>
-					<li><a href="' . SITEURL . '/register/">Register</a></li>
+					<li><a href="${pageContext.request.contextPath}/register">Register</a></li>
 					<li><a href="#login_form">Login</a></li>
-					<li><a>Welcome ' . $_SESSION['logged_username'] . '</a></li>
-					<li><a href="' . SITEURL . '/profile/">Profile</a></li>';
-					<li><a href="' . SITEURL . '/login/destroy/">Logout</a></li>		
+					<li><a>Welcome $_SESSION['logged_username']</a></li>
+					<li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
+					<li><a href="${pageContext.request.contextPath}/login/destroy">Logout</a></li>		
 											
 					<li>
 							<form id="search" action="<?php echo SITEURL . '/product/search'?>">
