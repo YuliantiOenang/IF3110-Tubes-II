@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +29,16 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String forward="";
+
+	    Map parameters = request.getParameterMap();
+	    if (parameters.containsKey("edit")){
+	      forward = "/view/ProfileCustomer.jsp";
+	    } else {
+	      forward = "/view/ProfileEdit.jsp";
+	    }
+	    RequestDispatcher view = request.getRequestDispatcher(forward);
+	    view.forward(request, response);
 	}
 
 	/**
