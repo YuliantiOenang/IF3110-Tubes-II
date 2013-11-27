@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="java.util.ArrayList"%>
 
-<html>
+<jsp:include page="header.jsp" />
 <script type="text/javascript">
 	function confirmAll() {
 		var username = document.forms["register"]["username"].value;
@@ -135,11 +134,6 @@
 		}
 	}
 </script>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 	<form name="register" action="Registration" method="post"
 		onsubmit="return checkUsername();">
 			 Username: <input type="text" name="username"
@@ -164,5 +158,4 @@
 		<br> <input type="submit" id="daftar" value="Register" disabled>
 		<div id="reg_error"></div>
 	</form>
-</body>
-</html>
+<jsp:include page="footer.jsp" />

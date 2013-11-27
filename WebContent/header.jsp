@@ -37,7 +37,7 @@
 					<ul>
 						<%
 							if (session.getAttribute("username") == null) {
-								out.print("<li><a href='register.jsp'>Sign Up</a></li>");
+								out.print("<li><a href='registration.jsp'>Sign Up</a></li>");
 								out.print("<li><a href='#login_form'>Log In</a></li>");
 							} else {
 								out.print("<li><a href=\"cardregist.php\"> Register Credit Card </a></li>");
