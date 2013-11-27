@@ -1,17 +1,12 @@
 <%-- 
     Document   : checkout
-    Created on : Nov 27, 2013, 1:17:14 PM
+    Created on : Nov 27, 2013, 6:49:54 PM
     Author     : compaq
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/ruserbaweb.css">
-        <title>Ruserba Web: Apa Apa Ada Semua Serba Ada</title>
-    </head>
     <body>
         <div id="main">
             <div id="header">
