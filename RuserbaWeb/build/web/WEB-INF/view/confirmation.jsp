@@ -9,12 +9,17 @@
 <html>
     <body>
         <div id="main">
+            
             <div id="header">
                 <div id="widgetBar">
 
-                    <div class="headerWidget"></div>
+                    <div class="headerWidget">
+                        [ language toggle ]
+                    </div>
 
-                    <div class="headerWidget"></div>
+                    <div class="headerWidget">
+                        [ checkout button ]
+                    </div>
 
                     <div class="headerWidget">
                         [ shopping cart widget ]
@@ -22,11 +27,11 @@
 
                 </div>
 
-                <a href="#">
-                    <img src="#" id="logo" alt="Affable Bean logo">
+                <a href="../../WEB-INF/">
+                    <img src="res/sirup.jpg" id="logo" alt="Ruserba Logo">
                 </a>
 
-                <img src="#" id="logoText" alt="the affable bean">
+                <img src="res/logo.png" id="logoText" alt="Ruserba: Apa Apa Ada Semua Serba Ada">
             </div>
 
             <div id="singleColumn">
