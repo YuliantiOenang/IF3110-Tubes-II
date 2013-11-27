@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+version="2.4">
+	<servlet>
+		<!--<servlet-name>Chapter1 Servlet</servlet-name>
+		<servlet-class>Ch1Servlet</servlet-class>-->
+
+		<servlet-name>registrasi</servlet-name>
+		<servlet-class>warung.registrasi</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<!--<servlet-name>Chapter1 Servlet</servlet-name>
+		<url-pattern>/Serv1</url-pattern>-->
+
+		<servlet-name>registrasi</servlet-name>
+		<url-pattern>/registrasi</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+        <servlet-name>HelloWorld</servlet-name>
+        <servlet-class>HelloWorld</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>HelloWorld</servlet-name>
+        <url-pattern>/HelloWorld</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <!-- USED FOR ADMIN  -->
+    <servlet>
+        <servlet-name>Login Action</servlet-name>
+        <servlet-class>admin.admin_login</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>Login Action</servlet-name>
+        <url-pattern>/Login.do</url-pattern>
+    </servlet-mapping>
+</web-app>
