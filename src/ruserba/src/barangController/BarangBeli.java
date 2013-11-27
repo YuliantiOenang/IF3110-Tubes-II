@@ -53,7 +53,7 @@ public class BarangBeli extends HttpServlet {
 			DBA.insertQuery(Query);
 			System.out.println(Query);
 			*/
-//			session.removeAttribute("dibeli");
+			session.removeAttribute("dibeli");
 			if (session.getAttribute("dibeli")==null) {
 				ArrayList<String> dibeli = new ArrayList<>();
 				dibeli.add(id_barang);
