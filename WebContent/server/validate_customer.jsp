@@ -13,9 +13,14 @@
 		);
 	
 	if (user == null) {
-		out.print("0");
+		out.print("0"); // user not found
 	} else {
-		out.print("1");
+		user.next();
+		if (user.getObject("tipe") == "User") {
+			out.print("1"); // normal user
+		} else {
+			out.print("2"); // admin euy
+		}
 	}
 	
 	connection.close();

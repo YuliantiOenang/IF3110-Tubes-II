@@ -27,8 +27,10 @@ function validateUser()
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			if (xmlhttp.responseText == 0) { // failed
 				alert("Usernama atau password Anda tidak cocok.\nSilakan ulangi lagi.");
-			} else { // success
+			} else if (xmlhttp.responseText == 1) { // success
 				alert("Selamat datang, " + x + "!\nSenang melihatmu lagi.");
+			} else {
+				alert("Selamat datang, admin " + x + "!\nSenang melihatmu lagi.");
 			}
 		}
 	};
