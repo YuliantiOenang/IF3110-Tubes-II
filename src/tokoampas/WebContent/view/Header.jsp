@@ -3,7 +3,7 @@
 	<div>
 		<nav class="dropdownHeader"> <!-- untuk link-->
 				<ul>
-					<li><a id="logo" href="<?php echo SITEURL ?>"><img src="<?php echo SITEURL . '/include/images/logo.png'?>" ></a></li> <!-- ganti dengan gambar logo ya-->
+					<li><a id="logo" href="//localhost:8080/${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/include/img/logo.png" ></a></li> <!-- ganti dengan gambar logo ya-->
 					
 					<li><a href="#">Kategori Barang</a> <!-- # = masuk ke katogori barang-->
 						<ul>
@@ -14,7 +14,8 @@
 							<li><a href="<?php echo SITEURL . '/product/category/musik' ?>">Musik</a></li>								
 						</ul>
 					</li>
-
+				
+				<% /*
 				<?php 
 					//periksa apakah sedang login atau tidak
 					if (session_id() == '') session_start();
@@ -28,6 +29,12 @@
 						echo '<li><a href="' . SITEURL . '/login/destroy/">Logout</a></li>';			
 					}
 				?>
+				*/ %>
+					<li><a href="' . SITEURL . '/register/">Register</a></li>
+					<li><a href="#login_form">Login</a></li>
+					<li><a>Welcome ' . $_SESSION['logged_username'] . '</a></li>
+					<li><a href="' . SITEURL . '/profile/">Profile</a></li>';
+					<li><a href="' . SITEURL . '/login/destroy/">Logout</a></li>		
 											
 					<li>
 							<form id="search" action="<?php echo SITEURL . '/product/search'?>">
