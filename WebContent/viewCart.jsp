@@ -9,12 +9,10 @@
 </head>
 <body>
 	<%
-		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("barangs");
-		int awal = (request.getParameter("start") == null ? 0 : Integer.parseInt(request.getParameter("start")));
-		int no = 0;
+		ArrayList<Barang> barangs = (ArrayList<Barang>) request.getAttribute("cart");
 		for(Barang b: barangs){
 		%>
-	
+			<div>Nama: <%= b.getNama() %></div>
 		<% 
 		}
 	%>

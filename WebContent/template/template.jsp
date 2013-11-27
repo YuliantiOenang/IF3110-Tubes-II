@@ -28,5 +28,5 @@
 			</div>
 			<div id="livesearch"></div>
 		</form>
-		<img class="view_cart" src="res/viewcart.png" width="200px">
+		<a href="viewCart"><img class="view_cart" src="res/viewcart.png" width="200px"></a>
 	</div>
