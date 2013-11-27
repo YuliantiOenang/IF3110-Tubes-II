@@ -5,9 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<jsp:include page="header.jsp"></jsp:include>
 </head>
 <body>
-<h1>Add new item</h1>
+<jsp:include page="layout.jsp"></jsp:include>
+<h1 class="header">Add new item</h1>
 <hr />
 <form action="admin" method="post" enctype="multipart/form-data">
 <input type="hidden" name="action" value="add"/>
@@ -30,5 +32,6 @@ for (i = 0; i < 5; i++) {
 <label>Image: </label><input type="file" id="photo" name="photo"/>
 <input type="submit">
 </form>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
