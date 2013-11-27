@@ -1208,7 +1208,26 @@ input.button{
 	text-align : center;
 }
 
+input.button2{
+	height : 20px;
+	width : 60px;
+	margin-top : 5px;
+	margin-right : 10px;
+	float : right;
+	background :#CCCCCC;
+	border :1px solid #888888;
+	cursor : pointer;
+	font-size : 8px;
+	line-height : 20px;
+	text-align : center;
+}
+
 	input.button:hover{
+		background :#888888;
+		color :white;
+	}
+	
+	input.button2:hover{
 		background :#888888;
 		color :white;
 	}
@@ -1224,13 +1243,14 @@ textarea{
 #contentV_m div{
 	overflow : hidden;
 }
-div#no{width:30px;}
-div#item{width:180px;}
-div#price{width:100px;}
+div#no{width:20px;}
+div#item{width:110px;}
+div#price{width:90px;}
 div#qty{width:45px;}
 div#subtotal{width:120px;}
-div#totallabel{width:60px;padding-left:305px;}
-div#total{width:100px;padding-right: 40px;}
+div#totallabel{width:60px;padding-left:105px;}
+div#total{width:300px;padding-right: 40px;}
+div#update{width:90px;}
 div#remove{width:30px;}
 
 div.list_head{
