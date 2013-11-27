@@ -10,6 +10,7 @@
 
 <div id="content" class="float_l">
 <% if (pangan!=null) { %>
+	<h2>TOP Pangan</h2>
 	<% for (int x = 0; x < 3; x++) { %>
 		<div class="product_box">
 			<h3> <% out.print(pangan.get(x).getNama_barang()); %> </h3>
@@ -28,7 +29,7 @@
 			</p>
 		</div>
 	<% } %>
-	
+	<h2>TOP Pakaian</h2>
 	<% for (int x = 0; x < 3; x++) { %>
 		<div class="product_box">
 			<h3> <% out.print(pakaian.get(x).getNama_barang()); %> </h3>
@@ -47,7 +48,7 @@
 			</p>
 		</div>
 	<% } %>
-	
+	<h2>TOP Elektronik</h2>
 	<% for (int x = 0; x < 3; x++) { %>
 		<div class="product_box">
 			<h3> <% out.print(elektronik.get(x).getNama_barang()); %> </h3>
@@ -67,6 +68,7 @@
 		</div>
 	<% } %>
 	
+	<h2>TOP Rumah Tangga</h2>
 	<% for (int x = 0; x < 3; x++) { %>
 		<div class="product_box">
 			<h3> <% out.print(rumahtangga.get(x).getNama_barang()); %> </h3>
@@ -85,7 +87,7 @@
 			</p>
 		</div>
 	<% } %>
-	
+	<h2>TOP Olahraga</h2>
 	<% for (int x = 0; x < 3; x++) { %>
 		<div class="product_box">
 			<h3> <% out.print(olahraga.get(x).getNama_barang()); %> </h3>
