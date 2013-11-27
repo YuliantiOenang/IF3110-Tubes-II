@@ -121,5 +121,3 @@ window.onscroll = function scroll()
         </div> <!-- END OF CONTENT -->
     </body>  
 </html>  
-
-<%@include file="footer.jsp" %>

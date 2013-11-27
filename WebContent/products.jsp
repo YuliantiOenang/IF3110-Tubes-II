@@ -1,4 +1,4 @@
-<%@include file="header.jsp" file="functions.jsp" %>
+<%@include file="header.jsp" %>
 <%@page import="java.io.*" import="java.sql.*" %>
 
 <!-- GET PARAMETER -->
@@ -35,7 +35,7 @@
 						Connection conn2 = DriverManager.getConnection(DB_URL,USER,PASS);
 					    Statement stmt2 = conn2.createStatement();
 					    String sql2;
-					    sql2 = "SELECT DISTINCT id, name, picture, price FROM product WHERE category='" + category + "' ORDER BY '" + sort + "' DESC";
+					    sql2 = "SELECT DISTINCT id, name, picture, price, quantity FROM product WHERE category='" + category + "' ORDER BY '" + sort + "' DESC";
 					    //out.println(sql2);
 					    ResultSet rs2 = stmt2.executeQuery(sql2);
 			
@@ -48,6 +48,7 @@
 					        String name = rs2.getString("name");
 					        String picture = "img/" + rs2.getString("picture");
 					        int price = rs2.getInt("price");
+					        int available = rs2.getInt("quantity");
 					        %>
 							<a href=detail_product.jsp?id=<% out.print(id); %>> <% out.print(name); %> </a>
 					        <br>
@@ -55,8 +56,12 @@
 					        <br> Price: <price> Rp<% out.println(price); %>,00 </price>
 					        <br> <h2> I want to buy it! </h2>
 					        <form>
-					        	Quantity:
-					        	<br> <input type="text" name="quantity"/> 
+					        	Quantity: 
+					        	<select name="quantity">
+					        		<% for (int i=1;i<=available;i++) { %>
+						        		<option> <% out.println(i); %></option>
+						        	<% } %>
+						        	</select>
 					        	<br> Any Request?
 					        	<br> <textarea name="comment"></textarea> 
 								<br> <input type="button" value="Add to Cart" onclick="addtocart(.<% out.print(id); %>.)" />
@@ -73,4 +78,3 @@
 </body>
 </html>
 
-<%@include file="footer.jsp" %>

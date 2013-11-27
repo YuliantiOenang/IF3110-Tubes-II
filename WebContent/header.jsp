@@ -33,7 +33,7 @@ response.setContentType("text/html");
         var d = new Date();
         var curtime = d.getTime();
         
-        if (daydiff(localStorage.wbddate, curTime) >= 30)
+        if (daydiff(localStorage.wbddate, curtime) >= 30)
         {
         	localStorage.removeItem("wbdusername");
             localStorage.removeItem("wbddate");
@@ -97,7 +97,8 @@ response.setContentType("text/html");
 	                	if(!localStorage.wbdusername) {
 	                    	document.getElementById("welcome").innerHTML = "<button onclick='login()'>Login</button> &nbsp; Belum punya akun? &nbsp; <a href='registrasi.jsp'>Daftar</a>";
 						} else {
-	                    	document.getElementById("welcome").innerHTML = "Welcome, <a href='profile.php'>"+localStorage.wbdusername+"</a>! <button onclick='logout()'>Logout</button>";
+	                    	document.getElementById("welcome").innerHTML = "Welcome, <a href='Profile?username="+ localStorage.wbdusername+"'>"+localStorage.wbdusername+"</a>! <button onclick='logout()'>Logout</button>";
+	                    	document.getElementById("admin").innerHTML = "<a href=\"admin.jsp\">Admin</a>"; 
 	                    }
 	                }
 	            </script>
@@ -106,8 +107,8 @@ response.setContentType("text/html");
 
     	<!-- NAVIGATION -->
         <nav>
-            <ul>
-                <li> <a href="products.jsp?">All Categories</a>
+            <ul>            
+                <li> <a href="products.jsp?category=all">All Categories</a>
                 	<ul>
                 		<!-- SQL QUERY FOR CATEGORY -->
                     	<% try {
@@ -151,6 +152,15 @@ response.setContentType("text/html");
 			        	} %> <!-- END OF SQL QUERY -->
 			        </ul>
                 </li>
+                <li id="admin" name="admin">
+                <script>
+                if (localStorage.wbdusername == "admin")
+               	{
+                	document.getElementById("admin").innerHTML = "<a href=\"admin.jsp\">Admin</a>";
+               	}
+                </script>
+                
+                </a></li>
             </ul>
         </nav> <!-- END OF NAVIGATION -->
         

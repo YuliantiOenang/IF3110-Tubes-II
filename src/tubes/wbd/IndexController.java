@@ -82,7 +82,7 @@ public class IndexController extends HttpServlet {
 	        	 Statement stmt2 = null;
 	        	 stmt2 = conn.createStatement();
 	        	 String sql2;
-	        	 sql2 = "SELECT DISTINCT name, picture FROM product WHERE category='" + category + "' ORDER BY sold DESC";
+	        	 sql2 = "SELECT DISTINCT name, picture, id FROM product WHERE category='" + category + "' ORDER BY sold DESC";
 		        
 	        	 ResultSet rs2 = stmt2.executeQuery(sql2);
 	        	 

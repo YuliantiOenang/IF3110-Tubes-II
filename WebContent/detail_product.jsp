@@ -1,8 +1,8 @@
-<%@include file="header.jsp" file="functions.jsp" %>
+<%@include file="header.jsp" %>
 <%@page import="java.io.*" import="java.sql.*" %>
 
 <!-- GET PARAMETER -->
-<% String id = (String)request.getParameter("id"); %>
+<% Integer id = Integer.parseInt(request.getParameter("id")); %>
 
 <html>
     <head>
@@ -54,7 +54,7 @@
 					        <form form action="schoppingcart.jsp" method="get">
 					        	Quantity: 
 					        	<select name="quantity">
-					        		<% for (int i=1;i<available;i++) { %>
+					        		<% for (int i=1;i<=available;i++) { %>
 						        		<option> <% out.println(i); %></option>
 						        	<% } %>
 						        </select>
@@ -74,4 +74,3 @@
 	</body>
 </html>
 
-<%@include file="footer.jsp" %>
