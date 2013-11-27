@@ -90,7 +90,7 @@
 <script src="/ruserba/js/suggest.js" type="text/javascript"></script>
 <script src="/ruserba/js/shop.js" type="text/javascript"></script>
 </head>
-<body onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
+<body>
 	<%
 		Kategori K = Helper.findAllKategori();
 	%>
@@ -118,8 +118,10 @@
 				<div class='status'>
 					<% 
 					String userlogged = Helper.getUserLogged(session);
+					Integer userRole = Helper.getUserRole(session);
 					if (!userlogged.isEmpty()) { %>
 						<p class="left"> welcome, <a href='/ruserba/profile/index'><%= userlogged %></a>! (<a href='/ruserba/logout'>Logout</a>)
+						<% if (userRole == 2) { %> (<a href='/ruserba/admin'>Admin</a>)<% } %>
 						</p>
 						<p class="right">
 							<a href="cart">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
@@ -133,7 +135,8 @@
 				</div>
 				<div class="menu">
 					<% for (int i = 0; i < K.id.size(); i++) { %>
-					<a href="/ruserba/barang?kategori=<%= K.nama_kategori.get(i) %>">
+					<% String link = K.nama_kategori.get(i).replace(" ", "%20"); %>
+					<a href="/ruserba/barang?kategori=<%= link %>">
 						<div class="permenu per5">
 							<div class="menuborder"></div>
 							<div class="menutxt">

@@ -50,6 +50,11 @@ public class IndexController extends HttpServlet {
 		
 		request.setAttribute("topbarangs", topbarangs);
 		
+		if (!Helper.isCreditCard(request.getSession())) {
+			response.sendRedirect("/ruserba/profile/credit");
+			return;
+		}
+		
 		request.setAttribute("includeJspContent", "index.jsp");
 		request.getRequestDispatcher("/view/layout.jsp").forward(request, response);
 	}

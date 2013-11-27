@@ -52,7 +52,7 @@ public class RegisterController extends HttpServlet {
 		String reg_kodepos = request.getParameter("reg_kodepos");
 		String reg_telepon = request.getParameter("reg_telepon");
 
-		String Query = "insert into account (username,password,nama,email,alamat,provinsi,kota,kodepos,telepon) values (\""+reg_username+"\",\""+reg_password+"\",\""+reg_nama+"\",\""+reg_email+"\",\""+reg_alamat+"\",\""+reg_provinsi+"\",\""+reg_kota+"\",\""+reg_kodepos+"\",\""+reg_telepon+"\")";
+		String Query = "insert into account (username,password,nama,email,alamat,provinsi,kota,kodepos,telepon,role) values (\""+reg_username+"\",\""+reg_password+"\",\""+reg_nama+"\",\""+reg_email+"\",\""+reg_alamat+"\",\""+reg_provinsi+"\",\""+reg_kota+"\",\""+reg_kodepos+"\",\""+reg_telepon+"\",1)";
         DBA.insertQuery(Query);
         response.sendRedirect("home");
 	}

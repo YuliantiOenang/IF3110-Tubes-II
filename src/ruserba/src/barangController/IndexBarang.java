@@ -112,15 +112,36 @@ public class IndexBarang extends HttpServlet {
 				String str="";
 				for (i=0;i<size;i++)
 				{
-//					System.out.print("beliBarangOKE"+B.id.get(i) + " ");
-					String input="<input type='text' id='beliBarangOKE"+B.id.get(i)+"'>";
-					str = str + "<tr>";
-					str = str + "<td><a href='/ruserba/barang/detail?id="+B.id.get(i)+"'> " + B.nama.get(i)+ "</a></td>";
-					str = str + "<td>" + B.harga.get(i) + "</td>";
-					str = str + "<td>" + "<img src='/ruserba/images/barang/"+B.gambar.get(i)+"' width='100' height='100'>" + "</td>";
-					str = str + "<td>" + B.stok.get(i) + "</td>";
-					str = str + "<td> " + input + "<button onclick='pertanyaan("+B.id.get(i)+","+B.stok.get(i)+")'> Beli </button></td>";
-					str = str + "</tr>";
+					str += "<div class=\"itembox\">";
+					str += "	<div class=\"pict\" id=\"item"+B.id.get(i)+"\">";
+					str += "		<div title=\"Ready Stock\" class=\"itembox_img\">";
+					str += "			<img onload=\"fitbarang(this)\" src=\"/ruserba/img/barang/"+B.gambar.get(i)+"\" height=\"230\" width=\"226\">";
+					str += "		</div>";
+					str += "		<div class=\"minicart_icon\">";
+					str += "			<a href=\"#\" onclick=\"goToCart("+B.id.get(i)+"); return false;\"><img src=\"/ruserba/img/site/cart_black.png\"></a>";
+					str += "		</div>";
+					str += "		<div class=\"item_name\"><a href=\"/ruserba/barang/detail?id="+B.id.get(i)+"\">"+B.nama.get(i)+"</a><br>IDR "+B.harga.get(i)+"</div>";
+					str += "	</div>";
+					str += "	<div class=\"minicart hidden\" id=\"cart"+B.id.get(i)+"\">";
+					str += "		<form action=\"/ruserba/barang/update\" id=\"form-shop-"+B.id.get(i)+"\" method=\"post\" onsubmit=\"cekQuantity("+B.id.get(i)+"); return false;\">";
+					str += "			<label class=\"qty small\">Quantity</label>";
+					str += "			<input type=\"number\" name=\"quantity\" id=\"quantity_"+B.id.get(i)+"\" class=\"qty\" value=\"1\">";
+					str += "			<input type=\"hidden\" name=\"id_barang\" id=\"id_barang_"+B.id.get(i)+"\" value=\""+B.id.get(i)+"\">";
+					str += "			<p>Request Message :</p>";
+					str += "			<textarea class=\"req_msg small\" name=\"req_msg\"></textarea>";
+					str += "			<input type=\"submit\" class=\"cart small\" value=\"Add to Cart\">";
+					str += "			<p class=\"back\" href=\"#\" onclick=\"backToPict("+B.id.get(i)+")\">back</p>";
+					str += "		</form>";
+					str += "	</div>";
+					str += "</div>";
+//					String input="<input type='text' id='beliBarangOKE"+B.id.get(i)+"'>";
+//					str = str + "<tr>";
+//					str = str + "<td><a href='/ruserba/barang/detail?id="+B.id.get(i)+"'> " + B.nama.get(i)+ "</a></td>";
+//					str = str + "<td>" + B.harga.get(i) + "</td>";
+//					str = str + "<td>" + "<img src='/ruserba/images/barang/"+B.gambar.get(i)+"' width='100' height='100'>" + "</td>";
+//					str = str + "<td>" + B.stok.get(i) + "</td>";
+//					str = str + "<td> " + input + "<button onclick='pertanyaan("+B.id.get(i)+","+B.stok.get(i)+")'> Beli </button></td>";
+//					str = str + "</tr>";
 				}
 				JSONObject json = new JSONObject();
 				json.put("content",str);

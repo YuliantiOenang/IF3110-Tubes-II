@@ -36,15 +36,17 @@ public class CreditController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = Helper.getUserLogged(request.getSession());
-		String q1 = "select * from account where username = '" + username  + "' limit 1";
-		Profile P = new Profile(DBA);
-		P.executeQuery(q1);
-		String q2 = "select * from kredit where id_account = "+P.id.get(0);
+		if (username.isEmpty()) {
+			response.sendRedirect("/ruserba/register");
+			return;
+		}
+		Integer userId = Helper.getUserId(request.getSession());
+		String q2 = "select * from kredit where id_account = "+userId;
 		Credit C = new Credit(DBA);
 		C.executeQuery(q2);
 		if (C.id.size() == 0) {
 			C.id.add("");
-			C.id_account.add(P.id.get(0));
+			C.id_account.add(userId.toString());
 			C.name_of_card.add("");
 			C.card_number.add("");
 			C.expired_date.add("");
@@ -61,15 +63,13 @@ public class CreditController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = Helper.getUserLogged(request.getSession());
-		String q1 = "select * from account where username = '" + username + "' limit 1";
-		Profile P = new Profile(DBA);
-		P.executeQuery(q1);
+		Integer userId = Helper.getUserId(request.getSession());
 		
 		String card_number = request.getParameter("card_number");
 		String name_of_card = request.getParameter("name_of_card");
 		String expired_date = request.getParameter("expired_date");
 
-		String q2 = "insert into kredit (id_account, card_number, name_of_card, expired_date) values (\""+P.id.get(0)+"\",\""+card_number+"\",\""+name_of_card+"\",\""+expired_date+"\")";
+		String q2 = "insert into kredit (id_account, card_number, name_of_card, expired_date) values (\""+userId+"\",\""+card_number+"\",\""+name_of_card+"\",\""+expired_date+"\")";
         DBA.insertQuery(q2);
         response.sendRedirect("/ruserba/profile");
 	}
