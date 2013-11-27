@@ -8,7 +8,7 @@
 		out.println("<br><h2>Deskripsi : </h2><p>"+br.getKeterangan()+"</p><br>");
 		out.println("Request tambahan   : <br>");
 	%>
-	<form action="addcart.jsp" method="post" id="usrform">
+	<form action="addcart" method="post" id="usrform">
 		<textarea rows="4" cols="50"  name="request_tambahan" form="usrform"></textarea><br>
 		<input type="hidden" 		  name="id_barang" value="'.$idbarang.'">
 		Quantity : <input type="text" name="qt" style="width: 20px; text-align: right" /><br>

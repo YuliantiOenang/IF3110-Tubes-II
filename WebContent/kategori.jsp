@@ -31,7 +31,7 @@
 			out.print(barang.get(i).getStok());
 		%>
 			<br>
-		<form name="beli" action="#" method="post">
+		<form name="beli" action="addcart" method="post">
 			<input type="hidden" name="id_barang"
 				value="<%out.print(barang.get(i).getId_barang());%>"> <input
 				type="hidden" name="request_tambahan" value="-"> Quantity <input

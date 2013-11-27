@@ -9,6 +9,7 @@
 %>
 
 <div id="content" class="float_l">
+<% if (pangan!=null) { %>
 	<% for (int x = 0; x < 3; x++) { %>
 		<div class="product_box">
 			<h3> <% out.print(pangan.get(x).getNama_barang()); %> </h3>
@@ -17,7 +18,7 @@
 			<p class="product_price">
 				Harga : Rp <% out.print(pangan.get(x).getHarga_barang()); %><br> 
 				Stok : <% out.print(pangan.get(x).getStok()); %> <br>
-			<form name="beli" action="#" method="post">
+			<form name="beli" action="addcart" method="post">
 				<input type="hidden" name="id_barang"
 					value="<% out.print(pangan.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
@@ -36,7 +37,7 @@
 			<p class="product_price">
 				Harga : Rp <% out.print(pakaian.get(x).getHarga_barang()); %><br> 
 				Stok : <% out.print(pakaian.get(x).getStok()); %> <br>
-			<form name="beli" action="#" method="post">
+			<form name="beli" action="addcart" method="post">
 				<input type="hidden" name="id_barang"
 					value="<% out.print(pakaian.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
@@ -55,7 +56,7 @@
 			<p class="product_price">
 				Harga : Rp <% out.print(elektronik.get(x).getHarga_barang()); %><br> 
 				Stok : <% out.print(elektronik.get(x).getStok()); %> <br>
-			<form name="beli" action="#" method="post">
+			<form name="beli" action="addcart" method="post">
 				<input type="hidden" name="id_barang"
 					value="<% out.print(elektronik.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
@@ -74,7 +75,7 @@
 			<p class="product_price">
 				Harga : Rp <% out.print(rumahtangga.get(x).getHarga_barang()); %><br> 
 				Stok : <% out.print(rumahtangga.get(x).getStok()); %> <br>
-			<form name="beli" action="#" method="post">
+			<form name="beli" action="addcart" method="post">
 				<input type="hidden" name="id_barang"
 					value="<% out.print(rumahtangga.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
@@ -93,7 +94,7 @@
 			<p class="product_price">
 				Harga : Rp <% out.print(olahraga.get(x).getHarga_barang()); %><br> 
 				Stok : <% out.print(olahraga.get(x).getStok()); %> <br>
-			<form name="beli" action="#" method="post">
+			<form name="beli" action="addcart" method="post">
 				<input type="hidden" name="id_barang"
 					value="<% out.print(olahraga.get(x).getId_barang()); %>"> 
 					<input type="hidden" name="request_tambahan" value="-"> Quantity 
@@ -103,4 +104,6 @@
 			</p>
 		</div>
 	<% } %>
+<% } %>
 </div>
+
