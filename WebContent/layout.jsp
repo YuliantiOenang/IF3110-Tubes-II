@@ -4,35 +4,35 @@
 	<div class='head'>
 		<a href='${pageContext.request.contextPath}'><div class='logo'></div></a>
 		<div class='menu'>
-			<a href='${pageContext.request.contextPath}/browse'><div
+			<a href='${pageContext.request.contextPath}/barang/?category=1'><div
 					class='permenu per5'>
 					<div class='menuborder'></div>
 					<div class='menutxt'>
 						<h1 id='txtmenu1' class='menu'>Ladies Dress</h1>
 					</div>
 					<div class='menuborder'></div>
-				</div> </a> <a href='${pageContext.request.contextPath}/browse'><div
+				</div> </a> <a href='${pageContext.request.contextPath}/barang/?category=2'><div
 					class='permenu per5'>
 					<div class='menuborder'></div>
 					<div class='menutxt'>
 						<h1 id='txtmenu1' class='menu'>Ladies Shoes</h1>
 					</div>
 					<div class='menuborder'></div>
-				</div> </a> <a href='${pageContext.request.contextPath}/browse'><div
+				</div> </a> <a href='${pageContext.request.contextPath}/barang/?category=3'><div
 					class='permenu per5'>
 					<div class='menuborder'></div>
 					<div class='menutxt'>
 						<h1 id='txtmenu1' class='menu'>Man Shirt</h1>
 					</div>
 					<div class='menuborder'></div>
-				</div> </a> <a href='${pageContext.request.contextPath}/browse'><div
+				</div> </a> <a href='${pageContext.request.contextPath}/barang/?category=4'><div
 					class='permenu per5'>
 					<div class='menuborder'></div>
 					<div class='menutxt'>
 						<h1 id='txtmenu1' class='menu'>Man Shoes</h1>
 					</div>
 					<div class='menuborder'></div>
-				</div> </a> <a href='${pageContext.request.contextPath}/browse'><div
+				</div> </a> <a href='${pageContext.request.contextPath}/barang/?category=5'><div
 					class='permenu per5'>
 					<div class='menuborder'></div>
 					<div class='menutxt'>
