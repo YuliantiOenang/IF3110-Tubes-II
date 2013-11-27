@@ -60,7 +60,7 @@
 				(<a href="logout">Logout</a>)
 			</p>
 			<p class="right">
-				<a href="${pageContext.request.contextPath}/cart.jsp">Shopping
+				<a href="${pageContext.request.contextPath}/cart">Shopping
 					Cart</a> <img
 					src='${pageContext.request.contextPath}/img/site/cart_white.png'
 					style='margin-right: 5px;' />
@@ -75,7 +75,7 @@
 				(<a href="admin?action=main">Admin</a> | <a href="logout">Logout</a>)
 			</p>
 			<p class="right">
-				<a href="${pageContext.request.contextPath}/cart.jsp">Shopping
+				<a href="${pageContext.request.contextPath}/cart">Shopping
 					Cart</a> <img
 					src='${pageContext.request.contextPath}/img/site/cart_white.png'
 					style='margin-right: 5px;' />
