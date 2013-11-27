@@ -43,27 +43,38 @@ public class search extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		q = request.getParameter("q");
-		kat = request.getParameter("kat") ;
-		h1 = request.getParameter("h1");
-		h2 = request.getParameter("h2");
-		hal = Integer.parseInt(request.getParameter("hal"));
-		sort = request.getParameter("sort");
-		query = "q="+q+"&sort="+sort+"&kat="+kat+"&h1="+h1+"&h2="+h2;
+		if (request.getParameter("q")!=null)
+			query = "( (`nama` LIKE '%" + request.getParameter("q") + "%')";
+		else
+			query = "( (`nama` LIKE '%%')";
+		if (request.getParameter("kat")!=null)
+			query = query + "AND ( `id_kategori` = " + request.getParameter("kat") + " )";
+		if (request.getParameter("h1")!=null)
+			query = query + "AND ( `harga` >= " + request.getParameter("h1") + " )";
+		if (request.getParameter("h2")!=null)
+			query = query + "AND ( `harga` <= " + request.getParameter("h2") + " )";
+		query = query + ") ";
+		if ((request.getParameter("sort")!=null)&&((request.getParameter("sort")=="harga ASC")||(request.getParameter("sort")=="harga DESC")||(request.getParameter("sort")=="nama ASC")||(request.getParameter("sort")=="nama DESC")))
+			query = query + " ORDER BY " + request.getParameter("sort");
 		
-		if(!Arrays.asList(sortby).contains(sort)) {
-			sort = null;
-		}
+		if (request.getParameter("hal")!=null)
+			hal = Integer.parseInt(request.getParameter("hal"));
+		else
+			hal = 1;
+		
+		System.out.println(query);
 		barang = new Barang();
-		barang.findByCondition("nama LIKE "+q+" and id_kategori="+kat+" and harga BETWEEN "+h1+" and "+h2);
+		barang.findByCondition(query);
 		barang.formatAllCurrency();
 		data = barang.getDataVector();
+		
 		total = data.size();
+		
 		paging = barang.paginasi(total,hal,10, query);
 		request.setAttribute("title", "Search");
 		request.setAttribute("model", data);
 		request.setAttribute("paging", paging);
-		Render.Show(request, response, "browse.jsp");
+		Render.Show(request, response, "../browse.jsp");
 
 	}
 

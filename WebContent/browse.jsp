@@ -108,7 +108,7 @@
 
 
 <div class='header_divider'>
-	<h1 class='header'><%request.getAttribute("title"); %></h1>
+	<h1 class='header'>Search</h1>
 </div>
 <div class='header_divider'>
 	<div class="sorting">
@@ -136,8 +136,7 @@
 	<%
 		
 		int i=0;
-		for (HashMap<String, String> value : modelb) {
-			
+		for (HashMap<String, String> value : (Vector<HashMap<String,String>>)request.getAttribute("model")) {
 			if (i==0 || i%2==0){
 				out.print("<div class='vertdiv'>");
 			}

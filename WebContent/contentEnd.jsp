@@ -36,7 +36,7 @@
 				%>
 			</div>
 		</div>
-		<h2 id='footer_txt'><b>www.calvinsalvy.com Oficial Website</b></br>Karena rasa adalah segalanya.</h2>
+		<h2 id='footer_txt'><b>www.calvinsalvy.com Oficial Website</b></br>So fashionable. So affordable</h2>
 		<a href='https://twitter.com/darksta5'><img title='@calvinsalvy' src='${pageContext.request.contextPath}/img/site/twitter.png' id='footer_img'/></a>
 	</div>
 <!-- if (isset($effect)&&$effect) {?> -->
