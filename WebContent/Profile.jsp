@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
-
 <!-- Head -->
 <head><script src="FormValidation.js"></script>
 <script src="UserAJAX.js"></script>
 </head>
 
-<%@ include file="LoginBar.jsp" %>
+
 
 <!-- Body -->
 <body onload="LoginRedirection(); InitializeValue()">
-
+<%@ include file="LoginBar.jsp" %>
 <!-- Form Pendaftaran -->
 <form name="registration" >
 <label>Username: </label><label id="username"></label> <br>

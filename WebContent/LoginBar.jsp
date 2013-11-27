@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" >
-    <head>
-    <script src ="UserAJAX.js"></script>
-    <link rel="stylesheet" href="css/modal.css" type="text/css">
-    </head>
-    <body onload="InitializeBar()">
+<div>	
+	<script type="text/javascript">InitializeBar();</script>
         <!-- Tombol Login/Logout -->
         <div class="main">
             <div class="panel">
@@ -29,5 +24,4 @@
 
             <a class="close" href="#close"></a>
         </div>
-    </body>
-</html>
+</div>

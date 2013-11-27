@@ -11,14 +11,13 @@ function LogoutRedirection(){ // Redirection untuk user yang sudah login (gabisa
 		window.location.assign("home");
 }
 
-function InitializeBar(){
-	if(localStorage.IsLogin == 1){
-		document.getElementById("logbutton").value = "Log Out";
-		document.getElementById("logbutton").onclick = function(){Logout();};
-		document.getElementById("regislink").innerHTML = "Welcome, "+ localStorage.user_id;
-		document.getElementById("regislink").setAttribute("href","Profile.jsp");
-	}
+if(localStorage.IsLogin == 1){
+	document.getElementById("logbutton").value = "Log Out";
+	document.getElementById("logbutton").onclick = function(){Logout();};
+	document.getElementById("regislink").innerHTML = "Welcome, "+ localStorage.user_id;
+	document.getElementById("regislink").setAttribute("href","Profile.jsp");
 }
+
 
 // FUNGSI SUBMIT HTTPREQUEST
 function SubmitRegistration(){	
@@ -142,6 +141,7 @@ function Logout(){ // Tanpa HTTP Request sih
 	document.getElementById("logbutton").onclick = function(){location.href="#login_form";};
 	document.getElementById("regislink").innerHTML = "Register";
 	document.getElementById("regislink").setAttribute("href", "Registration.jsp");
+	window.location.href = "";
 }
 
 // FUNGSI HANDLE HTTPRESPONSE
@@ -198,7 +198,7 @@ function ProcessLoginResponse(xmlhttp){
 			document.getElementById("logbutton").onclick = function(){Logout();};
 			document.getElementById("regislink").innerHTML = "Welcome, "+ datas[1];
 			document.getElementById("regislink").setAttribute("href","Profile.jsp");
-			window.location.href = "#x";
+			window.location.href = "";
 		}
 		else{
 			// notifikasi
@@ -267,6 +267,7 @@ function ProcessRegistrationResponse(xmlhttp){
 
 // FUNGSI LAINNYA
 function InitializeValue(){
+	alert("INITIALIZE")
 	document.getElementById("username").innerHTML = localStorage.user_id;
 	document.getElementById("email").innerHTML = localStorage.email;
 	document.getElementById("transaksi").innerHTML = localStorage.transaction;
@@ -279,7 +280,6 @@ function InitializeValue(){
 	document.forms["registration"]["kodepos"].value = localStorage.kodepos;
 	document.forms["registration"]["hp"].value = localStorage.hp;
 }
-
 function CheckChange(){
 	if(document.forms["registration"]["password"].value == localStorage.password &&
 		document.forms["registration"]["fullname"].value == localStorage.fullname && 
