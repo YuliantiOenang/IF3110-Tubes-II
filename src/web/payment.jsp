@@ -61,7 +61,7 @@
         bool=true;
         
         Statement stmt=db.con.createStatement();
-        rs=stmt.executeQuery("select id_alat from keranjang where id_customer='"+nama+"'");
+        rs=stmt.executeQuery("select jumlah from keranjang where id_customer='"+nama+"'");
         while(rs.next())
         {
             PreparedStatement pstmt=db.con.prepareStatement("select jumlah from peralatan where no_alat='"+rs.getString(1)+"'");

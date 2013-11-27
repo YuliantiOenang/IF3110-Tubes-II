@@ -11,7 +11,7 @@
                          // Create cookies for first and last names.      
                        if(userid.equals("admin") && password.equals("admin"))
 					   {
-					   Cookie user1 = new Cookie("user1",
+					   Cookie user1 = new Cookie("userAdmin",
                                                "admin");
                        
                        // Set expiry date after 24 Hrs for both the cookies.

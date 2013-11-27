@@ -51,7 +51,7 @@
                                           cookie = cookies[i];
                                           
                                           String name=cookie.getName();
-                                          if(name.equals("user1"))
+                                          if(name.equals("userAdmin"))
                                           {
                                             found=true;
                                             nama=cookie.getValue();

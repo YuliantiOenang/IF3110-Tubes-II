@@ -106,7 +106,7 @@
                     {
                         out.print("<div class = 'searchres'>"
                         + "<div class = 'previmage'>"
-                        + "<a href='detailbarang.jsp?id="+session.getAttribute("id"+i) +"'><img src= '"+session.getAttribute("foto"+i) +"' class='resizeimage'><img></a>"
+                        + "<a href='detailbarang.jsp?id="+session.getAttribute("id"+i) +"'><img src= '../"+session.getAttribute("foto"+i) +"' class='resizeimage'><img></a>"
                         + "</div>"
                         + "<p class = 'copyrightext'> "+session.getAttribute("nama"+i) +" </br>"
                         + "Rp"+session.getAttribute("harga"+i) +" </label> </br> </p>"
@@ -126,7 +126,7 @@
                     {
                         out.print("<div class = 'searchres'>"
                         + "<div class = 'previmage'>"
-                        + "<a href='detailbarang.jsp?id="+session.getAttribute("id"+counter) +"'><img src= '"+session.getAttribute("foto"+counter) +"' class='resizeimage'><img></a>"
+                        + "<a href='detailbarang.jsp?id="+session.getAttribute("id"+counter) +"'><img src= '../"+session.getAttribute("foto"+counter) +"' class='resizeimage'><img></a>"
                         + "</div>"
                         + "<p class = 'copyrightext'> "+session.getAttribute("nama"+counter) +" </br>"
                         + "Rp"+session.getAttribute("harga"+counter) +" </label> </br> </p>"

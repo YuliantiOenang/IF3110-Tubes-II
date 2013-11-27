@@ -134,24 +134,24 @@
                     {
                         out.print("<div class = 'searchres'>"
                         + "<div class = 'previmage'>"
-                        + "<img src= '"+session.getAttribute("foto"+counter) +"' class='resizeimage'><img>"
+                        + "<img src= '../"+session.getAttribute("foto"+counter) +"' class='resizeimage'><img>"
                         + "</div>"
                         + "<a href='detailbarang.jsp?id="+session.getAttribute("id"+counter) +"'><p class = 'copyrightext'> "+session.getAttribute("nama"+counter) +"</a> </br>"
                         + "Rp"+session.getAttribute("harga"+counter) +" </label> </br> </p>"
-                        + "<label>jumlah :</label><input type='text' size=4  id='jumlahBarang"+counter+"'/>"
+                        
                         + "<input type='text' id='idBarang"+counter+"' value='"+session.getAttribute("id"+counter)+"' hidden/>"
                         + "");
                         
                         if(found)
                         {
                         %>
-                        <input type="button" onclick="cekJumlah(<%out.print(counter);%>)" value="Beli"></input>
+                       
                         <%
                         }
                         else
                         {
                             %>
-                            <input type="button" onclick="alert('anda harus login terlebih dahulu'); window.location='index.jsp'" value="Beli"></input>
+                            
                             <%
                         }
                         out.print("</div>");
