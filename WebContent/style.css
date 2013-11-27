@@ -1,0 +1,100 @@
+body {
+	background: url(images/bg.png) repeat;
+	color: #000000;
+	padding: 16px;
+	margin: 18px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	text-align: left;
+	border-radius: 12px;
+}
+
+div.pagination {
+	padding: 3px;
+	margin: 3px;
+}
+
+div.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #AAAADD;
+	
+	text-decoration: none; /* no underline */
+	color: #000099;
+}
+div.pagination a:hover, div.pagination a:active {
+	border: 1px solid #000099;
+
+	color: #000;
+}
+div.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+		border: 1px solid #000099;
+		
+		font-weight: bold;
+		background-color: #000099;
+		color: #FFF;
+	}
+div.pagination span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #EEE;
+
+	color: #DDD;
+}
+
+	
+#combo {
+	background-image:url(images/form_bg.jpg);
+	background-repeat:repeat-x;
+	border:1px solid #d1c7ac;
+	width: 250px;
+	height: 26px;
+	margin-top:20px;
+	margin-left: 50px;
+	color:#333333;
+	padding:3px;
+	font-family:tahoma, arial, sans-serif;
+}
+
+#formproduct1 {
+	background-color: #F29BC7;
+	color: #0f5096;
+	padding: 16px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	text-align: center;
+	border-radius: 12px;
+	height:210px;
+}
+
+#formproduct2 {
+	background-color: #FCBDD3;
+	color: #0f5096;
+	padding: 16px;
+	font-family: helvetica;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	font-variant: normal;
+	line-height: 22px;
+	text-align: center;
+	border-radius: 12px;
+	height:210px;
+}
+
+#divproduct {
+	margin-top:10px;
+	width: 1200px;
+	margin-left: auto; 
+	margin-right: auto;
+}
