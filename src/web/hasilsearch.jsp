@@ -140,7 +140,7 @@
 			%>
 			<div class = "searchres">
 					<div class = "previmage">
-                                            <a href="detailbarang.php?id=<%out.print(session.getAttribute("id"+i));%>"><img src= "<%out.print(session.getAttribute("foto"+i));%>" class="resizeimage"><img></a>
+                                            <a href="detailbarang.jsp?id=<%out.print(session.getAttribute("id"+i));%>"><img src= "<%out.print(session.getAttribute("foto"+i));%>" class="resizeimage"><img></a>
 					
 					</div>
 					<p class = "copyrightext"> <%out.print(session.getAttribute("nama"+i));%> </br>
