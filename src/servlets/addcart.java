@@ -23,6 +23,7 @@ import bean.Transaksi;
 public class addcart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Transaksi> IT = new ArrayList<Transaksi>();
+	private Barang barang;
 
     public addcart() {
         super();
@@ -35,6 +36,9 @@ public class addcart extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
+		if (session.getAttribute("IT") == null) {
+			IT.clear();
+		}
 		int qt = Integer.parseInt(request.getParameter("qt"));
 		String id_barang = request.getParameter("id_barang");
 		String request_tambahan = request.getParameter("request_tambahan");
@@ -58,7 +62,7 @@ public class addcart extends HttpServlet {
 			rs = stmt.executeQuery(q);
 			
 			while (rs.next()) {
-				Barang temp = new Barang(rs);
+				barang = new Barang(rs);
 			}
 			
 			rs.close();
@@ -70,9 +74,13 @@ public class addcart extends HttpServlet {
 		Transaksi temp = new Transaksi(barang,qt,request_tambahan);
 		IT.add(temp);
 		session.setAttribute("IT", IT);
+		
 		ArrayList<Transaksi> req = (ArrayList<Transaksi>) session.getAttribute("IT");
 		System.out.println(req.get(0).getRequest_tambahan());
 		System.out.println(""+req.size());
+		
+		request.setAttribute("arrayTransaksi", req);
+		
 		response.sendRedirect("");
 		System.out.print("masukkkk");
 	}

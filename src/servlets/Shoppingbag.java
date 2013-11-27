@@ -41,7 +41,7 @@ public class Shoppingbag extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		ArrayList<Transaksi> shopList = new ArrayList<Transaksi>();
 		if (session.getAttribute("username") != null) {
 			ArrayList<String> card = new ArrayList<String>();
@@ -63,13 +63,12 @@ public class Shoppingbag extends HttpServlet {
 				e.printStackTrace();
 			}
 
-//			if (session.getAttribute("shopping_cart") != null) {
-//				shopList = (ArrayList<Transaksi>) session.getAttribute("shopping_cart");
-//				ArrayList<Transaksi> ts = (ArrayList<Transaksi>) session.getAttribute("IT");
-//				request.setAttribute("arrayTransaksi", shopList);
-//			} else {
-//				shopList = new ArrayList<Transaksi>();
-//			}
+			if (session.getAttribute("IT") != null) {
+				shopList = (ArrayList<Transaksi>) session.getAttribute("IT");
+				request.setAttribute("arrayTransaksi", shopList);
+			} else {
+				shopList = new ArrayList<Transaksi>();
+			}
 			ServletContext context = getServletContext();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/shoppingbag.jsp");
 			dispatcher.forward(request, response);

@@ -3,6 +3,7 @@
 <%
 	if(session.getAttribute("username")!=null){
 		System.out.println("emang udah login nih");
+		session.setAttribute("IT", null);
 		session.invalidate();		
 	}
 	response.sendRedirect("/ruko/");
