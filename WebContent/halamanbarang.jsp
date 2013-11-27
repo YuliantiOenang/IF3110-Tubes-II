@@ -4,6 +4,7 @@
 	<title>List Barang</title>
 	<link rel="stylesheet" href="css/main.css" type="text/css"/> 
 	<link rel="stylesheet" href="css/halamanbarang.css" type="text/css"/>
+	<script src="javascript/admin.js"></script>
 </head>
 <body id="index" class="home">
 	<div id="container">
@@ -65,8 +66,36 @@
 				</div>
 			</div>
 			<% } connection.close(); %>
-			<div id="adminbutton">
-				<button type="button" class="button" id="tambah">Tambah Barang</button>
+			<div id="admin">
+				<form name="tambah">
+					<h2>Tambah Barang</h2>
+					<p>(*) harus diisi</p>
+					<div>
+						<h3>Gambar (*)</h3>
+						<input type="text" name="gambar" value=""/>
+					</div>
+					<div>
+						<h3>Nama (*)</h3>
+						<input type="text" name="nama" value=""/>
+					</div>
+					<div>
+						<h3>Harga (*)</h3>
+						<input type="text" name="harga" value=""/>
+					</div>
+					<div>
+						<h3>Kategori</h3>
+						<input type="text" name="kat" value="<%= kategori %>"/>
+					</div>
+					<div>
+						<h3>Jumlah</h3>
+						<input type="text" name="jumlah" value="1"/>
+					</div>
+					<div>
+						<h3>Keterangan</h3>
+						<input type="text" name="ket" value="Barang baru."/>
+					</div>
+					<input type="button" value="Tambah Barang" class="button" id="tambah" onclick="addBarang()"></input>
+				</form>
 			</div>
 		</article>
 		</div>

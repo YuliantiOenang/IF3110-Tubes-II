@@ -261,3 +261,9 @@ li#page2 {
 #title {
 	clear: both;
 }
+
+#admin {
+	clear:both;
+	margin-top:20em;
+	margin-left:2em;
+}
