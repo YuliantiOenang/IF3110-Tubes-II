@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Administrasi Inventori</title>
+<script src="inventori.js"></script>
 </head>
 <body>
 
@@ -20,13 +21,24 @@
 		boolean add = action.equals("add");
 	%>
 		
-	<form action="inventori" method="POST">
-	<input type="hidden" name="id" value='<%= (String) request.getAttribute("gid") %>' />
-	<input type="hidden" name="action" value='<%= action %>' />
+	<form action="inventori" id="invform" method="POST">
+	<input type="hidden" name="gid" value='<%= add ? "-1" : (String) request.getAttribute("gid") %>' />
+	<input type="hidden" id="actionval" name="action" value='<%= action %>' />
 	
 	Nama: <input type="text" name="nama" value='<%= add ? "" : b.getNama() %>' /><br/>
 	Harga: <input type="text" name="harga" value='<%= add ? "" : b.getHarga() %>' /><br/>
 	Jumlah: <input type="text" name="jumlah" value='<%= add ? "" : b.getJumlah() %>' /><br/>
+	Kategori: <select name="kategori">
+		<%
+			String[] kat = {"Roti", "Minuman", "Kalengan", "Segar", "Peralatan"};
+			for (int i = 0; i < kat.length; i++){
+				int k = i+1;
+				%>
+				<option value='<%=k%>' <%= !add && (k == b.getId_cat()) ? "selected" : "" %>><%=kat[i]%></option>
+				<%
+			}
+		%>	
+	</select><br/>
 	Deskripsi: <br/>
 	<textarea name="desc"><%= add ? "" : b.getDesc() %></textarea><br/><br/>
 	Gambar:<br/>
@@ -36,11 +48,11 @@
 	<%
 		if(add){
 	%>
-		<input type="button" value="add" />	
+		<input type="submit" value="add" />	
 	<%
 		}else{
 	%>
-		<input type="button" value="edit" /> <input type="button" value="delete" />
+		<input type="button" onclick="editsubmit()" value="edit" /> <input type="button" onclick="delsubmit()" value="delete" />
 	<%
 		}
 	%>
