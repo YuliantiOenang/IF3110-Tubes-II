@@ -84,9 +84,11 @@
 <body>
 <!-- for first animation -->
 <!--  	<div class='search-box'> <input type="text" id="name" class="input" placeholder="search bar"/></div> -->
+
 	<div class='conctr'>
+
 			<div class='head'>
-			<a href='${pageContext.request.contextPath}/index.jsp'><div class='logo'></div></a>
+			<a href='${pageContext.request.contextPath}'><div class='logo'></div></a>
 				<div class='menu'>
 						<a href='${pageContext.request.contextPath}/item.jsp'><div class='permenu per5'>
 							<div class='menuborder'></div>
@@ -122,7 +124,7 @@
 							</div>
 						</a>			
 				</div>
-			
+
 			<div class='status'>
 				<%
 				if (request.getSession(true).getAttribute("user_id") != null) {
@@ -139,5 +141,7 @@
 				}
 				%>
 			</div>
+			
 			</div>
+			
 						
