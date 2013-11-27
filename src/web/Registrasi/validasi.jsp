@@ -33,7 +33,7 @@ if(username.length() >4 && !username.equals(pass))
 {
 	boolNama=true;
 }
-if(pass.equals(confPass) && !pass.equals("") && !confPass.equals(""))
+if(pass.equals(confPass) && !pass.equals(username) && !pass.equals(email_a) && pass.length()>=8 && !pass.equals("") && !confPass.equals(""))
 {
 	boolPass=true;
 }
@@ -85,7 +85,7 @@ try
               catch(Exception e )
               {
               }
-out.print("{\"boolUser\":\""+boolUser+"\","
+out.print("{\"boolUser\":"+boolUser+","
  + "\"boolPass\":"+boolPass+","
  + "\"bool\":"+boolEmail+","
  + "\"boolNama\":"+boolNama+","
