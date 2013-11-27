@@ -124,7 +124,7 @@
 						<% if (userRole == 2) { %> (<a href='/ruserba/admin'>Admin</a>)<% } %>
 						</p>
 						<p class="right">
-							<a href="cart">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
+							<a href="/ruserba/cart">Shopping Cart</a> <img alt='' src='/ruserba/img/site/cart_white.png' style='margin-right:5px;'/>
 						</p>
 					<% } else { %>
 						<p>
