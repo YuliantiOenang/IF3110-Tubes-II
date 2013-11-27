@@ -122,7 +122,7 @@
 				out.print("<div class='item_name'><a href='"+request.getContextPath()+"/barang/view?id="+value.get("id")+"'>"+value.get("nama")+"</a><br/>IDR "+value.get("harga")+"</div>");
 				out.print("</div>");
 				out.print("<div class='minicart hidden' id='cart"+value.get("id")+"'>");
-				out.print("<form action = "+request.getContextPath()+"/cart/addCart"+" id='form-shop-"+value.get("id")+"' method='post' onsubmit='cekQuantity("+value.get("id")+"); return false;'>");
+				out.print("<form action = "+request.getContextPath()+"/cart/addcart"+" id='form-shop-"+value.get("id")+"' method='post' onsubmit='cekQuantity("+value.get("id")+"); return false;'>");
 				out.print("<label class='qty small'>Quantity</label>");
 				out.print("<input type='number' name='quantity' id='quantity_"+value.get("id")+"' class='qty' value=1></input>");
 				out.print("<input type='hidden' name='id_barang' id='id_barang_"+value.get("id")+"' value='"+value.get("id")+"'>");

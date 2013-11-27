@@ -61,8 +61,8 @@
 					<li>Urabitur convallis varius lectus, vitae congue mauris adipiscing eu. Vivamus id ultrices mi. Aenean eget erat id massa fringilla gravida.</li>
 					
 				</ul>
-				<a href='${pageContext.request.contextPath}/profile/credit?redirect=shop/payment'><input type="btn"  name="submit" value="Check Out" class="button"></a>
-				<a href='${pageContext.request.contextPath}/kategori'><input type="btn" name="submit" value="Continue Shopping" class="button"></a>
+				<a href='${pageContext.request.contextPath}/cart/process'><input type="btn"  name="submit" value="Check Out" class="button"></a>
+				<a href='${pageContext.request.contextPath}/home'><input type="btn" name="submit" value="Continue Shopping" class="button"></a>
 				</div>
 			</div>
 		</div>

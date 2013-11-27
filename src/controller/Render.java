@@ -38,24 +38,44 @@ public class Render {
 		} 
 	}
 	
-	private static void preRender(HttpServletRequest request, HttpServletResponse response)
+	public static void preRender(HttpServletRequest request, HttpServletResponse response)
 	{
 		setLogin(request,response);
 		setKategori(request, response);
 	}
 	
-	private static void setLogin(HttpServletRequest request, HttpServletResponse response)
+	public static void setLogin(HttpServletRequest request, HttpServletResponse response)
 	{
+		System.out.println("setLogin");
 		String userid = null;
 		Cookie[] cookies_arr = null;
 		cookies_arr = request.getCookies();
 		if( cookies_arr != null ){
 			for (int i = 0; i < cookies_arr.length; i++){
-				if (cookies_arr[i].getName().compareTo("accessid")==0)
-					userid = cookies_arr[i].getValue();
+				System.out.println(cookies_arr[i].getName());
+				if (cookies_arr[i].getName().equals("username")){
+					System.out.println("KETEMU!"+ cookies_arr[i].getValue());
+					request.setAttribute("_pre_userid", cookies_arr[i].getValue());
+				}
 			}
 		}
-		request.setAttribute("_pre_userid", userid);   
+	}
+	
+	public static boolean isLogin(HttpServletRequest request, HttpServletResponse response)
+	{
+		System.out.println("setLogin");
+		String userid = null;
+		Cookie[] cookies_arr = null;
+		cookies_arr = request.getCookies();
+		if( cookies_arr != null ){
+			for (int i = 0; i < cookies_arr.length; i++){
+				System.out.println(cookies_arr[i].getName());
+				if (cookies_arr[i].getName().equals("username")){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	private static void setKategori(HttpServletRequest request, HttpServletResponse response)

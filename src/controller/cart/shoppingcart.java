@@ -31,14 +31,20 @@ public class shoppingcart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
-		ShoppingCart shop;
-		if (session.getValue("shoppingcart")!=null)
-			shop = (ShoppingCart)session.getValue("shoppingcart");
+		if (Render.isLogin(request, response)) {
+			HttpSession session = request.getSession(true);
+			ShoppingCart shop;
+			if (session.getValue("shoppingcart")!=null)
+				shop = (ShoppingCart)session.getValue("shoppingcart");
+			else
+				shop = new ShoppingCart();
+			request.setAttribute("shoppingcart", shop);
+			Render.Show(request, response, "../cart.jsp");
+		}
 		else
-			shop = new ShoppingCart();
-		request.setAttribute("shoppingcart", shop);
-		Render.Show(request, response, "../cart.jsp");
+		{
+			response.sendRedirect(request.getContextPath() + "/register");
+		}
 	}
 
 }

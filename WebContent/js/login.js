@@ -10,9 +10,12 @@ function login() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			var data = JSON.parse(xmlhttp.responseText);
 			if (data.success) {
-				// alert('Anda berhasil login');
+				if (data.admin) {
+					document.getElementById('loading').innerHTML = "Anda berhasil login sebagai admin";
+					window.location = "http://localhost/phpmyadmin";
+				}
 				document.getElementById('loading').innerHTML = "Anda berhasil login";
-				window.location = server+"/index/home";
+				window.location = server+"/home";
 			} else {
 				document.getElementById('loading').innerHTML = "Username atau password salah";
 				// alert('Username atau password salah');

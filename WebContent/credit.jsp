@@ -10,7 +10,7 @@
 		</div>
 		
 		<div class='per_form'>
-			<label>Name of Card</label><input type="text" name="Credit[name_of_card]" id="name_of_card" value="<%out.print(request.getAttribute("card_name"));%>" required> <!-- <?php echo $model->name_of_card ?> -->
+			<label>Name of Card</label><input type="text" name="Credit[name_of_card]" id="name_of_card" value="<% if ((request.getAttribute("habisitukesubmit")==null)) out.print(request.getAttribute("card_name"));%>" required> <!-- <?php echo $model->name_of_card ?> -->
 			<span class='error' id="error-name_of_card"></span>
 		</div>
 		
@@ -62,10 +62,11 @@
 		if (request.getAttribute("sudahSet")==null) {		
 
 %>
-			<a href="<% out.print(request.getContextPath()); %>" class="btn">Skip</a> <!-- <?php echo $this->makeUrl('index/home') ?> -->
+			<a href="<% out.print(request.getContextPath()); %>/home" class="btn">Skip</a> <!-- <?php echo $this->makeUrl('index/home') ?> -->
 <% } %>
 	<!--<?php endif; ?>-->
 	</div>
+	<% if (request.getAttribute("habisitukesubmit")!=null) out.print("<input type='hidden' name='aksi' value='habisitukesubmit'/>"); %>
 </form>
 
 

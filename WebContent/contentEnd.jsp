@@ -2,20 +2,17 @@
 			<div class='head'>
 			<a href='${pageContext.request.contextPath}/home'><div class='logo'></div></a>
 			<div class='status'>
-				<!-- <?php if ($this->userLogged()): ?>
-					<p class="left"> welcome, <a href='<?php echo $this->makeUrl('profile/index') ?>/'><?php echo $this->userLogged() ?></a>! (<a href='<?php echo $this->makeUrl('index/logout') ?>'>Logout</a>)
-					</p>
-					<p class="right">
-						<a href="<?php echo $this->makeUrl('/cart/index') ?>">Shopping Cart</a> <img src='<?php echo $this->getBaseUrl() ?>/img/site/cart_white.png' style='margin-right:5px;'/>
-					</p>
-				<?php else: ?>
-					<p>You are not login. (<a href='#' onclick='showLogin()'>Login</a> or <a href='<?php echo $this->getBaseUrl() ?>/index/register'>Register now</a>)</p>
-				<?php endif ?> -->
-				<p class="left"> welcome, <a href='${pageContext.request.contextPath}profile/index'>Budi</a>! (<a href='${pageContext.request.contextPath}index/logout'>Logout</a>)
-					</p>
-					<p class="right">
-						<a href="cart/index">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png'/>
-					</p>
+			<%
+				if (request.getAttribute("_pre_userid")!=null)
+				{
+					out.print("<p class='left'> welcome, <a href=''>"+(String)request.getAttribute("_pre_userid")+"</a>! (<a href='" + request.getContextPath() + "/logout'>Logout</a>)</p>");
+					out.print("<p class='right'><a href='" + request.getContextPath() + "/cart/shoppingcart'>Shopping Cart</a> <img src='" + request.getContextPath() + "/img/site/cart_white.png' style='margin-right:5px;'/></p>");	
+				}
+				else
+				{
+					out.print("<p>You are not login. (<a href='#' onclick='showLogin()'>Login</a> or <a href='" + request.getContextPath() + "/register'>Register now</a>)</p>");	
+				}
+			%>
 			</div>
 			<div class='menu'>
 				<a href='index/shop'>

@@ -45,7 +45,13 @@ public class AddCredit extends HttpServlet {
 				request.getParameter("Credit[name_of_card]") + "', '" +
 				request.getParameter("Credit[expired_date]") + "'" +		
 				")" );
-		response.sendRedirect(request.getContextPath());
+		if (request.getParameter("habisitukesubmit")!=null)
+		{
+			response.sendRedirect(request.getContextPath()+"/cart/submit");
+		}
+		else {
+			response.sendRedirect(request.getContextPath()+"/home");
+		}
 	}
 
 }

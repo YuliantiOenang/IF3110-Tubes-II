@@ -46,21 +46,21 @@ public class search extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		searchurl = "";
-		if (request.getParameter("q")!=null) {
+		if ((request.getParameter("q")!=null)&&(!request.getParameter("q").equals(""))) {
 			query = "( (`nama` LIKE '%" + request.getParameter("q") + "%')";
 			searchurl = searchurl + "q="+ request.getParameter("q")+"&";
 		}
 		else
 			query = "( (`nama` LIKE '%%')";
-		if (request.getParameter("kat")!=null) {
+		if ((request.getParameter("kat")!=null)&&(!request.getParameter("kat").equals(""))&&(!request.getParameter("kat").equals("0"))) {
 			query = query + "AND ( `id_kategori` = " + request.getParameter("kat") + " )";
 			searchurl = searchurl + "kat="+ request.getParameter("kat")+"&";
 		}
-		if (request.getParameter("h1")!=null) {
+		if ((request.getParameter("h1")!=null)&&(!request.getParameter("h1").equals(""))) {
 			query = query + "AND ( `harga` >= " + request.getParameter("h1") + " )";
 			searchurl = searchurl + "h1="+ request.getParameter("h1")+"&";
 		}
-		if (request.getParameter("h2")!=null){
+		if (request.getParameter("h2")!=null&&(!request.getParameter("h2").equals(""))){
 			query = query + "AND ( `harga` <= " + request.getParameter("h2") + " )";
 			searchurl = searchurl + "h2="+ request.getParameter("h2")+"&";
 		}
