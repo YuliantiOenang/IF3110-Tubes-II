@@ -47,8 +47,6 @@ public class Shoppingbag extends HttpServlet {
 			ArrayList<String> card = new ArrayList<String>();
 			DatabaseAccess dbAccess = new DatabaseAccess();
 			
-			
-			
 			String SQL = "SELECT * FROM `creditcard` WHERE card_owner=\""
 					+ session.getAttribute("username") + "\"";
 			System.out.println("INI SQL [SHOPPINGBAG] ->" + SQL);
@@ -65,13 +63,13 @@ public class Shoppingbag extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			if (session.getAttribute("shopping_cart") != null) {
-				shopList = (ArrayList<Transaksi>) session
-						.getAttribute("shopping_cart");
-				request.setAttribute("arrayTransaksi", shopList);
-			} else {
-				shopList = new ArrayList<Transaksi>();
-			}
+//			if (session.getAttribute("shopping_cart") != null) {
+//				shopList = (ArrayList<Transaksi>) session.getAttribute("shopping_cart");
+//				ArrayList<Transaksi> ts = (ArrayList<Transaksi>) session.getAttribute("IT");
+//				request.setAttribute("arrayTransaksi", shopList);
+//			} else {
+//				shopList = new ArrayList<Transaksi>();
+//			}
 			ServletContext context = getServletContext();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/shoppingbag.jsp");
 			dispatcher.forward(request, response);

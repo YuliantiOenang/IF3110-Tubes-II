@@ -7,34 +7,23 @@
 <!-- <form name="shopping_cart" action="edit_shopcart.php" method="post"> -->
 <%
 	if (session.getAttribute("username") != null) {
-		ArrayList<String> kartu = new ArrayList<String>();		
+		ArrayList<String> kartu = new ArrayList<String>();
 		kartu=(ArrayList<String>) request.getAttribute("card");
+		ArrayList<Transaksi> shopList = new ArrayList<Transaksi>();
+		shopList = (ArrayList<Transaksi>) session.getAttribute("IT");
+		System.out.println(shopList.get(0).getRequest_tambahan());
+		System.out.println(""+shopList.size());
 		
-		//ArrayList<Transaksi> shopList = request.getAttribute(arg0);
-		session.setAttribute("shopping_cart", shopList);
-
-		//if ((shopList = (ArrayList<Transaksi>) session
-				.getAttribute("shopping_cart")) != null) {
+		if (session.getAttribute("IT") != null) {
 			int totalPengeluaran = 0;
-
-			for (int i = 0; i < shopList.size(); i++) {
-				//totalPengeluaran += (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQuantity());
-				out.print("<h4><b>" + (i + 1) + ". "
-						+ shopList.get(i).getBarang().getNama_barang()
-						+ "</b></h4>");
-				out.print("<p>Quantity : "
-						//+ shopList.get(i).getQuantity() + "</p>");
-				//out.print("<p>__________________________Total Harga _________________________ : "
-						+ (shopList.get(i).getBarang()
-								.getHarga_barang() * shopList.get(i)
-								.getQuantity()) + "</p>");
-				//out.print("<p>Request Tambahan = "
-						+ shopList.get(i).getReqTambahan()
-						+ "</p><br></br>");
-
+			for (int i = 0; i < 1; i++) {
+				//totalPengeluaran += (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQt());
+				out.print("<h4><b>" + (i + 1) + ". "+ shopList.get(i).getBarang().getNama_barang()+ "</b></h4>");
+				out.print("<p>Quantity : "+ shopList.get(i).getQt() + "</p>");
+				out.print("<p>__Total Harga ____: "+ (shopList.get(i).getBarang().getHarga_barang() * shopList.get(i).getQt()) + "</p>");
+				out.print("<p>Request Tambahan = "+ shopList.get(i).getRequest_tambahan()+ "</p><br></br>");
 			}
-			out.print("<p>Total harga barang yang Anda pesan adalah ==================================> "
-					+ totalPengeluaran);
+			out.print("<p>Total harga barang yang Anda pesan adalah ==================================> "+ totalPengeluaran);
 			out.print("<h4>Silahkan pilih kartu kredit Anda : </h4>");
 			out.print("<form method=\"post\" action=\"beli.jsp\"> <select name=\"kartuTerpilih\">");
 			boolean klik;
@@ -55,14 +44,14 @@
 				out.print("</select> <input id=\"BuatBeli\" type=\"submit\" value=\"BELI\"></form>");
 			}
 
-		//} else {
+		} else {
 			shopList = new ArrayList<Transaksi>();
 			out.print("<h4><b>Maaf, Keranjang Anda Masih Kosong</b></h4>");
-		//}
-	//} else {
+		}
+	} else {
 		System.out.println("Belum LOGIN WOII!!!");
 		response.sendRedirect("/ruko/");
-	//}
+	}
 %>
 
 <jsp:include page="footer.jsp" />
