@@ -84,7 +84,7 @@
                         {
                                 query="select nama, kategori,harga,deskripsi,foto,no_alat from peralatan where kategori='"+request.getParameter("kategori") +"' and harga>150000 and nama like '%"+request.getParameter("key") +"%'";
                         }
-                        out.print(query);
+                        //out.print(query);
                         ResultSet rs=db.stat.executeQuery(query);
                         while(rs.next())
                         {
