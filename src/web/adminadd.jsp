@@ -8,11 +8,13 @@
 <title>Tambah Entri Barang</title>
 </head>
 <body>
- 
-<div style =>
-ID Barang: <input type="text" id="id_barang" required> <br>
-ID Kategori: <input type="text" id="id_kategori" required> <br>
-Nama Barang: <input type="text" id="nama_barang" required> <br>
+<div>
+Tambah entri barang, tanda * berarti wajib diisi
+</div>
+<div>
+ID Barang*: <input type="text" id="id_barang" required> <br>
+ID Kategori*: <input type="text" id="id_kategori" required> <br>
+Nama Barang*: <input type="text" id="nama_barang" required> <br>
 Harga: <input type="text" id="harga" required> <br>
 Satuan: <input type="text" id="satuan"> <br>
 Deskripsi: <input type="text" id="deskripsi"> <br>
@@ -21,39 +23,20 @@ Jumlah Stok: <input type="text" id="jumlah_stok"> <br>
 Nama Gambar: <input type="text" id="nama_gambar"> <br>
 Nama Thumbnail: <input type="text" id="nama_gambar_thumb"> <br>
 </div>
-<button id="button_right">Execute</button>
-<br>
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-     url="jdbc:mysql://localhost/TEST"
-     user="root"  password="pass123"/>
+     url="jdbc:mysql://localhost/phpmyadmin/tubes2"
+     user="root"  password=""/>
 
 
 <sql:update dataSource="${snapshot}" var="result">
 
 
-INSERT INTO barang VALUES (104, 2, 'Nuha', 'Ali');
+INSERT INTO barang VALUES (id_barang, id_kategori, nama_barang', harga, satuan, deskripsi, jumlah_pembelian, jumlah_stok, nama_gambar, nama_gambar_thumb);
 </sql:update>
- 
-<sql:query dataSource="${snapshot}" var="result">
-SELECT * from Employees;
-</sql:query>
- 
-<table border="1" width="100%">
-<tr>
-   <th>Emp ID</th>
-   <th>First Name</th>
-   <th>Last Name</th>
-   <th>Age</th>
-</tr>
-<c:forEach var="row" items="${result.rows}">
-<tr>
-   <td><c:out value="${row.id}"/></td>
-   <td><c:out value="${row.first}"/></td>
-   <td><c:out value="${row.last}"/></td>
-   <td><c:out value="${row.age}"/></td>
-</tr>
-</c:forEach>
-</table>
+<button onclick="location.href='adminadd.jsp'">Execute</button>
+<br>
+
+
  
 </body>
 </html>

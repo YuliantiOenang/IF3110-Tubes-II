@@ -8,7 +8,9 @@
 <title>Modifikasi Daftar Barang</title>
 </head>
 <body>
-Pilih bagian yang ingin diedit
+<div>
+Pilih bagian yang ingin diedit, tanda * berarti wajib diisi
+</div>
 <br><div>
 ID Barang: <input type="text" id="id_barang" required> <br>
 ID Kategori: <input type="text" id="id_kategori" required> <br>
@@ -21,40 +23,18 @@ Jumlah Stok: <input type="text" id="jumlah_stok"> <br>
 Nama Gambar: <input type="text" id="nama_gambar"> <br>
 Nama Thumbnail: <input type="text" id="nama_gambar_thumb"> <br>
 </div>
-<div>
-<button id="button_right">Execute</button>
-</div>
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-     url="jdbc:mysql://localhost/TEST"
-     user="root"  password="pass123"/>
+     url="jdbc:mysql://localhost/phpmyadmin/tubes2"
+     user="root"  password=""/>
  
-<c:set var="empId" value="102"/>
+<c:set var="id_barang" value=id_barang/>
  
 <sql:update dataSource="${snapshot}" var="count">
-  UPDATE Employees SET last = 'Ali'
-  <sql:param value="${empId}" />
+  UPDATE barang SET id_barang = id_barang, id_kategori=id_kategori, nama_barang=nama_barang,harga=harga,satuan=satuan,deskripsi=deskripsi,jumlah_pembelian=jumlah_pembelian,jumlah_stok=jumlah_stok,nama_gambar=nama_gambar,nama_gambar_thumb=nama_gambar_thumb;
+  <sql:param value="${id_barang}" />
 </sql:update>
- 
-<sql:query dataSource="${snapshot}" var="result">
-   SELECT * from Employees;
-</sql:query>
- 
-<table border="1" width="100%">
-<tr>
-   <th>Emp ID</th>
-   <th>First Name</th>
-   <th>Last Name</th>
-   <th>Age</th>
-</tr>
-<c:forEach var="row" items="${result.rows}">
-<tr>
-   <td><c:out value="${row.id}"/></td>
-   <td><c:out value="${row.first}"/></td>
-   <td><c:out value="${row.last}"/></td>
-   <td><c:out value="${row.age}"/></td>
-</tr>
-</c:forEach>
-</table>
- 
+<div>
+<button onclick="location.href='admindisplay.jsp'">Execute</button>
+</div>
 </body>
 </html>
