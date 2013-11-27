@@ -10,13 +10,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +26,9 @@ import org.json.JSONObject;
  * @author Setyo Legowo <setyo.legowo@live.com>
  */
 public class JSONResponder extends HttpServlet {
+    
+    HttpSession session;
+    
     /**
      *
      * @param request
@@ -37,9 +40,9 @@ public class JSONResponder extends HttpServlet {
     public void doPost(HttpServletRequest request, 
                       HttpServletResponse response) 
                       throws IOException, ServletException {
+        session = request.getSession(true);
         String _do = null;
         String data = null;
-        String output = null;
         String input_json = request.getParameter("data");
         try {
             JSONObject json = new JSONObject(input_json);
@@ -55,8 +58,7 @@ public class JSONResponder extends HttpServlet {
             if(_do == null) {
                 out.println("<h1>Something wrong</h1>Look for data:<br>" + data);
             } else if(_do.equalsIgnoreCase("subkategori")){
-                output = subkategori();
-                out.print(output);
+                out.print(subkategori());
             } else if(_do.equalsIgnoreCase("searching")) {
                 out.print(searching());
             } else if(_do.equalsIgnoreCase("login")) {
@@ -266,8 +268,243 @@ public class JSONResponder extends HttpServlet {
         sql = "UPDATE pelanggan_id SET ";
         sql += "nama_lengkap = '" + param_array2.getString("nama_lengkap") + "' ";
         sql += "WHERE user_id = " + param_array2.getString("user_id") + ";";
+        
+        st.executeQuery(sql);
+        
+        if("".equals(param_array2.getString("kata_sandi")))
+        {
+            sql = "SELECT nama_pengguna FROM __user_login WHERE user_id = '"
+                    + param_array2.getString("user_id") + "';";
+            res = st.executeQuery(sql);
+            res.next();
+            Authentication ologin = new Authentication(res.getString("nama_pengguna"),
+                    param_array2.getString("kata_sandi"));
+            ologin.update(param_array2.getInt("user_id"));
+        }
+        
+        json_result.put("status", "success");
+        json_result2 = new JSONObject().put("user_id", param_array2.getString("user_id"));
+        json_result2.put("alamat", param_array2.getString("alamat"));
+        json_result2.put("provinsi", param_array2.getString("provinsi"));
+        json_result2.put("kabupaten", param_array2.getString("kabupaten"));
+        json_result2.put("kodepos", param_array2.getString("kodepos"));
+        json_result2.put("user_phone", param_array2.getString("no_hp"));
+        json_result.put("data", json_result2);
             
         con.close();
+        return json_result.toString();
+    }
+    
+    public String addToShoppingBag(String param) throws Exception
+    {
+        JSONObject json_result = new JSONObject();
+        JSONObject json_result2 = new JSONObject();
+        JSONObject json_result3 = new JSONObject();
+        
+        JSONArray param_array = new JSONArray(param);
+        JSONObject param_array2 = param_array.getJSONObject(0);
+        
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        ResultSet res = st.executeQuery("SELECT barang_data.nama, barang_data.harga, barang_stok.stok "
+                + "FROM barang_data INNER JOIN barang_stok ON "
+                + "barang_data.barang_id = barang_stok.barang_id "
+                + "WHERE barang_data.barang_id = "
+                + param_array2.getString("id_barang")
+                + " AND stok > " + param_array2.getString("qty") + ";");
+        if(res.next())
+        {
+            JSONArray barang_ari;
+            if(session.getAttribute("shopping_bag") != null)
+            {
+                boolean found = false;
+                JSONObject barang = new JSONObject(session.getAttribute("shopping_bag"));
+                JSONObject el_barang;
+                barang_ari = barang.getJSONArray("data");
+                for(int i = 0; i < barang_ari.length() && !found; i++)
+                {
+                    el_barang = barang_ari.getJSONObject(i);
+                    if(el_barang.getString("id_barang").equals(param_array2.getString("id_barang")))
+                    {
+                        el_barang.put("qty", el_barang.getInt("qty" + param_array2.getInt("qty")));
+                        if(!"".equalsIgnoreCase(param_array2.getString("detail_tambahan")))
+                        {
+                            el_barang.put("detail_tambahan", 
+                                el_barang.getString("detail_tambahan" + 
+                                    param_array2.getString("detail_tambahan")));
+                        }
+                        found = true;
+                        barang_ari.put(i, el_barang);
+                    }
+                }
+                if(!found)
+                {
+                    barang_ari.put(param_array2);
+                    json_result3.put("data", barang_ari);
+                }
+            } else {
+                barang_ari = new JSONArray();
+                barang_ari.put(param_array2);
+                json_result3.put("data", barang_ari);
+            }
+            session.setAttribute("shopping_bag", json_result3.toString());
+            
+            json_result.put("status", "success");
+            json_result2.put("nama_barang", res.getString("nama"));
+            json_result2.put("harga", res.getString("harga"));
+            json_result2.put("qty", param_array2.getString("qty"));
+            json_result2.put("total_barang_keranjang", barang_ari.length());
+            json_result.put("data", json_result2);
+        } else {
+            json_result.put("status", "failed");
+            json_result.put("data", "Barang id tidak ada atau stok kami kurang dari " + param_array2.getString("qty") + ".");
+        }
+        
+        return json_result.toString();
+    }
+    
+    public String saveToShoppingBag(String param) throws Exception
+    {
+        JSONObject json_result = new JSONObject();
+        JSONObject json_result2 = new JSONObject();
+        JSONArray json_result3 = new JSONArray();
+        boolean found;
+        
+        JSONArray param_array = new JSONArray(param);
+        JSONObject temp_param;
+        
+        JSONObject barang = new JSONObject(session.getAttribute("shopping_bag"));
+        JSONArray barang_ari = barang.getJSONArray("data");
+        JSONObject temp_barang;
+        for(int i = 0; i < barang_ari.length(); i++)
+        {
+            found = false;
+            for(int j = 0; j < param_array.length() && !found; i++)
+            {
+                temp_barang = barang_ari.getJSONObject(i);
+                temp_param = param_array.getJSONObject(j);
+                if(temp_barang.getString("id_barang").equals(temp_param.getString("barang_id")))
+                {
+                    temp_barang.put("qty", temp_param.getString("barang_id"));
+                    barang_ari.put(i, temp_barang);
+                    found = true;
+                }
+            }
+        }
+        
+        for(int i = 0; i < barang_ari.length(); i++)
+        {
+            temp_barang = barang_ari.getJSONObject(i);
+            if(temp_barang.getInt("qty") > 0) {
+                json_result3.put(temp_barang);
+            }
+        }
+        json_result2.put("data", json_result3);
+        
+        session.setAttribute("shopping_bag", json_result2.toString());
+        
+        json_result.put("status", "success");
+        json_result.put("data", "");
+        
+        return json_result.toString();
+    }
+    
+    public String buy(String param) throws Exception
+    {
+        JSONObject json_result = new JSONObject();
+        JSONObject json_result2 = new JSONObject();
+        JSONArray json_result3 = new JSONArray();
+        JSONObject temp_result;
+        JSONArray param_array = new JSONArray(param);
+        JSONObject temp_param;
+        for(int i = 0; i < param_array.length(); i++)
+        {
+            temp_param = param_array.getJSONObject(i);
+            if(temp_param.getInt("qty") > 0)
+            {
+                json_result3.put(temp_param);
+            }
+        }
+        
+        String ids_barang;
+        ids_barang = json_result3.getJSONObject(0).getString("id_barang");
+        for(int i = 1; i < json_result3.length(); i++)
+        {
+            temp_result = json_result3.getJSONObject(i);
+            ids_barang += ", " + temp_result.getString("id_barang");
+        }
+        
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        ResultSet res = st.executeQuery("SELECT barang_id, stok FROM barang_stok "
+                + "WHERE barang_id IN (" + ids_barang + ") GROUP BY barang_id ASC;");
+        
+        // Check quantity
+        boolean found_lessqty = false;
+        while(!found_lessqty && res.next())
+        {
+            for(int i = 1; i < json_result3.length() && !found_lessqty; i++)
+            {
+                temp_result = json_result3.getJSONObject(i);
+                if(res.getInt("barang_id") == temp_result.getInt("id_barang"))
+                {
+                    if(res.getInt("stok") < temp_result.getInt("qty"))
+                    {
+                        found_lessqty = true;
+                    }
+                }
+            }
+        }
+        
+        if(!found_lessqty) {
+            int newtransaksiid;
+            res = st.executeQuery("SELECT (transaksi_id + 1) AS new_transaksiid "
+                    + "FROM transaksi GROUP BY transaksi_id DESC LIMIT 0, 1;");
+            if(res.next())
+            {
+                newtransaksiid = res.getInt("new_transaksiid");
+            } else
+            {
+                newtransaksiid = 1;
+            }
+            
+            String sql = "INSERT INTO transaksi VALUES ";
+            for(int i = 0; i < json_result3.length(); i++) {
+                temp_param = json_result3.getJSONObject(i);
+                sql += "(" + newtransaksiid + ", " + temp_param.getString("id_barang") 
+                        + ", " + temp_param.getInt("qty") + ")";
+                if(i + 1 < json_result3.length()) {
+                    sql += ", ";
+                } else {
+                    sql += ";";
+                }
+            }
+            st.executeQuery(sql);
+            
+            // UPDATE STOK
+            for(int i = 0; i < json_result3.length(); i++) {
+                temp_param = json_result3.getJSONObject(i);
+                sql = "UPDATE barang_stok SET stok = stok - " + temp_param.getString("qty") 
+                        + " WHERE barang_id = " + temp_param.getString("id_barang") + ";";
+                st.executeQuery(sql);
+            }
+            
+            session.removeAttribute("shopping_bag");
+            
+            json_result.put("status", "success");
+            json_result.put("data", "Anda telah berhasil beli.");
+        }
+        else
+        {
+            json_result2.put("data", json_result3);
+            session.setAttribute("shopping_bag", json_result2.toString());
+            
+            json_result.put("status", "failed");
+            json_result.put("data", "Ada barang stoknya kurang");
+        }
+        
         return json_result.toString();
     }
 }

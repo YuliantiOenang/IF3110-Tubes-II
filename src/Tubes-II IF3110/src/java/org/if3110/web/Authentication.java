@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -123,5 +125,48 @@ public class Authentication {
     public int getUserID()
     {
         return id_num;
+    }
+    
+    public void save(int idnum) throws Exception
+    {
+        id_num = idnum;
+        String sql = null;
+        try {
+            String sandi = password_generator(password);
+            sql = "INSERT INTO __user_login VALUES (";
+            sql += id_num + ", ";
+            sql += "'" + username + "', ";
+            sql += "'" + sandi + "'";
+            sql += ")";
+            
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        st.executeQuery(sql);
+    }
+    
+    public void update(int idnum) throws Exception
+    {
+        id_num = idnum;
+        String sql = null;
+        try {
+            String sandi = password_generator(password);
+            sql = "UPDATE __user_login SET ";
+            sql += "nama_pengguna = '" + username + "', ";
+            sql += "kata_sandi = '" + sandi + "' ";
+            sql += "WHERE user_id = " + id_num + ";";
+            
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        st.executeQuery(sql);
     }
 }
