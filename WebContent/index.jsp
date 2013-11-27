@@ -6,14 +6,17 @@
 <%@include file="header.jsp" %>
 
 
+
+
 <% ArrayList<String> list_kategori = (ArrayList<String>)request.getAttribute("list_kategori"); %>
 <% ArrayList<ArrayList<String>> list_nama = (ArrayList<ArrayList<String>> )request.getAttribute("list_nama"); %>
 <% ArrayList<ArrayList<String>> list_gambar = (ArrayList<ArrayList<String>> )request.getAttribute("list_gambar"); %>
 
-
 <script>
 
 var it = 0;
+var last = new Date().getSeconds();
+var check = 0;
 
 function getScrollXY() {
     var scrOfX = 0, scrOfY = 0;
@@ -43,18 +46,66 @@ function getDocHeight() {
     );
 }
 
+function getContent(id)
+{			
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			if (id == it)
+			{
+				document.getElementById("list_barang").innerHTML += xmlhttp.responseText;	
+				document.getElementById("loading").innerHTML = "";
+				check = 0;
+				it++;
+			}
+			
+		}
+	};
+	
+	xmlhttp.open("GET","GeneratePaginasi?id="+id,true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send();
+}
+
+var last = 0;
+
+function onPaginasi()
+{
+	if (new Date() - last < 1000) return;
+	
+	last = new Date();
+	
+	
+	if (it >= <%= list_kategori.size()%>) return;
+	
+	if (check == 1) return;
+	
+	document.getElementById("loading").innerHTML = "<img src = \"img/ajax-loader.gif\"/>";
+	
+	setTimeout(function(){
+		check = 1;
+		getContent(it);
+	}, 1000);
+}
 
 window.onscroll = function scroll()
 {
 	if (getDocHeight() == getScrollXY()[1] + window.innerHeight) {
-		
-        	document.getElementById("paginasi").innerHTML = it;
-        	
-        	it++;
-        
-		
+		onPaginasi();                             	
     }
 };
+
 
 </script>   
 
@@ -69,23 +120,11 @@ window.onscroll = function scroll()
                 <article class="blogPost">
                   	<img width="200" align="right" src = "img/buy.gif"/>	
                     <h2> Most Wanted Items! </h2>
+                       
+                     <ul id="list_barang">
+                     </ul>
                      
-                     <div id="paginasi"> </div>
-                       
-                       
-                    <div style="display: table;">
-				        <div style="display: table-row;">
-				            <div style="display: table-cell;">Name:</div>
-					            <div style="display: table-cell;">test1</div>
-					        </div>
-					        <div style="display: table-row;">
-					            <div style="display: table-cell;">Address:</div>
-					            <div style="display: table-cell;">test2</div>
-					        </div>
-					    </div>
-					    
-					    
-					    
+                     <p id = "loading"></p> 
 					    
             	</article> <!-- END OF BLOG POST -->
             </div> <!-- END OF MAIN CONTENT -->

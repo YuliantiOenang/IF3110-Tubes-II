@@ -20,9 +20,8 @@ response.setContentType("text/html");
     <head>
     	<link type="text/css" rel="stylesheet" href="style.css"/>
     	<title>Ruko Serba Ada</title>     
-    </head>
-    
-    <!-- SCRIPT -->
+    	
+    	<!-- SCRIPT -->
     <script>
     
     function daydiff(first, second) {
@@ -33,7 +32,7 @@ response.setContentType("text/html");
         var d = new Date();
         var curtime = d.getTime();
         
-        if (daydiff(localStorage.wbddate, curTime) >= 30)
+        if (daydiff(localStorage.wbddate, curtime) >= 30)
         {
         	localStorage.removeItem("wbdusername");
             localStorage.removeItem("wbddate");
@@ -83,13 +82,16 @@ response.setContentType("text/html");
             location.reload(true);
         }
     </script> <!-- END OF SCRIPT -->
+    </head>
+    
+    
 
 	<!-- BODY -->
     <body>
 	    <!-- HEADER -->
 	    <div id="header" onload="javascript:welcomeuser()">
 	        <a href="shoppingcart.jsp"> <img align="left" height="100" src="img/shoppingcart.png"/> </a>
-	        <a href="index.jsp"> <img align="center" height="100"  src="img/ruserba.png"/> </a>
+	        <a href="IndexController"> <img align="center" height="100"  src="img/ruserba.png"/> </a>
 	           
 	        <div align="right" id="welcome">
 				<script>

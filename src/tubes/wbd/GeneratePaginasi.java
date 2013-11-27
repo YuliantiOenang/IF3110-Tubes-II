@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IndexController
+ * Servlet implementation class GeneratePaginasi
  */
-@WebServlet("/IndexController")
-public class IndexController extends HttpServlet {
+@WebServlet("/GeneratePaginasi")
+public class GeneratePaginasi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+       
 	// JDBC driver name and database URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
     static final String DB_URL="jdbc:mysql://localhost/ruserba";
@@ -30,10 +30,11 @@ public class IndexController extends HttpServlet {
     static final String USER = "root";
     static final String PASS = "";
        
+
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexController() {
+    public GeneratePaginasi() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,21 +42,21 @@ public class IndexController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-
-		 response.setContentType("text/plain");	
+		 response.setContentType("text/html");	
 		  PrintWriter out = response.getWriter();
 		
 	      Connection conn = null;
 	      Statement stmt = null;
 	      
+	      int id = Integer.parseInt(request.getParameter("id"));
+	      
+
 	      ArrayList<String> list_kategori = new ArrayList<String>();
 	      ArrayList<ArrayList<String>> list_nama = new ArrayList<ArrayList<String>>();
 	      ArrayList<ArrayList<String>> list_gambar = new ArrayList<ArrayList<String>>();
-	      
 	      
 	      try{
 	         // Register JDBC driver
@@ -127,14 +128,20 @@ public class IndexController extends HttpServlet {
 	         }//end finally try
 	      } //end try
 	      
-	      int it = 0;
+	      out.println("<li>");
 	      
-	      request.setAttribute("list_kategori", list_kategori);
-	      request.setAttribute("list_nama", list_nama);
-	      request.setAttribute("list_gambar", list_gambar);
-	      request.setAttribute("it", it);
-	      
-	      request.getRequestDispatcher("/index.jsp").forward(request, response);
+	      out.println("<h1> <a href=products.php?category="+ list_kategori.get(id) + "> " + list_kategori.get(id)+ " </a> </h3>");
+	      out.println("<h3><ol>");
+	      for (int i = 0; i < list_nama.get(id).size(); ++i)
+	      {
+		      out.println("<li>");
+		      out.println("<a href=products.jsp?name=" + list_nama.get(id).get(i) + "> " + list_nama.get(id).get(i) + " </a>;");
+		      out.println("<br>");
+		      out.println("<img src="+ list_gambar.get(id).get(i) +">");
+		      out.println("</li>");
+	      }
+	      out.println("</ol></h3>");
+	      out.println("</li>");
 	}
 
 	/**
