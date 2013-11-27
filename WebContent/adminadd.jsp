@@ -9,7 +9,7 @@
 <body>
 <h1>Add new item</h1>
 <hr />
-<form action="admin" method="post">
+<form action="admin" method="post" enctype="multipart/form-data">
 <input type="hidden" name="action" value="add"/>
 <label>Name: </label><input type="text" id="name" name="name"/>
 <label>Category: </label>
@@ -27,7 +27,7 @@ for (i = 0; i < 5; i++) {
 <label>Price: </label><input type="number" id="price" name="price"/>
 <label>Description: </label><textarea id="description" name="description"></textarea>
 <label>Amount: </label><input type="number" id="amount" name="amount"/>
-<label>Image: </label><input type="text"/>
+<label>Image: </label><input type="file" id="photo" name="photo"/>
 <input type="submit">
 </form>
 </body>

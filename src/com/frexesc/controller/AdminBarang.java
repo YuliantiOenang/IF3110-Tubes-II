@@ -10,11 +10,13 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.DiskFileUpload;
 
 import com.frexesc.model.BarangBean;
 import com.frexesc.model.KategoriBean;
@@ -22,7 +24,7 @@ import com.frexesc.model.KategoriBean;
 /**
  * Servlet implementation class AdminBarang
  */
-@WebServlet("/AdminBarang")
+@MultipartConfig
 public class AdminBarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -88,9 +90,12 @@ public class AdminBarang extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		final String UPLOAD_DIRECTORY = UploadImage.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "../../../../../WebContent/img/temp/";
 		DbConnection dbConnection = new DbConnection();
 		Connection connection = dbConnection.mySqlConnection();
 		if (request.getParameter("action").equals("add")) {
+			System.out.println(UPLOAD_DIRECTORY);
+			DiskFileUpload upload = new DiskFileUpload();
 			BarangBean barang = new BarangBean(0, Integer.parseInt(request.getParameter("category")), request.getParameter("name"), null, Integer.parseInt(request.getParameter("price")), request.getParameter("description"), Integer.parseInt(request.getParameter("amount")));
 			String insertQuery = "INSERT INTO barang (id_kategori, nama_barang, gambar, harga_barang, keterangan, jumlah_barang) VALUES ('" + barang.getId_category() + "','" + barang.getName() + "','" + barang.getPicture() + "','" + barang.getPrice() + "','" + barang.getDescription() + "','" + barang.getTotal_item() + "')";
 			try {
