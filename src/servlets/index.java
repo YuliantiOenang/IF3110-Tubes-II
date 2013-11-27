@@ -31,8 +31,14 @@ public class index extends HttpServlet {
 
 	public index() {
 	}
+	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		pangan.clear();
+		pakaian.clear();
+		elektronik.clear();
+		rumahtangga.clear();
+		olahraga.clear();
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		Connection conn = null;
@@ -62,9 +68,10 @@ public class index extends HttpServlet {
 		String q_olahraga = "SELECT Distinct * FROM `progin_13511021`.barang WHERE kategori_barang = 5 ORDER BY n_beli DESC LIMIT 0,3";
 		String q = "SELECT COUNT(nama_barang) from `barang`";
 		
-		try {
-			for (int i = 0; i < 6; i++)
-				stmt[i] = conn.createStatement();
+		System.out.println("asdksakdjlsjdlsjaldjlsa");
+		
+		try {			
+			for (int i = 0; i < 6; i++)	stmt[i] = conn.createStatement();
 			rs_pangan = stmt[0].executeQuery(q_pangan);
 			rs_pakaian = stmt[1].executeQuery(q_pakaian);
 			rs_elektronik = stmt[2].executeQuery(q_elektronik);
@@ -75,6 +82,7 @@ public class index extends HttpServlet {
 			while (rs_pangan.next()) {
 				Barang temp = new Barang(rs_pangan);
 				pangan.add(temp);
+				System.out.println("lalalalalala");
 			}
 			
 			while (rs_pakaian.next()) {
