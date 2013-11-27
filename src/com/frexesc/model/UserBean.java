@@ -14,6 +14,7 @@ public class UserBean {
 	private String nocard;
 	private String nacard;
 	private String excard;
+	private int transaction;
 	
 	public UserBean() {
 		this.username = null;
@@ -29,9 +30,10 @@ public class UserBean {
 		this.nocard = null;
 		this.nacard = null;
 		this.excard = null;
+		this.transaction = 0;
 	}
 
-	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal, int role, String nocard, String nacard, String excard) {
+	public UserBean(String username, String password, String email, String name, String telephone, String address, String province, String city, String postal, int role, String nocard, String nacard, String excard, int transaction) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -46,6 +48,7 @@ public class UserBean {
 		this.nocard = nocard;
 		this.nacard = nacard;
 		this.excard = excard;
+		this.transaction = transaction;
 	}
 
 	public int getRole() {
@@ -151,4 +154,13 @@ public class UserBean {
 	public void setPostal(String postal) {
 		this.postal = postal;
 	}
+
+	public int getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(int transaction) {
+		this.transaction = transaction;
+	}
+	
 }
