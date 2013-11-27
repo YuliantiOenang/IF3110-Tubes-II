@@ -14,7 +14,7 @@
 	<p><%= msg %></p>
 	<%
 		Database db = (Database)pageContext.getServletContext().getAttribute("db");
-		System.out.println(db);
+		//System.out.println(db);
 		request.setAttribute("product", db.getProductData(3));
 	%>
 	<jsp:useBean id="product" class="com.ruserba.model.Product" scope="request" />

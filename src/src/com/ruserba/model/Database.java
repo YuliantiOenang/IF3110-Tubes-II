@@ -10,6 +10,16 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
  
 public class Database {
+
+	public static final int COMP_LT = 1;
+	public static final int COMP_LTE = 2;
+	public static final int COMP_GT = 3;
+	public static final int COMP_GTE = 4;
+	public static final int SORT_ASC = 1;
+	public static final int SORT_DESC = 2;
+	public static final int ORDERBY_PRODUCTNAME = 1;
+	public static final int ORDERBY_PRICE = 2;
+	public static final int ORDERBY_SOLDQTY = 3;	
  
 	private Connection conn = null;
  
@@ -41,13 +51,8 @@ public class Database {
 		return sta.executeQuery(sql);
 	}
 
-	// Mengambil seluruh data produk.
-	public Product getProductData(int product_id) throws SQLException
+	private Product getProductDataFromResultSet(ResultSet res) throws SQLException
 	{
-		PreparedStatement stat = getConnection().prepareStatement("select * from barang where id_barang=?");
-		stat.setInt(1, product_id);
-		ResultSet res = stat.executeQuery();
-
 		// Id produk tidak ditemukan.
 		if (!res.next()) return null;
 
@@ -65,6 +70,16 @@ public class Database {
 		prod.setNamaGambarThumb(res.getString("nama_gambar_thumb"));
 
 		return prod;
+	}
+
+	// Mengambil seluruh data produk.
+	public Product getProductData(int product_id) throws SQLException
+	{
+		PreparedStatement stat = getConnection().prepareStatement("select * from barang where id_barang=?");
+		stat.setInt(1, product_id);
+		ResultSet res = stat.executeQuery();
+
+		return getProductDataFromResultSet(res);
 	}
 
 	private User getUserDataFromResultSet(ResultSet res) throws SQLException	{
@@ -139,6 +154,89 @@ public class Database {
 			lst.add(cat);
 		}
 		return lst;
+	}
+
+	private String getComparisonString(int compare_id)
+	{
+		if (compare_id == COMP_LT) return "<";
+		else if (compare_id == COMP_LTE) return "<=";
+		else if (compare_id == COMP_GT) return ">";
+		else if (compare_id == COMP_GTE) return ">=";
+		else return "<";
+	}
+
+	// Diasumsikan query sudah sesuai spesifikasi.
+	public ArrayList<Product> getProductSearchResult(SearchAttribute attr) throws SQLException
+	{
+		StringBuilder qb = new StringBuilder();
+
+		qb.append("select * from barang ");
+		
+		ArrayList<String> query_where_lst = new ArrayList<String>();
+		if (!attr.getNamaBarang().equals(""))
+			query_where_lst.add("nama_barang like (\'%" + attr.getNamaBarang() + "%\')");
+		if (attr.getIdKategori() > 0)
+			query_where_lst.add("id_kategori = " + attr.getIdKategori());
+		if (attr.getIdPerbandingan() > 0 && attr.getHarga() >= 0)
+			query_where_lst.add("harga " + getComparisonString(attr.getIdPerbandingan()) + " " + attr.getHarga());
+		
+		// Buat query where.
+		StringBuilder query_where_strb = new StringBuilder();
+		for (int i = 0; i < query_where_lst.size(); i++)
+		{
+			if (i != 0) query_where_strb.append(" and ");
+			query_where_strb.append(query_where_lst.get(i));
+		}
+		String query_where = query_where_strb.toString();
+
+		ArrayList<String> query_end_lst = new ArrayList<String>();
+		String sort_attr;
+		if (attr.getIdPengurutan() == ORDERBY_PRODUCTNAME) sort_attr = "nama_barang";
+		else if (attr.getIdPengurutan() == ORDERBY_PRICE) sort_attr = "harga";
+		else if (attr.getIdPengurutan() == ORDERBY_SOLDQTY) sort_attr = "jumlah_pembelian";
+		else sort_attr = "nama_barang";
+		query_end_lst.add("order by " + sort_attr);
+
+		String sort_method;
+		if (attr.getIdMetodePengurutan() == SORT_DESC) sort_method = "desc";
+		else sort_method = "asc";
+		query_end_lst.add(sort_method);
+
+		query_end_lst.add("limit " + attr.getIndeks() + ", " + attr.getJumlah());
+
+		// Buat query end.
+		StringBuilder query_end_strb = new StringBuilder();
+		for (int i = 0; i < query_end_lst.size(); i++)
+		{
+			if (i != 0) query_end_strb.append(" ");
+			query_end_strb.append(query_end_lst.get(i));
+		}
+		String query_end = query_end_strb.toString();
+
+		// Append query where.
+		if (query_where_lst.size() > 0) qb.append("where " + query_where + " ");
+
+		// Tambahkan akhir query.
+		qb.append(query_end);
+
+		// Ambil hasil dari query.
+		String final_query = qb.toString();
+
+		//return final_query;
+
+		PreparedStatement stat = getConnection().prepareStatement(final_query);
+		ResultSet res = stat.executeQuery();
+
+		ArrayList<Product> prod_list = new ArrayList<Product>();
+
+		while (true)
+		{
+			Product prod = getProductDataFromResultSet(res);
+			if (prod == null) break;
+			prod_list.add(prod);
+		}
+
+		return prod_list;
 	}
 
 }

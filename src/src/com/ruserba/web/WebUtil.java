@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import com.ruserba.model.Database;
 
-public class WebUtil extends HttpServlet
+public class WebUtil
 {
 	public static boolean isLoggedIn(ServletContext context, HttpServletRequest request) throws SQLException
 	{
@@ -36,6 +36,16 @@ public class WebUtil extends HttpServlet
 	public static Database getDatabase(ServletContext context)
 	{
 		return (Database)context.getAttribute("db");
+	}
+
+	public static String getProductImagePath(String product_image_filename)
+	{
+		return "images/products/" + product_image_filename;
+	}
+
+	public static String getProductPage(int product_id)
+	{
+		return "product.php?product_id=" + product_id;
 	}
 
 }

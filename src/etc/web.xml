@@ -29,6 +29,15 @@
 	<url-pattern>/login</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>CobaServlet</servlet-name>
+	<servlet-class>com.ruserba.web.CobaServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>CobaServlet</servlet-name>
+	<url-pattern>/cobaservlet</url-pattern>
+</servlet-mapping>
+
 <listener>
 <listener-class>com.ruserba.web.DatabaseInit</listener-class>
 </listener>
