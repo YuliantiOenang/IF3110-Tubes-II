@@ -148,7 +148,7 @@ public class AdminBarang extends HttpServlet {
 			try {
 				Statement s = connection.createStatement();
 				String updateQuery = "UPDATE barang SET gambar='" + id + "." + sp[1] + "' WHERE id='" + id + "'";
-				if (!s.execute(updateQuery)) {
+				if (s.executeUpdate(updateQuery) < 1) {
 					success = false;
 				}
 			} catch (Exception e) {
