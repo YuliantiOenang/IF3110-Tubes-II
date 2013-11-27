@@ -41,7 +41,7 @@
 							<strong>Jumlah Dibeli:</strong> <input type="text" id="quant<%= no %>" value="<%= b.getJumlah() %>"><br/><br/>
 							<button type="button" class="view_cart_button" onclick="changeItemCount(<%= b.getId_inven() %>, <%= no %>)">Ubah</button>
 						</form>
-						<div class="notif" id="notif<%= no %>">INI ADALAH NOTIF</div>
+						<div class="notif" id="notif<%= no %>"></div>
 					</div>
 				</div>
 			<% 
