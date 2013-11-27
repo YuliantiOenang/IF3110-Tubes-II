@@ -39,9 +39,9 @@
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
 						<form class = "inline_form">
 							<strong>Jumlah Dibeli:</strong> <input type="text" id="quant<%= no %>" value="<%= b.getJumlah() %>"><br/><br/>
-							<button type="button" onclick="changeItemCount(<%= b.getId_inven() %>, <%= no %>)">Ubah</button>
+							<button type="button" class="view_cart_button" onclick="changeItemCount(<%= b.getId_inven() %>, <%= no %>)">Ubah</button>
 						</form>
-						<div class="notif<%= no %>"></div>
+						<div class="notif" id="notif<%= no %>">INI ADALAH NOTIF</div>
 					</div>
 				</div>
 			<% 
