@@ -88,7 +88,7 @@ response.setContentType("text/html");
     <body>
 	    <!-- HEADER -->
 	    <div id="header" onload="javascript:welcomeuser()">
-	        <a href="shoppingcart.jsp"> <img align="left" height="100" src="img/shoppingcart.png"/> </a>
+	        <a href="ShoppingCart?username="+localStorage.wbdusername> <img align="left" height="100" src="img/shoppingcart.png"/> </a>
 	        <a href="IndexController"> <img align="center" height="100"  src="img/ruserba.png"/> </a>
 	           
 	        <div align="right" id="welcome">
