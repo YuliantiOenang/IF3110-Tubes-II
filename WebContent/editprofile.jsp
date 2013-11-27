@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="header.jsp" />
+<%@page import="bean.DatabaseAccess"%>
+<%@page import="java.sql.ResultSet"%>
+
 <script type="text/javascript">
 	function confirmAll() {
 		var password = document.forms['edit']['password'].value;
@@ -115,29 +118,55 @@
 			return true;
 		}
 	}
+	function enableButton(){
+		var button = document.getElementById('subedit');
+		button.disabled = false;
+	}
 </script>
 <% // Validasi SESSION
 if (session.getAttribute("username") == null){
 	out.println("<h3>Login dulu bos</h3>");
 } else {
+	String fullname = null;
+	String password = null;
+	String phonenum = null;
+	String address = null;
+	String province = null;
+	String state = null;
+	String postalcode = null;
+	
+	DatabaseAccess dbAccess = new DatabaseAccess();
+	String SQL = "SELECT * FROM `user` WHERE username = '" + session.getAttribute("username") + "'";
+	System.out.println(SQL);
+	ResultSet rs = dbAccess.doQuery(SQL);
+	while (rs.next()) {
+		fullname = rs.getObject(2).toString();
+		password = rs.getObject(3).toString();
+		phonenum = rs.getObject(5).toString();
+		address = rs.getObject(6).toString();
+		province = rs.getObject(7).toString();
+		state = rs.getObject(8).toString();
+		postalcode = rs.getObject(9).toString();
+	}
 %>
 <form name="edit" action="EditProfile" method="post">
 	Change Password: <input type="password" onkeyup="checkPass(this)"
-		name="password">
+		name="password" value="<% out.print(password);%>" onkeydown="enableButton()">
 	<div id="err_pass"></div>
 	<br> Confirm Password: <input type="password"
-		onkeyup="confirmPassword(this)" name="repassword">
+		onkeyup="confirmPassword(this)" name="repassword" value="<% out.print(password);%>" onkeydown="enableButton()">
 	<div id="err_repass"></div>
 	<br> Nama Lengkap: <input type="text" name="fullname"
-		onkeyup="checkFullName(this)">
+		onkeyup="checkFullName(this)" value="<% out.print(fullname);%>" onkeydown="enableButton()">
 	<div id="err_fullname"></div>
 	<br> Nomor Hand Phone: <input type="text" name="hpnum"
-		onkeyup="checkNum(this)">
+		onkeyup="checkNum(this)"value="<% out.print(phonenum);%>" onkeydown="enableButton()">
 	<div id="err_phonenum"></div>
-	<br> Alamat : <input type="text" name="address"><br> Provinsi :
-	<input type="text" name="province"><br> Kecamatan : <input
-		type="text" name="kecamatan"><br> Kode Pos : <input
-		type="text" name="postalcode"><br> <input type="submit"
+	<br> Alamat : <input type="text" name="address" value="<% out.print(address);%>" onkeydown="enableButton()">
+	<br> Provinsi :	<input type="text" name="province" value="<% out.print(province);%>" onkeydown="enableButton()">
+	<br> Kecamatan : <input	type="text" name="kecamatan" value="<% out.print(state);%>" onkeydown="enableButton()">
+	<br> Kode Pos : <input type="text" name="postalcode" value="<% out.print(postalcode);%>" onkeydown="enableButton()">
+	<br> <input type="submit"
 		id="subedit" value="Edit" disabled>
 	<div id="edit_error"></div>
 </form>
