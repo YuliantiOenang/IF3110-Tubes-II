@@ -1,10 +1,10 @@
 
 <!-- Tombol Login/Logout -->
-<div class="main">
-    <div class="panel">
-    	<a href = "Registration.jsp" id = "regislink">Register</a>
-  		<input type="button" id = "logbutton" value ="Log In" onclick = 'location.href="#login_form"'></input>
-    </div>
+	
+<div class="panel">
+	<a href="viewCart" id="viewcart"><img class="view_cart" src="res/viewcart.png" height="25px"></a>
+ 	<a href = "Registration.jsp" id = "regislink">Register</a>
+	<input type="button" id = "logbutton" value ="Log In" onclick = 'location.href="#login_form"'></input>
 </div>
 
 <!-- Pop Up -->

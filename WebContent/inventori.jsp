@@ -21,7 +21,7 @@
 		boolean add = action.equals("add");
 	%>
 		
-	<form action="inventori" id="invform" method="POST">
+	<form action="inventori" id="invform" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="gid" value='<%= add ? "-1" : (String) request.getAttribute("gid") %>' />
 	<input type="hidden" id="actionval" name="action" value='<%= action %>' />
 	
