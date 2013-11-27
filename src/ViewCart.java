@@ -113,12 +113,23 @@ public class ViewCart extends HttpServlet {
 					
 					System.out.println("Executing query...");
 					
-					//Update jumlah transaksi yang di user
-					String localStorageId = "Hafizh"; //temporary gaaaaaan
-					state.executeUpdate("UPDATE user SET transaction = transaction + " + barangIndex.y +  " WHERE id='" + id_user +"'");
+					ResultSet rs = state.executeQuery("SELECT * FROM inventori WHERE id_inventori = " + barangIndex.x);
 					
-					//Update jumlah transaksi yang di inventori
-					state.executeUpdate("UPDATE inventori SET total_transaksi=total_transaksi + " + barangIndex.y + " WHERE id_inventori=" + barangIndex.x);
+					int jumlah = 0;
+					while(rs.next()){
+						jumlah = rs.getInt("jumlah");
+					}
+					
+					if(barangIndex.y <= jumlah){
+						//Update jumlah transaksi yang di inventori
+						state.executeUpdate("UPDATE inventori SET jumlah=jumlah - " + barangIndex.y + " WHERE id_inventori=" + barangIndex.x);
+						
+						//Update jumlah transaksi yang di user
+						state.executeUpdate("UPDATE user SET transaction = transaction + " + barangIndex.y +  " WHERE id='" + id_user +"'");
+						
+						//Update jumlah transaksi yang di inventori
+						state.executeUpdate("UPDATE inventori SET total_transaksi=total_transaksi + " + barangIndex.y + " WHERE id_inventori=" + barangIndex.x);
+					}
 				}
 				
 				//Clear cart

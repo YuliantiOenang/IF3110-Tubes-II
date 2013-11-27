@@ -40,7 +40,7 @@
     <servlet-name>DetailBarang</servlet-name>
     <url-pattern>/detail</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>InventoriAdmin</display-name>
     <servlet-name>InventoriAdmin</servlet-name>
@@ -99,5 +99,15 @@
   <servlet-mapping>
     <servlet-name>ViewCart</servlet-name>
     <url-pattern>/viewCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateBarang</display-name>
+    <servlet-name>updateBarang</servlet-name>
+    <servlet-class>updateBarang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateBarang</servlet-name>
+    <url-pattern>/updateBarang</url-pattern>
   </servlet-mapping>
 </web-app>

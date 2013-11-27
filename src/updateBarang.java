@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class addToCart
+ * Servlet implementation class updateBarang
  */
-public class addToCart extends HttpServlet {
+public class updateBarang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addToCart() {
+    public updateBarang() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,30 +35,28 @@ public class addToCart extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Updating...");
+		
 		String db = "toko_imba";
 		java.sql.Connection con = null;
 		int id = Integer.parseInt(request.getParameter("id_barang"));
 		int jml = Integer.parseInt(request.getParameter("jumlah"));
 		
 		HttpSession session = request.getSession(true);
-		if(session.getAttribute("cart") == null){
-			ArrayList<Point> cart = new ArrayList<Point>();
-			cart.add(new Point(id, jml));
-			session.setAttribute("cart", cart);
-		} else {
-			boolean found = false;
-			ArrayList<Point> cart = (ArrayList<Point>) session.getAttribute("cart");
-			for(Point p: cart){
-				if(p.x == id){
-					found = true;
-					p.y += jml;
-				}
+		
+		boolean found = false;
+		ArrayList<Point> cart = (ArrayList<Point>) session.getAttribute("cart");
+		for(Point p: cart){
+			if(p.x == id){
+				System.out.println("Updated!");
+				found = true;
+				p.y = jml;
+				break;
 			}
-			if(!found){
-				cart.add(new Point(id, jml));
-			}
-			session.setAttribute("cart", cart);
 		}
+		
+		session.setAttribute("cart", cart);
+
 		response.getWriter().write("Sukses!");
 	}
 }

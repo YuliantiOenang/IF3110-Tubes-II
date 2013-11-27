@@ -38,8 +38,10 @@
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
 						<form class = "inline_form">
-						<strong>Jumlah Dibeli:</strong> <input type="text" id="quant<%= no %>" value="<%= b.getJumlah() %>"><br/><br/>
+							<strong>Jumlah Dibeli:</strong> <input type="text" id="quant<%= no %>" value="<%= b.getJumlah() %>"><br/><br/>
+							<button type="button" onclick="changeItemCount(<%= b.getId_inven() %>, <%= no %>)">Ubah</button>
 						</form>
+						<div class="notif<%= no %>"></div>
 					</div>
 				</div>
 			<% 
