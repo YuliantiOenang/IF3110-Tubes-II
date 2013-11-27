@@ -2,11 +2,15 @@ package com.frexesc.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -31,8 +35,48 @@ public class Payment extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DbConnection dbConnection = new DbConnection();
-		Connection connection = dbConnection.mySqlConnection();
+		HttpSession session = request.getSession();
+
+		if (session.getAttribute("username") == null) {
+			response.sendRedirect("../register.jsp");
+		} else {
+			DbConnection dbConnection = new DbConnection();
+			Connection connection = dbConnection.mySqlConnection();
+
+			String query = "SELECT * FROM user WHERE id="
+					+ session.getAttribute("user_id");
+
+			try {
+				ResultSet rs = connection.createStatement().executeQuery(query);
+
+				while (rs.next()) {
+					if (rs.getString("nomor_kartu") == null) {
+						/** Redirect to Credit Card page */
+						response.sendRedirect("../creditcard.jsp");
+					} else {
+
+						// Update status
+						String query2 = "UPDATE barang_user SET status=1 WHERE id_user="
+								+ session.getAttribute("user_id");
+						connection.createStatement().executeUpdate(query2);
+						
+						request.setAttribute("response", "Transaksi berhasil!");
+						
+						RequestDispatcher dispatcher;
+						dispatcher = getServletContext().getRequestDispatcher("/barang/payment.jsp");
+						dispatcher.forward(request, response);
+
+						// redirect to gallery
+
+					}
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 
 	}
 
@@ -43,6 +87,6 @@ public class Payment extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		doGet(request, response);
 	}
 }

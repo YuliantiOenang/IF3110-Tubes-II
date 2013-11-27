@@ -12,7 +12,7 @@
 		overflow : hidden;
 	}
 	body{
-		background-image : url(../img/site/bg.jpg);
+		background-image : url(../img/site/bg3.jpg);
 		color: black;
 		font-family : Candara;
 	}
@@ -119,7 +119,7 @@
 			}
 			
 			div.permenu:hover div.menutxt{
-				background : #bca549;
+				background : #BBC9C9;
 			}
 
 /***********************
@@ -286,8 +286,8 @@ h4 { /*for product name title*/
 	text-align : center;
 	font-weight: normal;
 	font-style: normal;
-	color : #DDDDDD;
-	background: #222;
+	color : black;
+	background: #BCE6E8;
 	padding: 10px;
 }
 
@@ -744,6 +744,8 @@ div.minicart {
   	DETAIL BARANG
 ***********************/
 div.item_price, div.item_detail, div.item_pict {
+	
+	background:#A1B096;
 	display: inline-block;
 	text-align: left;
 	overflow: hidden;
@@ -752,7 +754,7 @@ div.item_price {
 	height:330px;
 	padding: 10px;
 	width:200px;
-	background: rgba(0,0,0,0.5);
+	background:#DAF1F2;
 	overflow: hidden;
 }
 div.item_pict {
@@ -768,7 +770,7 @@ div.item_detail {
 	padding: 10px;
 	width:330px;
 	margin-right:15px;
-	background: rgba(0,0,0,0.5);
+	background: #CEF0F2;
 	overflow: hidden;
 }
 
@@ -1166,7 +1168,7 @@ div.orderdetail{
 }
 
 div.orderdetail h4{
-	color : white;
+	color : black;
 	line-height : 12px;
 }
 
@@ -1186,7 +1188,7 @@ div.buyerdetail ul {
 }
 
 div.buyerdetail h4{
-	color : white;
+	color : black;
 	line-height : 12px;
 }
 

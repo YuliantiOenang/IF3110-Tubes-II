@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Pembayaran</title>
 </head>
 <body>
-
+<%= request.getAttribute("response") %><br />
+Klik <a href="./">disini</a> untuk kembali ke halaman pembelian <br />
 </body>
 </html>

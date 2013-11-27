@@ -94,5 +94,8 @@
 	<%
 		}
 	%>
+	<br />
+	Klik <a href="./cart">disini</a> untuk masuk ke shopping cart <br />
+	Klik <a href="./">disini</a> untuk kembali <br />
 </body>
 </html>

@@ -58,7 +58,7 @@ public class Gallery extends HttpServlet {
 			}
 
 			if (request.getParameter("page") != null) {
-				page = Integer.valueOf(request.getParameter("page"));
+				page = Integer.valueOf(request.getParameter("page")) - 1;
 			}
 
 			try {
@@ -107,8 +107,14 @@ public class Gallery extends HttpServlet {
 									.getString("jumlah_barang")));
 					allResults.add(barang);
 				}
+				
+				String query2 = "SELECT COUNT(id) AS JmlBarang FROM barang WHERE id=id";
+				
+				ResultSet rs2 = connection.createStatement().executeQuery(query2);
+				rs2.next();
 
 				request.setAttribute("items", allResults);
+				request.setAttribute("total_pages", rs2.getString("JmlBarang"));
 
 				RequestDispatcher dispatcher = getServletContext()
 						.getRequestDispatcher("/barang/index.jsp");

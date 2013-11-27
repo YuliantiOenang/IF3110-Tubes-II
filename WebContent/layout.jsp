@@ -64,6 +64,7 @@
 				bb++;
 			}
 		}
+		
 		function hideLogin() {
 			document.getElementById('login_cont').style.opacity = 1;
 			var x,aa,bb;
@@ -117,7 +118,7 @@
 </head>
 <body>
 <!-- for first animation -->
-	<div class='search-box'> <input type="text" id="name" class="input" placeholder="search bar"/></div>
+<!--  	<div class='search-box'> <input type="text" id="name" class="input" placeholder="search bar"/></div> -->
 	<div class='conctr'>
 			<div class='head'>
 			<a href='${pageContext.request.contextPath}/index.jsp'><div class='logo'></div></a>
@@ -163,7 +164,7 @@
 				%>
 					<p class="left"> welcome, <a href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>! (<a href="logout">Logout</a>)</p>
 					<p class="right">
-						<a href="/shop/">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
+						<a href="${pageContext.request.contextPath}/cart.jsp">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
 					</p>
 				<%
 				} else {

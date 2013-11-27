@@ -72,11 +72,19 @@ function onUpdateCart(strUrl, id) {
                 
                 var n = str.indexOf("Success");
                 
-                alert(self.xmlHttpRequest.responseText);
                 if (n != -1) {
-                    document.getElementById('harga_' + id).innerHTML = parseInt(self.xmlHttpRequest.responseText.substring(m + 9));
+                	var differences = parseInt(self.xmlHttpRequest.responseText.substring(n + 9));
+                	
+                	var newValue1 = get('harga_' + id) * 1 + differences; // update single price
+                	var newValue2 = get('total_harga') * 1 + differences; // update total_harga
+                	
+                    document.getElementById('harga_' + id).innerHTML = newValue1;
+                    document.getElementById('total_harga').innerHTML = newValue2;
                 } else {
-                    alert(self.xmlHttpRequest.responseText);
+                   	 var o = str.indexOf("Failure");
+                     alert(self.xmlHttpRequest.responseText);
+                     // revert back
+                     document.getElementById("qty_" + id).value = parseInt(self.xmlHttpRequest.responseText.substring(o + 88));
                 }
                 
             }
