@@ -1,50 +1,18 @@
 <%-- 
     Document   : index
-    Created on : Nov 7, 2013, 2:49:29 PM
-    Author     : Aidil Syaputra
+    Created on : Nov 26, 2013, 9:34:27 PM
+    Author     : Iqbal
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ page import="java.sql.*" %> 
-<%@ page import="java.io.*" %> 
-
-<html> 
-<head> 
-<title>Connection with mysql database</title> 
-</head> 
-<body>
-<h1>Connection status </h1>
-<% 
-try {
- 
-    String connectionURL = "jdbc:mysql://localhost:3306/ruserba"; //isi dengan server dan nama database
-
-
-    Connection connection = null; 
-
-    Class.forName("com.mysql.jdbc.Driver").newInstance(); 
-
-
-    connection = DriverManager.getConnection(connectionURL, "root", ""); //username dan password database
-
-
-if(!connection.isClosed())
-    %>
-        <font size="+3" color="green"></b>
-    <% 
-        out.println("Successfully connected to " + "MySQL server using TCP/IP...");
-        connection.close();
-    }
-    catch(Exception ex){
-    %>
-    </font>
-    <font size="+3" color="red"></b>
-    <%
-    out.println("Unable to connect to database."+ex);
-    }
-%>
-</font>
-</body> 
+<link rel='stylesheet' media='only screen and (min-width:1224px)' href='css/desktop.css' />
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ruserba</title>
+    </head>
+    <body>
+        <jsp:include page="home.jsp" /> 
+    </body>
 </html>
-
