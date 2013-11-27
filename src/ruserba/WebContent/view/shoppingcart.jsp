@@ -30,12 +30,12 @@
 							<div class='list_body' id='qty'><input id='quantity_<%= arrayn.get(i) %>' type='number' onkeyup='cekCart(<%= arrayn.get(i) %>, <%= arrayq.get(i) %>)' value='<%= arrayq.get(i) %>'></input></div>
 							<input type='hidden' id='id_barang_<%= arrayn.get(i) %>' value='<%= arrayn.get(i) %>'>
 							<div class='list_body' id='subtotal'><p>IDR <%= arrayst.get(i) %></p></div>
-							<div class='list_body' id='remove'><a href='barang/delete/<%= arrayid.get(i) %>' title='Remove <%= arrayn.get(i) %> from your Shopping Cart'>x</a></div>
+							<div class='list_body' id='remove'><a href='cart/delete?id=<%= arrayid.get(i) %>' title='Remove <%= arrayn.get(i) %> from your Shopping Cart'>x</a></div>
 							</div>
 						<% } %>
 						<div class='row'>
 							<div class='list_foot' id='totallabel'><h6>TOTAL</h6></div>
-							<div class='list_foot' id='total'><p>IDR </p></div>
+							<div class='list_foot' id='total'><p>IDR <%=request.getAttribute("total_shopping") %></p></div>
 						</div>
 					<h2>Free delivery cost. :)</h2>
 				</div>
@@ -51,8 +51,8 @@
 					<li>Urabitur convallis varius lectus, vitae congue mauris adipiscing eu. Vivamus id ultrices mi. Aenean eget erat id massa fringilla gravida.</li>
 					
 				</ul>
-				<a href='profile/credit?redirect=shop/payment'><input type="btn"  name="submit" value="Process to payment" class="button"></a>
-				<a href='kategori'><input type="btn" name="submit" value="Add Item" class="button"></a>
+				<a href='/ruserba/cart/payment'><input type="btn"  name="submit" value="Process to payment" class="button"></a>
+				<a href='/ruserba/home'><input type="btn" name="submit" value="Add Item" class="button"></a>
 				</div>
 			</div>
 		</div>

@@ -93,6 +93,7 @@ public class Cart extends HttpServlet {
 				}
 			} 
 			request.setAttribute("total_shopping",total);
+			System.out.println (request.getAttribute("total_shopping"));
 			request.setAttribute("namabeli",arrayn);
 			request.setAttribute("idbeli",arrayid);
 			request.setAttribute("katbeli",arrayc);
