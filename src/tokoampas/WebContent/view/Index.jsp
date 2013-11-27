@@ -45,7 +45,7 @@
 						*/ %>
 							Kategori <b>Elektronik</b><br>
 							<a href=''>
-								<img src=''>
+								<img src='${pageContext.request.contextPath}/include/img/barang4.jpg'>
 							</a>
 					</li>						
 					
@@ -64,7 +64,7 @@
 						*/ %>
 						Kategori <b>Otomotif</b><br>
 							<a href=''>
-								<img src=''>
+								<img src='${pageContext.request.contextPath}/include/img/barang2.jpg'>
 							</a>
 					</li>
 					
@@ -83,7 +83,7 @@
 						*/ %>
 						Kategori <b>Fashion</b><br>
 							<a href=''>
-								<img src=''>
+								<img src='${pageContext.request.contextPath}/include/img/barang3.jpg'>
 							</a>
 					</li>
 					
@@ -102,7 +102,7 @@
 						*/ %>
 						Kategori <b>Properti</b><br>
 							<a href=''>
-								<img src=''>
+								<img src='${pageContext.request.contextPath}/include/img/barang5.jpg'>
 							</a>
 					</li>
 					
@@ -121,7 +121,7 @@
 						*/ %>
 						Kategori <b>Musik</b><br>
 							<a href=''>
-								<img src=''>
+								<img src='${pageContext.request.contextPath}/include/img/barang1.jpg'>
 							</a>							
 					</li>
 				</ul>
