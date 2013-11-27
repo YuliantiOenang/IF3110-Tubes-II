@@ -39,6 +39,7 @@ public class BarangBeli extends HttpServlet {
 		String id_barang = request.getParameter("id_barang");
 		String jumlah = request.getParameter("jumlah");
 		String keterangan = request.getParameter("keterangan");
+		//Debug agar ridho punya library
 		try
 		{
 			if (session.getAttribute("dibeli")==null) {
