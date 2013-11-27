@@ -12,7 +12,7 @@
 
 .index .headertools #add{
 	position:absolute;
-	left: 760px;
+	left: 1115px;
 	bottom: 280px;
 	width:20px;
 	height:20px;
@@ -20,7 +20,7 @@
 
 .index .headertools #edit{
 	position:absolute;
-	left: 790px;
+	left: 1145px;
 	bottom: 280px;
 	width:20px;
 	height:20px;
@@ -28,7 +28,7 @@
 
 .index .headertools #delete{
 	position:absolute;
-	left: 820px;
+	left: 1175px;
 	bottom: 280px;
 	width:20px;
 	height:20px;
@@ -38,7 +38,7 @@
 .view {
 	width: 300px;
 	height: 150px;
-	margin: 10px;
+	margin: 20px;
 	float: left;
 	border: 5px solid #fff;
 	overflow: hidden;

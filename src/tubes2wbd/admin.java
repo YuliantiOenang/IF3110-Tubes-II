@@ -51,43 +51,7 @@ public class admin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Enumeration paramNames = request.getParameterNames();
-	    String paramName;
-		ArrayList<String> CheckedBox = new ArrayList<String>();
-	    while(paramNames.hasMoreElements()) {
-	         paramName = (String)paramNames.nextElement();
-	         String[] paramValues = new String[1];
-	         paramValues = request.getParameterValues(paramName);
-	         if (paramValues[0].equals("On")) {
-	        	 CheckedBox.add(paramName);
-	         }
-	     }
-	    
-	    for (int i=0; i< CheckedBox.size();i++){
-	    	System.out.println(CheckedBox.get(i));
-	    }
-	    
-	  
-    	Connection conn = null;
-	    Statement stmt = null;
-	    PrintWriter out = response.getWriter();
-	    try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL,USER,PASS);
-			stmt = conn.createStatement();
-			int i = 0;
-			String sql;
-			while (CheckedBox.size()>0){
-				sql = "delete from barang where id='"+CheckedBox.get(i)+"'";
-				stmt.executeUpdate(sql);
-				i++;
-			}
-		} catch (ClassNotFoundException e) {	
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 
@@ -95,7 +59,41 @@ public class admin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  doGet(request, response);
+		// TODO Auto-generated method stub
+				Enumeration paramNames = request.getParameterNames();
+			    String paramName;
+				ArrayList<String> CheckedBox = new ArrayList<String>();
+			    while(paramNames.hasMoreElements()) {
+			         paramName = (String)paramNames.nextElement();
+			         String[] paramValues = new String[1];
+			         paramValues = request.getParameterValues(paramName);
+			         if (paramValues[0].equals("on")) {
+			        	 CheckedBox.add(paramName);
+			         }
+			     }
+			    
+			    for (int i=0; i< CheckedBox.size();i++){
+			    	System.out.println(CheckedBox.get(i));
+			    }
+			  
+		    	Connection conn = null;
+			    Statement stmt = null;
+			    PrintWriter out = response.getWriter();
+			    try {
+					Class.forName("com.mysql.jdbc.Driver");
+					conn = DriverManager.getConnection(DB_URL,USER,PASS);
+					stmt = conn.createStatement();
+					String sql;
+					for (int i=0;i<CheckedBox.size();i++){
+						sql = "delete from barang where id='"+CheckedBox.get(i)+"'";
+						stmt.executeUpdate(sql);
+					}
+					CheckedBox.clear();
+				} catch (ClassNotFoundException e) {	
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 	}
 
 }
