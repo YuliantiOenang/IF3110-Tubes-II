@@ -256,3 +256,7 @@ li#page2 {
 	clear: both;
 	width: 100%;
 }
+
+#title {
+	clear: both;
+}

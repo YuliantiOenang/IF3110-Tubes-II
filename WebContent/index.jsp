@@ -17,19 +17,23 @@
 		
 		<div id = contentcontainer>
 			<article id="content" class="body">
+				<h2>Most Bought Products</h2>
 				<% while(categories.next()) {
 					Statement statement2 = connection.createStatement();
 					String query2 = "SELECT * FROM barang WHERE kategori = \"" +
 							categories.getObject("kategori") + "\" ORDER BY terjual DESC";
 					ResultSet mostBoughtProducts = statement2.executeQuery(query2); %>
-					<div><h2><%= categories.getObject("kategori") %></h2></div>
+					<div id=title>
+						<h3><%= categories.getObject("kategori") %></h3>
+					</div>
 					<% for(int i = 1; i <= 3; i++) { 
 						if(mostBoughtProducts.next()) { %>
 						<div class="view">
 							<img src="<%= mostBoughtProducts.getObject("gambar") %>"/>
 							<div class="mask">
 								<h2><a href="detailbarang.jsp?barang='<%= mostBoughtProducts.getObject("nama") %>'" class="info">
-								<%= mostBoughtProducts.getObject("nama") %></a></h2><p>Harga: <%= mostBoughtProducts.getObject("harga") %>
+								<%= mostBoughtProducts.getObject("nama") %></a></h2><p>
+								Harga: <%= mostBoughtProducts.getObject("harga") %>
 								<br />Masukkan jumlah yang akan dibeli:
 								<br /><input type="number" id="qty" name="quantity" min="0">
 								<input type="button" id="buybutton" value="Beli!">
