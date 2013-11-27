@@ -124,11 +124,43 @@ public class JSONResponder extends HttpServlet {
         return status.toString();
     }
     
+    public void delBarang(int id) throws Exception
+    {
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        st.executeUpdate("DELETE FROM barang_stok WHERE barang_id=" + id + ";");
+        st.executeUpdate("DELETE FROM barang_data WHERE barang_id=" + id + ";");
+        
+        con.close();
+    }
+    
+    public void addBarang(String nama, float harga, int kategori) throws Exception
+    {
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        st.executeUpdate("INSERT INTO barang_data (nama, kategori_id, harga) VALUES" + 
+                         "('" + nama + "','" + Integer.toString(kategori) + "','" + Float.toString(harga) + "');");
+        con.close();
+    }
+    
+    public void updateBarang(String nama, float harga, int id) throws Exception
+    {
+        DBConnector dbCon = DBConnector.getInstance();
+        Connection con = dbCon.getConnection();
+        Statement st = con.createStatement();
+        st.executeUpdate("UPDATE barang_data SET nama='" + nama + "', harga=" + harga + 
+                         " WHERE barang_id=" + id + ";");
+        con.close();
+    }
+    
     public String tabelbarang(int cat) throws Exception
     {
         ArrayList<String> data = new ArrayList<String>();
         ArrayList<String> img = new ArrayList<String>();
         ArrayList<String> price = new ArrayList<String>();
+        ArrayList<Integer> id = new ArrayList<Integer>();
         JSONObject status;
         DBConnector dbCon = DBConnector.getInstance();
         Connection con = dbCon.getConnection();
@@ -140,10 +172,12 @@ public class JSONResponder extends HttpServlet {
                 data.add(res.getString("nama"));
                 img.add(res.getString("image_url"));
                 price.add(res.getString("harga"));
+                id.add(res.getInt("barang_id"));
             } while(res.next());
             status.put("data", data);
             status.put("img", img);
             status.put("price", price);
+            status.put("id", id);
         } else {
             status = new JSONObject().put("status", "failed");
             status.put("data", "Tidak ada kategori didalam basis data.");

@@ -1,3 +1,11 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="org.if3110.web.DBConnector"%>
 <%! public static String HOME_URL = "http://localhost/tugas_web2/"; %>
 <%!
     public boolean isInteger( String input )  
@@ -44,8 +52,13 @@
         sql += "FROM barang_data INNER JOIN barang_kategori ON barang_data.kategori_id = barang_kategori.kategori_id ";
         sql += "WHERE barang_data.nama LIKE '%"+result+"%'";
     }
-    $query = mysql_query($sql, $this->__connection) or trigger_error(mysql_error(), E_USER_ERROR);
-    int total_row = mysql_num_rows($query);
+    DBConnector dbCon = DBConnector.getInstance();
+    Connection con = dbCon.getConnection();
+    Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+    ResultSet query2 = st.executeQuery(sql);
+    query2.last();
+    int total_row = query2.getRow();
+    query2.beforeFirst();
     
     int start_number = 0;
     int this_page = 1;
@@ -64,35 +77,35 @@
         }
     }
 %>
-<h1><% out.println(title); %></h1>
+<h1><% out.print(title); %></h1>
 <% 
     if(total_row == 0) {
-        out.println ("<p><i>Hasil pencarian tidak ada.</i></p>");
+        out.print ("<p><i>Hasil pencarian tidak ada.</i></p>");
     } else { 
         sql += " LIMIT "+start_number+", 10;";
-        query = mysql_query($sql, $this->__connection) or trigger_error(mysql_error(), E_USER_ERROR);
-        while($barang = mysql_fetch_assoc($query)) {
+        query2 = st.executeQuery(sql);
+        while(query2.next()) {
     %>
 <div class="table sresult" onSubmit="return addToShoppingChartBarang(this)">
     <div class="row">
-        <span class="column"><img src="<% if($barang['image_url'] == "" || $barang['image_url'] == null) out.println(HOME_URL+"assets/image/default.png"); else out.println(HOME_URL+decodeURIComponent(barang['image_url'].replace(/\+/g, ' '))) %>" alt="Default" width="100" height="100"></span>
+        <span class="column"><img src="<% if(query2.getString("image_url") == "" || query2.getString("image_url") == null) out.print(HOME_URL+"assets/image/default.png"); else out.print(HOME_URL+URLDecoder.decode(query2.getString("image_url"),"UTF-8")); %>" alt="Default" width="100" height="100"></span>
         <span class="column" style="vertical-align: top">
-            <h3><a href="<% out.println(HOME_URL+"barang/"+$barang['barang_id']); %>"><% out.println($barang['nama']); %></a></h3>
-            <p>Rp.<% out.println(NumberFormat.getInstance(Locale.GERMANY).format($barang['harga'])); %><br>
-            <% out.println($barang['deskripsi']); %><br>
-            <form onSubmit="return addToShoppingChart(this)"><span>Kuantitas: </span><input type="hidden" name="id_barang" value="<?php print $barang['barang_id']; ?>"><input type="text" name="qty" onKeyUp="validateQtyBarang(this)"> <input type="submit" value="+" disabled="disabled"></form></p>
+            <h3><a href="<% out.print(HOME_URL+"barang/"+query2.getInt("barang_id")); %>"><% out.print(query2.getString("nama")); %></a></h3>
+            <p>Rp.<% out.print(NumberFormat.getInstance(Locale.GERMANY).format(query2.getInt("harga"))); %><br>
+            <% out.print(query2.getString("deskripsi")); %><br>
+            <form onSubmit="return addToShoppingChart(this)"><span>Kuantitas: </span><input type="hidden" name="id_barang" value="<% out.print(query2.getInt("barang_id")); %>"><input type="text" name="qty" onKeyUp="validateQtyBarang(this)"> <input type="submit" value="+" disabled="disabled"></form></p>
         </span>
     </div>
 </div>
-<?php 
+<% 
         }
-        $sisa = $total_row % 10;
-        $total_page = (($total_row - $sisa) / 10) + 1;
-        print '<div align="center">Page';
-        for($i = 1; $i <= $total_page; $i++) {
-            if($i == $this_page) print ' - <b>'.$i.'</b>';
-            else print ' - <a href="?query='.urlencode($_GET['query']).'&page='.$i.'">'.$i.'</a>';
+        int sisa = total_row % 10;
+        int total_page = ((total_row - sisa) / 10) + 1;
+        out.print("<div align=\"center\">Page");
+        for(int i = 1; i <= total_page; i++) {
+            if(i == this_page) out.print(" - <b>"+i+"</b>");
+            else out.print(" - <a href=\"?query="+URLEncoder.encode(request.getParameter("query"))+"&page="+i+"\">"+i+"</a>");
         }
-        print '</div>';
+        out.print("</div>");
     }
 %>
