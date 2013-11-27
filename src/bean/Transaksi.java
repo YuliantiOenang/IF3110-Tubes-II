@@ -5,15 +5,13 @@ import java.util.ArrayList;
 public class Transaksi {
 	private Barang barang;
 	private Integer quantity;
-	private String reqTambahan;
-	private ArrayList<String> card;
+	private String reqTambahan;	
 
-	public Transaksi(Barang barang, Integer quantity, String reqTambahan, ArrayList<String> card) {
+	public Transaksi(Barang barang, Integer quantity, String reqTambahan) {
 		super();
 		this.barang = barang;
 		this.quantity = quantity;
-		this.reqTambahan = reqTambahan;
-		this.card = card;
+		this.reqTambahan = reqTambahan;		
 	}
 
 	public Barang getBarang() {
@@ -38,13 +36,5 @@ public class Transaksi {
 
 	public void setReqTambahan(String reqTambahan) {
 		this.reqTambahan = reqTambahan;
-	}
-	
-	public void setCard(ArrayList<String> card) {
-		this.card=card;
-	}
-	
-	public ArrayList<String> getCard(){
-		return this.card;
 	}
 }
