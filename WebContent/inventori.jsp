@@ -7,8 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Administrasi Inventori</title>
 <script src="inventori.js"></script>
+<script>
+	function check_admin(){
+		if (localStorage.privilege !== "Admin"){
+			window.location.href = "home";
+		}		
+	}
+</script>
 </head>
-<body>
+<body onload="check_admin()">
 
 <div class="page_container">
 	<%@ include file="template/template.jsp" %>
@@ -28,7 +35,7 @@
 	<div class="table">
 	<div class="row"><div class="cell25">Nama</div><div class="cell75"><input type="text" name="nama" value='<%= add ? "" : b.getNama() %>' /></div></div>
 	<div class="row"><div class="cell25">Harga</div><div class="cell75"><input type="text" name="harga" value='<%= add ? "" : b.getHarga() %>' /></div></div>
-	<div class="row"><div class="cell25">Jumlah</div><div class="cell75"><input type="text" name="jumlah" value='<%= add ? "" : b.getJumlah() %>' /></div>
+	<div class="row"><div class="cell25">Jumlah</div><div class="cell75"><input type="text" name="jumlah" value='<%= add ? "" : b.getJumlah() %>' /></div></div>
 	<div class="row"><div class="cell25">Kategori</div><div class="cell75"><select name="kategori">
 		<%
 			String[] kat = {"Roti", "Minuman", "Kalengan", "Segar", "Peralatan"};
@@ -39,7 +46,7 @@
 				<%
 			}
 		%>	
-	</select></div>
+	</select></div></div>
 	<div class="row">Deskripsi</div>
 	<div class="row"><textarea name="desc"><%= add ? "" : b.getDesc() %></textarea></div>
 	<div class="row">Gambar</div>
