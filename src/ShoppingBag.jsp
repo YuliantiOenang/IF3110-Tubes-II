@@ -35,7 +35,7 @@
 			<c:forEach var="cartItem" items="${cart.getCartItems()}" varStatus="counter"> 
 			
 				<form id='item' name="item" method="post" action="CartController"> 
-						
+						<%i++;%>
 					<p class="nama-produk-b"><c:out value="${counter.count}. "/><c:out value="${cartItem.getNama()}"/> </p>
 					<p class="harga">Harga	: <c:out value="${cartItem.harga}"/>
 					Jumlah	:
