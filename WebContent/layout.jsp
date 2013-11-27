@@ -56,14 +56,14 @@
 			%>
 			<p class="left">
 				welcome, <a
-					href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>!
+					href="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>!
 				(<a href="http://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/logout">Logout</a>)
 			</p>
 			<p class="right">
 				<a href="${pageContext.request.contextPath}/barang/cart">Shopping
 					Cart</a> <img
 					src='${pageContext.request.contextPath}/img/site/cart_white.png'
-					style='margin-right: 5px;' />
+					class='img_layout' />
 			</p>
 			<%
 				} else if (request.getSession(true).getAttribute("role")
@@ -78,7 +78,7 @@
 				<a href="${pageContext.request.contextPath}/barang/cart">Shopping
 					Cart</a> <img
 					src='${pageContext.request.contextPath}/img/site/cart_white.png'
-					style='margin-right: 5px;' />
+					class='img_layout' />
 			</p>
 			<%
 				}
