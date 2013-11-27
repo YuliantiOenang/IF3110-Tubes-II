@@ -198,6 +198,7 @@ function ProcessLoginResponse(xmlhttp){
 			document.getElementById("logbutton").onclick = function(){Logout();};
 			document.getElementById("regislink").innerHTML = "Welcome, "+ datas[1];
 			document.getElementById("regislink").setAttribute("href","Profile.jsp");
+			window.location.href = "#x";
 		}
 		else{
 			// notifikasi

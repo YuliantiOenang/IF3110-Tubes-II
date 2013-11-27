@@ -2,13 +2,14 @@
 <html lang="en" >
     <head>
     <script src ="UserAJAX.js"></script>
+    <link rel="stylesheet" href="css/modal.css" type="text/css">
     </head>
     <body onload="InitializeBar()">
         <!-- Tombol Login/Logout -->
         <div class="main">
             <div class="panel">
+            	<a href = "Registration.jsp" id = "regislink">Register</a>
           		<input type="button" id = "logbutton" value ="Log In" onclick = 'location.href="#login_form"'></input>
-          		<a href = "Registration.jsp" id = "regislink">Register</a>
             </div>
         </div>
 

@@ -8,7 +8,7 @@
 
 <!-- Body -->
 <body onload = "LogoutRedirection()">
-
+<%@ include file="LoginBar.jsp" %>
 <!-- JSP Script -->
 
 <!-- Form Pendaftaran -->	
