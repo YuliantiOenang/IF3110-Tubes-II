@@ -20,7 +20,7 @@
 
         <div id="popup">
             <span id="warning">Do you want to delete it ? </span>
-            <form method="post" action="DeleteItemServlet">
+            <form id="formdelete" method="post" action="DeleteItemServlet">
                 <input type ="hidden" value="" name="id_popup" id="id_popup" />
                 <input type ="submit" value="yes"/>
             </form>
@@ -67,10 +67,17 @@
                     </form>
                         <button onclick="delete_item(<%= resultKategori.getInt("id_barang") %>)">Delete</button>
                 </div>
+                
                 <%
                     }
                     resultKategori.close();
                 %>
+                <div class="small_bottom">
+                    <form method="post" action="EditItemServlet">
+                        <input type="hidden" name="id_kategori" value="<%= result.getInt("id_kategori") %>"/>
+                        <input type="submit" name="edit" value="Add" />
+                    </form>
+                </div>
                 <br/><br/>
             </div>
         </div>

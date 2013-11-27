@@ -40,27 +40,35 @@ public class EditItemServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         DatabaseHelper.Connect();
-        String query = "SELECT * FROM barang WHERE id_barang=" + request.getParameter("id_barang");
-        ResultSet res = DatabaseHelper.executeQuery(query);
-        try {
-            if(res.next()) {
-                Item barang = new Item();
-                barang.setId(res.getInt("id_barang"));
-                barang.setName(res.getString("nama_barang"));
-                barang.setCategory(res.getInt("id_kategori"));
-                barang.setPrice(res.getInt("harga_barang"));
-                barang.setTersedia(res.getInt("tersedia"));
-                request.setAttribute("barang", barang);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("adminedit");
-                dispatcher.forward(request, response);
-            } else {
+        if(request.getParameter("id_barang") == null) {
+             Item barang = new Item();
+             barang.setCategory(Integer.parseInt(request.getParameter("id_kategori")));
+             request.setAttribute("barang", barang);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminadd");
+            dispatcher.forward(request, response);
+        } else {        
+            String query = "SELECT * FROM barang WHERE id_barang=" + request.getParameter("id_barang");
+            ResultSet res = DatabaseHelper.executeQuery(query);
+            try {
+                if(res.next()) {
+                    Item barang = new Item();
+                    barang.setId(res.getInt("id_barang"));
+                    barang.setName(res.getString("nama_barang"));
+                    barang.setCategory(res.getInt("id_kategori"));
+                    barang.setPrice(res.getInt("harga_barang"));
+                    barang.setTersedia(res.getInt("tersedia"));
+                    request.setAttribute("barang", barang);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("adminedit");
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("admin");
+                    dispatcher.forward(request, response);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(EditItemServlet.class.getName()).log(Level.SEVERE, null, ex);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("admin");
                 dispatcher.forward(request, response);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(EditItemServlet.class.getName()).log(Level.SEVERE, null, ex);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin");
-            dispatcher.forward(request, response);
         }
         DatabaseHelper.Disconnect();
     }

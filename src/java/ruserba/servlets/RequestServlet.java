@@ -41,6 +41,7 @@ public class RequestServlet extends HttpServlet {
         pages.put("cart", "Keranjang Belanja");
         pages.put("admin", "Admin");
         pages.put("adminedit", "Edit Item");
+        pages.put("adminadd", "Add Item");
     }
     
     private String getPageTitle(String name) {
