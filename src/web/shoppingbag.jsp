@@ -38,7 +38,7 @@ function cekJumlah()
 
 	var jumlah = document.getElementById('jumlahBarang').value;
 	//request ke file php
-	http.open('get', 'changeJumlah.jsp?id='+id+'&jumlah='+jumlah+"",true);
+	http.open('get', 'changeJumlah.jsp?id='+id+'&jumlah='+jumlah,true);
 	//cek hasil request 4 jika berhasil
 	http.onreadystatechange = function()
 	  {
@@ -100,7 +100,7 @@ function cekJumlah()
 				<p class = 'copyrightext'> <%out.print(rs.getString(3));%> </br>
 					  Rp<%out.print(rs.getString(4));%> </label> </br> Pesan : <%out.print(rs.getString(6));%> </br> 
 					  
-                                          <input type='text' id='idBarang' value='<%out.print(rs.getString(1)); %>"' hidden/>
+                                          <input type='text' id='idBarang' value='<%out.print(rs.getString(1));%>' hidden/>
                                           Jumlah: <input type='text' size=4 id='jumlahBarang' value='<%out.print(rs.getString(5));%>'/></br>
 				
 				<input type='submit' value='change' onclick='cekJumlah()'></p>
