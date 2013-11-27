@@ -4,6 +4,7 @@
     Author     : Aidil Syaputra
 --%>
 
+<%@page import="sun.security.x509.OIDMap"%>
 <%@page import="java.sql.*" %> 
 <%@page import="java.io.*" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,6 +16,7 @@
             String kata = request.getParameter("kata");
             String pilihan = request.getParameter("pilihan");
             ResultSet hasil1;
+            int pages;
         %>
         <%
             try {
@@ -32,6 +34,23 @@
                 hasil1 = stm1.executeQuery("SELECT * FROM barang LEFT JOIN kategori ON barang.id_kategori=kategori.id_kategori WHERE nama_barang LIKE '%"+kata+"%'");  
             } else {
                 hasil1 = stm1.executeQuery("SELECT * FROM barang LEFT JOIN kategori ON barang.id_kategori=kategori.id_kategori WHERE harga_barang LIKE '%"+kata+"%'");
+            }
+            hasil1.last();
+            int banyakBarang = hasil1.getRow();
+            hasil1.beforeFirst();
+            if(request.getParameter("page")==null){
+                pages=1;
+            } else {
+                pages = Integer.valueOf(request.getParameter("page"));
+            }
+            int limit = 10;
+            int mulai_dari = limit * (pages - 1);
+            if(pilihan.equals("kategori")){                                 
+                hasil1 = stm1.executeQuery("SELECT * FROM barang LEFT JOIN kategori ON barang.id_kategori=kategori.id_kategori WHERE nama_kategori LIKE '%"+kata+"%' LIMIT "+mulai_dari+", "+limit);
+            } else if(pilihan.equals("nama")){                 
+                hasil1 = stm1.executeQuery("SELECT * FROM barang LEFT JOIN kategori ON barang.id_kategori=kategori.id_kategori WHERE nama_barang LIKE '%"+kata+"%' LIMIT "+mulai_dari+", "+limit);  
+            } else {
+                hasil1 = stm1.executeQuery("SELECT * FROM barang LEFT JOIN kategori ON barang.id_kategori=kategori.id_kategori WHERE harga_barang LIKE '%"+kata+"%' LIMIT "+mulai_dari+", "+limit);
             }
         %>
         <link rel="stylesheet" type="text/css" media="all" href="css/main.css"/>
@@ -52,7 +71,7 @@
             <div id="content">
                 <h3 class="judul_halaman">
                     <%
-                    out.println("Hasil Pencarian "+request.getParameter("kata")+" Berdasarkan "+request.getParameter("pilihan"));
+                    out.println("Hasil Pencarian "+request.getParameter("kata")+" Berdasarkan "+request.getParameter("pilihan")+" Halaman "+pages);
                     %>
                 </h3>
                 <%
@@ -98,6 +117,19 @@
                     </div>
                     <hr>
                 <% 
+                }
+                int banyakHalaman = (int) Math.ceil(banyakBarang / limit);
+                if (banyakHalaman > 1) {
+                    out.print("<div class='paginasi'>");
+                    out.print("Halaman : "); 
+                        for(int i = 1; i <= banyakHalaman; i++){
+                                if(pages != i){
+                                        out.print("<a href='search.jsp?kata"+request.getParameter("kata")+"&pilihan="+request.getParameter("pilihan")+"&page="+i+"'>["+i+"]</a>");
+                                } else {
+                                        out.print("["+i+"]");
+                                }
+                        }
+                     out.print("</div>");
                 }
                 %>
             </div>
