@@ -1,6 +1,6 @@
 </div>
 			<div class='head'>
-			<a href='${pageContext.request.contextPath}/index/home'><div class='logo'></div></a>
+			<a href='${pageContext.request.contextPath}/home'><div class='logo'></div></a>
 			<div class='status'>
 				<!-- <?php if ($this->userLogged()): ?>
 					<p class="left"> welcome, <a href='<?php echo $this->makeUrl('profile/index') ?>/'><?php echo $this->userLogged() ?></a>! (<a href='<?php echo $this->makeUrl('index/logout') ?>'>Logout</a>)
@@ -20,78 +20,23 @@
 			<div class='menu'>
 				<a href='index/shop'>
 				</a>
-<!--  
-				<?php
-				if ($_listkategori_ === null) $_listkategori_ = array();
-				function writeMenu($data = null, $baseurl,$div) {
-					echo "	<a href='".$baseurl."/kategori/";
-					if ($data!=null) echo "view/".$data->id;
-					echo "'><div class='permenu per".$div."'>
-							<div class='menuborder'></div>
-							<div class='menutxt'><h1 id='txtmenu1' class='menu'>";
-					if ($data!=null) echo $data->nama_kategori;
-					else echo "others";
-					echo "</h1></div>
-							<div class='menuborder'></div>
-						</div>
-					</a>";
-				}
-				$minKategori = (min(array(count($_listkategori_),5)));
-				foreach ($_listkategori_ as $key => $value) {
-					if ($key<4) {
-						writeMenu($value,$this->getBaseUrl(),$minKategori);
+				<%
+					int kategoricount = (int)(Integer)request.getAttribute("_cat_count");
+					for (int i = 0; i < kategoricount; i++)
+					{
+						out.print("	<a href='" + request.getContextPath() + "/kategori/view/" + (String)request.getAttribute("_cat_" + i + "_id" ) + "'>");
+						out.print("		<div class='permenu per" + kategoricount + "'>");
+						out.print("			<div class='menuborder'></div>");
+						out.print("			<div class='menutxt'><h1 id='txtmenu1' class='menu'>" + (String)request.getAttribute("_cat_" + i + "_nama" ) + "</h1></div>");
+						out.print("			<div class='menuborder'></div>");
+						out.print("		</div>");
+						out.print("	</a>");
 					}
-					else {
-						if ($key==4) {
-							if (count($_listkategori_)==5) {
-								writeMenu($value,$this->getBaseUrl(),$minKategori);
-							}
-							else {
-								writeMenu(null,$this->getBaseUrl(),$minKategori);
-							}
-						}
-					}
-				}
-				?>-->
-				<a href='${pageContext.request.contextPath}/kategori/view/1'>
-					<div class='permenu per4'>
-							<div class='menuborder'></div>
-							<div class='menutxt'><h1 id='txtmenu1' class='menu'>
-								kategori 1
-							</h1></div>
-							<div class='menuborder'></div>
-					</div>
-				</a>
-				<a href='${pageContext.request.contextPath}/kategori/view/2'>
-					<div class='permenu per4'>
-							<div class='menuborder'></div>
-							<div class='menutxt'><h1 id='txtmenu1' class='menu'>
-								kategori 2
-							</h1></div>
-							<div class='menuborder'></div>
-					</div>
-				</a>
-				<a href='${pageContext.request.contextPath}/kategori/view/3'>
-					<div class='permenu per4'>
-							<div class='menuborder'></div>
-							<div class='menutxt'><h1 id='txtmenu1' class='menu'>
-								kategori 3
-							</h1></div>
-							<div class='menuborder'></div>
-					</div>
-				</a>
-				<a href='${pageContext.request.contextPath}/kategori/view/4'>
-					<div class='permenu per4'>
-							<div class='menuborder'></div>
-							<div class='menutxt'><h1 id='txtmenu1' class='menu'>
-								kategori 4
-							</h1></div>
-							<div class='menuborder'></div>
-					</div>
-				</a>
+				
+				%>
 			</div>
 		</div>
-		<h2 id='footer_txt'><b>www.calvinsalvy.com Oficial Website</b></br>Karena rasa adalah segalanya.</h2>
+		<h2 id='footer_txt'><b>www.calvinsalvy.com Oficial Website</b></br>So fashionable. So affordable</h2>
 		<a href='https://twitter.com/darksta5'><img title='@calvinsalvy' src='${pageContext.request.contextPath}/img/site/twitter.png' id='footer_img'/></a>
 	</div>
 <!-- if (isset($effect)&&$effect) {?> -->
@@ -195,9 +140,12 @@ if (request.getAttribute("effect")!=null) {
 			<input type="text" name="q" value="" placeholder="Nama Barang">
 			<select name="kat" value="" required>
 				<option value="0">All Categories</option>
-				<option value="1">Kategori 1</option>
-				<option value="2">Kategori 2</option>
-				<option value="3">Kategori 3</option>
+				<%
+					for (int i = 0; i < kategoricount; i++)
+					{
+						out.print("<option value='" + (String)request.getAttribute("_cat_" + i + "_id" ) + "'>" + (String)request.getAttribute("_cat_" + i + "_nama" ) + "</option>");
+					}				
+				%>
 			</select>
 			<input type="number" name="h1" value="" placeholder="Harga Bawah">
 			<input type="number" name="h2" value="" placeholder="Harga Atas">

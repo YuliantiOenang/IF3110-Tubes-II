@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Kategori;
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.Filter.Chain;
 
@@ -39,6 +41,7 @@ public class Render {
 	private static void preRender(HttpServletRequest request, HttpServletResponse response)
 	{
 		setLogin(request,response);
+		setKategori(request, response);
 	}
 	
 	private static void setLogin(HttpServletRequest request, HttpServletResponse response)
@@ -53,5 +56,18 @@ public class Render {
 			}
 		}
 		request.setAttribute("_pre_userid", userid);   
+	}
+	
+	private static void setKategori(HttpServletRequest request, HttpServletResponse response)
+	{
+		Kategori model = new Kategori();
+		model.findAll();
+		request.setAttribute("_cat_count", model.getDataCount());
+		int i = 0;
+		for (HashMap<String, String> element : model.getDataVector()) {
+			request.setAttribute("_cat_"+i+"_id", element.get("id"));
+			request.setAttribute("_cat_"+i+"_nama", element.get("nama_kategori"));
+			i++;
+		}
 	}
 }

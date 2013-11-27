@@ -26,7 +26,7 @@ public class Model
 	
 	public Vector<HashMap<String,String>> findAll()
 	{
-		execute("SELECT * FROM '" + tabelname +"'");
+		execute("SELECT * FROM `" + tabelname +"`");
 		return getDataVector();
 	}
 	

@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <jsp:include page="contentBegin.jsp"></jsp:include>
 
 <script>
@@ -113,90 +114,27 @@
 <!-- <?php if (isset($effect)&&$effect) {?> -->
 	<script>fadein();</script>
 <!-- <?php } ?>	-->
-	<div onmouseover='setRun(false,1)' onmouseout='setRun(true,1)' class='home_categori' id='cont1'>
-		<h1 class='header'>KATEGORI1</h1>
-		<div class='triplebest'>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-		</div>
-	</div>
-	<div onmouseover='setRun(false,2)' onmouseout='setRun(true,2)' class='home_categori hidden' id='cont2'>
-		<h1 class='header'>KATEGORI1</h1>
-		<div class='triplebest'>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-		</div>
-	</div>
-	<div onmouseover='setRun(false,3)' onmouseout='setRun(true,3)' class='home_categori hidden' id='cont3'>
-		<h1 class='header'>KATEGORI1</h1>
-		<div class='triplebest'>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-		</div>
-	</div>
-	<div onmouseover='setRun(false,4)' onmouseout='setRun(true,4)' class='home_categori hidden' id='cont4'>
-		<h1 class='header'>KATEGORI1</h1>
-		<div class='triplebest'>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-			 <a href='${pageContext.request.contextPath}/barang/view/1'>
-			 	<div class='best'><img title='Barang (IDR HARGA)' onload='fitBest(this)' src='${pageContext.request.contextPath}/img/barang/1.jpg'/></div>
-			 </a>
-		</div>
-	</div>
-
-<!-- 
-<?php
-	foreach ($model as $key => $value) {
-		echo "	<div onmouseover='setRun(false,".$key.")' onmouseout='setRun(true,".$key.")' class='home_categori ";
-		if ($key!=1) echo "hidden";
-		echo "' id='cont".$key."'>
-					<h1 class='header'>".$value['kat_data']->nama_kategori."<h1>
-					<div class='triplebest'>";
-		for ($i=0; $i < 4; $i++) 
-			echo "<a href='".$this->getBaseUrl()."/barang/view/".$value[$i]->id."''><div class='best'><img title='".$value[$i]->nama." (IDR ".$this->toCurrency($value[$i]->harga).")' onload='fitBest(this)' src='".$this->getBaseUrl()."/img/barang/".$value[$i]->gambar."'/></div></a>";
-		echo "		</div>
-				</div>";
-	}
-?>
--->
+<%
+					int kategoricount = (int)(Integer)request.getAttribute("_cat_count");
+					for (int i = 0; i < kategoricount; i++)
+					{
+						out.print("	<div onmouseover='setRun(false," + (i+1) + ")' onmouseout='setRun(true," + (i+1) + ")' class='home_categori");
+						if (i>0) out.print(" hidden");
+						out.print("' id='cont" + (i+1) + "'>");
+						out.println("		<h1 class='header'>" + (String)request.getAttribute("_cat_" + i + "_nama" ) + "</h1>");
+						out.println("		<div class='triplebest'>");
+						for (int j = 0; j < 4;j++)
+						{
+							HashMap<String,String> itemdetails = (HashMap<String,String>)request.getAttribute("_cat_" + i + "_best_" + j );
+							out.println("		<a href='" + request.getContextPath() + "/barang/view?id=" + itemdetails.get("id")  + "'>");
+							out.println("			<div class='best'><img title='Barang (IDR " + itemdetails.get("harga")  + ")' onload='fitBest(this)' src='" + request.getContextPath() + "/img/barang/" + itemdetails.get("gambar")  + "'/></div>");
+						 	out.println("		</a>");
+						}
+						out.println("		</div>");
+						out.println("	</div>");
+					}
+				
+%>
 	<div class='howto'>
 		<h4>
 			how to get our product?

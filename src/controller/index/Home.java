@@ -17,14 +17,14 @@ import controller.Render;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/index")
-public class Index extends HttpServlet {
+@WebServlet("/home")
+public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public Home() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,6 @@ public class Index extends HttpServlet {
 			}
 			i++;
 		}
-		request.setAttribute("effect", true);
 		Render.Show(request, response,"index.jsp");
 	}
 
