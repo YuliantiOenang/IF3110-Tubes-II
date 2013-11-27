@@ -45,6 +45,10 @@
 								out.print("<li><a href=\"Profile?id="
 										+ session.getAttribute("username")
 										+ "\">Profile</a></li>");
+								if (session.getAttribute("role").toString().equals("admin")) {
+									out.print("<li><a href=\"barang.jsp\">Tambah Barang</a></li>");
+									out.print("<li><a href=\"editbarang.jsp\">Edit Barang</a></li>");
+								}
 								out.print("<li><a href=\"logout.jsp\">Log out</a></li>");
 							}
 						%>
