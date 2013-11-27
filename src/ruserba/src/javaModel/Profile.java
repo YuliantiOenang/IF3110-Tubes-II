@@ -18,6 +18,8 @@ public class Profile {
 	public ArrayList<String> kodepos = new ArrayList<String>();
 	public ArrayList<String> telepon = new ArrayList<String>();
 	public ArrayList<String> auth_key = new ArrayList<String>();
+	public ArrayList<String> role = new ArrayList<String>();
+	public ArrayList<String> transaksi = new ArrayList<String>();
 	
 	public Profile(DatabaseAdapter _DBA)
 	{
@@ -43,6 +45,8 @@ public class Profile {
 				kodepos.add(RS.getObject(9).toString());
 				telepon.add(RS.getObject(10).toString());
 				auth_key.add(RS.getObject(11).toString());
+				role.add(RS.getObject(12).toString());
+				transaksi.add(RS.getObject(13).toString());
 			}
 		}catch (Exception e){}
 	}

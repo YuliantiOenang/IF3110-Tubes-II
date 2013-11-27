@@ -32,7 +32,7 @@
 		<label>Telepon:</label><p><%= P.telepon.get(0) %></p>
 	</div>
 	<div class="per_form">
-		<label>Transaksi:</label><p><%= request.getAttribute("orderProfile") %></p>
+		<label>Transaksi:</label><p><%= P.transaksi.get(0) %></p>
 	</div>
 	<a href="/ruserba/profile/edit" class="btn">Edit Profile</a>
 </div>
