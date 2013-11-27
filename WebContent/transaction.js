@@ -52,7 +52,19 @@ function validate(id_barang, id_div){
 
 function changeItemCount(inv_id, div_id){
 	var newVal = document.getElementById('quant' + div_id).value;
-	var notif_bar = document.getElementById("notif" + div_id);
+	
+	if(isNumber(newVal)){
+		if(parseInt(newVal) <= 0){
+			document.getElementById("notif" + div_id).innerHTML = "Jumlah beli tidak valid!";
+			//alert("Jumlah beli tidak valid!");
+			return;
+		}
+	} else {
+		document.getElementById("notif" + div_id).innerHTML = "Jumlah harus angka!";
+		//alert("Jumlah harus angka!");
+		return;
+	}
+	
 	data = "id_barang=" + inv_id;
 	data += "&jumlah=" + newVal;
 		
@@ -70,7 +82,8 @@ function changeItemCount(inv_id, div_id){
 		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			//alert("response: " + xmlhttp.responseText);
-			notif_bar.innerHTML = xmlhttp.responseText;
+			//notif_bar.innerHTML = xmlhttp.responseText;
+			document.getElementById("notif" + div_id).innerHTML = xmlhttp.responseText;
 			//document.getElementById("quant" + div_id).value = newVal;
 		}
 	};
@@ -186,6 +199,7 @@ function addToCart(id_barang, id_div){
 		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var responsecode = xmlhttp.responseText;
+			//alert(responsecode);
 			notif_bar.innerHTML = responsecode;
 			//alert(responsecode);
 		}

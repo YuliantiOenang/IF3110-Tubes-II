@@ -2,7 +2,9 @@ package kelas;
 
 public class Database {
 	static String user = "root";
-	static String pass = "";
+	static String pass = "root";
+	public static final String uploadDir = "F:/git/IF3110-Tubes-II/WebContent/res/barang/";//"F:/git/IF3110-Tubes-II/uploaded/";
+
 	
 	public static String getUser() {
 		return Database.user;
