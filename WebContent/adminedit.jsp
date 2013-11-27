@@ -13,6 +13,13 @@
 <%
 @SuppressWarnings("unchecked")
 ArrayList<BarangBean> barangs = (ArrayList<BarangBean>)request.getAttribute("barangs");
+@SuppressWarnings("unchecked")
+ArrayList<KategoriBean> kategoris = (ArrayList<KategoriBean>)request.getAttribute("kategoris");
+for (int i = 0; i < kategoris.size(); i++) {
+%>
+	<a href="admin?action=edit&category=<%= kategoris.get(i).getId()%>"><%= kategoris.get(i).getName()%></a>
+<%
+}
 %>
 <table border="1">
 	<tr>

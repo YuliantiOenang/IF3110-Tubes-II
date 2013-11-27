@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -46,7 +45,6 @@ public class Login extends HttpServlet {
 		Connection connection = dbConnection.mySqlConnection();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession(true);
 		
 		try {

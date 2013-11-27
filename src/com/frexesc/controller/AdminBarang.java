@@ -16,9 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import sun.rmi.server.Dispatcher;
-
 import com.frexesc.model.BarangBean;
+import com.frexesc.model.KategoriBean;
 
 /**
  * Servlet implementation class AdminBarang
@@ -51,13 +50,21 @@ public class AdminBarang extends HttpServlet {
 			if (request.getParameter("action").equals("edit")) {
 				String category = request.getParameter("category");
 				String selectQuery = "SELECT * FROM barang WHERE id_kategori='" + category + "'";
+				String selectCQuery = "SELECT * FROM kategori";
 				try {
+					Statement cstmt = connection.createStatement();
+					ResultSet rsc = cstmt.executeQuery(selectCQuery);
+					ArrayList<KategoriBean> kategoris = new ArrayList<KategoriBean>();
+					while (rsc.next()) {
+						kategoris.add(new KategoriBean(rsc.getInt("id"), rsc.getString("nama")));
+					}
 					Statement statement = connection.createStatement();
 					ResultSet rs = statement.executeQuery(selectQuery);
 					ArrayList<BarangBean> barangs = new ArrayList<BarangBean>();
 					while (rs.next()) {
 						barangs.add(new BarangBean(rs.getLong("id"), rs.getLong("id_kategori"), rs.getString("nama_barang"), rs.getString("gambar"), rs.getInt("harga_barang"), rs.getString("keterangan"), rs.getInt("jumlah_barang")));
 					}
+					request.setAttribute("kategoris", kategoris);
 					request.setAttribute("barangs", barangs);
 				} catch (SQLException e) {
 					e.printStackTrace();
