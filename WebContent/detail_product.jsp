@@ -51,7 +51,7 @@
 					        <br> Price: <price> Rp<% out.println(price); %>,00 </price>
 					        <br> Quantity available: <% out.println(available); %> item
 					        <br> <h2> </>I want to buy it! </h2>
-					        <form form action="schoppingcart.jsp" method="get">
+					        <form form action="ShoppingCart" method="get">
 					        	Quantity: 
 					        	<select name="quantity">
 					        		<% for (int i=1;i<=available;i++) { %>

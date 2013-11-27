@@ -1,15 +1,12 @@
 <%@include file="header.jsp"  %>
 <%@page import="java.io.*" import="java.sql.*" %>
+<%@page import="java.util.ArrayList"%>
 
 <% 
-//DUMMY
-String name = "Longevity Cheese";
-int price = 5000;
-int quantity = 10;
-
-String name2 = "Nutrient Yogurt";
-int price2 = 5000;
-int quantity2 = 5;
+ArrayList<Integer> list_id = (ArrayList<Integer>)request.getAttribute("list_id");
+ArrayList<Integer> list_kuantitas = (ArrayList<Integer>)request.getAttribute("list_kuantitas");
+ArrayList<String> list_nama = (ArrayList<String>)request.getAttribute("list_nama");
+ArrayList<Integer> list_harga = (ArrayList<Integer>)request.getAttribute("list_harga");
 %>
 
 <html>
@@ -60,28 +57,25 @@ int quantity2 = 5;
 				            <p>Total</p>
 				        </div>
 				    </div>
+				    <%
+				    for (int i = 0; i < list_nama.size(); ++i)
+				    {
+				    %>
 				    <div class="Row">
 				        <div class="Cell">
-				            <p> <% out.println(name); %> </p>
+				            <p> <% out.println(list_nama.get(i)); %> </p>
 				        </div>
 				        <div class="Cell">
-				            <p> <% out.println(quantity); %> </p>
+				            <p> <% out.println(list_kuantitas.get(i)); %> </p>
 				        </div>
 				        <div class="Cell">
-				            <p> <% out.println(price*quantity); %> </p>
+				            <p> <% out.println(list_kuantitas.get(i) * list_harga.get(i)); %> </p>
 				        </div>
 				    </div>
-				    <div class="Row">
-				        <div class="Cell">
-				            <p> <% out.println(name2); %> </p>
-				        </div>
-				        <div class="Cell">
-				            <p> <% out.println(quantity2); %> </p>
-				        </div>
-				        <div class="Cell">
-				            <p> <% out.println(price2*quantity2); %> </p>
-				        </div>
-				    </div> <!-- END OF TABLE -->
+				    <%
+				    }
+				    %>
+				     <!-- END OF TABLE -->
 				</div>
 				<br> 
 				<form action="registerkartu.jsp" method="get">

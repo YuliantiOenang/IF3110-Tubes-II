@@ -46,6 +46,8 @@ public class ShoppingCart extends HttpServlet {
 		String username = request.getParameter("username");
 		ArrayList<Integer> list_id = new ArrayList<Integer>();
 		ArrayList<Integer> list_kuantitas = new ArrayList<Integer>();
+		ArrayList<Integer> list_harga = new ArrayList<Integer>();
+		ArrayList<String> list_nama = new ArrayList<String>();
 		
 		if (username.length() == 0)
 		{
@@ -78,6 +80,24 @@ public class ShoppingCart extends HttpServlet {
 		           
 		    	   list_id.add(id_barang);
 		    	   list_kuantitas.add(kuantitas);
+		    	   
+		    	   Statement stmt2 = null;
+		        	 stmt2 = conn.createStatement();
+		        	 String sql2;
+		        	 sql2 = "SELECT * FROM product WHERE id='" + id_barang + "'";
+			        
+		        	 ResultSet rs2 = stmt2.executeQuery(sql2);
+		        	 
+		        	 while (rs2.next())
+		        	 {
+		        		 list_nama.add( rs2.getString("name"));
+		        		 list_harga.add(rs2.getInt("price"));
+
+		        	 }
+		        	 
+		        	 rs2.close();
+		        	 stmt2.close();
+		    	   
 		       }
 		       
 		       // Clean-up environment
@@ -104,9 +124,11 @@ public class ShoppingCart extends HttpServlet {
 		            se.printStackTrace();
 		         }//end finally try
 		      } //end try
-		
+		    
 		    request.setAttribute("list_id", list_id);
 		    request.setAttribute("list_kuantitas", list_kuantitas);
+		    request.setAttribute("list_harga", list_harga);
+		    request.setAttribute("list_nama", list_nama);
 		    request.getRequestDispatcher("/shoppingcart.jsp").forward(request, response);
 	}
 
