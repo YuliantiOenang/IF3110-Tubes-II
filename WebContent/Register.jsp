@@ -1,6 +1,6 @@
 <jsp:include page="contentBegin.jsp"></jsp:include>
 
-<form method="post" action="submit">
+<form method="post" action="${pageContext.request.contextPath}/SubmitRegister">
 	<div class='register_div'>
 		<h1 class='header'>Register</h1>
 		<div class='per_form'>

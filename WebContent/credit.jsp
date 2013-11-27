@@ -1,7 +1,7 @@
 <jsp:include page="contentBegin.jsp"></jsp:include>
 <%@ page import="java.util.*" %>
 
-<form method="post" id="form_credit" onsubmit="credit(); return false;">
+<form method="post" action="${pageContext.request.contextPath}/credit" id="form_credit" onsubmit="credit(); return false;">
 	<div class='register_div'>
 		<h1 class='header'>Registrasi Kartu Kredit</h1>
 		<div class='per_form'>
@@ -10,7 +10,7 @@
 		</div>
 		
 		<div class='per_form'>
-			<label>Name of Card</label><input type="text" name="Credit[name_of_card]" id="name_of_card" value="" required> <!-- <?php echo $model->name_of_card ?> -->
+			<label>Name of Card</label><input type="text" name="Credit[name_of_card]" id="name_of_card" value="<%out.print(request.getAttribute("card_name"));%>" required> <!-- <?php echo $model->name_of_card ?> -->
 			<span class='error' id="error-name_of_card"></span>
 		</div>
 		
@@ -23,9 +23,9 @@
 					<select id="cal_month" onchange="loadDate()">
 						<!-- <?php 
 							$m = array(1=>'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
-							foreach ($m as $key => $bulan) : ?> -->
+							foreach ($m as $key => $bulan) : ?> 
 						<option value="<?php echo $key ?>"><?php echo $bulan ?></option>
-						<?php endforeach; ?>
+						<?php endforeach; ?> -->
 						
 						<%
 				HashMap<Integer, String> m = new HashMap<Integer, String>();

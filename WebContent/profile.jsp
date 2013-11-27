@@ -1,70 +1,41 @@
 <jsp:include page="contentBegin.jsp"></jsp:include>
 <%@ page import="model.*" %>
-
+<%@page import="java.util.HashMap"%>
 <div class="center">
 <div class="register_div">
 	<h1 class='header'>Profil</h1>
 	
-	<%
-	//Dummy
-	Cookie userCookie = new Cookie("username", "sonny");
-	userCookie.setMaxAge(60*60*24);
-	response.addCookie(userCookie);
-	
-	Account usr = new Account();
-	Order ord = new Order();
-	Cookie[] cookies = null;
-	cookies = request.getCookies();
-	if (cookies != null){
-		for (int i=0; i<cookies.length; i++){
-			if (cookies[i].getName().equals("username")){
-				String id = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("id");
-				String nama = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("nama");
-				String username = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("username");
-				String email = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("email");
-				String alamat = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("alamat");
-				String provinsi = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("provinsi");
-				String kota = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("kota");
-				String kodepos = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("kodepos");
-				String name = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("nama");
-				String telepon = usr.findByCondition("username='"+cookies[i].getValue()+"'").firstElement().get("telepon");
-	%>
+<%
+HashMap<String,String> model = new HashMap<String,String>();
+model = (HashMap<String,String>)request.getAttribute("model");
+%>
 	
 	<div class="per_form">
-		<label>Nama Lengkap:</label><p><% out.print(nama); %></p>
+		<label>Nama Lengkap:</label><p><%= model.get("nama") %></p>
 	</div>
 	<div class="per_form">
-		<label>Username:</label><p><% out.print(username); %></p>
+		<label>Username:</label><p><%= model.get("username") %></p>
 	</div>
 	<div class="per_form">
-		<label>Email:</label><p><% out.print(email); %></p>
+		<label>Email:</label><p><%= model.get("email") %></p>
 	</div>
 	<div class="per_form">
-		<label>Alamat:</label><p><% out.print(alamat); %></p>
+		<label>Alamat:</label><p><%= model.get("alamat") %></p>
 	</div>
 	<div class="per_form">
-		<label>Provinsi:</label><p><% out.print(provinsi); %></p>
+		<label>Provinsi:</label><p><%= model.get("provinsi") %></p>
 	</div>
 	<div class="per_form">
-		<label>Kota:</label><p><% out.print(kota); %></p>
+		<label>Kota:</label><p><%= model.get("kota") %></p>
 	</div>
 	<div class="per_form">
-		<label>Kode Pos:</label><p><% out.print(kodepos); %></p>
+		<label>Kode Pos:</label><p><%= model.get("kodepos") %></p>
 	</div>
 	<div class="per_form">
-		<label>Telepon:</label><p><% out.print(telepon); %></p>
+		<label>Telepon:</label><p><%= model.get("telepon") %></p>
 	</div>
 	<div class="per_form">
-					<label>Transaksi:</label><p><% out.print(ord.findByCondition("id_account='"+id+"'").size()); %></p>
-				<%}
-			}
-		}	
-		%>
-		<!-- <?php
-			$order = new Order(); 
-			$order_count = $order->jumlahSemua('id_account=:a', array(':a'=>$model->id));
-		?> -->
-		 <!-- <?php echo $order_count ?> -->
+					<label>Transaksi:</label><p><%out.print(request.getAttribute("order_count")); %></p>
 	</div>
 	<a href="${pageContext.request.contextPath}/profile/edit" class="btn">Edit Profile</a> <!-- <?php echo $this->makeUrl('profile/edit') ?> -->
 </div>
