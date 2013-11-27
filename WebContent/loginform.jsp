@@ -1,6 +1,7 @@
 <!-- popup form -->
 
 <link rel="stylesheet" href="css/login.css" type="text/css"/>
+<script src="javascript/cookies.js"></script>
 <script src="javascript/login.js"></script>
 <a href="#x" class="overlay" id="login_form"></a>
 
