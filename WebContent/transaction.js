@@ -50,10 +50,48 @@ function validate(id_barang, id_div){
 	xmlhttp.send(data);
 }
 
-function checkCreditCard(){
-	//alert("Checking if credit card is exist on js");
+function changeItemCount(inv_id, div_id){
+	var newVal = document.getElementById('quant' + div_id).value;
+	var notif_bar = document.getElementById("notif" + div_id);
+	data = "id_barang=" + inv_id;
+	data += "&jumlah=" + newVal;
+		
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else{
+	// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}	
+	
+	xmlhttp.onreadystatechange=function(){
+		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
+		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
+			//alert("response: " + xmlhttp.responseText);
+			notif_bar.innerHTML = xmlhttp.responseText;
+			//document.getElementById("quant" + div_id).value = newVal;
+		}
+	};
+	xmlhttp.open("POST","updateBarang", false);
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	//alert("Change item count called");
+	xmlhttp.send(data);
+}
+
+function checkUser(){
+	//cek udah login?
+	//alert("used id:" + localStorage.used_id);
+	if(localStorage.user_id == undefined){
+		window.location = "home";
+		return;
+	}
+	
+	//cek credit card != 0?
 	if(localStorage.cardnum == 0){
 		window.location = "CreditCard.jsp";
+		return;
 	}
 }
 

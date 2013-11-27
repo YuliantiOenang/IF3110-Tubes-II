@@ -37,7 +37,11 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
-						<strong>Jumlah Dibeli:</strong> <%= b.getJumlah() %><br/><br/>
+						<form class = "inline_form">
+							<strong>Jumlah Dibeli:</strong> <input type="text" id="quant<%= no %>" value="<%= b.getJumlah() %>"><br/><br/>
+							<button type="button" onclick="changeItemCount(<%= b.getId_inven() %>, <%= no %>)">Ubah</button>
+						</form>
+						<div class="notif<%= no %>"></div>
 					</div>
 				</div>
 			<% 
@@ -70,6 +74,6 @@
 	<script src="transaction.js"></script>
 	<script type="text/javascript">
 	   //alert("Checking if credit card is exist on jsp");
-	   checkCreditCard();
+	   checkUser();
 	</script>
 </html>
