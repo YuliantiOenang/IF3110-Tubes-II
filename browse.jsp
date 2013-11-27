@@ -41,6 +41,10 @@
 	<script src="header.js"></script>
 	<script src="ajaxLoader.js"></script>
 	<script>
+		var kategori = getUrlVars()['kategori'];
+		var keyword = getUrlVars()['keyword'];
+		var sort = getUrlVars()['sortBy'];
+		
 		function getUrlVars() {
 			var vars = {};
 			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -50,9 +54,42 @@
 		}
 		
 		function sorting(sort) {
-			var kategori = getUrlVars()['kategori'];
-			var keyword = getUrlVars()['keyword'];
 			document.location.href = 'browse.jsp?sortBy='+sort+'&currentPage=1&keyword='+keyword+'&kategori='+kategori;
+		}
+		
+		var page = getUrlVars()['currentPage'];
+		
+		function onPrevClicked() {
+			if (page > 1) {
+				page--;
+				document.location.href = 'browse.jsp?sortBy='+sort+'&currentPage='+page+'&keyword='+keyword+'&kategori='+kategori;
+			}
+		}
+		
+		function onNextClicked() {
+			page++;
+			document.location.href = 'browse.jsp?sortBy='+sort+'&currentPage='+page+'&keyword='+keyword+'&kategori='+kategori;
+		}
+		
+		function addItem(nama) {
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp.onreadystatechange=function()
+			  {
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					alert(xmlhttp.response);
+				}
+			  }
+			xmlhttp.open("GET","addItem.jsp?username="+localStorage['activeUser']+"&namabarang="+nama+"&jumlah="+document.forms[localStorage['activeUser']['quantity']+"&keterangan=",true);
+			xmlhttp.send();
 		}
 	</script>
 </head>
@@ -80,11 +117,13 @@
 					if (temp >= (currentIndex*10 - 10) && (temp < (currentIndex*10))) {
 						String s = "<div class='itemView'>";
 						s+= "<img src='resource/"+rs.getString(1)+".jpg' class='itemImage'>";
-						s+= "<form class='itemDetail'>";
+						s+= "<form class='itemDetail' action='addItem.jsp'>";
 						s+= "<h1><a href='detail.jsp?nama="+rs.getString(1)+"'> "+rs.getString(1)+" </a></h1></br>";
 						s+= "<h2>harga @ Rp."+rs.getString(3)+"</br>";
 						s+= "jumlah pembelian: <input class='textInput' id='quantity' type='text' name='jumlahBarang' value=0></br>";
 						s+= "<input class='button' type='submit' value='tambahkan ke tas'></h2>";
+						s+= "<input id='hilang' name='namabarang' value='"+rs.getString(1)+"'>";
+						s+= "<input id='hilang' name='username' value='yanuararistya'>";
 						s+= "</form>";
 						s+= "</div>";
 						out.println(s);
@@ -95,7 +134,8 @@
 		</div>
 		
 		<div class="browseOption">
-			<h3></h3>
+			<button class='button' onclick='onPrevClicked()'>Prev</button>
+			<button class='button' onclick='onNextClicked()'>Next</button>
 		</div>
 	</div>
 

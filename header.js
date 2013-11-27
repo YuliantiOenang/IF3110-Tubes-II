@@ -37,7 +37,7 @@ function drawHeaderContent(){
         document.getElementById('kategoriDropDown').appendChild(opt);
 	}
 	document.getElementById('searchform').innerHTML+="</select></form>";
-	document.getElementById('header').innerHTML+="<a href=\"shoppingbag.html\"><button class=\"buttonHeader\" id='shoppingChart' type=\"button\">tas belanja</button></a>";
+	document.getElementById('header').innerHTML+="<a href=\"shoppingbag.jsp\"><button class=\"buttonHeader\" id='shoppingChart' type=\"button\">tas belanja</button></a>";
 
 
 	//var activeUser = "";
@@ -137,24 +137,17 @@ function logout(){
 	
 }
 
-function addItemToBag(IdBarang, JumlahBarang){
-	var listBelanja = localStorage.getItem('shopList');
-	var itemFounded = false;
-	var i =0;
-	if (listBelanja==null || listBelanja==''){
-		listBelanja = new Array();
+function addItem(nama) {
+	var bag = localStorage.getItem('bagName');
+	
+	if (bag == null || bag == "") {
+		bag = new Array();
 	}
-	while (itemFounded==false && i<listBelanja.length){
-		if (listBelanja[i].Id==IdBarang){
-			listBelanja[i].Jumlah+=JumlahBarang;
-			itemFounded=true;
-		}
-		i++;
-	}
-	if (itemFounded==false){
-		listBelanja.push({Id:IdBarang,Jumlah:JumlahBarang});
-	}
-	localStorage.setItem('shopList',listBelanja);
+	bag[bag.length] = nama;
+	quantity[quantity.length] = jumlah;
+	
+	localStorage['bagName'] = JSON.stringify(bag);
+	alert(bag.length);
 }
 
 function deleteItemFromBag(IdxList){
