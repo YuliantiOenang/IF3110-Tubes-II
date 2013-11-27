@@ -9,7 +9,6 @@
 </head>
 <body>
 	<!-- notes: layout on progress -->
-	
 	<jsp:include page="layout.jsp" />
 	<jsp:include page="footer.jsp" />
 </body>
