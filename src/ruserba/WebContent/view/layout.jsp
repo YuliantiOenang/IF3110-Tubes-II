@@ -90,7 +90,7 @@
 <script src="/ruserba/js/suggest.js" type="text/javascript"></script>
 <script src="/ruserba/js/shop.js" type="text/javascript"></script>
 </head>
-<body onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')">
+<body>
 	<%
 		Kategori K = Helper.findAllKategori();
 	%>
@@ -244,10 +244,8 @@
 		<form action="/ruserba/barang" method="get">
 			<h4>Search</h4>
 			<p onclick='closesearch()'>x</p>
-			<div onclick="document.getElementById('suggestions').classList.add('hidden')">
 			<input type="text" id="suggestName" name="nama_barang" value="" placeholder="Nama Barang" autocomplete="off" onkeyup="searchSuggestions(this);">
-			<div id="suggestions" class="hidden">
-			</div>
+			<div id="suggestions">
 			</div>
 			<select name="kategori">
 				<option value="">All Categories</option>

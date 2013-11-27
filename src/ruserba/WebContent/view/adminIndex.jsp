@@ -1,4 +1,5 @@
 <%@ page import="javaModel.Barang" %>
+<script src="/ruserba/js/deleteBarang.js" type="text/javascript"></script>
 <h2> Selamat datang admin</h2>
 <hr>
 	<a href="/ruserba/admin/addbarang">Tambah Barang</a><br>
@@ -39,7 +40,7 @@ Silahkan pilih kategori : <br>
 				<td><%=B.stok.get(i)%></td>
 				<td>
 					<a href="/ruserba/admin/editbarang?id=<%=B.id.get(i)%>"> Edit </a>
-					<a href="/ruserba/admin/deletebarang?id=<%=B.id.get(i)%>"> Delete </a>
+					<a href="#<%=B.id.get(i)%>" onclick="deleteBarangConfirm(<%=B.id.get(i)%>)"> Delete </a>
 				</td>
 			</tr>
 <% 

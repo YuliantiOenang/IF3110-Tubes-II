@@ -1,3 +1,8 @@
+<!--  
+<table id="ISI">
+</table>
+-->
+
 <script type="text/javascript">
 	var run = false;
 	function fitbarang(obj) {
@@ -88,4 +93,4 @@
 
 </div>
 
-<div id="loader" class="hidden"><img src="/ruserba/images/loader.gif" alt=""></div>
+<div id="loader" class="hidden"><img src="/ruserba/images/loader.gif" alt="" onload="init('/ruserba/barang','harga','DESC','<%=request.getAttribute("NamaBarang")%>','<%=request.getAttribute("kategori")%>','<%=request.getAttribute("harga")%>','<%=request.getAttribute("OP")%>')"></div>

@@ -8,6 +8,7 @@ var GsearchName,GsearchKateg,GsearchHarga,GsearchOP;
 
 var CurPage;
 var GJmlPage;
+var FirstTime=true;
 
 var str="";
 
@@ -32,6 +33,14 @@ xmlhttpEA.onreadystatechange=function()
 		//document.getElementById('ISI').innerHTML=str;
 		document.getElementById('konten').innerHTML = str;
 		document.getElementById("loader").classList.add("hidden");
+		
+		if (FirstTime)
+		{
+			xmlhttpEA.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true); //URL samain
+			CurPage++;
+			xmlhttpEA.send();
+			FirstTime = false;
+		}
 	}
 };
 
@@ -51,7 +60,7 @@ function init(URL,name,jenis,searchName,searchKateg,searchHarga,searchOP)
 	for (i=1;i<=100;i++)
 	{
 		bookmark[i] = false;
-		GScroll[i] = (i-1) * 400;
+		GScroll[i] = (i-2) * 150;
 	}
 	xmlhttpEA.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true); //URL samain
 	CurPage++;
@@ -63,7 +72,7 @@ onscroll = function() {
  
   if ((!bookmark[CurPage]) && (nVScroll > GScroll[CurPage]))
   {
-	//alert("Page :"+CurPage+" Scroll : "+GScroll[CurPage]);
+	//alert("NVScroll :"+nVScroll+" Scroll : "+GScroll[CurPage]);
 	bookmark[CurPage] = true;
 	document.getElementById("loader").classList.remove("hidden");
 	setTimeout(function(){		
