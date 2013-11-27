@@ -55,16 +55,13 @@ function addToCart(id_barang, id_div){
 	var notif_bar = document.getElementById("notif" + id_div);
 	data = "id_barang=" + id_barang;
 	
+	/*
 	if(localStorage.id_user == undefined){
-		//alert("id user: " + localStorage.id_user);
 		notif_bar.innerHTML = "Maaf, Anda harus login terlebih dahulu.";
-		//alert("Maaf, Anda harus login terlebih dahulu.");
 		return;
 	} else {
-		//notif_bar.value = "User id: " + localStorage.id_user;
-		//alert("User id: " + localStorage.id_user);
 		data=data+"&id_user="+localStorage.id_user;
-	}
+	}*/
 	
 	//alert("lewat lho");
 	
