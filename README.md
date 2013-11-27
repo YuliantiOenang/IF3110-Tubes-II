@@ -16,3 +16,14 @@ Rule dan Konvensi:
 - src/ - berisi semua kode sumber dari aplikasi yang akan anda kumplukan
 - docs/ - berisi dokumentasi dari aplikasi, jika diperlukan
 - db/ - berisi file sql hasil dump
+
+===============
+Nama Anggota:
+- David Setyanugraha / 13511003
+- Iskandar Setiadi / 13511073
+- James Jaya / 13511089
+
+Update workspace untuk tempat Upload barang:
+File AdminBarang.java Line 38
+final String UPLOAD_DIRECTORY = "C:/Users/James Jaya/workspace/Frexesc/WebContent/img/barang/";
+===============

@@ -188,6 +188,7 @@ public class AdminBarang extends HttpServlet {
 			try {
 				Statement statement = connection.createStatement();
 				statement.executeUpdate(deleteQuery);
+				response.sendRedirect("./admin?action=main");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
