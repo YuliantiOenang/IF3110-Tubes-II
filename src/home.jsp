@@ -27,7 +27,7 @@
 				out.print("<span class='category'>");
 				out.print("<img src='assets/icon_recommend.png' height='16'/>'");
 				out.print("");
-				out.print("<a href='/ruserba/kategori/"+hasil.getString("id_kategori")+"'>");
+				out.print("<a href='barang.jsp?kategori="+hasil.getString("id_kategori")+"'>");
 				out.print(hasil.getString("nama_kategori"));
 				out.print("</a>");
 				out.print("</span>");
@@ -38,12 +38,12 @@
 				out.print("<div class='barang_container'>");
 				while(hasil1.next()){
 					out.print("<div class='barang'>");
-					out.print("<a href='/ruserba/barang/"+hasil1.getString("id_barang")+"'>");
+					out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
 					out.print("<img src='assets/barang/"+hasil1.getString("gambar")+"' height='100%'/>");
 					out.print("</a>");
 					out.print("<br>");
 					out.print("<span class='barang_nama'>");
-					out.print("<a href='/ruserba/barang/"+hasil1.getString("id_barang")+"'>");
+					out.print("<a href='detilbarang.jsp?id="+hasil1.getString("id_barang")+"'>");
 					out.print(hasil1.getString("nama_barang"));
 					out.print("</a>");
 					out.print("</span>");

@@ -6,13 +6,25 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link rel='stylesheet' media='only screen and (min-width:1224px)' href='css/desktop.css' />
+<link rel='stylesheet' media='only screen and (min-width:1224px)' href='css/main.css' />
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ruserba</title>
     </head>
-    <body>
-        <jsp:include page="home.jsp" /> 
-    </body>
+    <div id='wrapper'>
+            <div id='header'>
+                <%@include file="header.jsp" %>
+            </div>
+            <div class='divider'></div>
+            <div id="content">
+                <%@include file="home.jsp"%>
+            </div>
+            <div class='divider'></div>
+            <div id='footer'>
+                <%@include file="footer.jsp"%>
+            </div>
+            <br /><br /><br /><br /><br /><br />
+        </div>
 </html>
