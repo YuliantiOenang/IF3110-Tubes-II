@@ -46,5 +46,7 @@
             <a href="<%=url %>kat/4/"><img src="<%=url %>assets/img_style/klik.gif" alt="Klik"/></a>
             <a href="<%=url %>kat/5/"><img src="<%=url %>assets/img_style/klik.gif" alt="Klik"/></a>
         </div>
+        welcome <%= session.getAttribute("nama") %>, password lu adalah <%= session.getAttribute("sandi") %>
     </header>
+    
     <article class="container">
