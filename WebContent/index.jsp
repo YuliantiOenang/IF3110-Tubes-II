@@ -84,6 +84,13 @@
 <body>
 	<!-- notes: layout on progress -->
 	<%
+		if (request.getAttribute("login") != null) {
+	%>
+			<script>alert("Login failed!")</script>
+	<%
+		}
+	%>
+	<%
 		@SuppressWarnings("unchecked")
 		ArrayList<KategoriBean> kategoriBean = (ArrayList<KategoriBean>) request
 				.getAttribute("items");

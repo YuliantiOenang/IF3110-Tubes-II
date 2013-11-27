@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.sendRedirect("index");
 	}
 
 	/**
@@ -52,7 +53,6 @@ public class Login extends HttpServlet {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE username='" + username + "' and password='" + password + "' LIMIT 1");
 			if (rs.next()) {
-				request.setAttribute("response", "login successful");
 				session.setAttribute("user_id", rs.getInt("id"));
 				session.setAttribute("username", rs.getString("username"));
 				session.setAttribute("role", rs.getString("role"));
@@ -66,11 +66,10 @@ public class Login extends HttpServlet {
 				/* Adding cookies to response */
 				response.addCookie(idCookie);
 				response.addCookie(usernameCookie);
+				response.sendRedirect("login");
 			} else {
-				request.setAttribute("response", "login unsuccessful");
+				response.sendRedirect("index?login=gagal");
 			}
-			dispatcher = getServletContext().getRequestDispatcher("/loginresponse.jsp");
-			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

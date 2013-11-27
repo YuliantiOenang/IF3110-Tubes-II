@@ -27,7 +27,11 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+		if (request.getSession(true).getAttribute("user_id") != null) {
+			response.sendRedirect("index");
+		} else {
+			getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+		}
 	}
 
 	/**

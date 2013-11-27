@@ -127,16 +127,23 @@
 
 			<div class='status'>
 				<%
-				if (request.getSession(true).getAttribute("user_id") != null) {
+				if (request.getSession(true).getAttribute("role") == null) {
+				%>
+					<p class="left">You are not login. (<a onclick="showLogin()">Login</a> or <a href='${pageContext.request.contextPath}/register'>Register now</a>)</p>
+				<%
+				} else if (request.getSession(true).getAttribute("role").equals("0")) {
 				%>
 					<p class="left"> welcome, <a href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>! (<a href="logout">Logout</a>)</p>
 					<p class="right">
 						<a href="${pageContext.request.contextPath}/cart.jsp">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
 					</p>
 				<%
-				} else {
+				} else if (request.getSession(true).getAttribute("role").equals("1")) {
 				%>
-					<p class="left">You are not login. (<a onclick="showLogin()">Login</a> or <a href='${pageContext.request.contextPath}/register.jsp'>Register now</a>)</p>
+					<p class="left"> welcome, <a href="user?id=<%=request.getSession(true).getAttribute("user_id")%>"><%=request.getSession(true).getAttribute("username")%></a>! (<a href="admin?action=main">Admin</a> | <a href="logout">Logout</a>)</p>
+					<p class="right">
+						<a href="${pageContext.request.contextPath}/cart.jsp">Shopping Cart</a> <img src='${pageContext.request.contextPath}/img/site/cart_white.png' style='margin-right:5px;'/>
+					</p>
 				<%
 				}
 				%>

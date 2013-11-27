@@ -44,7 +44,7 @@ public class AdminBarang extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		RequestDispatcher dispatcher = null;
 		if (session.getAttribute("role") == null) {
-			response.sendRedirect("/register");
+			response.sendRedirect("register");
 		} else if (session.getAttribute("role").equals("1")) {
 			DbConnection dbConnection = new DbConnection();
 			Connection connection = dbConnection.mySqlConnection();
@@ -70,8 +70,7 @@ public class AdminBarang extends HttpServlet {
 			}
 			dispatcher.forward(request, response);
 		} else if (session.getAttribute("role").equals("0")) {
-			dispatcher = getServletContext().getRequestDispatcher("/index");
-			dispatcher.forward(request, response);
+			response.sendRedirect("index");
 		}
 
 	}

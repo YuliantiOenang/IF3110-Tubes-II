@@ -40,6 +40,10 @@ public class Index extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		/* Notifikasi login gagal */
+		if (request.getParameter("login") != null) {
+			request.setAttribute("login", "gagal");
+		}
 		
 		/* Login by cookie */
 		Cookie[] cookies = request.getCookies();

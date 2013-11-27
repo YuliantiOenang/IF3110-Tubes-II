@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Card
  */
-@WebServlet("/Card")
 public class Card extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,6 +31,11 @@ public class Card extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if (request.getSession(true).getAttribute("user_id") == null) {
+			response.sendRedirect("register");
+		} else {
+			getServletContext().getRequestDispatcher("/creditcard.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -53,7 +57,7 @@ public class Card extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("index");
 	}
 
 }

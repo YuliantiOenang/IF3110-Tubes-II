@@ -37,21 +37,24 @@ public class User extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DbConnection dbConnection = new DbConnection();
-		Connection connection = dbConnection.mySqlConnection();
-		String id = request.getParameter("id");
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
-			if (rs.next()) {
-				UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
-				request.setAttribute("user", user);
+		if (request.getSession(true).getAttribute("user_id") == null) {
+			response.sendRedirect("register");
+		} else {
+			DbConnection dbConnection = new DbConnection();
+			Connection connection = dbConnection.mySqlConnection();
+			String id = request.getParameter("id");
+			try {
+				Statement statement = connection.createStatement();
+				ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id='" + id + "' LIMIT 1");
+				if (rs.next()) {
+					UserBean user = new UserBean(rs.getString("username"), null, rs.getString("email"), rs.getString("nama"), rs.getString("handphone"), rs.getString("alamat"), rs.getString("provinsi"), rs.getString("kota"), rs.getString("kodepos"), rs.getInt("role"), rs.getString("nomor_kartu"), rs.getString("nama_kartu"), rs.getString("expire_kartu"));
+					request.setAttribute("user", user);
+				}
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile.jsp");
+				dispatcher.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profile.jsp");
-			dispatcher.forward(request, response);
-			//response.sendRedirect("profile.jsp");
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -89,13 +92,8 @@ public class User extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("card");
 		} else if (action.equals("edit")) {
-			// String updateQuery =
-			// "UPDATE user SET (nama, password, email, handphone, alamat, kota, provinsi, kodepos) VALUES ('"
-			// + name + "','" + password + "','" + email + "','" + telephone +
-			// "','" + address + "','" + city + "','" + province + "','" +
-			// postal + "')";
 			String updateQuery = "UPDATE user SET nama='" + name + "', password='" + password + "', email='" + email + "', handphone='" + telephone + "', alamat='" + address + "', kota='" + city + "', provinsi='" + province + "', kodepos='" + postal + "' WHERE id='" + request.getSession(true).getAttribute("user_id") + "'";
 			System.out.println(updateQuery);
 			try {
