@@ -1,27 +1,25 @@
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.sql.*;
 
 /**
- * Servlet implementation class AJAXedit
+ * Servlet implementation class AJAXbuy
  */
-public class AJAXedit extends HttpServlet {
+public class AJAXregister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AJAXedit() {
+    public AJAXregister() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,19 +34,20 @@ public class AJAXedit extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		  final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 	      final String DB_URL="jdbc:mysql://localhost/ruserba";
 
 	      //  Database credentials
 	      final String USER = "root";
 	      final String PASS = "";
-	    
-	      Connection conn = null;
-	  	  Statement stmt = null;
-
+	      
 	      PrintWriter out = response.getWriter();
+	      
+	      Connection conn = null;
+	      Statement stmt = null;
+	      
 	      
 	      String username1 = request.getParameter("username");
 	      String nama1 = request.getParameter("nama");
@@ -61,35 +60,56 @@ public class AJAXedit extends HttpServlet {
 	      String password1 = request.getParameter("password");
 	      
 	      String sql;
-		  sql = "UPDATE user SET nama = '"+nama1+"',  nohp = '"+ nohp1 +"',"
-		   		+ "alamat = '"+ alamat1 +"', provinsi = '"+ provinsi1 +"', kota = '"+ kota1 +"',"
-		   				+ "kodepos = '"+ kodepos1 +"', email = '"+ email1 +"', "
-		   						+ "password = '"+ password1 +" 'WHERE username = '" + username1 +"'" ; 
-		   
+	      sql = "SELECT * FROM user WHERE username = '" + username1 + "'";
+	      
 	      try {
-	    	// Register JDBC driver
-	          Class.forName(JDBC_DRIVER);
+		    	// Register JDBC driver
+		          Class.forName(JDBC_DRIVER);
+		          boolean usname = true;
 
-	          // Open a connection
-	          conn = DriverManager.getConnection(DB_URL,USER,PASS);
-	          stmt = conn.createStatement();
-	          stmt.executeUpdate(sql);
-	          out.print("true");
-	          
-	      } catch (SQLException e ) {
-	          //JDBCTutorialUtilities.printSQLException(e);
+		          // Open a connection
+		          conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+		          stmt = conn.createStatement();
+		          ResultSet rs = stmt.executeQuery(sql);
+		          
+		          while(rs.next()){
+		        	  usname = false;
+		          }
+		          
+		          if (usname){
+		        	 out.print("true");
+		        	 String sql1 = "INSERT INTO user (username, nama, nohp, alamat, provinsi,"
+		        	 		+ "kota, kodepos, email, password, transaksi)"
+		        	 		+ "VALUES ('"+ username1 +"', '"+ nama1 +"','"+ nohp1 +"',"
+		        	 				+ "'"+ alamat1 +"','"+ provinsi1 +"','"+ kota1 +"',"
+		        	 						+ "'"+ kodepos1 +"','"+ email1 +"','"+ password1 +"',0)";
+		        	  stmt.executeUpdate(sql1);
+		          } else{
+		        	  out.print("false");
+		          }
+		          
+					
 	      } catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-	          if (stmt != null) { try {
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	      finally {
+	          if (stmt != null) { 
+	        	  try {
 				stmt.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} }
-	      }
+			} 
+	          }
 
 	}
-
+		
+	}
 }
+
+

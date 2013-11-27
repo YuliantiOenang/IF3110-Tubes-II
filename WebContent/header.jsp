@@ -38,16 +38,22 @@
 							{// code for IE6, IE5
 							xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 						}
-						xmlhttp.open("POST","AJAXlogin",false);
+						xmlhttp.open("POST","AJAXlogin",true);
 						xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 						xmlhttp.send("username="+username+"&password="+password);
+						xmlhttp.onreadystatechange=function(){
+							if(xmlhttp.readyState==4 && xmlhttp.status==200)
+								{
+								alert(xmlhttp.responseText);
 						if (xmlhttp.responseText=="true") {
 							localStorage.user=username;
-							window.location = "index.php";
+							window.location = "index.jsp";
 						}
 						else {
 							alert("Username/password salah");
 							f.parentNode.removeChild(f);
+						}
+					}
 						}
 					}
 					var t=document.createTextNode("Login");
@@ -75,19 +81,19 @@
 			}
 			function logout() {
 				localStorage.clear();
-				window.location="index.php";
+				window.location="index.jsp";
 			}
 			function renderAccount() {
 				var element=document.getElementById("account");
 				if (localStorage.user==null) {
 					element.innerHTML='<button type="button" onclick="login()">Login</button><br>';
-					element.innerHTML+='<a href="register.php"><button type="button">Register</button></a><br>';
-					element.innerHTML+='<a href="cart.php"><button type="button">Cart</button></a><br>';
+					element.innerHTML+='<a href="registrasi.jsp"><button type="button">Register</button></a><br>';
+					element.innerHTML+='<a href="cart.jsp"><button type="button">Cart</button></a><br>';
 				}
 				else {
-					element.innerHTML="Welcome <a href='profile.php'>"+localStorage.user+"</a><br>";
+					element.innerHTML="Welcome <a href='profile.jsp'>"+localStorage.user+"</a><br>";
 					element.innerHTML+='<button type="button" onclick="logout()">Logout</button><br>';
-					element.innerHTML+='<a href="cart.php"><button type="button">Cart</button></a><br>';
+					element.innerHTML+='<a href="cart.jsp"><button type="button">Cart</button></a><br>';
 				}
 			}
 		</script>

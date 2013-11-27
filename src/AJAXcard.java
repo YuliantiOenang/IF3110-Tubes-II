@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -47,48 +48,65 @@ public class AJAXcard extends HttpServlet {
 	      Connection conn = null;
 	      Statement stmt = null;
 	      
-	      String username = request.getParameter("username");
-	      String cardno = request.getParameter("cardno");
-	      String nameoncard = request.getParameter("nameoncard");
-	      String expdate = request.getParameter("expdate");
+	      PrintWriter out = response.getWriter();
+	      
+	      String username1 = request.getParameter("username");
+	      String cardno1 = request.getParameter("cardno");
+	      String nameoncard1 = request.getParameter("nameoncard");
+	      String expdate1 = request.getParameter("expdate");
 	      
 	      String sql;
-	      sql = "SELECT * FROM user WHERE cardno = '" + cardno + "'";    
+	      sql = "SELECT * FROM user WHERE cardno = '" + cardno1 + "'";    
 	      try {
 		    	// Register JDBC driver
-		          Class.forName("com.mysql.jdbc.Driver");
-
+		          Class.forName(JDBC_DRIVER);
+		          boolean boleh = true;
 		          // Open a connection
 		          conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
 		          stmt = conn.createStatement();
 		          ResultSet rs = stmt.executeQuery(sql);
-		          
-		          String query;
-		          query = "INSERT INTO user (username, nama, nohp, alamat, "
-		          		+ "provinsi, kota, kodepos, email, password, transaksi) "
-		          		+ "VALUES(username, nama, nohp, alamat, provinsi, kota, kodepos"
-		          		+ "email, password,0)";
-		        					
-		        		ResultSet ra = stmt.executeQuery(query);
+		          				
+		          while (rs.next()){
+		        	  boleh = false;
+		          }
+		          if(boleh){
+		        	  String query = "SELECT * FROM user WHERE nameoncard = '" + nameoncard1 + "'";
+		        	  ResultSet ra = stmt.executeQuery(query);
+		        	  
+		        	  while (ra.next()){
+		        		  boleh = false;
+		        	  }
+		        	  	if (boleh){
+		        		  out.print("true");
+		        		  String sql1 = "UPDATE user SET cardno = '"+cardno1+"', nameoncard = '"+nameoncard1+"'"
+			        		  		+ ", expdate = '"+expdate1+"' WHERE username = '" + username1 + "'";
+			        		  stmt.executeUpdate(sql1);
+		        	  } else{
+		        		  out.print("false");
+		        	  }
+		          }
 	      
-	      } catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	      finally {
-	          if (stmt != null) { 
-	        	  try {
-				stmt.close();
+	      }catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
-	          }
-	}
+			}
+		      finally {
+		          if (stmt != null) { 
+		        	  try {
+					stmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		          }
 
-}
-}
+		}
+			
+		}
+
+
+	}

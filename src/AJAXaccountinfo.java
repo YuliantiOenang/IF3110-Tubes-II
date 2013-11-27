@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -45,43 +46,18 @@ public class AJAXaccountinfo extends HttpServlet {
 	      final String USER = "root";
 	      final String PASS = "";
 	      
-	      String username;
+	      String username = request.getParameter("username");
 	    
 	      Connection conn = null;
 	  	  Statement stmt = null;
 
+	      PrintWriter out = response.getWriter();
 	      
-	      if (request.getParameter("username") != null){
-	    	  username = request.getParameter("productname");
-	      } else {
-	    	  username = "0";
-	      }
-	      if (request.getParameter("nama") != null){
-	    	  username = request.getParameter("nama");
-	      } else {
-	    	  nama = "0";
-	      }
-	      if (request.getParameter("nohp") != null){
-	    	  username = request.getParameter("nohp");
-	      } else {
-	    	  nohp = "0";
-	      }
-	      if (request.getParameter("alamat") != null){
-	    	  username = request.getParameter("alamat");
-	      } else {
-	    	  alamat = "0";
-	      }
-	      if (request.getParameter("provinsi") != null){
-	    	  username = request.getParameter("provinsi");
-	      } else {
-	    	  provinsi = "0";
-	      }
-	     	
 	      String query = "SELECT * FROM user WHERE username= '"+ username +"'";
 	      
 	      try {
 	    	// Register JDBC driver
-	          Class.forName("com.mysql.jdbc.Driver");
+	          Class.forName(JDBC_DRIVER);
 
 	          // Open a connection
 	          conn = DriverManager.getConnection(DB_URL,USER,PASS);
@@ -90,27 +66,17 @@ public class AJAXaccountinfo extends HttpServlet {
 	          ResultSet rs = stmt.executeQuery(query);
 		      
 	          while(rs.next()){
-	          
-	        	 String username1 = rs.getString("username");
-	        	 String name = rs.getString("nama");
-	        	 String nohp = rs.getString("nohp");
-	        	 String alamat = rs.getString("alamat");
-	        	 String provinsi = rs.getString("provinsi");
-	        	 String kota = rs.getString("kota");
-	        	 String kodepos = rs.getString("kodepos");
-	        	 String email = rs.getString("email");
-	        	 String password = rs.getString("password");
-	        	 String transaksi = rs.getString("transaksi");
-	        	 
-	        	 
-	        	 
-	        	 
-	        	 
-	        	 
-	        	 
-	        	 
-	        	 
-	         //teuing pokonya masukin aja
+	        	  out.print(rs.getString("username") + "|" +  
+	        			  rs.getString("nama") + "|" + 
+	        			  rs.getString("nohp") + "|" + 
+	        			  rs.getString("alamat") + "|" + 
+	        			  rs.getString("provinsi") + "|" + 
+	        			  rs.getString("kota") + "|"+
+	        			  rs.getString("kodepos") + "|" + 
+	        			  rs.getString("email") + "|" + 
+	        			  rs.getString("password") + "|" + 
+	        			  rs.getString("transaksi")); 
+	
 	          }
 	      } catch (SQLException e ) {
 	          //JDBCTutorialUtilities.printSQLException(e);

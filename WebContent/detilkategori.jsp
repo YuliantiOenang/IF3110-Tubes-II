@@ -32,7 +32,7 @@ ResultSet rs = stmt.executeQuery(sql);
 			
 			out.print("<img src = 'images/"+rs.getObject("nama")+".jpg' width='300' height='300'>");
 			
-			out.print("<p>Nama : " + rs.getObject("nama") + "</p>");
+			out.print("<p>Nama : <a href = 'detil.jsp?nama=" + rs.getObject("nama") + "'>" + rs.getObject("nama") + "</a></p>");
 			out.print("<p>Harga : " + rs.getObject("harga") + "</p>");
 			out.print("<p>Deskripsi : " + rs.getObject("deskripsi")+ "</p>");
 			%>

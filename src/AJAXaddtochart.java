@@ -46,42 +46,27 @@ public class AJAXaddtochart extends HttpServlet {
 	      final String USER = "root";
 	      final String PASS = "";
 	      String productname;
-	      int qty;
 	      
 	      Connection conn = null;
 	  	  Statement stmt = null;
 
 	      
-	      if (request.getParameter("productname") != null){
-	    	  productname = request.getParameter("productname");
-	      } else {
-	    	  productname = "0";
-	      }
-	    	
-	      if (request.getParameter("qty") != null){
-	    	  qty = Integer.parseInt(request.getParameter("qty"));
-	      } else {
-	    	  qty = 0;
-	      }
+	      String nama = request.getParameter("nama");
+	      String qty = request.getParameter("qty");
 	      
-	      String query = "SELECT * FROM barang WHERE nama =' " +
-	    		  productname + "'";
-	      
-	      
+	      String sql = "SELECT * FROM barang WHERE nama = '" + nama + "'";
+	       
 	      try {
 	    	// Register JDBC driver
-	          Class.forName("com.mysql.jdbc.Driver");
+	          Class.forName(JDBC_DRIVER);
 
 	          // Open a connection
 	          conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
 	          stmt = conn.createStatement();
-	          ResultSet rs = stmt.executeQuery(query);
-		      
-	         if (qty > 10) {
-	        	 
-	         //teuing pokonya masukin aja
-	          }
+	          ResultSet rs = stmt.executeQuery(sql);
+	        
+		   
 	      } catch (SQLException e ) {
 	          //JDBCTutorialUtilities.printSQLException(e);
 	      } catch (ClassNotFoundException e) {

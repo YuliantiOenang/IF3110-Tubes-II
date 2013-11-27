@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,51 +39,57 @@ public class AJAXlogin extends HttpServlet {
 		final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
 		final String DB_URL="jdbc:mysql://localhost/ruserba";
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = null;
+	    Statement stmt = null;
+		
+		PrintWriter out = response.getWriter();
+		
+		String user = request.getParameter("username");
+		String pass = request.getParameter("password");
+	      
+		String sql = "SELECT * FROM user WHERE username='" + user + "'";
+		
+		try{
+			// Register JDBC driver
+	          Class.forName(JDBC_DRIVER);
+	        // Open a connection
+	          conn = DriverManager.getConnection(DB_URL,"root","");
+
+	          stmt = conn.createStatement();
+	          ResultSet categories = stmt.executeQuery(sql);
+			
+	          while (categories.next()){
+				
+				if(categories.getString("username").equals(user) && 
+				   categories.getString("password").equals(pass)){
+						
+					out.print("true");
+						}
+					else {
+						
+					out.print("false");
+				}
+			}
+				
+		
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection(DB_URL, "root", "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Statement statement = null;
-		try {
-			statement = connection.createStatement();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT * FROM user WHERE username='" + request.getParameter("username") + "'";
-		ResultSet categories = null;
-		try {
-			categories = statement.executeQuery("sql");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			if (categories.next()) {
-				if (categories.getString("password") == request.getParameter("password")) {
-					System.out.print("true");
-				}
-				else {
-					System.out.print("false");
-				}
-			}
-			else {
-				System.out.print("false");
-}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	      finally {
+	          if (stmt != null) { 
+	        	  try {
+				stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	          }
+	         
+	}
 	}
 }
+

@@ -2,7 +2,7 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 		<!--Header's body-->
 		<div id="logo">
-			<a href="index.jsp"><img src="logo.jpg" alt="RuSerBa" width="150" height="100"></a>
+			<a href="index.jsp"><img src="market.gif" alt="RuSerBa" width="150" height="100"></a>
 		</div>
 		<form id="search" action="search.php" method="get">
 			Nama : <input type="search" name="keyword"><br>

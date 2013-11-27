@@ -41,13 +41,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AJAXbuy</display-name>
-    <servlet-name>AJAXbuy</servlet-name>
-    <servlet-class>AJAXbuy</servlet-class>
+    <display-name>AJAXregister</display-name>
+    <servlet-name>AJAXregister</servlet-name>
+    <servlet-class>AJAXregister</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AJAXbuy</servlet-name>
-    <url-pattern>/AJAXbuy</url-pattern>
+    <servlet-name>AJAXregister</servlet-name>
+    <url-pattern>/AJAXregister</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
