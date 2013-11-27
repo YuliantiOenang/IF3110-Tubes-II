@@ -140,7 +140,8 @@
 			%>
 			<div class = "searchres">
 					<div class = "previmage">
-                                            <a href="detailbarang.jsp?id='<%out.print(session.getAttribute("id"+i));%>'"><img src= "<%out.print(session.getAttribute("foto"+i));%>" class="resizeimage"><img></a>
+                                            <a href="detailbarang.php?id=<%out.print(session.getAttribute("id"+i));%>"><img src= "<%out.print(session.getAttribute("foto"+i));%>" class="resizeimage"><img></a>
+					
 					</div>
 					<p class = "copyrightext"> <%out.print(session.getAttribute("nama"+i));%> </br>
 						  Rp<%out.print(session.getAttribute("harga"+i));%> </label> </br> </p>
@@ -160,7 +161,7 @@
 			%>
 			<div class = "searchres">
 					<div class = "previmage">
-						<a href="detailbarang.jsp?id='<%out.print(session.getAttribute("id"+counter));%>'"><img src= "'<%out.print(session.getAttribute("foto"+counter));%>'" class="resizeimage"><img></a>
+						<a href="detailbarang.jsp?id='<%out.print(session.getAttribute("id"+counter));%>'"><img src= "<%out.print(session.getAttribute("foto"+counter));%>" class="resizeimage"><img></a>
 					</div>
 					<p class = "copyrightext"> '<%out.print(session.getAttribute("nama"+counter));%>' </br>
 						  Rp <%out.print(session.getAttribute("harga"+counter));%> </label> </br> </p>
@@ -192,7 +193,7 @@
 			  int jumlahPage=num_rows/10 + tambah;
 			 
 			 int i=0;
-			 for(i=0;i<jumlahPage;i++)
+			 for(i=1;i<=jumlahPage;i++)
 			{
                          %>
                          	Page <a href="hasilsearch.jsp?page=<%out.print(i);%>"><%out.print(i);%> </a>
