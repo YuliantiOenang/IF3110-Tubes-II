@@ -7,6 +7,7 @@ public class CartItem{
 	private int jumlah;	//banyaknya pembelian
 	private String detail;	
 	private int jumHarga;
+	private int jumProduk; //sisa produk di DB
 	
 	public CartItem(){
 		nama="";
@@ -15,15 +16,17 @@ public class CartItem{
 		jumlah=-1;
 		detail="";
 		jumHarga=0;
+		jumProduk=0;
 	}
 	
-	public CartItem(int id_,String nama_, int harga_,String kategori_,int jumlah_, String detail_, int jumHarga_, String index_){
+	public CartItem(int id_,String nama_, int harga_,String kategori_,int jumlah_, String detail_, int jumHarga_, int jumProduk_,String index_){
 		nama=nama_;
 		harga=harga_;
 		kategori=kategori_;
 		jumlah=jumlah_;
 		detail=detail_;
 		jumHarga=jumHarga_;
+		jumProduk = jumProduk_;
 	}
 	
 	public String getNama(){
@@ -49,6 +52,9 @@ public class CartItem{
 	public int getJumHarga(){
 		return jumHarga;
 	}
+	public int getJumProduk(){
+		return jumProduk;
+	}
 
 	public void setNama(String nama_){
 		nama=nama_;
@@ -68,5 +74,8 @@ public class CartItem{
 	}
 	public void setJumHarga(int jumHarga_){
 		jumHarga=jumHarga_;
+	}
+	public void setJumProduk(int jumProduk_){
+		jumProduk=jumProduk_;
 	}
 }

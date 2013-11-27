@@ -37,11 +37,14 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 				String sharga = "hargab";
 				String skategori = "kategorib";
 				String sjumlah = "jumlahb";
+				String sdeskripsi ="deskripsib";
 				session.setAttribute(snama,barang.getNama());
 				session.setAttribute(sid,barang.getId());
 				session.setAttribute(sharga,barang.getHarga());
 				session.setAttribute(skategori,barang.getKategori());
 				session.setAttribute(sjumlah,barang.getJumlah());
+				session.setAttribute(sdeskripsi,barang.getDeskripsi());
+				
 				
 				session.setAttribute("squery", SearchQuery);
 				response.sendRedirect("detail-barang.jsp");

@@ -54,6 +54,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 					session.setAttribute(bharga,sayuranes.get(i).getHarga());
 					session.setAttribute(bkategori,sayuranes.get(i).getKategori());
 					session.setAttribute(bjumlah,sayuranes.get(i).getJumlah());
+					System.out.println(sayuranes.get(i).getJumlah());
 				
 				}
 				

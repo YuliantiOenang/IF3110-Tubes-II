@@ -136,6 +136,7 @@ package npackage;
 			}
 			if (bean.getType()=="getbarang"){
 				Barang barang = new Barang(rs.getInt("IdBarang"),rs.getString("NamaBarang"),rs.getInt("Harga"),rs.getString("Kategori"),rs.getInt("Jumlah"));
+				barang.setDeskripsi(rs.getString("Deskripsi"));
 				bean.setbarang(barang);
 			}
 			

@@ -10,6 +10,11 @@ public class Cart{
 		return allCartItems.size();
 	}
 	
+	public void remove() {
+		allCartItems.clear();
+		hargaTotal = 0;
+	}
+	
 	public void deleteCartItem(String index) {
 		int itemIndex = 0;
 		try {
@@ -46,15 +51,32 @@ public class Cart{
 	
 	}
 	
-	public void addCartItem(String nama, String strHarga, String kategori, String strQuantity, String detail) {
+	public void addCartItem(String nama, String strHarga, String kategori, String strQuantity, String detail, String strJumProduk) {
 		int jumHarga = 0;
 		int harga = 0;
 		int jumlah = 0;
+		int jumProduk = 0;
 		CartItem cartItem = new CartItem();
+		boolean ada = false;
 		try {
 			harga = Integer.parseInt(strHarga);
 			jumlah = Integer.parseInt(strQuantity);
-			if(jumlah>0) {
+			jumProduk = Integer.parseInt(strJumProduk);
+			
+			CartItem item = new CartItem();
+			int i = 0;
+			while(i<allCartItems.size() && ada == false){
+				item = (CartItem)allCartItems.get(i);
+				if(item.getNama().equals(nama)){
+					int jum = item.getJumlah();
+					item.setJumlah(jum+jumlah);
+					ada = true;
+					calculateHargaTotal();
+				}
+				i++;
+			}
+			
+			if(jumlah>0 && ada==false) {
 				jumHarga = harga*jumlah;
 				cartItem.setNama(nama);
 				cartItem.setHarga(harga);
@@ -62,6 +84,7 @@ public class Cart{
 				cartItem.setJumlah(jumlah);
 				cartItem.setDetail(detail);
 				cartItem.setJumHarga(jumHarga);
+				cartItem.setJumProduk(jumProduk);
 				allCartItems.add(cartItem);
 				calculateHargaTotal();
 			}
@@ -86,14 +109,14 @@ public class Cart{
 	public ArrayList getCartItems() {
 		return allCartItems;
 	}
-	public void setCartItems(ArrayList allCartItems) {
-		allCartItems = allCartItems;
+	public void setCartItems(ArrayList allCartItems_) {
+		allCartItems = allCartItems_;
 	}
 	public int getHargaTotal() {
 		return hargaTotal;
 	}
-	public void setHargaTotal(int hargaTotal) {
-		hargaTotal = hargaTotal;
+	public void setHargaTotal(int hargaTotal_) {
+		hargaTotal = hargaTotal_;
 	}
 	
 	protected void calculateHargaTotal() {

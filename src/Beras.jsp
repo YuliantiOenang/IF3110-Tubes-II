@@ -12,31 +12,6 @@
 	<meta charset="UTF-8">
 	<title>Beras</title>
 	<link rel="stylesheet" type="text/css" href="res/css/style.css" media="all"/>
-	<script language="javascript" type="text/javascript">
-	function AddToCart(IdBarang){
-		var xmlhttp;
-		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				alert("Pesanan sedang diproses");
-				if (xmlhttp.responseText.trim()=="Betul"){
-					alert("Pesanan Diterima");}
-				else{
-					alert("Jumlah Barang : "+xmlhttp.responseText);}
-			}
-		}
-		var JumlahStr=""+IdBarang;
-		var Jumlah=document.getElementById(JumlahStr).value;
-		alert("AddToCart.php?action=add&id="+IdBarang+"&Jumlah="+Jumlah+"&Kategori=Beras");
-		xmlhttp.open("GET","AddToCart.php?action=add&id="+IdBarang+"&Jumlah="+Jumlah+"&Kategori=Beras",true);
-		xmlhttp.send();
-	}
-	</script>
 </head>
 <body>
 	
@@ -78,8 +53,17 @@
 							<p class="harga">Harga: <% int intr =(Integer)session.getAttribute("bharga"+i);out.print(intr);%> /kg</p>
 							
 							<div class="frame buy-bar">
-								<input class="kolom-9 buy-box" type="text" id='<%str =(String)session.getAttribute("bnama"+i);out.print(str);%>' name="buy" value="Banyaknya barang.." onfocus="checkclear(this)" onblur="checkempty(this, 'Banyaknya barang..')"> 
-								<!--<button class="kolom-1 buy-button" type="button" onClick=AddToCart(<//%=(String)session.getAttribute("bid"+i)%>)></button>-->
+							<form action="CartController" method="post" onsubmit="return validatejumlah('<%out.print((String)session.getAttribute("bnama"+i));%>','<%out.print("cartJumProduk"+i);%>')" accept-charset='UTF-8'>
+								<input class="kolom-9 buy-box" type="text" id='<%str =(String)session.getAttribute("bnama"+i);out.print(str);%>' name="cartQuantity" value="Banyaknya barang.." onfocus="checkclear(this)" onblur="checkempty(this, 'Banyaknya barang..')"> 
+								<input type="hidden" name="action" value="add">
+								<input type="hidden" value="getberas" name="pageasal">
+								<input type="hidden" value="" name="cartDetail">
+								<input type="hidden" value="<%out.print((String)session.getAttribute("bnama"+i));%>" name="cartNama">
+								<input type="hidden" value="<%out.print((Integer)session.getAttribute("bharga"+i));%>" name="cartHarga">
+								<input type="hidden" value="<%out.print((Integer)session.getAttribute("bjumlah"+i));%>" id="<%out.print("cartJumProduk"+i);%>" name="cartJumProduk">
+								<input type="hidden" value="<%out.print((String)session.getAttribute("bkategori"+i));%>" name="cartKategori">
+								<button class="kolom-1 buy-button" type="submit" ></button>
+							</form>
 							</div>
 							
 						</div>
@@ -120,6 +104,22 @@
 	
 	<!-- Javascript -->
 	<script src="res/js/common.js" type="text/javascript"></script>
+	<script>
+	function validatejumlah(nam,jum){
+		alert(document.getElementById(nam).value+" "+document.getElementById(jum).value);
+		if (+document.getElementById(nam).value<=+document.getElementById(jum).value){
+			alert("sukses");
+			return true;
+		}else{
+			alert("barang tidak cukup\nsisa : "+ document.getElementById(jum).value);
+			return false;
+		
+		}
+	
+	}
+	
+	
+	</script>
 	
 </body>
 </html>
