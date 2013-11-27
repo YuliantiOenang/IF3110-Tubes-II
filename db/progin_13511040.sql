@@ -2,10 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Inang: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2013 pada 10.51
--- Versi Server: 5.5.32
--- Versi PHP: 5.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2013 at 02:08 PM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `alat_pesta`
+-- Database: `alat_pesta`
 --
 CREATE DATABASE IF NOT EXISTS `alat_pesta` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `alat_pesta`;
@@ -25,7 +25,7 @@ USE `alat_pesta`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE IF NOT EXISTS `customer` (
@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `alamat` varchar(100) DEFAULT NULL,
   `card_number` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`no_customer`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
--- Dumping data untuk tabel `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`no_customer`, `nama`, `kota`, `kodepos`, `email`, `hp`, `password`, `username`, `provinsi`, `alamat`, `card_number`) VALUES
@@ -68,12 +68,13 @@ INSERT INTO `customer` (`no_customer`, `nama`, `kota`, `kodepos`, `email`, `hp`,
 (37, 'asdf asdf', 'bandung', 14045, 'asdfeee@yahoo.com', 2147483647, 'asdfasdf', 'database', 'jawabaraat', 'jalan', NULL),
 (38, 'asdfs sdfsdf', 'bandung', 14045, 'asnnlkn@yahoo.com', 91231, 'asdfasdf', 'asdaa', 'jawaba', 'jalann', NULL),
 (39, 'asdf sdaf', 'bandung', 14034, 'sadfsdffd@yahoo.com', 884822, 'asdfasdf', 'asdfff', 'jawabarat', 'jalnanan', NULL),
-(40, 'fafafa fafaf', '', 0, 'sdfasfdf@yahoo.com', 0, 'asdfasdf', 'fafafa', '', '', NULL);
+(40, 'fafafa fafaf', '', 0, 'sdfasfdf@yahoo.com', 0, 'asdfasdf', 'fafafa', '', '', NULL),
+(41, 'admin', NULL, NULL, 'admin@admin.admin', NULL, 'admin', 'admin', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kartu_kredit`
+-- Table structure for table `kartu_kredit`
 --
 
 CREATE TABLE IF NOT EXISTS `kartu_kredit` (
@@ -82,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `kartu_kredit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kartu_kredit`
+-- Dumping data for table `kartu_kredit`
 --
 
 INSERT INTO `kartu_kredit` (`card_number`, `card_name`) VALUES
@@ -92,7 +93,7 @@ INSERT INTO `kartu_kredit` (`card_number`, `card_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keranjang`
+-- Table structure for table `keranjang`
 --
 
 CREATE TABLE IF NOT EXISTS `keranjang` (
@@ -102,10 +103,10 @@ CREATE TABLE IF NOT EXISTS `keranjang` (
   `jumlah` int(11) NOT NULL,
   `pesan` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cart`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
--- Dumping data untuk tabel `keranjang`
+-- Dumping data for table `keranjang`
 --
 
 INSERT INTO `keranjang` (`id_cart`, `id_customer`, `id_alat`, `jumlah`, `pesan`) VALUES
@@ -127,7 +128,7 @@ INSERT INTO `keranjang` (`id_cart`, `id_customer`, `id_alat`, `jumlah`, `pesan`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `peralatan`
+-- Table structure for table `peralatan`
 --
 
 CREATE TABLE IF NOT EXISTS `peralatan` (
@@ -140,10 +141,10 @@ CREATE TABLE IF NOT EXISTS `peralatan` (
   `foto` char(50) DEFAULT NULL,
   `status` char(20) DEFAULT NULL,
   PRIMARY KEY (`no_alat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
--- Dumping data untuk tabel `peralatan`
+-- Dumping data for table `peralatan`
 --
 
 INSERT INTO `peralatan` (`no_alat`, `nama`, `kategori`, `jumlah`, `harga`, `deskripsi`, `foto`, `status`) VALUES
@@ -203,12 +204,13 @@ INSERT INTO `peralatan` (`no_alat`, `nama`, `kategori`, `jumlah`, `harga`, `desk
 (54, 'Pokemon Sapphire Version', 'Pokemon', 200, 300000, 'Experience the beautiful Hoenn Region!', 'images/Pokemon8.jpg', ''),
 (55, 'Pokemon Y', 'Pokemon', 200, 450000, 'See the beauty of Kalos Region with full 3D!', 'images/Pokemon9.jpg', ''),
 (56, 'Pokemon X', 'Pokemon', 200, 450000, 'See the beauty of Kalos Region with full 3D!', 'images/Pokemon10.jpg', ''),
-(57, 'Pokemon LeafGreen Version', 'Pokemon', 200, 3000000, 'Lets go back to Kanto! Start your journey all over again!', 'images/Pokemon11.jpg', '');
+(57, 'Pokemon LeafGreen Version', 'Pokemon', 200, 3000000, 'Lets go back to Kanto! Start your journey all over again!', 'images/Pokemon11.jpg', ''),
+(58, 'Nattasha Nauljam', 'Misc', 1, 999999999, 'The Ultimate Thing !', 'images/Nattasha Nauljam.jpg', 'tersedia');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `terbayar`
+-- Table structure for table `terbayar`
 --
 
 CREATE TABLE IF NOT EXISTS `terbayar` (
@@ -219,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `terbayar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `terbayar`
+-- Dumping data for table `terbayar`
 --
 
 INSERT INTO `terbayar` (`id_barang`, `jumlah`, `id_costumer`, `pesan`) VALUES
