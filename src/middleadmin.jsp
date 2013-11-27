@@ -5,11 +5,9 @@
 		<!--Header's body-->
 		<div id="title">
 		<div id="icon">
-			<a href="indexadmin.jsp"><img src="logo.jpg" alt="RuSerBa" width="150" height="100"></a>
+			<a href="indexadmin.jsp"><img src="logo.png" alt="RuSerBa" width="700" height="160"></a>
 		</div>
-		<div id="name-title">
-			Ruko Serba Ada Habibi
-		</div>
+		
 		<div id="head-right">
 		
 		<div id="account">

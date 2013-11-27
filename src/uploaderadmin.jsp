@@ -3,7 +3,7 @@
 			if (localStorage.user!="admin") {
 				window.location = "index.jsp"
 			}
-			alert("<%=request.getParameter("nama")%>");
+			
 		</script>
 	<link rel="stylesheet" href="layout.css">
 	</head>

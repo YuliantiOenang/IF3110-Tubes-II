@@ -40,7 +40,7 @@
 		<div id="container">
 		<h2>Ubah Gambar Barang</h2>
 		<form name="ubahgambar">
-			Nama Barang: <input type="text" name="nama" size="40"><br>
+			Nama Barang: <br><input type="text" name="nama" size="40"><br>
 			
 			
 		

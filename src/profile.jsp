@@ -135,17 +135,17 @@
 		<div id="container">
 		<h2>Profil</h2>
 		<form name="registrasi">
-			Transaksi : <input type="text" name="transaksi" size="40" readonly> kali<br><br>
-			Username: <input type="text" name="username" size="40" onchange="validateForm()" readonly><br>
-			Nama lengkap: <input type="text" name="nama" size="40" onchange="validateForm()"><small> minimal 2 kata</small><br>
-			Nomor handphone: <input type="text" name="nohp" size="40" onchange="validateForm()"><br>
-			Alamat: <input type="text" name="alamat" size="40" onchange="validateForm()"><br>
-			Kota/Kabupaten: <input type="text" name="kota" size="40" onchange="validateForm()"><br>
-			Provinsi: <input type="text" name="provinsi" size="40" onchange="validateForm()"><br>
-			Kode Pos: <input type="text" name="kodepos" size="40" onchange="validateForm()"><br>
-			Email: <input type="text" name="email" size="40" onchange="validateForm()" readonly><br>
-			Change password: <input type="password" name="password" size="40" onchange="validateForm()"><small> minimal 8 karakter, != username dan email</small><br>
-			Confirm change password: <input type="password" name="confpassword" size="40" onchange="validateForm()"><small> == password</small><br>
+			Transaksi : <br><input type="text" name="transaksi" size="40" disabled> kali<br><br>
+			Username: <br><input type="text" name="username" size="40" onchange="validateForm()" disabled><br>
+			Nama lengkap: <br><input type="text" name="nama" size="40" onchange="validateForm()"><small> minimal 2 kata</small><br>
+			Nomor handphone: <br><input type="text" name="nohp" size="40" onchange="validateForm()"><br>
+			Alamat: <br><input type="text" name="alamat" size="40" onchange="validateForm()"><br>
+			Kota/Kabupaten: <br><input type="text" name="kota" size="40" onchange="validateForm()"><br>
+			Provinsi: <br><input type="text" name="provinsi" size="40" onchange="validateForm()"><br>
+			Kode Pos: <br><input type="text" name="kodepos" size="40" onchange="validateForm()"><br>
+			Email: <br><input type="text" name="email" size="40" onchange="validateForm()" disabled><br>
+			Change password: <br><input type="password" name="password" size="40" onchange="validateForm()"><small> minimal 8 karakter, != username dan email</small><br>
+			Confirm change password: <br><input type="password" name="confpassword" size="40" onchange="validateForm()"><small> == password</small><br>
 			<button id="submit" type="button" onclick="AJAXedit()" disabled>Save</button>
 		</form>
 		<script>

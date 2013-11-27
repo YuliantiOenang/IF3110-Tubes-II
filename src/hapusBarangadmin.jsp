@@ -20,9 +20,10 @@
 						xmlhttp.open("POST","AJAXhapus.jsp",false);
 						xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 						xmlhttp.send("nama="+nama);
+						
 						if (xmlhttp.responseText.trim()=="true") {
 						alert("Data Berhasil Dihapus");
-							
+								
 								window.location = "indexadmin.jsp";
 							
 						}
@@ -39,7 +40,7 @@
 		<div id="container">
 		<h2>Hapus Barang</h2>
 		<form name="hapus">
-			Nama Barang: <input type="text" name="nama" size="40"><br>
+			Nama Barang: <br><input type="text" name="nama" size="40"><br>
 		
 			<button id="submit" type="button" onclick="AJAXhapusBarang()">Hapus</button>
 		</form>

@@ -51,9 +51,8 @@
             // Write the file
             file = new File( filePath + request.getParameter("nama") + ".jpg");
             fi.write( file ) ;
-            out.println("Uploaded Filename: " + filePath + 
-            fileName + "<br>");
-			out.println(request.getParameter("nama"));
+            out.println("Gambar Berhasil diupload<br><br>");
+			out.println("Klik untuk kembali ke  <a href='indexadmin.jsp'>home</a>");
             }
          }
          out.println("</body>");

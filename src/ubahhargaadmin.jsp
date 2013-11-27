@@ -40,8 +40,8 @@
 		<div id="container">
 		<h2>Ubah Harga Barang</h2>
 		<form name="ubahharga">
-			Nama Barang: <input type="text" name="nama" size="40"><br>
-			Harga Baru Barang: <input type="text" name="harganew" size="40"><br>
+			Nama Barang: <br><input type="text" name="nama" size="40"><br>
+			Harga Baru Barang: <br><input type="text" name="harganew" size="40"><br>
 			
 		
 			<button id="submit" type="button" onclick="AJAXubahhargaBarang()">Ubah</button>

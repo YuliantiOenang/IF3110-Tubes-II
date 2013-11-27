@@ -1,21 +1,23 @@
 body {
+width: 70%;
 	background-color: pink;
 }
 #popup {
-	padding-top:280px;
-	padding-left: 1100px;
+	padding-top:250px;
+	padding-left: 1050px;
 	position: relative;
 	/*background-color : pink;*/
 
 }
 
 #icon{
+	margin-left: 200px;
 	float:left; 
 	padding-left:5px; 
 	padding-right:5px;
 	padding-top:5px; 
 	padding-bottom:1px; 
-	background-color:#99ffcc
+
 }
 
 #name-title{
@@ -41,7 +43,7 @@ body {
 	position: relative; 
 	left: 180px; 
 	top: 8px; 
-	width: 1000px; 
+	/*width: 1000px; */
 	height: 150px; 
 	background-color: blue;
 }
@@ -53,7 +55,7 @@ body {
 	float:top;
 	padding-right:5px; 
 	padding-top:15px;
-	padding-left:1100px;
+	padding-left:1000px;
 	
 }
 
@@ -70,7 +72,7 @@ body {
 {
 	padding-left: 220px;
 	padding-top: 3px;
-	padding-right: 20px;
+	padding-right: 10px;
 	margin-left: 0;
 	color: White;
 	float: left;
@@ -87,7 +89,7 @@ body {
 	color: White;
 	text-decoration: none;
 	float: top;
-	border-right: 1px solid #fff;
+	border-right: 0px solid #fff;
 }
 
 

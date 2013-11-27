@@ -34,6 +34,7 @@
 				}
 			}
 		</script>
+		<script language="javaScript" type="text/javascript" src="calendar.js"></script>
 		<link rel="stylesheet" href="layout.css">
 	</head>
 <%@ include file="middle.jsp" %>
@@ -41,12 +42,16 @@
 		<div id="container">
 		<h2>Registrasi Kartu Kredit</h2>
 		<form name="card">
-			Card no: <input type="text" name="cardno"><br>
-			Name on card: <input type="text" name="nameoncard"><br>
-			Expire date: <input type="text" name="expdate"><br>
+			Card no: <br><input type="text" name="cardno"><br>
+			Name on card: <br><input type="text" name="nameoncard"><br>
+			Expire date: <br><input type="text" name="expdate">
+			<br>
 			<button id="submit" type="button" onclick="AJAXcard()">OK</button>
 			<a href="index.jsp"><button type="button">Skip</button></a>
 		</form>
+		
+		
+		
 		</div>
 		</div>
 	</body>

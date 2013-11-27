@@ -5,11 +5,9 @@
 		<!--Header's body-->
 		<div id="title">
 		<div id="icon">
-			<a href="index.jsp"><img src="logo.jpg" alt="RuSerBa" width="160" height="160"></a>
+			<a href="index.jsp"><img src="logo.png" alt="RuSerBa" width="700" height="160"></a>
 		</div>
-		<div id="name-title">
-			Ruko Serba Ada Habibi
-		</div>
+		
 		<div id="head-right">
 		<form id="search" action="search.jsp" method="get">
 			Nama : <input type="search" name="keyword"><br>

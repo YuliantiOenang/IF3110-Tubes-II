@@ -24,7 +24,23 @@
 			String sql = 	"UPDATE barang SET "+
 							"nama='"+request.getParameter("namanew")+
 							"' WHERE nama='"+request.getParameter("nama")+"'";
-			st.executeUpdate(sql);			
+			st.executeUpdate(sql);
+			File oldgambar =new File("c:\\xampp\\tomcat\\webapps\\tubes2\\images\\"+request.getParameter("nama")+".jpg");
+			File newgambar =new File("c:\\xampp\\tomcat\\webapps\\tubes2\\images\\"+request.getParameter("namanew")+".jpg");
+ 
+			if(oldgambar.renameTo(newgambar)){
+				System.out.println("Rename succesful");
+			}else{
+				System.out.println("Rename failed");
+			}
+			File olddeskripsi =new File("c:\\xampp\\tomcat\\webapps\\tubes2\\deskripsi\\"+request.getParameter("nama")+".txt");
+			File newdeskripsi =new File("c:\\xampp\\tomcat\\webapps\\tubes2\\deskripsi\\"+request.getParameter("namanew")+".txt");
+ 
+			if(olddeskripsi.renameTo(newdeskripsi)){
+				System.out.println("Rename succesful");
+			}else{
+				System.out.println("Rename failed");
+			}
 			out.print("true");
 		}
 	}
