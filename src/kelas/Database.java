@@ -2,7 +2,7 @@ package kelas;
 
 public class Database {
 	static String user = "root";
-	static String pass = "";
+	static String pass = "root";
 	
 	public static String getUser() {
 		return Database.user;
