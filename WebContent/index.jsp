@@ -20,6 +20,7 @@
 			%>
 			<div class="pull_left">
 			<%
+			int no = 1;
 			for(Barang b: barangs){
 				%>
 				<div class="list_barang">
@@ -29,9 +30,15 @@
 					<div class="list_desc">
 						<strong>Nama:</strong> <a href="detail?gid=<%= b.getId_inven() %>"><%= b.getNama() %></a><br/>
 						<strong>Harga:</strong> <%= b.getHarga() %><br/>
+						<form class="cart_buy">
+							<input type='text' id='quant<%= no %>' value='0' size=7 >
+							<img class="cart_button" src="res/addtocart.png" width=125 onclick="validate(<%= b.getId_inven() %>, <%= no %>)">
+						</form>
+						<div class="notif" id='notif<%=no%>'></div>
 					</div>
 				</div>
 				<%
+				no++;
 			}
 			
 			%>
@@ -42,4 +49,5 @@
 	%>
 	</div>
 </body>
+<script src="transaction.js"></script>
 </html>

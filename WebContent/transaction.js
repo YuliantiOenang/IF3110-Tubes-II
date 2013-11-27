@@ -3,17 +3,19 @@ function isNumber(n) {
 }
 
 function validate(id_barang, id_div){
-	var y = document.getElementById("notif" + id_div);
+	var notif_bar = document.getElementById("notif" + id_div);
 	var jml_beli = document.getElementById("quant" + id_div).value;
 	//alert("Beli " + jml_beli + " ya mbak?");
 	
 	if(isNumber(jml_beli)){
 		if(parseInt(jml_beli) <= 0){
-			alert("Jumlah beli tidak valid!");
+			notif_bar.innerHTML = "Jumlah beli tidak valid!";
+			//alert("Jumlah beli tidak valid!");
 			return;
 		}
 	} else {
-		alert("Jumlah harus angka!");
+		notif_bar.innerHTML = "Jumlah harus angka!";
+		//alert("Jumlah harus angka!");
 		return;
 	}
 	
@@ -35,9 +37,10 @@ function validate(id_barang, id_div){
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var jumlahBarang = xmlhttp.responseText;
 			if(parseInt(jumlahBarang) >= parseInt(jml_beli)){
-				addToCart(id_barang);
+				addToCart(id_barang, id_div);
 			} else {
-				alert("Jumlah tidak mencukupi!");
+				notif_bar.innerHTML = "Jumlah tidak mencukupi!";
+				//alert("Jumlah tidak mencukupi!");
 			}
 			
 		}
@@ -47,16 +50,23 @@ function validate(id_barang, id_div){
 	xmlhttp.send(data);
 }
 
-function addToCart(id_barang){
+function addToCart(id_barang, id_div){
+	//alert("notif" + id_div);
+	var notif_bar = document.getElementById("notif" + id_div);
 	data = "id_barang=" + id_barang;
 	
-	if(localStorage.id_user == null){
-		alert("Maaf, Anda harus login terlebih dahulu.");
+	if(localStorage.id_user == undefined){
+		//alert("id user: " + localStorage.id_user);
+		notif_bar.innerHTML = "Maaf, Anda harus login terlebih dahulu.";
+		//alert("Maaf, Anda harus login terlebih dahulu.");
 		return;
 	} else {
-		alert("User id: " + localStorage.id_user);
+		//notif_bar.value = "User id: " + localStorage.id_user;
+		//alert("User id: " + localStorage.id_user);
 		data=data+"&id_user="+localStorage.id_user;
 	}
+	
+	//alert("lewat lho");
 	
 	//lakukan koneksi ke servlet
 	var xmlhttp;
@@ -73,7 +83,8 @@ function addToCart(id_barang){
 		//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status + " Text: "+xmlhttp.responseText);
 		if (xmlhttp.readyState=="4" && xmlhttp.status=="200"){
 			var responsecode = xmlhttp.responseText;
-			alert(responsecode);
+			notif_bar.innerHTML = responsecode;
+			//alert(responsecode);
 		}
 	};
 	xmlhttp.open("POST","addToCart", false);

@@ -34,7 +34,7 @@
 							<input type='text' id='quant<%= no %>' value='0' size=7 >
 							<img class="cart_button" src="res/addtocart.png" width=125 onclick="validate(<%= b.getId_inven() %>, <%= no %>)">
 						</form>
-						<div id='notif<%=no%>'></div>
+						<div class="notif" id='notif<%=no%>'></div>
 					</div>
 				</div>
 				<%

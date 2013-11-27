@@ -28,6 +28,7 @@
 					Quantity : 
 					<input id="quant1" value="0" type="number"></div> 
 					<div id='cart'><img onclick='validate(<%= b.getId_inven() %>, 1)' src="res/addtocart.png" /></div>
+					<br/>
 					<div id='notif1'></div>
 			</div>
 		</div>
