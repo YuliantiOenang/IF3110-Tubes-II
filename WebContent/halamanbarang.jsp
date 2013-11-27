@@ -34,7 +34,7 @@
 		%>
 		
 		<div id="contentcontainer">
-		<article id="content" class="body">
+		<article id="contentfull" class="body">
 			<div class="sort">
 				<p id="sort-text">Sort by:<br />
 					<a href="halamanbarang.jsp?kategori=<%= kategori %>&sortnama=asc">Nama (A-Z)</a> | 
@@ -58,8 +58,6 @@
 			</div>
 			<% } connection.close(); %>
 		</article>
-		
-		<%@include file="sidebar.jsp" %>
 		</div>
 		
 		<%@include file="footer.jsp" %>

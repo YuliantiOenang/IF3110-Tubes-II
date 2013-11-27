@@ -242,6 +242,7 @@ pre {
 }
 
 ul#page {
+	clear: both;
 	list-style: none; 
 	margin: 0 auto;
 	

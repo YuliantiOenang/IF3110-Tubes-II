@@ -17,7 +17,7 @@
 		
 		<div id="contentcontainer">
 		<% while(goods.next()) { %>
-		<article id="content" class="body">
+		<article id="contentfull" class="body">
 			<img id="imgbarang" src="<%= goods.getObject("gambar")%>"/>
 			<h2><%= goods.getObject("nama") %></h2>
 			<form>
@@ -31,8 +31,6 @@
 			</form>
 		</article>
 		<% } connection.close(); %>
-		
-		<%@include file="sidebar.jsp" %>
 		</div>
 		
 		<%@include file="footer.jsp" %>
