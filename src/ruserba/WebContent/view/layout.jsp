@@ -133,7 +133,8 @@
 				</div>
 				<div class="menu">
 					<% for (int i = 0; i < K.id.size(); i++) { %>
-					<a href="/ruserba/barang?kategori=<%= K.nama_kategori.get(i) %>">
+					<% String link = K.nama_kategori.get(i).replace(" ", "%20"); %>
+					<a href="/ruserba/barang?kategori=<%= link %>">
 						<div class="permenu per5">
 							<div class="menuborder"></div>
 							<div class="menutxt">
@@ -241,8 +242,10 @@
 		<form action="/ruserba/barang" method="get">
 			<h4>Search</h4>
 			<p onclick='closesearch()'>x</p>
+			<div onclick="document.getElementById('suggestions').classList.add('hidden')">
 			<input type="text" id="suggestName" name="nama_barang" value="" placeholder="Nama Barang" autocomplete="off" onkeyup="searchSuggestions(this);">
-			<div id="suggestions">
+			<div id="suggestions" class="hidden">
+			</div>
 			</div>
 			<select name="kategori">
 				<option value="">All Categories</option>

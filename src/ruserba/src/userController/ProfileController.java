@@ -38,6 +38,10 @@ public class ProfileController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = Helper.getUserLogged(request.getSession());
+		if (username.isEmpty()) {
+			response.sendRedirect("/ruserba/register");
+			return;
+		}
 		String q = "select * from account where username = '" + username  + "' limit 1";
 		Profile P = new Profile(DBA);
 		P.executeQuery(q);

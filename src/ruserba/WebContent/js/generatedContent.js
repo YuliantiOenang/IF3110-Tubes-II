@@ -29,7 +29,9 @@ xmlhttpEA.onreadystatechange=function()
 		GPage = parsedData['pageOf'];
 		GJmlPage = Math.floor(parsedData['jmlPage']);
 		//berisi response str
-		document.getElementById('ISI').innerHTML=str;
+		//document.getElementById('ISI').innerHTML=str;
+		document.getElementById('konten').innerHTML = str;
+		document.getElementById("loader").classList.add("hidden");
 	}
 };
 
@@ -63,6 +65,7 @@ onscroll = function() {
   {
 	//alert("Page :"+CurPage+" Scroll : "+GScroll[CurPage]);
 	bookmark[CurPage] = true;
+	document.getElementById("loader").classList.remove("hidden");
 	setTimeout(function(){		
 		xmlhttpEA.open("GET",GURL+"?page="+CurPage+"&sort="+GName+"&jenisSort="+GJenis+"&search="+GsearchName+"&kategori="+GsearchKateg+"&harga="+GsearchHarga+"&operator="+GsearchOP,true);
 	 CurPage++;
