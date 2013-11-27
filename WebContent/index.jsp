@@ -8,7 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link rel='stylesheet' type='text/css' href="${pageContext.request.contextPath}/css/style.css" />
+<link rel='stylesheet' type='text/css'
+	href="${pageContext.request.contextPath}/css/style.css" />
 <script>
 		function RefreshCartandShow(){
 			//REFRESH CART
@@ -92,44 +93,72 @@
 	%>
 	<%
 		@SuppressWarnings("unchecked")
-		ArrayList<KategoriBean> kategoriBean = (ArrayList<KategoriBean>) request
-				.getAttribute("items");
+			ArrayList<KategoriBean> kategoriBean = (ArrayList<KategoriBean>) request
+			.getAttribute("items");
 	%>
 	<%
 		if (kategoriBean == null)
-			kategoriBean = new ArrayList<KategoriBean>();
+		kategoriBean = new ArrayList<KategoriBean>();
 	%>
 	<jsp:include page="layout.jsp" />
-<!--  	<div class='background' id='content'>-->
+	<!--  	<div class='background' id='content'>-->
 	<div id='content_frame' name='page' onLoad="RefreshCartandShow()">
 
-	<%	boolean effect = true; 
-		if (effect) {%>
+		<%
+			boolean effect = true; 
+				if (effect) {
+		%>
 		<script>fadein();</script>
-	<% }%>
-	<!-- Added by @freedomofkeima -->
-	<% for (int i = 0; i < kategoriBean.size(); i++) { %>
-		<% ArrayList<BarangBean> barangBean = kategoriBean.get(i).getItemList(); %>
-		<% if (i == 0) { %>
-			<div onmouseover='setRun(false, <%= kategoriBean.get(i).getId() %>)' onmouseout='setRun(true, <%= kategoriBean.get(i).getId() %>)' class='home_categori' id='cont<%= kategoriBean.get(i).getId()%>'>
-		<% } else { %>
-			<div onmouseover='setRun(false, <%= kategoriBean.get(i).getId() %>)' onmouseout='setRun(true, <%= kategoriBean.get(i).getId() %>)' class='home_categori hidden' id='cont<%= kategoriBean.get(i).getId()%>'>
-		<% } %>
-		</div>
-		<h1 class='header'><%= kategoriBean.get(i).getName() %></h1>
-		<div class='triplebest'>
-		<% for (int j = 0; j < 4; j++) { %>
-			<a href='./barang/detail?id=<%= barangBean.get(j).getId() %>'>
-				<div class='best'>
-					<img title='<%= barangBean.get(j).getName() %> (IDR <%= barangBean.get(j).getPrice() %>)' onload='fitBest(this)' src='./img/barang/<%= barangBean.get(j).getPicture() %>' />
+		<%
+			}
+		%>
+		<!-- Added by @freedomofkeima -->
+		<%
+			for (int i = 0; i < kategoriBean.size(); i++) {
+		%>
+		<%
+			ArrayList<BarangBean> barangBean = kategoriBean.get(i).getItemList();
+		%>
+		<%
+			if (i == 0) {
+		%>
+		<div onmouseover='setRun(false, <%=kategoriBean.get(i).getId()%>)'
+			onmouseout='setRun(true, <%=kategoriBean.get(i).getId()%>)'
+			class='home_categori' id='cont<%=kategoriBean.get(i).getId()%>'>
+			<%
+				} else {
+			%>
+			<div onmouseover='setRun(false, <%=kategoriBean.get(i).getId()%>)'
+				onmouseout='setRun(true, <%=kategoriBean.get(i).getId()%>)'
+				class='home_categori hidden'
+				id='cont<%=kategoriBean.get(i).getId()%>'>
+				<%
+					}
+				%>
+				<h1 class='header'><%=kategoriBean.get(i).getName()%></h1>
+				<div class='triplebest'>
+					<%
+						for (int j = 0; j < 4; j++) {
+					%>
+					<a href='./barang/detail?id=<%=barangBean.get(j).getId()%>'>
+						<div class='best'>
+							<img
+								title='<%=barangBean.get(j).getName()%> (IDR <%=barangBean.get(j).getPrice()%>)'
+								onload='fitBest(this)'
+								src='./img/barang/<%=barangBean.get(j).getPicture()%>' />
+						</div>
+					</a>
+					<%
+						}
+					%>
 				</div>
-			</a>
-		<% } %>
+				<%
+					}
+				%>
+			</div>
 		</div>
-	<% } %> 
-	</div>
-	
-<!--  	foreach ($model as $key => $value) {
+
+		<!--  	foreach ($model as $key => $value) {
 		echo "	<div onmouseover='setRun(false,".$key.")' onmouseout='setRun(true,".$key.")' class='home_categori ";
 		if ($key!=1) echo "hidden";
 		echo "' id='cont".$key."'>
@@ -141,10 +170,9 @@
 				</div>";
 	}
 -->
-			
 
-	<jsp:include page="footer.jsp" />
-	
+
+		<jsp:include page="footer.jsp" />
 </body>
 </html>
 
