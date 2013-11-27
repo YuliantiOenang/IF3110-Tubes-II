@@ -141,7 +141,7 @@ ul#menubar li#searchbar {
 #cari {
 	font-family: 'Lucida Sans Unicode';
 	border: 1px solid #5c6f91;
-	padding: 2.45px;
+	padding: 3.5px;
 	padding-left: 7px;
 
 	-webkit-padding-before: 5px;
@@ -149,68 +149,6 @@ ul#menubar li#searchbar {
 	-moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 	border-radius: 5px;
-}
-
-/* Search Suggestion*/
-/* Search Down Menu */
-/* Initialize */
-ul#menubar ul.suggestion li {
-	list-style-type: armenian;
-	display: inline-block;
-}
-
-/* Link Appearance */
-ul#menubar li ul.suggestion li a {
-	text-decoration: none;
-	color: #000;
-	background: #fff;
-	padding-left: 3px;
-	padding-top: 0;
-	display: inline-block;
-}
-
-/* Make the parent of sub-menu relative */
-ul#menubar li {
-	position: relative;
-}
-
-/* Sub Menu */
-ul#menubar li ul.suggestion {
-	position: absolute;
-	top: 28px;
-	left: 0px;
-	width: 181px;
-	color: #fff;
-	display: block;
-	font-size: 12px;
-	text-align: left;
-}
-
-ul#menubar .suggestion {
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 0px;
-}
-
-ul#menubar .suggestion li a {
-	background: #000305;
-	width: 181px;
-	border: 1px solid #ddd;
-
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-}
-
-ul#menubar .suggestion li a:hover {
-	background: #8f1919;
-	/*transition:background 1s ease;*/
-}
-
-#suggestkategori {
-	background: #000;
-	color: #fff;
-	font-family: 'Lucida Sans Unicode';
 }
 
 /* Image Header */

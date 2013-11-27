@@ -35,6 +35,21 @@
 		
 		<div id="contentcontainer">
 		<article id="contentfull" class="body">
+			
+			<div id="adminbutton">
+				<button type="button" class="button" id="tambah">Tambah Barang</button>
+				<button type="button" class="button" id="hapus">Hapus Barang</button>
+				<button type="button" class="button" id="edit">Edit Barang</button>
+			</div>
+			
+			<script>
+				document.getElementById("adminbutton").style.visibility='hidden';
+				var userType = getCookie("Privilege");
+				if(userType == "Admin") {
+					 document.getElementById("adminbutton").style.visibility='visible';
+				}
+			</script>
+			
 			<div class="sort">
 				<p id="sort-text">Sort by:<br />
 					<a href="halamanbarang.jsp?kategori=<%= kategori %>&sortnama=asc">Nama (A-Z)</a> | 
