@@ -6,7 +6,8 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="org.if3110.web.DBConnector"%>
-<%! public static String HOME_URL = "http://localhost/tugas_web2/"; %>
+<%@include file="/include/header.jsp" %>
+<%! public static String HOME_URL = "http://localhost:8080/tugas_web2/"; %>
 <%!
     public boolean isInteger( String input )  
     {  
@@ -29,13 +30,13 @@
     // check input
     if(query.indexOf("less ") == 0){
         result = query.substring(5);
-        title = "Hasil pencarian kurang dari Rp. " + NumberFormat.getInstance(Locale.GERMANY).format(result);
+        title = "Hasil pencarian kurang dari Rp. " + NumberFormat.getInstance(Locale.GERMANY).format(Integer.valueOf(result));
         sql = "SELECT barang_data.barang_id, barang_data.nama, barang_kategori.kategori_nama, barang_data.harga, barang_data.image_url, barang_data.deskripsi ";
         sql += "FROM barang_data INNER JOIN barang_kategori ON barang_data.kategori_id = barang_kategori.kategori_id ";
         sql += "WHERE barang_data.harga < "+result;
     } else if(query.indexOf("more ") == 0){
         result = query.substring(5);
-        title = "Hasil pencarian lebih dari Rp. " + NumberFormat.getInstance(Locale.GERMANY).format(result);
+        title = "Hasil pencarian lebih dari Rp. " + NumberFormat.getInstance(Locale.GERMANY).format(Integer.valueOf(result));
         sql = "SELECT barang_data.barang_id, barang_data.nama, barang_kategori.kategori_nama, barang_data.harga, barang_data.image_url, barang_data.deskripsi ";
         sql += "FROM barang_data INNER JOIN barang_kategori ON barang_data.kategori_id = barang_kategori.kategori_id ";
         sql += "WHERE barang_data.harga > "+result;
@@ -109,3 +110,4 @@
         out.print("</div>");
     }
 %>
+<%@include file="/include/footer.jsp" %>

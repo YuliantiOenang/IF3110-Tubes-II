@@ -1,3 +1,4 @@
+<%@include file="/include/header.jsp" %>
 <h1>Pendaftaran Pelanggan</h1>
 <form id="pendaftaran" method="post" onSubmit="return submitPendaftaran(this)">
     <h2>Data untuk login</h2>
@@ -9,3 +10,4 @@
     <p><label>E-mail</label>: <input type="text" name="email" size="40" onKeyUp="pendaftaranEmail(this)"></p>
     <p><label>&nbsp;</label>&nbsp; <input type="submit" name="submit" value="Buat Akun" disabled="disabled"></p>
 </form>
+<%@include file="/include/footer.jsp" %>

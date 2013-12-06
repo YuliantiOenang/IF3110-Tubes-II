@@ -21,16 +21,97 @@
   
   <servlet-mapping>
     <servlet-name>ProsesJson</servlet-name>
-    <url-pattern>/proses/json*</url-pattern>
+    <url-pattern>/proses/json/</url-pattern>
   </servlet-mapping>
   
   <servlet>
-      <servlet-name>kategori_1</servlet-name>
-      <servlet-class>org.if3110.web.kategori1</servlet-class>
+      <servlet-name>kategori</servlet-name>
+      <servlet-class>org.if3110.web.kategori</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>kategori_1</servlet-name>
-    <url-pattern>/kat1</url-pattern>
+    <servlet-name>kategori</servlet-name>
+    <url-pattern>/kat/*</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>barang</servlet-name>
+      <servlet-class>org.if3110.web.barang</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>barang</servlet-name>
+    <url-pattern>/barang/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>profil</servlet-name>
+      <servlet-class>org.if3110.web.profil</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>profil</servlet-name>
+    <url-pattern>/profil/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>keranjang</servlet-name>
+      <servlet-class>org.if3110.web.Keranjang</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>keranjang</servlet-name>
+    <url-pattern>/keranjang</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>keranjang</servlet-name>
+    <url-pattern>/keranjang/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>pendaftaran</servlet-name>
+    <jsp-file>/aplikasi/page/pendaftaran.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>pendaftaran</servlet-name>
+    <url-pattern>/pendaftaran/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>pendaftaran_kartu</servlet-name>
+    <jsp-file>/aplikasi/page/daftar_kartukredit.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>pendaftaran_kartu</servlet-name>
+    <url-pattern>/pendaftaran/kartu</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>pendaftaran_kartu</servlet-name>
+    <url-pattern>/pendaftaran/kartu/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>cari</servlet-name>
+    <jsp-file>/aplikasi/page/search_result.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>cari</servlet-name>
+    <url-pattern>/cari</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>cari</servlet-name>
+    <url-pattern>/cari/</url-pattern>
+  </servlet-mapping>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/aplikasi/page/notfound.jsp</location>
+  </error-page>
+  
 </web-app>

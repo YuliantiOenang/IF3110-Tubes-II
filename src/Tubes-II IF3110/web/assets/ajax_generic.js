@@ -1,4 +1,4 @@
-var BASE_URL = "http://localhost:8080/tugas_wbd2/";
+var BASE_URL = "http://localhost:8080/tugas_web2/";
 
 /*
  * Prosedur mengirim data melalui bahasa AJAX

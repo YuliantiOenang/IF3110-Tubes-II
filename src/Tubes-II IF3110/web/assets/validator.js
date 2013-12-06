@@ -244,7 +244,7 @@ function regCCSubmit(number_field, set) {
 }
 function regCCNumber(fld) {
     if(validateCreditCard(fld) == "") {
-        var bucket = {"todo":"checkCreditCardNumber", "data":fld.value};
+        var bucket = {"todo":"checkCreditCardNumber", "data":[{"cc_number":fld.value}]};
         sendJSONType(bucket, regCCNumberAfter);
         fld.style.background = "Gray";
     } else {
@@ -411,8 +411,7 @@ function validateQtyBarang(fld) {
 }
 /* CHECK USER WAS REGISTERED CARD NUMBER OR NOT YET */
 function checkIsCard(){
-    var str = {"user_id":getItemLocalStorage("userData").user_id};
-    var bucket = {"todo":"checkCard", "data":str};
+    var bucket = {"todo":"checkCard", "data":[{"user_id":getItemLocalStorage("userData").user_id}]};
     sendJSONType(bucket, checkCardAfter);
 }
 

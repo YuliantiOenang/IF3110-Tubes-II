@@ -1,4 +1,4 @@
-var loginformhtml = "<div id=\"loginbox\" class=\"overlay\"><form class=\"popup\" method=\"post\" action=\"http://localhost:8080/tugas_web2/login.jsp\">" +
+var loginformhtml = "<div id=\"loginbox\" class=\"overlay\"><form class=\"popup\" method=\"post\" onSubmit=\"return submitlogin(this)\">" +
             "<h2>Login</h2>" +
             "<p><input name=\"nama_pengguna\" type=\"text\" placeholder=\"Nama Pengguna\">" +
             "<input name=\"kata_sandi\" type=\"password\" placeholder=\"Kata Sandi\">" +
@@ -9,7 +9,6 @@ var loginformhtml = "<div id=\"loginbox\" class=\"overlay\"><form class=\"popup\
 var identitas_pelanggan = null;
 
 function myOutput(data) {
-	var result = JSON.parse(data);
 	var form = document.getElementById("wbd_search");
 	window.location.href = BASE_URL + "cari/?query=" + form.elements[0].value;
 }
@@ -21,14 +20,14 @@ function testA() {
 }
 function showSubmenu() {
 	var child = document.getElementById('kategorilist');
-	if(child != null) child.parentNode.removeChild(child);
+	if(child !== null) child.parentNode.removeChild(child);
 	var bucket = {"todo":"subkategori", "data":"kategorilist"};
 	sendJSONType(bucket,showSubmenuAfterAjax);
 }
 function showSubmenuAfterAjax(data) {
 	var result = JSON.parse(data);
 
-	if(result.status == "success") {
+	if(result.status === "success") {
 		var submenu = document.createElement("nav");
 		submenu.id = "kategorilist";
 		var kontainer = document.createElement("div");
@@ -55,12 +54,12 @@ function submitPendaftaran(field) {
 }
 function submitPendaftaranAfter(data) {
 	var result = JSON.parse(data);
-	if(result.status == "success") {
+	if(result.status === "success") {
 		// Add to local storage
 		var new_data = result.data;
 		var date = new Date();
 		new_data.login_time = date.getTime();
-		if(saveToLocalStorage != null) {
+		if(saveToLocalStorage !== null) {
 			saveToLocalStorage("userData", new_data);
 		}
 		window.location.href = BASE_URL + "pendaftaran/kartu";
@@ -132,6 +131,14 @@ function getMoreIdentityAfter(data) {
 	var result = JSON.parse(data);
 	if(result.status == "success") {
 		var identity = result.data;
+                if(identity.nama_lengkap != null) {
+                    var userdata = getItemLocalStorage("userData");
+                    userdata.nama_lengkap = identity.nama_lengkap;
+                    saveToLocalStorage("userData", userdata);
+                    var changeelement = document.getElementById('login');
+                    changeelement.innerHTML = "<a class=\"menu_cell hyperlink\" href=\"" + BASE_URL + "profil/\">Welcome, " + getItemLocalStorage("userData").nama_lengkap + "</a>";
+                    changeelement.innerHTML += "<a class=\"menu_cell hyperlink\" onClick=\"logout()\" href=\"#\">Logout</a>";
+                }
 		var parent = document.getElementById('identitas');
 		parent.innerHTML = "<p><span>Nama Lengkap</span>: " + getItemLocalStorage("userData").nama_lengkap + "</p>";
 		parent.innerHTML += "<p><span>Alamat</span>: " + identity.alamat + "</p>";
@@ -186,7 +193,7 @@ function buttonEditIdentity() {
 	}
 }
 function submitEditIdentity(forms) {
-	if(identitas_pelanggan != null) { // cek apakah terdapat perubahan nilai pada form
+	if(identitas_pelanggan !== null) { // cek apakah terdapat perubahan nilai pada form
 		var ariCheckSame = true;
 		ariCheckSame = (ariCheckSame && getItemLocalStorage("userData").nama_lengkap == forms.nama_lengkap.value);
 		ariCheckSame = (ariCheckSame && forms.kata_kunci1.value == "");
@@ -226,6 +233,7 @@ function addToShoppingChart(field) {
 	return addToShoppingBag(field.id_barang.value, field.qty.value);
 }
 function addToShoppingBag(id_barang, qty) {
+    if(getItemLocalStorage("userData") !== null) {
 	var bucket = {"todo":"addToShoppingBag", "data":[
 		{"id_barang":id_barang,
 		 "detail_tambahan" : "",
@@ -233,7 +241,11 @@ function addToShoppingBag(id_barang, qty) {
 		}
 	]};
 	sendJSONType(bucket, addToShoppingBagAfter);
-	return false;
+    } else {
+        alert("Maaf, Anda belum login.");
+        window.location.href = window.location.href + "#loginbox";
+    }
+    return false;
 }
 function addToShoppingChartBarang(fld) {
 	var bucket = {"todo":"addToShoppingBag", "data":[
@@ -259,6 +271,7 @@ function saveToShoppingBag() {
 function saveToShoppingBagAfter(data) {
 	var result = JSON.parse(data);
 	if(result.status == "success") {
+            window.location.href = window.location.href;
 	} else {
 		alert(result.data);
 	}
@@ -294,13 +307,13 @@ function addToShoppingBagAfter(data) {
 	}
 }
 function submitCreditCard(fld) {
-	var bucket = {"todo":"daftarCreditCard", "data":
+	var bucket = {"todo":"daftarCreditCard", "data":[
 		{"user_id":getItemLocalStorage("userData").user_id,
 		 "nomor_kartu" : fld.nomor_kartu.value,
 		 "nama_pemilik" : fld.nama_kartu.value,
 		 "bulan" : fld.bulan.value,
 		 "tahun" : fld.tahun.value
-		}
+		}]
 	};
 	sendJSONType(bucket, submitCreditCardAfter);
 	return false;

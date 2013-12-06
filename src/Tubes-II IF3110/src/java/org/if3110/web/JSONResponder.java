@@ -48,11 +48,10 @@ public class JSONResponder extends HttpServlet {
         try {
             JSONObject json = new JSONObject(input_json);
             _do = json.getString("todo");
-            data = json.getJSONObject("data").toString();
+            data = json.getJSONArray("data").toString();
         } catch (JSONException ex) {
             Logger.getLogger(JSONResponder.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
@@ -78,8 +77,12 @@ public class JSONResponder extends HttpServlet {
                 out.print(saveToShoppingBag(data));
             } else if(_do.equalsIgnoreCase("checkCreditCardNumber")) {
                 out.print(checkCreditCardNumber(data));
+            } else if(_do.equalsIgnoreCase("daftarCreditCard")) {
+                out.print(daftarCreditCard(data));
             } else if(_do.equalsIgnoreCase("checkCard")) {
                 out.print(checkCard(data));
+            } else if(_do.equalsIgnoreCase("buy")) {
+                out.print(buy(data));
             }
         } catch (Exception ex) {
             Logger.getLogger(JSONResponder.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,6 +214,7 @@ public class JSONResponder extends HttpServlet {
             data_data.put("user_id", ologin.getUserID());
             data.put("data", data_data);
         } else {
+            System.out.println(ologin.password_generator(password));
             data = new JSONObject().put("status", "failed");
         }
         return data.toString();
@@ -277,14 +281,14 @@ public class JSONResponder extends HttpServlet {
         Connection con = dbCon.getConnection();
         Statement st = con.createStatement();
         ResultSet res = st.executeQuery("SELECT * FROM pelanggan_addr WHERE user_id = " + 
-                param_array2.getString("user_id") + ";");
+                param_array2.getInt("user_id") + ";");
         if(res.next()) {
             json_result.put("status", "success");
             json_result2 = new JSONObject().put("user_id", res.getString("user_id"));
             json_result2.put("alamat", res.getString("jalan"));
             json_result2.put("provinsi", res.getString("provinsi"));
             json_result2.put("kabupaten", res.getString("kabupaten"));
-            json_result2.put("kodepos", res.getString("kode_pos"));
+            json_result2.put("kodepos", res.getString("kodepos"));
             json_result2.put("user_phone", res.getString("user_phone"));
             json_result.put("data", json_result2);
         } else {
@@ -306,7 +310,7 @@ public class JSONResponder extends HttpServlet {
         Connection con = dbCon.getConnection();
         Statement st = con.createStatement();
         ResultSet res = st.executeQuery("SELECT * FROM pelanggan_addr WHERE user_id = " + 
-                param_array2.getString("user_id") + ";");
+                param_array2.getInt("user_id") + ";");
         if(res.next()) {
             sql = "UPDATE pelanggan_addr SET ";
             sql += "jalan = '" + param_array2.getString("alamat") + "', ";
@@ -314,10 +318,10 @@ public class JSONResponder extends HttpServlet {
             sql += "kabupaten = '" + param_array2.getString("kabupaten") + "', ";
             sql += "kodepos = " + param_array2.getString("kodepos") + ", ";
             sql += "user_phone = '" + param_array2.getString("no_hp") + "' ";
-            sql += "WHERE user_id = " + param_array2.getString("user_id") + ";";
+            sql += "WHERE user_id = " + param_array2.getInt("user_id") + ";";
         } else {
             sql = "INSERT INTO pelanggan_addr VALUES (";
-            sql += param_array2.getString("user_id") + ", ";
+            sql += param_array2.getInt("user_id") + ", ";
             sql += "'"+ param_array2.getString("alamat") + "', ";
             sql += "'"+ param_array2.getString("provinsi") + "', ";
             sql += "'"+ param_array2.getString("kabupaten") + "', ";
@@ -326,19 +330,19 @@ public class JSONResponder extends HttpServlet {
             sql += ");";
         }
         
-        st.executeQuery(sql);
+        st.executeUpdate(sql);
         
         // Change full name
         sql = "UPDATE pelanggan_id SET ";
         sql += "nama_lengkap = '" + param_array2.getString("nama_lengkap") + "' ";
-        sql += "WHERE user_id = " + param_array2.getString("user_id") + ";";
+        sql += "WHERE user_id = " + param_array2.getInt("user_id") + ";";
         
-        st.executeQuery(sql);
+        st.execute(sql);
         
-        if("".equals(param_array2.getString("kata_sandi")))
+        if(param_array2.getString("kata_sandi") == null)
         {
             sql = "SELECT nama_pengguna FROM __user_login WHERE user_id = '"
-                    + param_array2.getString("user_id") + "';";
+                    + param_array2.getInt("user_id") + "';";
             res = st.executeQuery(sql);
             res.next();
             Authentication ologin = new Authentication(res.getString("nama_pengguna"),
@@ -347,7 +351,8 @@ public class JSONResponder extends HttpServlet {
         }
         
         json_result.put("status", "success");
-        json_result2 = new JSONObject().put("user_id", param_array2.getString("user_id"));
+        json_result2 = new JSONObject().put("user_id", param_array2.getInt("user_id"));
+        json_result2.put("nama_lengkap", param_array2.getString("nama_lengkap"));
         json_result2.put("alamat", param_array2.getString("alamat"));
         json_result2.put("provinsi", param_array2.getString("provinsi"));
         json_result2.put("kabupaten", param_array2.getString("kabupaten"));
@@ -376,14 +381,14 @@ public class JSONResponder extends HttpServlet {
                 + "barang_data.barang_id = barang_stok.barang_id "
                 + "WHERE barang_data.barang_id = "
                 + param_array2.getString("id_barang")
-                + " AND stok > " + param_array2.getString("qty") + ";");
+                + " AND stok > " + param_array2.getInt("qty") + ";");
         if(res.next())
         {
             JSONArray barang_ari;
             if(session.getAttribute("shopping_bag") != null)
             {
                 boolean found = false;
-                JSONObject barang = new JSONObject(session.getAttribute("shopping_bag"));
+                JSONObject barang = new JSONObject(String.valueOf(session.getAttribute("shopping_bag")));
                 JSONObject el_barang;
                 barang_ari = barang.getJSONArray("data");
                 for(int i = 0; i < barang_ari.length() && !found; i++)
@@ -391,12 +396,12 @@ public class JSONResponder extends HttpServlet {
                     el_barang = barang_ari.getJSONObject(i);
                     if(el_barang.getString("id_barang").equals(param_array2.getString("id_barang")))
                     {
-                        el_barang.put("qty", el_barang.getInt("qty" + param_array2.getInt("qty")));
+                        el_barang.put("qty", el_barang.getInt("qty") + param_array2.getInt("qty"));
                         if(!"".equalsIgnoreCase(param_array2.getString("detail_tambahan")))
                         {
                             el_barang.put("detail_tambahan", 
-                                el_barang.getString("detail_tambahan" + 
-                                    param_array2.getString("detail_tambahan")));
+                                el_barang.getString("detail_tambahan") + " - " +
+                                    param_array2.getString("detail_tambahan"));
                         }
                         found = true;
                         barang_ari.put(i, el_barang);
@@ -405,8 +410,8 @@ public class JSONResponder extends HttpServlet {
                 if(!found)
                 {
                     barang_ari.put(param_array2);
-                    json_result3.put("data", barang_ari);
                 }
+                json_result3.put("data", barang_ari);
             } else {
                 barang_ari = new JSONArray();
                 barang_ari.put(param_array2);
@@ -417,7 +422,7 @@ public class JSONResponder extends HttpServlet {
             json_result.put("status", "success");
             json_result2.put("nama_barang", res.getString("nama"));
             json_result2.put("harga", res.getString("harga"));
-            json_result2.put("qty", param_array2.getString("qty"));
+            json_result2.put("qty", param_array2.getInt("qty"));
             json_result2.put("total_barang_keranjang", barang_ari.length());
             json_result.put("data", json_result2);
         } else {
@@ -438,7 +443,7 @@ public class JSONResponder extends HttpServlet {
         JSONArray param_array = new JSONArray(param);
         JSONObject temp_param;
         
-        JSONObject barang = new JSONObject(session.getAttribute("shopping_bag"));
+        JSONObject barang = new JSONObject(String.valueOf(session.getAttribute("shopping_bag")));
         JSONArray barang_ari = barang.getJSONArray("data");
         JSONObject temp_barang;
         for(int i = 0; i < barang_ari.length(); i++)
@@ -450,7 +455,7 @@ public class JSONResponder extends HttpServlet {
                 temp_param = param_array.getJSONObject(j);
                 if(temp_barang.getString("id_barang").equals(temp_param.getString("barang_id")))
                 {
-                    temp_barang.put("qty", temp_param.getString("barang_id"));
+                    temp_barang.put("qty", temp_param.getString("qty"));
                     barang_ari.put(i, temp_barang);
                     found = true;
                 }
@@ -466,7 +471,10 @@ public class JSONResponder extends HttpServlet {
         }
         json_result2.put("data", json_result3);
         
-        session.setAttribute("shopping_bag", json_result2.toString());
+        if(json_result3.length() > 0)
+            session.setAttribute("shopping_bag", json_result2.toString());
+        else
+            session.removeAttribute("shopping_bag");
         
         json_result.put("status", "success");
         json_result.put("data", "");
@@ -545,14 +553,14 @@ public class JSONResponder extends HttpServlet {
                     sql += ";";
                 }
             }
-            st.executeQuery(sql);
+            st.executeUpdate(sql);
             
             // UPDATE STOK
             for(int i = 0; i < json_result3.length(); i++) {
                 temp_param = json_result3.getJSONObject(i);
                 sql = "UPDATE barang_stok SET stok = stok - " + temp_param.getString("qty") 
                         + " WHERE barang_id = " + temp_param.getString("id_barang") + ";";
-                st.executeQuery(sql);
+                st.executeUpdate(sql);
             }
             
             session.removeAttribute("shopping_bag");
@@ -575,7 +583,10 @@ public class JSONResponder extends HttpServlet {
     public String checkCreditCardNumber(String param) throws Exception
     {
         JSONObject json_result = new JSONObject();
-        String result = param.replace("-", "");
+        JSONArray json_param = new JSONArray(param);
+        JSONObject object = json_param.getJSONObject(0);
+        String param_t = object.getString("cc_number");
+        String result = param_t.replace("-", "");
         if(is_valid_luhn(result))
         {
             json_result.put("status", "valid");
@@ -592,14 +603,22 @@ public class JSONResponder extends HttpServlet {
         JSONObject json_result = new JSONObject();
         Date date = new Date(System.currentTimeMillis());
         
-        JSONObject temp_param = new JSONObject(param);
+        JSONArray json_array = new JSONArray(param);
+        JSONObject temp_param = json_array.getJSONObject(0);
+        String bulan;
+        
+        int bulan_i = Integer.parseInt(temp_param.getString("bulan"));
+        if(bulan_i < 10)
+            bulan = "0" + temp_param.getString("bulan");
+        else
+            bulan = temp_param.getString("bulan");
         
         Date date_param = Date.valueOf(temp_param.getString("tahun")
-                + "-" + temp_param.getString("bulan") + "-01");
+                + "-" + bulan + "-01");
         if(date.before(date_param))
         {
             Proses proses = new Proses();
-            proses.daftarKartuKredit(temp_param.getString("user_id"),
+            proses.daftarKartuKredit(String.valueOf(temp_param.getInt("user_id")),
                 temp_param.getString("nomor_kartu"),
                 temp_param.getString("nama_pemilik"),
                 temp_param.getString("bulan"), 
@@ -617,11 +636,12 @@ public class JSONResponder extends HttpServlet {
     
     public String checkCard(String param) throws Exception
     {   
-        JSONObject param_array = new JSONObject(param);
+        JSONArray json_array = new JSONArray(param);
+        JSONObject param_array = json_array.getJSONObject(0);
         
         String sql = "SELECT card_number FROM pelanggan_card JOIN pelanggan_id ON "
             + "pelanggan_id.user_id = pelanggan_card.user_id "
-            + "WHERE pelanggan_id.user_id = " + param_array.getString("user_id")
+            + "WHERE pelanggan_id.user_id = " + param_array.getInt("user_id")
             + ";";
         
         DBConnector dbCon = DBConnector.getInstance();
@@ -630,8 +650,10 @@ public class JSONResponder extends HttpServlet {
         ResultSet res = st.executeQuery(sql);
         
         if(res.next()) {
+            con.close();
             return "1";
         } else {
+            con.close();
             return "0";
         }
     }

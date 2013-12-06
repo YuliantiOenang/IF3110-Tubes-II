@@ -1,6 +1,7 @@
-<%! public static String HOME_URL = "http://localhost/tugas_web2/"; %>
 <%@page import="java.util.ArrayList"%>
 <%@page import ="java.lang.String"%>
+<%@include file="/include/header.jsp" %>
+<%! public static String HOME_URL = "http://localhost:8080/tugas_web2/"; %>
 <h1>Pendaftaran Pelanggan</h1>
 <form id="daftar_kartukredit" onSubmit="return submitCreditCard(this)">
     <p><label>Nomor kartu kredit</label>: <input type="text" name="nomor_kartu" size="25" maxlength="23" onKeyUp="regCCNumber(this)"> <i>exp. 1234-5678-9012-3456</i></p>
@@ -22,7 +23,7 @@
         int i = 0;
         for(i = 0; i < arrayofbulan.size(); i++)
         {
-            out.println( "<option value=\""+i+"\">"+arrayofbulan.get(i)+"</option>");
+            out.println( "<option value=\""+(i + 1)+"\">"+arrayofbulan.get(i)+"</option>");
         }
     %>
         </select>&nbsp;<select name="tahun">
@@ -30,5 +31,6 @@
         out.println("<option value=\""+i+"\">"+i+"</option>");
     } %>
         </select></p>
-    <p><label>&nbsp;</label>&nbsp;<input type="submit" name="submit" value="Daftarkan Kartu Kredit" disabled="disabled"> atau <a href="<%= HOME_URL %>">Cukup lewat saja</a></p>
+    <p><label>&nbsp;</label>&nbsp;<input type="submit" name="submit" value="Daftarkan Kartu Kredit" disabled="disabled"> atau <a href="<%=HOME_URL %>">Cukup lewat saja</a></p>
 </form>
+<%@include file="/include/footer.jsp" %>

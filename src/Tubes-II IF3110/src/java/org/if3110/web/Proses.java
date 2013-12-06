@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,7 +34,7 @@ public class Proses {
         // save to DB
         String sql = "INSERT INTO pelanggan_id VALUES (";
         sql += new_number + ", '" + nama_lengkap + "', '" + email + "');";
-        st.executeQuery(sql);
+        st.executeUpdate(sql);
         
         Authentication ologin = new Authentication(nama_pengguna, kata_sandi);
         ologin.save(new_number);
@@ -86,28 +87,28 @@ public class Proses {
         return json_result;
     }
     
-    public ArrayList<HashMap<String, String>> showBarang(String barang) throws Exception
+    public HashMap<String, String> showBarang(String barang)
     {
-        String sql = "SELECT barang_id, nama, harga, image_url, deskripsi "
-            + "FROM barang_data WHERE barang_id = " + barang + ";";
-        DBConnector dbCon = DBConnector.getInstance();
-        Connection con = dbCon.getConnection();
-        Statement st = con.createStatement();
-        ResultSet res = st.executeQuery(sql);
-        ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> ret_map;
-        while(res.next())
-        {
+        HashMap<String, String> ret_map = null;
+        try {
+            String sql = "SELECT barang_id, nama, harga, image_url, deskripsi "
+                + "FROM barang_data WHERE barang_id = " + barang + ";";
+            DBConnector dbCon = DBConnector.getInstance();
+            Connection con = dbCon.getConnection();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql);
+            res.next();
             ret_map = new HashMap<String, String>();
             ret_map.put("barang_id", res.getString("barang_id"));
             ret_map.put("nama", res.getString("nama"));
             ret_map.put("harga", res.getString("harga"));
             ret_map.put("image_url", res.getString("image_url"));
             ret_map.put("deskripsi", res.getString("deskripsi"));
-            result.add(ret_map);
+            con.close();
+        } catch (Exception ex) {
+            Logger.getLogger(Proses.class.getName()).log(Level.SEVERE, null, ex);
         }
-        con.close();
-        return result;
+        return ret_map;
     }
     
     public JSONObject showKategoriWithFilter(String kategori_id, String parameter) throws Exception
@@ -159,13 +160,13 @@ public class Proses {
     }
     
     public JSONObject showShoppingBag(String param) throws Exception
-    {
-        JSONObject json_result = new JSONObject();
-        JSONObject temp_barang = new JSONObject(param);
-        JSONArray temp_barang_ari = temp_barang.getJSONArray("data");
-        
-        if(temp_barang_ari.length() > 0)
+    {   
+        JSONObject json_result = null;
+        if(param != null && !param.equalsIgnoreCase("{}"))
         {
+            json_result = new JSONObject();
+            JSONObject temp_barang = new JSONObject(param);
+            JSONArray temp_barang_ari = temp_barang.getJSONArray("data");
             String ids_barang;
             JSONObject temp_barang_el = temp_barang_ari.getJSONObject(0);
             ids_barang = temp_barang_el.getString("id_barang");
@@ -182,9 +183,9 @@ public class Proses {
             Connection con = dbCon.getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
-            int total = 0;
             JSONArray json_result2 = new JSONArray();
             JSONObject temp_result;
+            double total = 0;
             for(int i = 0; res.next(); i++)
             {
                 temp_result = new JSONObject().put("barang_id", res.getString("barang_id"));
@@ -197,13 +198,15 @@ public class Proses {
                     temp_barang_el = temp_barang_ari.getJSONObject(j);
                     if(res.getString("barang_id").equals(temp_barang_el.getString("id_barang")))
                     {
-                        temp_result.put("qty", temp_barang_el.getString("qty"));
+                        temp_result.put("qty", temp_barang_el.getInt("qty"));
                         temp_result.put("detail_tambahan", temp_barang_el.getString("detail_tambahan"));
                     }
                 }
                 json_result2.put(i, temp_result);
+                total += res.getDouble("harga")*temp_result.getInt("qty");
             }
             json_result.put("data", json_result2);
+            json_result.put("total", total);
             
             con.close();
         }
@@ -225,7 +228,7 @@ public class Proses {
         Statement st = con.createStatement();
         ResultSet res = st.executeQuery(sql);
         
-        if(res.next())
+        if(!res.next())
         {
             sql = "INSERT INTO pelanggan_card VALUES (";
             sql += user_id + ", '" + nomor_kartu + "', ";
@@ -238,7 +241,7 @@ public class Proses {
             sql += "WHERE user_id = " + user_id + ";";
         }
         
-        st.executeQuery(sql);
+        st.execute(sql);
         
         con.close();
     }

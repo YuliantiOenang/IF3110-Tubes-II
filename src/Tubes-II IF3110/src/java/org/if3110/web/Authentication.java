@@ -34,14 +34,14 @@ public class Authentication {
     protected boolean isValidInput()
     {
         boolean result;
-        Pattern pattern = Pattern.compile("/^[a-zA-Z_.]+$/");
+        Pattern pattern = Pattern.compile("^[a-zA-Z_.]+$");
         if("".equals(username) || "".equals(password)) {
             result = false;
         } else {
             Matcher matcher = pattern.matcher(username);
-            if(!matcher.find())
+            if(!matcher.find()) {
                 result = false;
-            else {
+            } else {
                 result = (username.length() >= 8 && username.length() <= 16 &&
                         password.length() >= 6 && password.length() <= 18);
             }
@@ -81,13 +81,18 @@ public class Authentication {
         return result;
     }
     
-    protected String password_generator(String inputsandi)
+    public String password_generator(String inputsandi)
             throws NoSuchAlgorithmException
     {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
         messageDigest.update(inputsandi.getBytes());
-        String encryptedString = new String(messageDigest.digest());
-        return encryptedString;
+        byte[] hashBytes = messageDigest.digest();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hashBytes.length; i++) {
+          sb.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String fileHash = sb.toString();
+        return fileHash;
     }
     
     public boolean CheckResultLogin() throws Exception
@@ -98,8 +103,9 @@ public class Authentication {
                 result = isKeywordPass();
             } else
                 result = false;
-        } else
+        } else {
             result = false;
+        }
         return result;
     }
     
@@ -146,7 +152,7 @@ public class Authentication {
         DBConnector dbCon = DBConnector.getInstance();
         Connection con = dbCon.getConnection();
         Statement st = con.createStatement();
-        st.executeQuery(sql);
+        st.executeUpdate(sql);
     }
     
     public void update(int idnum) throws Exception
@@ -167,6 +173,6 @@ public class Authentication {
         DBConnector dbCon = DBConnector.getInstance();
         Connection con = dbCon.getConnection();
         Statement st = con.createStatement();
-        st.executeQuery(sql);
+        st.executeUpdate(sql);
     }
 }
