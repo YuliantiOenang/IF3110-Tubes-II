@@ -4,6 +4,7 @@
     Author     : Ahmad Fauzan
 --%>
 
+<%@page import="ruserba.beans.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="ruserba.database.DatabaseHelper"%>
@@ -17,7 +18,12 @@
         <title>Admin Page</title>
     </head>
     <body>
-
+        <% 
+            if(session.getAttribute("user") == null || !((User) session.getAttribute("user")).getUsername().equalsIgnoreCase("admin")) {  
+                    String redirectURL = "";
+                    response.sendRedirect(redirectURL);
+            } 
+        %> 
         <div id="popup">
             <span id="warning">Do you want to delete it ? </span>
             <form id="formdelete" method="post" action="DeleteItemServlet">

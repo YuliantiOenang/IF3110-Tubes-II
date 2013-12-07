@@ -14,6 +14,12 @@
         <title>Profil</title>
     </head>
     <body>
+        <% 
+            if(session.getAttribute("user") == null ) {  
+                    String redirectURL = "";
+                    response.sendRedirect(redirectURL);
+            } 
+        %> 
         <jsp:useBean id="user" class="ruserba.beans.User" scope="session"> </jsp:useBean>
         <div class='formcontainer'>
             <h2 id='formtitle'>Profil <jsp:getProperty name="user" property="username"/> </h2>

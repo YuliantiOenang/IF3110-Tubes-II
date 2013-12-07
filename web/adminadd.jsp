@@ -4,6 +4,7 @@
     Author     : Ahmad Fauzan
 --%>
 
+<%@page import="ruserba.beans.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -16,6 +17,12 @@
         <title>Edit Barang</title>
     </head>
     <body>
+        <% 
+            if(session.getAttribute("user") == null || !((User) session.getAttribute("user")).getUsername().equalsIgnoreCase("admin")) {  
+                    String redirectURL = "";
+                    response.sendRedirect(redirectURL);
+            } 
+        %> 
         <div class='formcontainer'>
             <h2 id='formtitle'>Add Barang</h2>
             <br />

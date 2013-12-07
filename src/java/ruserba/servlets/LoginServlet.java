@@ -16,7 +16,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
+import ruserba.beans.User;
 import ruserba.database.DatabaseHelper;
 
 /**
@@ -51,6 +53,8 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         JSONObject json = new JSONObject();
+        User user = null;
+        
         if (request.getParameter("username") != null && request.getParameter("password") != null) {
             String query = "select token, last_login from user where username='" + request.getParameter("username") + "' and password='" + request.getParameter("password") + "'";
             DatabaseHelper.Connect();
@@ -68,6 +72,14 @@ public class LoginServlet extends HttpServlet {
                     DatabaseHelper.execute(query);
                     json.put("token", newToken);
                     json.put("status", "success");
+                    
+                    
+                    user = new User();
+                    user.setUsername(request.getParameter("username"));
+                    user.setPassword(request.getParameter("password"));
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", user);
                 }
                 else {
                     json.put("status", "failed");
@@ -79,7 +91,7 @@ public class LoginServlet extends HttpServlet {
             }
             DatabaseHelper.Disconnect();
         } else if (request.getParameter("token") != null) {
-            String query = "select token, last_login from user where token='" + request.getParameter("token") + "'";
+            String query = "select username, token, last_login, password from user where token='" + request.getParameter("token") + "'";
             DatabaseHelper.Connect();
             ResultSet result = DatabaseHelper.executeQuery(query);
             try {
@@ -94,6 +106,13 @@ public class LoginServlet extends HttpServlet {
                     else {
                         query = "update user set last_login='" + new java.sql.Date(new java.util.Date().getTime()).toString() + "' where token='" + request.getParameter("token") + "'";
                         json.put("status", "success");
+                        
+                        user = new User();
+                        user.setUsername(result.getString("username"));
+                        user.setPassword(result.getString("password"));
+
+                        HttpSession session = request.getSession();
+                        session.setAttribute("user", user);
                     }
                     DatabaseHelper.execute(query);
                 }
@@ -109,6 +128,28 @@ public class LoginServlet extends HttpServlet {
         } else {
             json.put("status", "failed");
             out.println(json.toString());
+        }
+        
+        if(user != null) {
+            try {
+                String query = "SELECT * FROM user_profile WHERE username='" + user.getUsername() + "'";
+                DatabaseHelper.Connect();
+                ResultSet result = DatabaseHelper.executeQuery(query);
+                if(result.next()) {
+                    
+                    user.setAlamat(result.getString("alamat"));
+                    user.setEmail(result.getString("alamat"));
+                    user.setKodepos(result.getString("kode_pos"));
+                    user.setKota(result.getString("kota"));
+                    user.setName(result.getString("nama"));
+                    user.setPonsel(result.getString("nomor_ponsel"));
+                    user.setProvinsi("provinsi");
+                    
+                }
+                DatabaseHelper.Disconnect();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         out.close();
     }

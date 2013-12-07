@@ -5,15 +5,10 @@ window.addEventListener('load', function() {
 	belibutton.onclick = function() {
 		if (localStorage.getItem('auth_token') != null) {
 			if (inputjumlah.value * 1 > 0 && inputjumlah.value * 1 <= inputjumlah.max * 1) {
-				var idbarang = this.name;
-				if (!(idbarang in cartcontent)) {
-					cartcontent[idbarang] = 0;
-				}
-				cartcontent[idbarang] += inputjumlah.value * 1;
 				var xhr = new XMLHttpRequest();
-				xhr.open('POST', '/ruserba/scripts/php/updatecart.php', true);
+				xhr.open('POST', '/ruserba/UpdateCartServlet', true);
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				var postParams = 'cartcontent=' + JSON.stringify(cartcontent);
+				var postParams = 'idbarang=' + this.name +'&count='+inputjumlah.value;
 				xhr.send(postParams);
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {

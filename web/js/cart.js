@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
 			document.getElementById('subtotal_' + this.name).innerHTML = newsub;
 			newtotal += newsub;
 			document.getElementById('angkatotal').innerHTML = newtotal;
-			var barang = document.getElementById('totalbarang').innerHTML - cartcontent[this.name];
+			/*var barang = document.getElementById('totalbarang').innerHTML - cartcontent[this.name];
 			barang += this.value * 1;
 			document.getElementById('totalbarang').innerHTML = barang;
 			cartcontent[this.name] = this.value * 1;
@@ -28,7 +28,7 @@ window.addEventListener('load', function() {
 			xhr.open('POST', '/ruserba/scripts/php/updatecart.php', true);
 			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			var postParams = 'cartcontent=' + JSON.stringify(cartcontent);
-			xhr.send(postParams);
+			xhr.send(postParams);*/
 		}
 	}
 
