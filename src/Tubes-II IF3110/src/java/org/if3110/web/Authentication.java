@@ -42,8 +42,8 @@ public class Authentication {
             if(!matcher.find()) {
                 result = false;
             } else {
-                result = (username.length() >= 8 && username.length() <= 16 &&
-                        password.length() >= 6 && password.length() <= 18);
+                result = (username.length() >= 5 && username.length() <= 16 &&
+                        password.length() >= 8 && password.length() <= 18);
             }
         }
         return result;

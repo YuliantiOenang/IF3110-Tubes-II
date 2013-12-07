@@ -78,6 +78,10 @@ function loginAfter(data) {
 	var result = JSON.parse(data);
 	if(result.status == "success") {
 		// Add to local storage
+                if(result.data.nama_lengkap == "admin") {
+                    window.location.href = BASE_URL + "admin.jsp";
+                    return;
+                }
 		var new_data = result.data;
 		var date = new Date();
 		new_data.login_time = date.getTime();
